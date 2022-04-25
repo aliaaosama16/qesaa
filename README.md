@@ -14,3 +14,8 @@ Then, initialize Capacitor using the CLI questionnaire:
 
 npx cap init
    
+   
+   ========
+   npm install @capacitor/android
+   npx cap add android
+
