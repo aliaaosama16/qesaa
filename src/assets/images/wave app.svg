@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375" height="139" viewBox="0 0 375 139">
+  <defs>
+    <clipPath id="clip-wave_app">
+      <rect width="375" height="139"/>
+    </clipPath>
+  </defs>
+  <g id="wave_app" data-name="wave app" clip-path="url(#clip-wave_app)">
+    <path id="Path_10668" data-name="Path 10668" d="M0,785.084V67.489C0,30.215,48.032,0,107.284,0h992.389c59.252,0,107.283,30.215,107.283,67.489V865.333c-183.8-72.688-24.191-320.839-209.125-356.453C789.214,468.705,870.1,685.648,640.2,645.474s-315.056-32.14-408.724,72.314C181.072,774,81.368,785.988,0,785.084Z" transform="translate(-381.978 -514.667)" fill="#ffeee3"/>
+  </g>
+</svg>

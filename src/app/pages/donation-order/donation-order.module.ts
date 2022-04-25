@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DonationOrderPageRoutingModule } from './donation-order-routing.module';
 
 import { DonationOrderPage } from './donation-order.page';
+import { SharedComponentModule } from 'src/app/components/shared-component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DonationOrderPageRoutingModule
+    DonationOrderPageRoutingModule,
+    SharedComponentModule
   ],
   declarations: [DonationOrderPage]
 })

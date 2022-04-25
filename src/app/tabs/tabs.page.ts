@@ -9,4 +9,7 @@ export class TabsPage {
 
   constructor() {}
 
+  donate(){
+    console.log('donate now');
+  }
 }
