@@ -1,0 +1,50 @@
+.header-image {
+  img {
+    width: 40%;
+    margin: 1.5vh;
+  }
+}
+
+.my-menu-content {
+  ion-item {
+    ion-icon {
+      font-size: 16px;
+    }
+
+    .icon-ar {
+      margin: 0px 8px 0 0;
+    }
+
+    .icon-en {
+      margin: 0px 0 0 8px;
+    }
+
+    .icon-margin-left {
+      margin: 0 0 0 10px;
+    }
+
+    .icon-margin-right {
+      margin: 0 10px 0 0;
+    }
+  }
+  .selected {
+    ion-item {
+      &::part(native) {
+        background-color: var(--ion-color-primary);
+        color: var(--ion-color-white);
+      }
+     
+    }
+  }
+
+ 
+}
+
+.logout-section {
+  ion-item {
+    margin-bottom: 8px;
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}

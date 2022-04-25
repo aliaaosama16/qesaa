@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
 import { SwiperModule } from 'swiper/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     HomePageRoutingModule,
     SharedComponentModule,
-    SwiperModule
+    SwiperModule,
+    TranslateModule
   ],
   declarations: [HomePage]
 })

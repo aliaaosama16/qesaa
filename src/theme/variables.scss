@@ -92,6 +92,65 @@
 	--ion-color-white-tint: #ffffff;
 }
 
+.background-color{
+  background-color: var(--ion-color-background);
+}
+
+.primary-color{
+  color: var(--ion-color-primary);
+}
+
+.secondary-color{
+  color: var(--ion-color-secondary);
+}
+
+.fn-10 {
+  font-size: 10px !important;
+}
+
+.fn-12 {
+  font-size: 12px !important;
+}
+
+.fn-14 {
+  font-size: 14px !important;
+}
+
+.fn-15 {
+  font-size: 15px !important;
+}
+
+.fn-16 {
+  font-size: 16px !important;
+}
+
+.fn-18 {
+  font-size: 18px !important;
+}
+
+.fn-20 {
+  font-size: 20px !important;
+}
+
+.fn-22 {
+  font-size: 22px !important;
+}
+
+.fn-24 {
+  font-size: 24px !important;
+}
+
+.qesaa-Regular {
+  font-family: "Cairo-Regular";
+}
+
+.qesaa-Bold {
+  font-family: "Cairo-Bold";
+}
+
+.qesaa-SemiBold {
+  font-family: "Cairo-SemiBold";
+}
 // @media (prefers-color-scheme: dark) {
 //   /*
 //    * Dark Colors

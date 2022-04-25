@@ -1,5 +1,27 @@
-ion-button{
-    &::part(native){
+ion-header {
+  ion-toolbar {
+    padding: 0 14px !important;
+    ion-button {
+      &::part(native) {
         border-radius: 6px;
+        height: 40px;
+      }
+
+      ion-icon {
+        font-size: 24px;
+      }
     }
+
+    ion-title {
+      margin-top: 10px;
+    }
+
+    ion-buttons[slot="start"] {
+      margin-inline-start: 0px !important;
+    }
+
+    ion-buttons[slot="end"] {
+      margin-inline-end: 0px !important;
+    }
+  }
 }

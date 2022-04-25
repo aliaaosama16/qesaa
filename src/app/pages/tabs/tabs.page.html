@@ -1,0 +1,37 @@
+<ion-tabs>
+
+  <div class="tabs-up"></div>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="donate()" color="light">
+      <ion-icon src="./../assets/icon/fav-inactive.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ 
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{'home'|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notifications">
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>{{'notifications'|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button class="custom-tab-button">
+      <ion-label>{{'Donation Order'|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="my-orders">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>{{'my-orders'|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="account">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>{{'profile'|translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

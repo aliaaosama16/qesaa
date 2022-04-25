@@ -1,3 +1,51 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" menuId="main">
+      <ion-header class="header-image ion-no-border background-color">
+        <img
+          [ngClass]="language == 'ar' ? 'image-right' : 'image-left'"
+          src="./../assets/images/512.png"
+        />
+      </ion-header>
+            <!-- [routerLink]="p.url=='share'?? [p.url]" -->
+
+      <ion-content class="my-menu-content">
+        <ion-list >
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of pages; let i = index"
+            (click)="selectMenuItem(i,p.url)"
+            routerDirection="root"
+            [class.selected]="selectedIndex == i"
+          >
+            <ion-item lines="none" detail="false">
+              <ion-icon
+                slot="start"
+                [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
+                [ngClass]="currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'"
+              ></ion-icon>
+              <ion-label
+              class="fn-16 qesaa-Regular"
+                [ngStyle]="
+                  currentLanguage == 'ar'
+                    ? { 'margin-right': '10px' }
+                    : { 'margin-left': '10px' }
+                "
+                >{{ p.title | translate }}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+
+      <!-- <ion-footer *ngIf="logined" class="ion-padding logout-section ion-no-border">
+        <ion-item lines="none" detail="false" (click)="logout()">
+          <ion-icon slot="start" src="./../assets/icon/logout.svg"></ion-icon>
+          <ion-label>{{ "logout" | translate }}</ion-label>
+        </ion-item>
+      </ion-footer> -->
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

@@ -1,6 +1,61 @@
+<app-header [title]="'home'" [isHome]="true"></app-header>
 
-<app-header [title]="'home'"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="slider-section ion-padding ion-margin-top">
+    <swiper
+      #swiper
+      [config]="configSlider"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template swiperSlide *ngFor="let slide of Sliders">
+        <img [src]="slide.image" />
+      </ng-template>
+    </swiper>
+  </div>
 
-<ion-content class="ion-padding" [fullscreen]="true">
-    
+  <div class="next-initiative ion-padding ion-margin-horizontal ">
+    <div class="initiative">
+      <div class="title">
+        <p class="fn-20 primary-color ion-no-margin">المبادرة القادمة</p>
+      </div>
+      <div class="initiative-time">
+        <div class="time"> 
+            <div class="time-detail primary-color">
+1
+            </div>
+            <div class="time-unit fn-14 qesaa-Regular secondary-color">
+ايام
+            </div>
+        </div>
+
+        <div class="time"> 
+            <div class="time-detail primary-color">
+2
+            </div>
+            <div class="time-unit fn-14 qesaa-Regular secondary-color">
+ساعات
+            </div>
+        </div>
+        <div class="time"> 
+            <div class="time-detail primary-color">
+30
+            </div>
+            <div class="time-unit fn-14 qesaa-Regular secondary-color">
+دقائق
+            </div>
+        </div>
+        <div class="time"> 
+            <div class="time-detail primary-color">
+10
+            </div>
+            <div class="time-unit fn-14 qesaa-Regular secondary-color">
+ثواني
+            </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
 </ion-content>
