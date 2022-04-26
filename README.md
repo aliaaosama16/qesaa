@@ -18,4 +18,13 @@ npx cap init
    ========
    npm install @capacitor/android
    npx cap add android
+   
+   ========
+   npm install @types/googlemaps --save-dev
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"
+  type="text/javascript"></script>
+  
+  <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+            <string>This App wants to track your location</string>
+        </edit-config>
 
