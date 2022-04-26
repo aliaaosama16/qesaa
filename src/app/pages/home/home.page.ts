@@ -12,6 +12,13 @@ import { LanguageService } from 'src/app/services/language/language.service';
 })
 export class HomePage implements OnInit {
   configSlider: SwiperOptions;
+  partenrsConfig:SwiperOptions;
+  partenrs:any[]=[
+    './../../../assets/icon/logos/img1.svg',
+    './../../../assets/icon/logos/img2.svg',
+    './../../../assets/icon/logos/img3.svg',
+    './../../../assets/icon/logos/img4.svg',
+  ];
   Sliders: any[];
   platform: string = '';
   currentlangauge: string;
@@ -33,6 +40,14 @@ export class HomePage implements OnInit {
       autoplay: true,
       loop:true
     };
+
+    this.partenrsConfig={
+    slidesPerView: 3.1,
+    spaceBetween: 3,
+    pagination: false,
+    effect: 'fade',
+   
+  };
     this.Sliders = [
       { image: './../../../assets/images/1024-500.png', id: 1 },
       { image: './../../../assets/images/1024-500.png', id: 2 },

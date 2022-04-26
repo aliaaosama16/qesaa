@@ -1,16 +1,10 @@
-<ion-tabs>
+<!-- <ion-tabs>
 
-  <div class="tabs-up"></div>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="donate()" color="light">
-      <ion-icon src="./../assets/icon/fav-inactive.svg"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+ 
  
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
+      <ion-icon src="./../assets/icon/tabs-icons/donate-svg"></ion-icon>
       <ion-label>{{'home'|translate}}</ion-label>
     </ion-tab-button>
 
@@ -34,4 +28,40 @@
     </ion-tab-button>
   </ion-tab-bar>
 
+</ion-tabs> -->
+
+
+<ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()">
+  <div class="tabs-up"></div>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="donate()" color="light">
+      <ion-icon src="./../../../assets/icon/tabs-icons/donate.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button
+      [ngClass]="selectedTab==tab.tabName?'selected':''"
+      [ngClass]="tab.tabName==''?'custom-tab-button':''"
+      [tab]="tab.tabName"
+      *ngFor="let tab of tabsData"
+    >
+      <ion-badge
+        *ngIf="tab.tabName=='notifications' && noOfNotifications!=0 && isLogined"
+        color="primary"
+      >
+        <span class="white-color">{{noOfNotifications}}</span>
+      </ion-badge>
+      <ion-icon
+        [src]="selectedTab==tab.tabName? tab.tabActiveIcon:tab.tabNotActiveIcon"
+      ></ion-icon>
+      <ion-label 
+        class="fn-14 qesaa-Janna-Regular animate__fadeInDown"
+        [color]="selectedTab==tab.tabName? 'primary' :'secondary'"
+       
+      >
+        {{tab.tabName|translate}}
+      </ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
 </ion-tabs>

@@ -27,6 +27,18 @@
 
 @import "~swiper/css/bundle";
 
+
+
+@font-face {
+  font-family: "Janna-LT-Bold";
+  src: url("./assets/fonts/Bahij Janna-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Janna-LT-Regular";
+  src: url("./assets/fonts/Bahij Janna-Regular.ttf");
+}
+
 @font-face {
   font-family: "Cairo-Regular";
   src: url("./assets/fonts/Cairo-Regular.ttf");
@@ -170,7 +182,7 @@ ion-tabs {
 
   .tabs-up {
     width: 100%;
-    /* height: 100px; */
+    height: 19.5px;
     border-left: 50vw solid var(--ion-color-background);
     border-right: 50vw solid var(--ion-color-background);
     border-bottom: 5vh solid var(--ion-color-white);

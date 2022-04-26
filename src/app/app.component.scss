@@ -40,11 +40,9 @@
  
 }
 
-.logout-section {
-  ion-item {
-    margin-bottom: 8px;
-    ion-icon {
-      font-size: 18px;
-    }
+ion-footer{
+  .menu-footer-images{
+    display: flex;
+    flex-direction: row;
   }
 }

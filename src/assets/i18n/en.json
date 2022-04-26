@@ -26,8 +26,9 @@
   "home": "home",
   "notifications": "notifications",
   "Donation Order": "donation order",
+  "donate-order":"donate order",
   "my-orders": "my orders",
-  "profile": "my account",
+  "account": "my account",
   "our-services":"our services",
   "news":"news",
   "our-projects":"our projects",
@@ -144,5 +145,17 @@
   "no favourites items": "favourites list is empty",
   "no items in this section": "no items in this section",
   "no Notifications": "no Notifications",
-  "no results for this search": "no results for this search"
+  "no results for this search": "no results for this search",
+  "charity-market":"charity market",
+  "productive-families":"productive families",
+  "goals":"goals",
+  "message":"message",
+  "vision":"vision",
+  "Next initiative":"next initiative",
+  "days":"days",
+  "hours":"hours",
+  "minutes":"minutes",
+  "seconds":"seconds",
+  "success-partners":"success partners"
+
 }

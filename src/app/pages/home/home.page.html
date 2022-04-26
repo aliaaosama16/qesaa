@@ -1,7 +1,9 @@
 <app-header [title]="'home'" [isHome]="true"></app-header>
 
 <ion-content [fullscreen]="true">
-  <div class="slider-section ion-padding ion-margin-top">
+  <div
+    class="slider-section ion-padding-horizontal custom-top-margin ion-margin-top"
+  >
     <swiper
       #swiper
       [config]="configSlider"
@@ -9,53 +11,154 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let slide of Sliders">
-        <img [src]="slide.image" />
+        <div class="slide-item-container custom-top-margin">
+          <img [src]="slide.image" />
+          <div>
+            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
+              قال رسول الله صلى الله عليه وسلم
+            </p>
+            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
+              (كُلُّ امْرِئٍ في ظِلِّ صَدَقَتِهِ حَتَّى يُفْصَلَ بَيْنَ
+              النَّاسِ)
+            </p>
+            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
+              صدق رسول الله
+            </p>
+          </div>
+        </div>
       </ng-template>
     </swiper>
   </div>
 
-  <div class="next-initiative ion-padding ion-margin-horizontal ">
+  <div class="next-initiative ion-margin-horizontal custom-top-margin">
     <div class="initiative">
-      <div class="title">
-        <p class="fn-20 primary-color ion-no-margin">المبادرة القادمة</p>
+      <div class="title ion-text-center">
+        <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
+          {{"Next initiative"|translate}}
+        </p>
       </div>
-      <div class="initiative-time">
-        <div class="time"> 
-            <div class="time-detail primary-color">
-1
-            </div>
-            <div class="time-unit fn-14 qesaa-Regular secondary-color">
-ايام
-            </div>
-        </div>
 
-        <div class="time"> 
-            <div class="time-detail primary-color">
-2
-            </div>
-            <div class="time-unit fn-14 qesaa-Regular secondary-color">
-ساعات
-            </div>
+      <div class="flex-container">
+        <div style="order: 1">
+          <div class="time-detail primary-color">1</div>
+          <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
+            {{"days"|translate}}
+          </div>
         </div>
-        <div class="time"> 
-            <div class="time-detail primary-color">
-30
-            </div>
-            <div class="time-unit fn-14 qesaa-Regular secondary-color">
-دقائق
-            </div>
+        <div style="order: 2">
+          <div class="time-detail primary-color">2</div>
+          <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
+            {{"hours"|translate}}
+          </div>
         </div>
-        <div class="time"> 
-            <div class="time-detail primary-color">
-10
-            </div>
-            <div class="time-unit fn-14 qesaa-Regular secondary-color">
-ثواني
-            </div>
+        <div style="order: 3">
+          <div class="time-detail primary-color">30</div>
+          <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
+            {{"minutes"|translate}}
+          </div>
         </div>
-       
+        <div style="order: 4">
+          <div class="time-detail primary-color">10</div>
+          <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
+            {{"seconds"|translate}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <div class="cards ion-margin-horizontal custom-top-margin">
+    <div
+      class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' "
+    >
+      <div class="card-icon">
+        <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
+      </div>
+
+      <div class="card-text">
+        <p class="fn-20 qesaa-Janna-Bold primary-color">
+          {{ "charity-market"|translate}}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' "
+    >
+      <div class="card-icon">
+        <ion-icon src="./../../../assets/icon/families.svg"></ion-icon>
+      </div>
+
+      <div class="card-text">
+        <p class="fn-20 qesaa-Janna-Bold primary-color">
+          {{"productive-families"|translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards ion-margin-horizontal custom-top-margin">
+    <div
+      class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
+    >
+      <div class="card-info-icon">
+        <ion-icon src="./../../../assets/icon/goals.svg"></ion-icon>
+      </div>
+
+      <div class="card-text">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color">
+          {{ "goals"|translate}}
+        </p>
+      </div>
+    </div>
+
+    <div class="card-container info-item">
+      <div class="card-info-icon">
+        <ion-icon src="./../../../assets/icon/message.svg"></ion-icon>
+      </div>
+
+      <div class="card-text">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color">
+          {{"message"|translate}}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' "
+    >
+      <div class="card-info-icon">
+        <ion-icon src="./../../../assets/icon/vision.svg"></ion-icon>
+      </div>
+
+      <div class="card-text">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color">
+          {{"vision"|translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="partners ion-padding-horizontal">
+    <p class="fn-18 qesaa-Janna-Bold">{{"success-partners"|translate}}</p>
+
+    <div class="partenrs-section custom-top-margin ion-margin-top">
+      <swiper
+        #swiper
+        [config]="partenrsConfig"
+        class="custom-swiper"
+        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+      >
+        <ng-template swiperSlide *ngFor="let slide of partenrs">
+          <div class="slide-item-container custom-top-margin">
+            <img [src]="slide" />
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
 </ion-content>

@@ -4,7 +4,7 @@
       <ion-header class="header-image ion-no-border background-color">
         <img
           [ngClass]="language == 'ar' ? 'image-right' : 'image-left'"
-          src="./../assets/images/512.png"
+          src="./../assets/images/app_logo.svg"
         />
       </ion-header>
             <!-- [routerLink]="p.url=='share'?? [p.url]" -->
@@ -25,7 +25,7 @@
                 [ngClass]="currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'"
               ></ion-icon>
               <ion-label
-              class="fn-16 qesaa-Regular"
+              class="fn-16 qesaa-Janna-Regular"
                 [ngStyle]="
                   currentLanguage == 'ar'
                     ? { 'margin-right': '10px' }
@@ -38,12 +38,16 @@
         </ion-list>
       </ion-content>
 
-      <!-- <ion-footer *ngIf="logined" class="ion-padding logout-section ion-no-border">
-        <ion-item lines="none" detail="false" (click)="logout()">
-          <ion-icon slot="start" src="./../assets/icon/logout.svg"></ion-icon>
-          <ion-label>{{ "logout" | translate }}</ion-label>
-        </ion-item>
-      </ion-footer> -->
+      <ion-footer  class="ion-padding  ion-no-border">
+        <div class="menu-footer-images">
+          <div>
+            <img src="./../assets/images/2030vision.svg">
+          </div>
+          <div>
+            <img src="./../assets/images/maroof_logo.svg">
+          </div>
+        </div>
+      </ion-footer>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>

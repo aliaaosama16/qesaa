@@ -7,16 +7,16 @@
         color="primary"
         (click)="openMenu()"
       >
-        <ion-icon name="menu"></ion-icon>
+        <ion-icon src="./../../../assets/icon/menu.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center fn-18 qesaa-Bold">{{
+    <ion-title class="ion-text-center fn-24 qesaa-Janna-Bold ">{{
       title | translate
     }}</ion-title>
 
     <ion-buttons slot="end" *ngIf="!isHome" (click)="goBack()">
       <ion-button fill="solid" shape="round" color="primary">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
+        <ion-icon src="./../../../assets/icon/back-icon.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

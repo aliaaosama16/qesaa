@@ -26,8 +26,9 @@
   "home": "الرئيسية",
   "notifications": "الاشعارات",
   "Donation Order": "طلب تبرع جديد",
+  "donate-order":"تبرع معنا",
   "my-orders": "طلباتي",
-  "profile": "حسابي",
+  "account": "حسابي",
   "our-services":"خدماتنا",
   "news":"الأخبار",
   "our-projects":"مشاريعنا",
@@ -145,5 +146,18 @@
   "no favourites items": "قائمة المفضلة فارغة",
   "no items in this section": "لا توجد عناصر في هذا القسم",
   "no Notifications": "لا توجد اشعارات",
-  "no results for this search": "لا توجد نتائج لهذا البحث"
+  "no results for this search": "لا توجد نتائج لهذا البحث",
+  "charity-market":"السوق الخيري",
+  "productive-families":"الأسر المنتجة",
+  "goals":"اهدافنا",
+  "message":"رسالتنا",
+  "vision":"رؤيتنا",
+  "Next initiative":"المبادرة القادمة",
+  "days":"أيام",
+  "hours":"ساعات",
+  "minutes":"دقائق",
+  "seconds":"ثواني",
+  "success-partners":"شركاء النجاح"
+
+
 }
