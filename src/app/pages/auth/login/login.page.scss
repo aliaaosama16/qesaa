@@ -1,0 +1,11 @@
+ion-content{
+   &::part(background){
+    background-color: var(--ion-color-white) !important;
+
+   }
+    .logo{
+        img {
+            width: 100%;
+        }
+    }
+}
