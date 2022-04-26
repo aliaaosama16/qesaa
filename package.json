@@ -24,6 +24,7 @@
     "@capacitor/core": "^3.4.3",
     "@capacitor/device": "^1.1.2",
     "@capacitor/haptics": "1.1.4",
+    "@capacitor/ios": "^3.5.0",
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/network": "^1.0.7",
     "@capacitor/share": "^1.1.2",
