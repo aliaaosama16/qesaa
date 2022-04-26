@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
 
     this.partenrsConfig={
     slidesPerView: 3.1,
-    spaceBetween: 3,
+    spaceBetween: 24,
     pagination: false,
     effect: 'fade',
    
