@@ -1,24 +1,24 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AccountPageRoutingModule } from './account-routing.module';
+import { CharityGoalsMessagePageRoutingModule } from './charity-goals-message-routing.module';
 
-import { AccountPage } from './account.page';
+import { CharityGoalsMessagePage } from './charity-goals-message.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
-import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AccountPageRoutingModule,
+    CharityGoalsMessagePageRoutingModule,
     SharedComponentModule,
     TranslateModule
   ],
-  declarations: [AccountPage]
+  declarations: [CharityGoalsMessagePage]
 })
-export class AccountPageModule {}
+export class CharityGoalsMessagePageModule {}

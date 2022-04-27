@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomePage implements OnInit {
     private menuCtrl: MenuController,
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
-    private router: Router
+    private router: Router,
+    private data:DataService
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.langaugeservice.getLanguage();
@@ -49,6 +51,7 @@ export class HomePage implements OnInit {
       pagination: false,
       effect: 'fade',
     };
+
     this.Sliders = [
       { image: './../../../assets/images/1024-500.png', id: 1 },
       { image: './../../../assets/images/1024-500.png', id: 2 },
@@ -60,7 +63,8 @@ export class HomePage implements OnInit {
     this.menuCtrl.open();
   }
 
-  goPage(page: string) {
-    this.router.navigateByUrl(page);
+  charityInfo(title: string,content:string) {
+    this.router.navigate(['/tabs/home/info']);
+    this.data.setPageData(title,title,content);
   }
 }

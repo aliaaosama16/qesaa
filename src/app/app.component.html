@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" menuId="main">
+    <ion-menu contentId="main-content" menuId="main" [ngClass]="currentPlatform=='ios'?'ios-menu-header':''">
       <ion-header class="header-image ion-no-border background-color">
         <img
           [ngClass]="language == 'ar' ? 'image-right' : 'image-left'"

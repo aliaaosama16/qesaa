@@ -20,7 +20,7 @@ export class AppComponent {
   selectedIndex: number;
   logoutData: AuthData;
   logined: boolean = this.auth.isAuthenticated.value;
-
+  currentPlatform:string;
   pages = [
     {
       title: 'about',
@@ -117,6 +117,9 @@ export class AppComponent {
       this.language = val;
     });
     console.log('logined : ' + this.logined);
+
+    console.log('current platform : ' + this.util.getCapacitorPlatform());
+    this.currentPlatform = this.util.getCapacitorPlatform();
   }
 
   initializeApp() {

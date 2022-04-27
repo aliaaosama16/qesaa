@@ -1,3 +1,31 @@
 <app-header [title]="'account'" [isHome]="false"></app-header>
 
-<ion-content> </ion-content>
+<ion-content class="ion-padding-horizontal">
+  <div class="info">
+    <div>
+      <img [src]="userData.avatar" />
+    </div>
+
+    <div class="name-phone">
+      <p class="name primary-color fn-22 qesaa-Janna-Bold">{{userData.name}}</p>
+
+      <p class="fn-20 secondary-color qesaa-Janna-Regular">
+        {{userData.phone}}
+      </p>
+    </div>
+  </div>
+
+  <div class="edit-account">
+    <div>
+      <ion-icon
+        src="./../../../../assets/icon/account/account_circle.svg"
+      ></ion-icon>
+    </div>
+    <div>
+      <span>{{"account-settings"|translate}}</span>
+    </div>
+    <div>
+      <ion-icon src="./../../../../assets/icon/account/edit.svg"></ion-icon>
+    </div>
+  </div>
+</ion-content>

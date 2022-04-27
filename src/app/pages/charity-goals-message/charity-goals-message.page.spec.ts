@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CharityGoalsMessageComponent } from './charity-goals-message.component';
+import { CharityGoalsMessagePage } from './charity-goals-message.page';
 
-describe('CharityGoalsMessageComponent', () => {
-  let component: CharityGoalsMessageComponent;
-  let fixture: ComponentFixture<CharityGoalsMessageComponent>;
+describe('CharityGoalsMessagePage', () => {
+  let component: CharityGoalsMessagePage;
+  let fixture: ComponentFixture<CharityGoalsMessagePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CharityGoalsMessageComponent ],
+      declarations: [ CharityGoalsMessagePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CharityGoalsMessageComponent);
+    fixture = TestBed.createComponent(CharityGoalsMessagePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

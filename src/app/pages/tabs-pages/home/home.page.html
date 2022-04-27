@@ -1,9 +1,7 @@
 <app-header [title]="'home'" [isHome]="true"></app-header>
 
 <ion-content [fullscreen]="true">
-  <div
-    class="slider-section ion-padding-horizontal  "
-  >
+  <div class="slider-section ion-padding-horizontal">
     <swiper
       #swiper
       [config]="configSlider"
@@ -11,7 +9,7 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let slide of Sliders">
-        <div class="slide-item-container ">
+        <div class="slide-item-container">
           <img [src]="slide.image" />
           <div>
             <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
@@ -76,7 +74,7 @@
         <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
       </div>
 
-      <div class="card-text" (click)="goPage('charity-market')">
+      <div class="card-text">
         <p class="fn-20 qesaa-Janna-Bold primary-color">
           {{ "charity-market"|translate}}
         </p>
@@ -103,6 +101,7 @@
     <div
       class="card-container"
       [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
+      (click)="charityInfo('goals','app-goal')"
     >
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/goals.svg"></ion-icon>
@@ -115,7 +114,10 @@
       </div>
     </div>
 
-    <div class="card-container info-item">
+    <div
+      class="card-container info-item"
+      (click)="charityInfo('message','app-message')"
+    >
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/message.svg"></ion-icon>
       </div>
@@ -130,6 +132,7 @@
     <div
       class="card-container"
       [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' "
+      (click)="charityInfo('vision','app-vision')"
     >
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/vision.svg"></ion-icon>

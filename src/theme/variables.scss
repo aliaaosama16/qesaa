@@ -90,6 +90,14 @@
 	--ion-color-white-contrast-rgb: 0,0,0;
 	--ion-color-white-shade: #e0e0e0;
 	--ion-color-white-tint: #ffffff;
+
+  /** secondary-light **/
+  --ion-color-secondary-light: #E4F5ED;
+	--ion-color-secondary-light-rgb: 228,245,237;
+	--ion-color-secondary-light-contrast: #000000;
+	--ion-color-secondary-light-contrast-rgb: 0,0,0;
+	--ion-color-secondary-light-shade: #c9d8d1;
+	--ion-color-secondary-light-tint: #e7f6ef;
 }
 
 .background-color{
@@ -142,6 +150,10 @@
 }
 
 .fn-24 {
+  font-size: 24px !important;
+}
+
+.fn-30 {
   font-size: 24px !important;
 }
 

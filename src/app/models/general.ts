@@ -19,15 +19,15 @@ export interface GeneralResponse {
   }
   
   export interface AuthDataResponse {
-    id: number;
-    user_type: string;
-    first_name: string;
-    email: string;
+    id?: number;
+    user_type?: string;
+    name: string;
+    email?: string;
     phone: string;
-    api_token: string;
-    is_active: boolean;
-    is_blocked: boolean;
-    is_confirmed: boolean;
-    lang: string;
+    api_token?: string;
+    is_active?: boolean;
+    is_blocked?: boolean;
+    is_confirmed?: boolean;
+    lang?: string;
     avatar: string;
   }
