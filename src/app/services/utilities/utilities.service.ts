@@ -4,17 +4,17 @@ import { LoadingController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
 import { Device } from '@capacitor/device';
+import { Capacitor } from '@capacitor/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UtilitiesService {
-
   public loading: any;
   platform: any;
   deviceID: string;
   userLocation = { lat: 0, lng: 0 };
- 
+
   closedDates: Array<string>;
   constructor(
     private translate: TranslateService,
@@ -79,14 +79,14 @@ export class UtilitiesService {
     this.loadingCtrl.dismiss();
   }
 
-
-
   setUserLocation(lat, long) {
     this.userLocation.lat = lat;
     this.userLocation.lng = long;
   }
 
-  
+  getCapacitorPlatform() {
+    return Capacitor.getPlatform();
+  }
 
   getPlatformType() {
     return new Promise((resolve, reject) => {

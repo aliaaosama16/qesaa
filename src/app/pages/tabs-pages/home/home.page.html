@@ -2,7 +2,7 @@
 
 <ion-content [fullscreen]="true">
   <div
-    class="slider-section ion-padding-horizontal custom-top-margin ion-margin-top"
+    class="slider-section ion-padding-horizontal  "
   >
     <swiper
       #swiper
@@ -11,7 +11,7 @@
       [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
     >
       <ng-template swiperSlide *ngFor="let slide of Sliders">
-        <div class="slide-item-container custom-top-margin">
+        <div class="slide-item-container ">
           <img [src]="slide.image" />
           <div>
             <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
@@ -76,7 +76,7 @@
         <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
       </div>
 
-      <div class="card-text">
+      <div class="card-text" (click)="goPage('charity-market')">
         <p class="fn-20 qesaa-Janna-Bold primary-color">
           {{ "charity-market"|translate}}
         </p>

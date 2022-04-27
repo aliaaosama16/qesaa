@@ -27,8 +27,6 @@
 
 @import "~swiper/css/bundle";
 
-
-
 @font-face {
   font-family: "Janna-LT-Bold";
   src: url("./assets/fonts/Bahij Janna-Bold.ttf");
@@ -39,24 +37,9 @@
   src: url("./assets/fonts/Bahij Janna-Regular.ttf");
 }
 
-@font-face {
-  font-family: "Cairo-Regular";
-  src: url("./assets/fonts/Cairo-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Cairo-Bold";
-  src: url("./assets/fonts/Cairo-Bold.ttf");
-}
-
-@font-face {
-  font-family: "Cairo-SemiBold";
-  src: url("./assets/fonts/Cairo-SemiBold.ttf");
-}
-
 :root {
   --custom-box-shadow: 0 3px 6px rgb(0 0 0 / 16%) !important;
-  
+
   * {
     text-transform: lowercase;
   }
@@ -105,6 +88,8 @@ ion-badge {
   }
 }
 
+
+
 .my-custom-class {
   div#alert-1-msg {
     margin-top: 13px !important;
@@ -139,9 +124,9 @@ body {
 
 ion-content {
   &::part(background) {
-    background:var(--ion-color-background);
-    margin-top: 16px;
-    border-radius: 35px 35px 0 0;
+    background: var(--ion-color-background);
+    //margin-top: 16px;
+    //border-radius: 35px 35px 0 0;
   }
 
   --offset-top: 0px !important;

@@ -1,4 +1,5 @@
-import { UtilitiesService } from './../../services/utilities/utilities.service';
+import { Router } from '@angular/router';
+import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { MenuController } from '@ionic/angular';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SwiperOptions } from 'swiper';
@@ -8,12 +9,12 @@ import { LanguageService } from 'src/app/services/language/language.service';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomePage implements OnInit {
   configSlider: SwiperOptions;
-  partenrsConfig:SwiperOptions;
-  partenrs:any[]=[
+  partenrsConfig: SwiperOptions;
+  partenrs: any[] = [
     './../../../assets/icon/logos/img1.svg',
     './../../../assets/icon/logos/img2.svg',
     './../../../assets/icon/logos/img3.svg',
@@ -25,7 +26,8 @@ export class HomePage implements OnInit {
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
-    private langaugeservice: LanguageService
+    private langaugeservice: LanguageService,
+    private router: Router
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.langaugeservice.getLanguage();
@@ -38,16 +40,15 @@ export class HomePage implements OnInit {
       pagination: true,
       effect: 'fade',
       autoplay: true,
-      loop:true
+      loop: true,
     };
 
-    this.partenrsConfig={
-    slidesPerView: 3.1,
-    spaceBetween: 24,
-    pagination: false,
-    effect: 'fade',
-   
-  };
+    this.partenrsConfig = {
+      slidesPerView: 3.1,
+      spaceBetween: 24,
+      pagination: false,
+      effect: 'fade',
+    };
     this.Sliders = [
       { image: './../../../assets/images/1024-500.png', id: 1 },
       { image: './../../../assets/images/1024-500.png', id: 2 },
@@ -57,5 +58,9 @@ export class HomePage implements OnInit {
 
   openMenu() {
     this.menuCtrl.open();
+  }
+
+  goPage(page: string) {
+    this.router.navigateByUrl(page);
   }
 }

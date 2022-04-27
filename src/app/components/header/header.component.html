@@ -1,4 +1,7 @@
-<ion-header class="ion-no-border">
+<ion-header
+  class="ion-no-border"
+  [ngClass]="currentPlatform == 'ios' ? 'ios-header' : ''"
+>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button
@@ -10,7 +13,8 @@
         <ion-icon src="./../../../assets/icon/menu.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center fn-24 qesaa-Janna-Bold ">{{
+
+    <ion-title class="ion-text-center fn-24 qesaa-Janna-Bold">{{
       title | translate
     }}</ion-title>
 
@@ -20,4 +24,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <div class="header-extenstion custom-top-margin">
+
+  </div>
 </ion-header>
