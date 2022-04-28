@@ -2,12 +2,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="slider-section ion-padding-horizontal">
-    <swiper
-      #swiper
-      [config]="configSlider"
-      class="custom-swiper"
-      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-    >
+    <swiper #swiper [config]="configSlider" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
       <ng-template swiperSlide *ngFor="let slide of Sliders">
         <div class="slide-item-container">
           <img [src]="slide.image" />
@@ -66,10 +61,7 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div
-      class="card-container"
-      [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' "
-    >
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
       </div>
@@ -81,10 +73,7 @@
       </div>
     </div>
 
-    <div
-      class="card-container"
-      [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' "
-    >
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/families.svg"></ion-icon>
       </div>
@@ -98,11 +87,8 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div
-      class="card-container"
-      [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
-      (click)="charityInfo('goals','app-goal')"
-    >
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
+      (click)="charityInfo('goals','app-goal')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/goals.svg"></ion-icon>
       </div>
@@ -114,10 +100,7 @@
       </div>
     </div>
 
-    <div
-      class="card-container info-item"
-      (click)="charityInfo('message','app-message')"
-    >
+    <div class="card-container info-item" (click)="charityInfo('message','app-message')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/message.svg"></ion-icon>
       </div>
@@ -129,11 +112,8 @@
       </div>
     </div>
 
-    <div
-      class="card-container"
-      [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' "
-      (click)="charityInfo('vision','app-vision')"
-    >
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' "
+      (click)="charityInfo('vision','app-vision')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/vision.svg"></ion-icon>
       </div>
@@ -150,12 +130,7 @@
     <p class="fn-18 qesaa-Janna-Bold">{{"success-partners"|translate}}</p>
 
     <div class="partenrs-section custom-top-margin ion-margin-top">
-      <swiper
-        #swiper
-        [config]="partenrsConfig"
-        class="custom-swiper"
-        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-      >
+      <swiper #swiper [config]="partenrsConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
         <ng-template swiperSlide *ngFor="let slide of partenrs">
           <div class="slide-item-container custom-top-margin">
             <img [src]="slide" />
@@ -164,4 +139,79 @@
       </swiper>
     </div>
   </div>
+
+  <div class="cards ion-margin-horizontal custom-top-margin">
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' ">
+      <div class="card-statistics-icon">
+        <ion-icon src="./../../../assets/icon/statistics1.svg"></ion-icon>
+      </div>
+
+      <div class="card-statistics-text ion-text-center">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
+          1250
+        </p>
+        <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
+          {{"volunteers count"|translate}}
+        </p>
+      </div>
+    </div>
+
+    <div class="card-container info-item">
+      <div class="card-statistics-icon">
+        <ion-icon src="./../../../assets/icon/statistics2.svg"></ion-icon>
+      </div>
+
+      <div class="card-statistics-text ion-text-center">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
+          1250
+        </p>
+        <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
+          {{"beneficiaries count"|translate}}
+        </p>
+
+      </div>
+    </div>
+
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' ">
+      <div class="card-statistics-icon">
+        <ion-icon src="./../../../assets/icon/statistics3.svg"></ion-icon>
+      </div>
+
+      <div class="card-statistics-text ion-text-center">
+        <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
+          1250
+        </p>
+        <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
+          {{"satisfaction measure"|translate}}
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback ion-padding-horizontal">
+    <p class="fn-18 qesaa-Janna-Bold ion-no-margin">{{"feedback"|translate}}</p>
+
+    <div class="feedback-section custom-top-margin ion-margin-top">
+      <swiper #swiper [config]="feedbackConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+        <ng-template swiperSlide *ngFor="let feedback of  people_feedback ">
+          <div class="feedback-card">
+            <div class="feedback-title">
+              <div class="feedback-person-icon">
+                <ion-icon src="./../../../assets/icon/person.svg"></ion-icon>
+              </div>
+              <div class="feedback-person-name">
+                <p class="fn-15 qesaa-Janna-Bold ion-no-margin ion-text-nowrap primary-color"> {{feedback.name}}</p>
+              </div>
+            </div>
+            <div class="feedback-content">
+              <p class="fn-15 qesaa-Janna-Regular ion-no-margin"> {{feedback.content}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+
+
 </ion-content>

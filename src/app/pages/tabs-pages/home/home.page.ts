@@ -15,11 +15,24 @@ import { DataService } from 'src/app/services/data/data.service';
 export class HomePage implements OnInit {
   configSlider: SwiperOptions;
   partenrsConfig: SwiperOptions;
+  feedbackConfig:SwiperOptions;
   partenrs: any[] = [
     './../../../assets/icon/logos/img1.svg',
     './../../../assets/icon/logos/img2.svg',
     './../../../assets/icon/logos/img3.svg',
     './../../../assets/icon/logos/img4.svg',
+  ];
+  people_feedback = [
+    {
+      name: 'فهد العتيبي',
+      content:
+        'تميزتم بأفكاركم وابداعاتكم المستمرة فكم منا كل التحايا وخالص الدعوات بالتوفيق',
+    },
+    {
+      name: 'احمد علي',
+      content:
+        'فريق متميز يمتلك الخبرة والمعرفة ويحقق الطموحات بشكل عصري ابداع',
+    },
   ];
   Sliders: any[];
   platform: string = '';
@@ -29,7 +42,7 @@ export class HomePage implements OnInit {
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
     private router: Router,
-    private data:DataService
+    private data: DataService
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.langaugeservice.getLanguage();
@@ -52,6 +65,13 @@ export class HomePage implements OnInit {
       effect: 'fade',
     };
 
+    this.feedbackConfig={
+      slidesPerView: 2.2,
+      spaceBetween: 13,
+      pagination: false,
+      effect: 'fade',
+    };
+
     this.Sliders = [
       { image: './../../../assets/images/1024-500.png', id: 1 },
       { image: './../../../assets/images/1024-500.png', id: 2 },
@@ -63,8 +83,8 @@ export class HomePage implements OnInit {
     this.menuCtrl.open();
   }
 
-  charityInfo(title: string,content:string) {
+  charityInfo(title: string, content: string) {
     this.router.navigate(['/tabs/home/info']);
-    this.data.setPageData(title,title,content);
+    this.data.setPageData(title, title, content);
   }
 }

@@ -49,10 +49,22 @@ const routes: Routes = [
       },
       {
         path: 'account',
-        loadChildren: () =>
-          import('./../../tabs-pages/account/account.module').then(
-            (m) => m.AccountPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../../tabs-pages/account/account.module').then(
+                (m) => m.AccountPageModule
+              ),
+          },
+          {
+            path: 'edit',
+            loadChildren: () =>
+              import(
+                './../../tabs-pages/account-edit/account-edit.module'
+              ).then((m) => m.AccountEditPageModule),
+          },
+        ],
       },
       {
         path: 'about',
