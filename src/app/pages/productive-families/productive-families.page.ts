@@ -6,10 +6,44 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productive-families.page.scss'],
 })
 export class ProductiveFamiliesPage implements OnInit {
+  families: any[] = [
+    {
+      id:1,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:2,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:3,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:4,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:5,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:6,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },
+    {
+      id:7,
+      name: 'اسم الشخص',
+      image: './../assets/images/family.svg',
+    },  
+  ];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

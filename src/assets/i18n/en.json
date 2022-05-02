@@ -12,7 +12,7 @@
   "sign-up": "sign up",
   "login": "login",
   "user-name": "username",
-  "phone-number": "phone number",
+  "phone number": "phone number",
   "email-address": "email address",
   "password": "password",
   "confirm-password": "confirm password",
@@ -171,5 +171,7 @@
   "beneficiaries count":"beneficiaries count",
   "satisfaction measure":"satisfaction measure",
   "feedback":" people feedback",
-  "account-edit":"account edit"
+  "account-edit":"account edit",
+  "instgram":"instgram",
+  "twitter": "twitter"
 }

@@ -42,15 +42,7 @@ const routes: Routes = [
         (m) => m.ChangePasswordPageModule
       ),
   },
-  {
-    path: 'productive-families',
-    loadChildren: () =>
-      import('./pages/productive-families/productive-families.module').then(
-        (m) => m.ProductiveFamiliesPageModule
-      ),
-  },
   
- 
 ];
 @NgModule({
   imports: [

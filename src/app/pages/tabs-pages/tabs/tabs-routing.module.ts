@@ -24,6 +24,24 @@ const routes: Routes = [
                 './../../charity-goals-message/charity-goals-message.module'
               ).then((m) => m.CharityGoalsMessagePageModule),
           },
+          {
+            path: 'families',
+            loadChildren: () =>
+              import(
+                './../../productive-families/productive-families.module'
+              ).then((m) => m.ProductiveFamiliesPageModule),
+          },
+          {
+            path: 'families/:id',
+            loadChildren: () => import('./../../productive-families-details/productive-families-details.module').then( m => m.ProductiveFamiliesDetailsPageModule)
+          },
+          {
+            path: 'market',
+            loadChildren: () =>
+              import('./../../charity-market/charity-market.module').then(
+                (m) => m.CharityMarketPageModule
+              ),
+          },
         ],
       },
       {

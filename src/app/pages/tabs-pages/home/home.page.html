@@ -61,19 +61,19 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
+    <div routerLink="/tabs/home/market" class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
       </div>
 
-      <div class="card-text">
+      <div class="card-text" >
         <p class="fn-20 qesaa-Janna-Bold primary-color">
           {{ "charity-market"|translate}}
         </p>
       </div>
     </div>
 
-    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
+    <div routerLink="/tabs/home/families" class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/families.svg"></ion-icon>
       </div>

@@ -12,7 +12,7 @@
   "sign-up": "تسجيل",
   "login": "دخول",
   "user-name": "اسم المستخدم",
-  "phone-number": "رقم الجوال",
+  "phone number": "رقم الجوال",
   "email-address": "البريد الالكتروني",
   "password": "كلمة المرور",
   "confirm-password": "تأكيد كلمة المرور",
@@ -172,7 +172,10 @@
   "beneficiaries count":"عدد المستفيدين",
   "satisfaction measure":"قياس الرضا",
   "feedback":"قالوا عنا",
-  "account-edit":" تعديل الملف الشخصي"
+  "account-edit":" تعديل الملف الشخصي",
+  "person name":"اسم الشخص",
+  "instgram":"الانستجرام",
+  "twitter":"تويتر"
 }
 
 

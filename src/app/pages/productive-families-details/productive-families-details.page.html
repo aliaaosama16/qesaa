@@ -1,0 +1,69 @@
+<app-header [title]="'details'" [isHome]="false"></app-header>
+
+
+<ion-content class="ion-padding">
+
+  <div class="family-image">
+    <img src="./../../../assets/images/family.svg">
+  </div>
+
+  <div class="family-details">
+
+    <div class="nameandphone">
+      <div class="title">
+        <div  [ngClass]=" langauge=='ar' ?'icon-ar':'icon-en'">
+          <ion-icon src="./../../../assets/icon/family/person.svg"></ion-icon>
+        </div>
+        <div class="fn-16 qesaa-Janna-Bold primary-color">:{{"person name"|translate}}</div>
+      </div>
+      <div class="fn-16 qesaa-Janna-Regular secondary-color">{{familyDetails.name}}</div>
+    </div>
+
+    <div class="divider">
+
+    </div>
+
+    <div class="nameandphone">
+
+      <div class="title">
+        <div [ngClass]=" langauge=='ar' ?'icon-ar':'icon-en'">
+          <ion-icon src="./../../../assets/icon/family/phone.svg"></ion-icon>
+        </div>
+        <div class="fn-16 qesaa-Janna-Bold primary-color">:{{"phone number"|translate}}</div>
+      </div>
+      <div class="fn-16 qesaa-Janna-Regular secondary-color">{{familyDetails.phone}}</div>
+    </div>
+
+  </div>
+
+  <div class="family-details">
+
+   
+    <div class="nameandphone">
+      <div class="title">
+        <div  [ngClass]=" langauge=='ar' ?'icon-ar':'icon-en'">
+          <ion-icon src="./../../../assets/icon/family/instagram.svg"></ion-icon>
+        </div>
+        <div class="fn-16 qesaa-Janna-Bold primary-color">:{{"instgram"|translate}}</div>
+      </div>
+      <div class="fn-16 qesaa-Janna-Regular secondary-color">{{familyDetails.instgram}}</div>
+    </div>
+
+    <div class="divider">
+
+    </div>
+
+    <div class="nameandphone">
+
+      <div class="title">
+        <div [ngClass]=" langauge=='ar' ?'icon-ar':'icon-en'">
+          <ion-icon src="./../../../assets/icon/family/twitter.svg"></ion-icon>
+        </div>
+        <div class="fn-16 qesaa-Janna-Bold primary-color">:{{"twitter"|translate}}</div>
+      </div>
+      <div class="fn-16 qesaa-Janna-Regular secondary-color">{{familyDetails.twitter}}</div>
+    </div>
+
+  </div>
+
+</ion-content>

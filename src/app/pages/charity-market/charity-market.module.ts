@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProductiveFamiliesPageRoutingModule } from './productive-families-routing.module';
+import { CharityMarketPageRoutingModule } from './charity-market-routing.module';
 
-import { ProductiveFamiliesPage } from './productive-families.page';
+import { CharityMarketPage } from './charity-market.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductiveFamiliesPageRoutingModule,
+    CharityMarketPageRoutingModule,
     SharedComponentModule
   ],
-  declarations: [ProductiveFamiliesPage]
+  declarations: [CharityMarketPage]
 })
-export class ProductiveFamiliesPageModule {}
+export class CharityMarketPageModule {}

@@ -1,9 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>productive-families</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'productive-families'" [isHome]="false"></app-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <div class="families-container">
 
+    <div class="family" *ngFor="let family of families" routerLink="/tabs/home/families/{{family.id}}">
+      <div class="family-image">
+        <img [src]="family.image">
+      </div>
+
+      <div class="family-name ion-text-center">
+        <p class="ion-no-margin fn-18 qesaa-Janna-Bold">
+          {{family.name}}
+        </p>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
