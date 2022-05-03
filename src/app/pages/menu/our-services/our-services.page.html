@@ -1,5 +1,16 @@
 <app-header [title]="'our-services'" [isHome]="false"></app-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+    <ion-row>
+        <ion-col size="4" *ngFor="let service of services">
+            <div class="service ion-padding ion-text-center">
+                <div class="icon">
+                    <ion-icon [src]="service.icon"></ion-icon>
+                </div>
+                <div class="ion-text-center">
+                    <p class="ion-no-margin fn-14 qesaa-Janna-Bold"> {{service.title}} </p>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
 </ion-content>
