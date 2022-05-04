@@ -3,4 +3,27 @@
 
 <ion-content>
 
+    <form (ngSubmit)="volunteer()" [formGroup]="volunteerForm" class="form-container">
+        <ion-item lines="none">
+            <ion-icon [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
+                src="./../../../../assets/icon/forms/person.svg"></ion-icon>
+            <ion-input placeholder="{{'user-name'|translate}}" type="text" formControlName="userName"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-icon [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
+                src="./../../../../assets/icon/forms/phone.svg"></ion-icon>
+            <ion-input placeholder="{{'phone number'|translate}}" type="tel" formControlName="phoneNumber"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-textarea class="ion-padding-horizontal" rows="5" placeholder="{{'your message'|translate}}" type="text"
+                formControlName="message"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" color="primary">
+            <span class=" fn-20 qesaa-Janna-Bold"> {{ "volunteer"|translate}} </span>
+        </ion-button>
+    </form>
+
 </ion-content>

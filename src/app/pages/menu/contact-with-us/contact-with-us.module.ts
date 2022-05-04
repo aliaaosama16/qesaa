@@ -1,6 +1,7 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,7 +15,10 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     CommonModule,
     FormsModule,
     IonicModule,
-    ContactWithUsPageRoutingModule,SharedComponentModule
+    ContactWithUsPageRoutingModule,
+    SharedComponentModule,
+    TranslateModule,
+    ReactiveFormsModule
   ],
   declarations: [ContactWithUsPage]
 })
