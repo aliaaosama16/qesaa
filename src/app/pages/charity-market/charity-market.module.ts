@@ -8,6 +8,8 @@ import { CharityMarketPageRoutingModule } from './charity-market-routing.module'
 
 import { CharityMarketPage } from './charity-market.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
+import { SwiperModule } from 'swiper/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     FormsModule,
     IonicModule,
     CharityMarketPageRoutingModule,
-    SharedComponentModule
+    SharedComponentModule,
+    SwiperModule,
+    TranslateModule
   ],
   declarations: [CharityMarketPage]
 })

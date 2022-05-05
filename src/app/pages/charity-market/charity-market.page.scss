@@ -1,0 +1,25 @@
+.category-section {
+  ion-button {
+    --background-activated	: var(--ion-color-primary);
+    --background: var(--ion-color-gray);
+    --border-radius: 17px;
+    width: 100px;
+    // &::part(native){
+    //     border-radius: 17px;
+    //     width: 100px;
+    // }
+  }
+  margin-bottom: 20px;
+}
+
+.product {
+  border-radius: 10px;
+  background: var(--ion-color-white);
+  padding: 25px 15px;
+  .icon {
+    margin: 0 auto;
+  }
+}
+.title {
+  margin-top: 7px;
+}
