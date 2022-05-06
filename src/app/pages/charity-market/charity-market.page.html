@@ -1,12 +1,12 @@
 <app-header [title]="'charity-market'" [isHome]="false"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding-horizontal">
 
-    <div class="category-section custom-top-margin ion-margin-top">
+    <div class="category-section">
         <swiper #swiper [config]="categoriesConfig" class="custom-swiper"
             [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
             <ng-template swiperSlide *ngFor="let category of categories">
-                <ion-button >
+                <ion-button block>
                     <span class="fn-14 qesaa-Janna-Regular">
                         {{category.title}}
                     </span>
@@ -15,8 +15,9 @@
         </swiper>
     </div>
 
-    <ion-row>
-        <ion-col size="4" *ngFor="let product of products">
+
+    <div class="products-conatiner">
+        <div clas="product-wrapper" *ngFor="let product of products">
             <div class="product ion-padding ion-text-center">
                 <div class="icon">
                     <img [src]="product.icon">
@@ -27,6 +28,7 @@
                     {{product.title}}
                 </p>
             </div>
-        </ion-col>
-    </ion-row>
+        </div>
+    </div>
+
 </ion-content>
