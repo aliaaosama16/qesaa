@@ -33,7 +33,10 @@ const routes: Routes = [
           },
           {
             path: 'families/:id',
-            loadChildren: () => import('./../../productive-families-details/productive-families-details.module').then( m => m.ProductiveFamiliesDetailsPageModule)
+            loadChildren: () =>
+              import(
+                './../../productive-families-details/productive-families-details.module'
+              ).then((m) => m.ProductiveFamiliesDetailsPageModule),
           },
           {
             path: 'market',
@@ -100,8 +103,22 @@ const routes: Routes = [
       },
       {
         path: 'news',
-        loadChildren: () =>
-          import('./../../menu/news/news.module').then((m) => m.NewsPageModule),
+        children: [
+          {
+            path:'',
+            loadChildren: () =>
+              import('./../../menu/news/news.module').then(
+                (m) => m.NewsPageModule
+              ),
+          },
+          {
+            path: 'details/:id',
+            loadChildren: () =>
+              import('./../../menu/news-details/news-details.module').then(
+                (m) => m.NewsDetailsPageModule
+              ),
+          },
+        ],
       },
       {
         path: 'our-projects',

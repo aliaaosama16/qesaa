@@ -2,19 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  // flex-basis: 33%;
- // justify-content: space-between;
-  //white-space: pre-wrap;
-  // align-content: stretch;
-  // align-self: stretch;
-  // align-items: stretch;
-
   .service-wrapper {
-    
     width: 31.3%;
     margin: 1%;
-
-
     .service {
       border-radius: 5px;
       background: var(--ion-color-white);
