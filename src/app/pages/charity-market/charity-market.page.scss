@@ -1,5 +1,9 @@
 .category-section {
   ion-button {
+
+    &:focus{
+      --background: var(--ion-color-primary);  
+    }
    // --background-activated	: var(--ion-color-primary);
     --background: var(--ion-color-gray);
    // --background-hover:		 var(--ion-color-primary);
@@ -7,9 +11,7 @@
     --border-radius: 17px;
     --box-shadow	:none !important;
     width: 100px;
-    &::part(native):focus{
-      background-color: var(--ion-color-primary);  
-    }
+   
   }
   margin-bottom: 20px;
 }

@@ -40,10 +40,22 @@ const routes: Routes = [
           },
           {
             path: 'market',
-            loadChildren: () =>
-              import('./../../charity-market/charity-market.module').then(
-                (m) => m.CharityMarketPageModule
-              ),
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import('./../../charity-market/charity-market.module').then(
+                    (m) => m.CharityMarketPageModule
+                  ),
+              },
+              {
+                path: 'product/:id',
+                loadChildren: () =>
+                  import(
+                    './../../charity-market-product/charity-market-product.module'
+                  ).then((m) => m.CharityMarketProductPageModule),
+              },
+            ],
           },
         ],
       },
@@ -105,7 +117,7 @@ const routes: Routes = [
         path: 'news',
         children: [
           {
-            path:'',
+            path: '',
             loadChildren: () =>
               import('./../../menu/news/news.module').then(
                 (m) => m.NewsPageModule

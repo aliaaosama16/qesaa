@@ -1,6 +1,17 @@
 <app-header [isGallary]="false" [title]="'notifications'" [isHome]="false"></app-header>
 
-
-<ion-content>
-
+<ion-content class="ion-padding-horizontal">
+    <div class="notification-container ion-margin-bottom" *ngFor="let notification of notifications">
+        <div class="icon">
+            <ion-icon src="./../../../../assets/icon/notifications.svg"></ion-icon>
+        </div>
+        <div class="ion-margin-horizontal">
+            <p class="ion-no-margin  fn-18 qesaa-Janna-Regular">
+                {{notification.title}}
+            </p>
+            <p class="date ion-no-margin primary-color fn-16 qesaa-Janna-Regular">
+                {{notification.date}}
+            </p>
+        </div>
+    </div>
 </ion-content>

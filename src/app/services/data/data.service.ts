@@ -8,7 +8,7 @@ export class DataService {
   pageData: PageData;
   constructor() {}
 
-  setPageData(title: string,image:string,  content: string) {
+  setPageData(title: string,image?:string,  content?: string) {
     this.pageData = { title: title, image: title, content: content };
   }
 

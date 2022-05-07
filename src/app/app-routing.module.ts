@@ -42,7 +42,7 @@ const routes: Routes = [
         (m) => m.ChangePasswordPageModule
       ),
   },
- 
+
   
 ];
 @NgModule({

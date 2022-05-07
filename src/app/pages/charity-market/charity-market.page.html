@@ -17,7 +17,7 @@
 
 
     <div class="products-conatiner">
-        <div clas="product-wrapper" *ngFor="let product of products">
+        <div clas="product-wrapper" *ngFor="let product of products" routerLink="/tabs/home/market/product/{{product.id}}">
             <div class="product ion-padding ion-text-center">
                 <div class="icon">
                     <img [src]="product.icon">
