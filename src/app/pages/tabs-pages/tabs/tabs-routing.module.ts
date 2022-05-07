@@ -75,10 +75,22 @@ const routes: Routes = [
       },
       {
         path: 'my-orders',
-        loadChildren: () =>
-          import('./../../tabs-pages/my-orders/my-orders.module').then(
-            (m) => m.MyOrdersPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../../tabs-pages/my-orders/my-orders.module').then(
+                (m) => m.MyOrdersPageModule
+              ),
+          },
+          {
+            path: 'details/:id',
+            loadChildren: () =>
+              import(
+                './../../tabs-pages/my-order-details/my-order-details.module'
+              ).then((m) => m.MyOrderDetailsPageModule),
+          },
+        ],
       },
       {
         path: 'account',

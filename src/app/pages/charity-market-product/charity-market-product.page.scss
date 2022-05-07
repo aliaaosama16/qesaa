@@ -1,0 +1,38 @@
+.productImage {
+  border-radius: 10px;
+  background: var(--ion-color-white);
+  height: 163px;
+  padding: 29px;
+  box-shadow: var(--custom-box-shadow);
+  margin-bottom: 20px;
+  .icon {
+    margin: 0 auto;
+  }
+}
+
+.names {
+  .product-name {
+    margin-bottom: 8px;
+  }
+
+  .category-name {
+    margin-bottom: 20px;
+  }
+}
+
+
+.description{
+    .description-text{
+        margin-top: 8px;
+    }
+
+    margin-bottom: 100px;
+}
+
+ion-button{
+   
+    &::part(native){
+        height: 50px;
+        border-radius: 25px;
+    }
+}

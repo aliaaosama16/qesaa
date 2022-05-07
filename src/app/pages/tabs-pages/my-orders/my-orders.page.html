@@ -1,6 +1,29 @@
 <app-header [isGallary]="false" [title]="'my-orders'" [isHome]="false"></app-header>
 
-
-<ion-content>
-
+<ion-content class="ion-padding-horizontal">
+    <div class="orders-container ion-margin-bottom" *ngFor="let order of orders">
+       
+        <div >
+            <p class="order-number  fn-16 qesaa-Janna-Bold">
+                <span class="primary-color">{{"orderNumber"|translate}}</span>
+                <span class="custom-margin secondary-color">#{{order.orderID}}</span>
+            </p>
+            <p class="order-status  fn-16 qesaa-Janna-Bold">
+                <span  class="primary-color">{{"orderStatus"|translate}}</span>
+                <span class="custom-margin green-color" *ngIf="order.status==1">{{order.orderStatus|translate}}</span>
+                <span class="custom-margin red-color" *ngIf="order.status==2">{{order.orderStatus|translate}}</span>
+                <span class="custom-margin " *ngIf="order.status==3">{{order.orderStatus|translate}}</span>
+            </p>
+            <p class="date ion-no-margin  fn-12 qesaa-Janna-Regular">
+                {{order.date}}
+            </p>
+        </div>
+        <div>
+            <ion-button color="primary" routerLink="/tabs/my-orders/details/{{order.id}}">
+                <p class="ion-no-margin fn-12 qesaa-Janna-Regular">
+                    {{"orderDetails"|translate}}
+                </p>
+            </ion-button>
+        </div>
+    </div>
 </ion-content>

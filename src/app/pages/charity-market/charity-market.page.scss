@@ -1,19 +1,46 @@
 .category-section {
-  ion-button {
+  // ion-button {
 
-    &:focus{
-      --background: var(--ion-color-primary);  
-    }
-   // --background-activated	: var(--ion-color-primary);
-    --background: var(--ion-color-gray);
-   // --background-hover:		 var(--ion-color-primary);
-    --background-focused:	 var(--ion-color-primary);
-    --border-radius: 17px;
-    --box-shadow	:none !important;
-    width: 100px;
+  //   //--background-focused	:var(--ion-color-primary);
+  //     //--background: var(--ion-color-primary);  
+    
+  //  // --background-activated	: var(--ion-color-primary);
+  //   --background: var(--ion-color-gray);
+  //  // --background-hover:		 var(--ion-color-primary);
+  //  // --background-focused:	 var(--ion-color-primary);
+  //   --border-radius: 17px;
+  //   --box-shadow	:none !important;
+  //   width: 100px;
    
+  // }
+
+  ion-segment {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+   
+    //background-color: var(--ion-color-white);
+    ion-segment-button {
+      background-color: var(--ion-color-gray);
+      border-radius: 30px;
+      height: 34px;
+      --indicator-height: 0px !important;
+      --indicator-color: transparent !important;
+      &:focus {
+        background-color: var(--ion-color-primary);
+      }
+
+      &:not(:first-child) {
+        margin: 0 6px;
+    }
+    }
   }
   margin-bottom: 20px;
+}
+
+
+.selected{
+  --background:  var(--ion-color-primary);
 }
 .products-conatiner{
   display: flex;

@@ -111,7 +111,16 @@
   "twitter":"تويتر",
   "volunteer":"تطوع",
   "images":"الصور",
-  "videos":"الفيديو"
+  "videos":"الفيديو",
+  "orderNumber":" :رقم الطلب",
+  "orderStatus":" :حالة الطلب",
+  "orderDetails":"تفاصيل الطلب",
+  "waiting":"في الإنتظار",
+  "refused":"مرفوض",
+  "already-delivered":"تم التوصيل",
+  "order-details":"تفاصيل الطلب",
+  "product-description":"وصف المنتج",
+  "add-product":"اضف منتج"
 }
 
 

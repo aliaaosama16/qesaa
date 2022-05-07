@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { CharityMarketProductPage } from './charity-market-product.page';
     FormsModule,
     IonicModule,
     CharityMarketProductPageRoutingModule,
-    SharedComponentModule
+    SharedComponentModule,
+    TranslateModule
   ],
   declarations: [CharityMarketProductPage]
 })

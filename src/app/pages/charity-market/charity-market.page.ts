@@ -8,6 +8,7 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./charity-market.page.scss'],
 })
 export class CharityMarketPage implements OnInit {
+  selectedIndex:number=0;
   categoriesConfig:SwiperOptions;
   currentlangauge:string;
   categories:any=[
@@ -97,4 +98,7 @@ export class CharityMarketPage implements OnInit {
     };
   }
 
+  segmentChanged($event){
+    console.log('selected :'+$event.target.value);
+  }
 }

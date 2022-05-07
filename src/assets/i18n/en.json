@@ -111,5 +111,15 @@
   "twitter": "twitter",
   "volunteer":"volunteer",
   "images": "images",
-  "videos": "videos"
+  "videos": "videos",
+  "orderNumber":"order number",
+  "orderStatus":"order status",
+  "orderDetails":"order details",
+  "waiting":"waiting",
+  "refused":"refused",
+  "already-delivered":"already delivered",
+  "order-details":"order details",
+  "product-description":"product description",
+  "add-product":"add product"
+
 }
