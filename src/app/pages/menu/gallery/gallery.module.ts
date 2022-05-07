@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     FormsModule,
     IonicModule,
     GalleryPageRoutingModule,
-    SharedComponentModule
+    SharedComponentModule,
+    TranslateModule
   ],
   declarations: [GalleryPage]
 })

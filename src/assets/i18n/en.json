@@ -109,5 +109,7 @@
   "person name": "person name",
   "instgram":"instgram",
   "twitter": "twitter",
-  "volunteer":"volunteer"
+  "volunteer":"volunteer",
+  "images": "images",
+  "videos": "videos"
 }

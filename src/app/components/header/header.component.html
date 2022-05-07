@@ -24,7 +24,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <div class="header-extenstion custom-top-margin">
+  <div class=" custom-top-margin"  [ngClass]="!isGallary?'header-extenstion':''">
 
   </div>
+  <!-- <div class="header-extenstion-Gallary custom-top-margin" *ngIf="isGallary">
+
+  </div> -->
 </ion-header>
