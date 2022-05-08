@@ -114,12 +114,21 @@
   "videos": "videos",
   "orderNumber":"order number",
   "orderStatus":"order status",
+  "orderDate": "order date",
   "orderDetails":"order details",
   "waiting":"waiting",
+  "canceled":"canceled",
   "refused":"refused",
+  "confirmed":"confirmed",
   "already-delivered":"already delivered",
   "order-details":"order details",
   "product-description":"product description",
-  "add-product":"add product"
-
+  "add-product":"add product",
+  "welcome":"welcome in Kisaa app",
+  "welcome text1":"Under the umbrella of the National Association for Health Awareness (Hayat), an association registered in the Ministry of Human Resources and Social Development No. (341) and aims to promote a healthy lifestyle for the community",
+  "welcome text2":"Keeping pace with contemporary changes that require compatibility with the directions of Vision 2030. Establishing awareness, development and training activities to benefit from used clothing paper and plastic",
+  "welcome text3":"The Kisaa platform is a pioneering community initiative in raising awareness and motivating the community to donate surplus used clothing in modern and healthy ways and to preserve the environment.",
+  "products": "products",
+  "charity-market-requests":"charity market requests",
+  "complete-request":"complete request"
 }

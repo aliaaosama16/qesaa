@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ShowBoardingPageGuard } from './guards/boarding/show-boarding-page.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./../app/pages/tabs-pages/tabs/tabs.module').then(
-  //       (m) => m.TabsPageModule
-  //     ),
-  // },
   {
-    path: '',//on-boarding
-    loadChildren: () => import('./pages/boarding/on-boarding/on-boarding.module').then( m => m.OnBoardingPageModule)
+    path: '',
+    redirectTo: 'boarding',
+    pathMatch: 'full',
+  },
+  {
+    path: 'tabs',
+    loadChildren: () =>
+      import('./../app/pages/tabs-pages/tabs/tabs.module').then(
+        (m) => m.TabsPageModule
+      ),
+  },
+  {
+    path: 'boarding',
+    canActivate: [ShowBoardingPageGuard],
+    loadChildren: () =>
+      import('./pages/boarding/on-boarding/on-boarding.module').then(
+        (m) => m.OnBoardingPageModule
+      ),
   },
   {
     path: 'login',

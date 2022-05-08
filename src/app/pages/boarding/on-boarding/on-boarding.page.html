@@ -1,33 +1,110 @@
 <ion-content>
-    <div class="boarding-container">
-        <swiper #swiper [config]="boardingConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
-            <ng-template swiperSlide>
-                <div class="boarding1">
+  <div class="boarding-container">
+    <swiper
+      #swiper
+      [config]="boardingConfig"
+      class="custom-swiper"
+      [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+    >
+      <ng-template swiperSlide>
+        <div class="boarding-conatiner">
+          <img src="./../../../../assets/images/onboarding1.svg" />
+        </div>
+        <div class="ion-text-center ion-padding-horizontal text-container">
+          <div class="ion-padding-horizontal">
+            <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
+              {{"welcome"|translate}}
+            </p>
+            <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
+              {{"welcome text1"|translate}}
+            </p>
+          </div>
+          <div class="indicators">
+            <div class="selected"></div>
+            <div class="not-selected"></div>
+            <div class="not-selected"></div>
+          </div>
+        </div>
 
-                </div>
-                <div class="ion-text-center">
-                    <p>kjkdjkjdskjd</p>
-                    <p>kjkdjkjdskjd</p>
-                    <p>kjkdjkjdkhekhr ewhrk hwejkr hewkj rkjehwr khwk jrhwk ehr wekrhkwejhrkjewh rkhwekjrhkewhrjk hwjk
-                        rjhwkehkjd</p>
-                </div>
+        <div class="controls-container  custom-margin1">
+          <div
+            (click)="nextSlide()"
+            class="fn-18 qesaa-Janna-Bold white-color"
+            [ngClass]="currentlangauge=='ar'?'boarding-btn-ar':'boarding-btn-en'"
+          >
+            {{"next"|translate}}
+          </div>
+          <div>
+            <img src="./../../../../assets/icon/onboarding0.svg">
+          </div>
+        </div>
+      </ng-template>
 
-            </ng-template>
+      <ng-template swiperSlide>
+        <div class="boarding-conatiner">
+          <img src="./../../../../assets/images/onboarding2.svg" />
+        </div>
+        <div class="ion-text-center ion-padding-horizontal text-container">
+          <div class="ion-padding-horizontal">
+            <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
+              {{"welcome"|translate}}
+            </p>
+            <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
+              {{"welcome text2"|translate}}
+            </p>
+          </div>
+          <div class="indicators">
+            <div class="not-selected"></div>
+            <div class="selected"></div>
+            <div class="not-selected"></div>
+          </div>
+        </div>
+        <div class="controls-container  custom-margin2">
+          <div
+            (click)="nextSlide()"
+            class="fn-18 qesaa-Janna-Bold white-color"
+            [ngClass]="currentlangauge=='ar'?'boarding-btn-ar':'boarding-btn-en'"
+          >
+            {{"next"|translate}}
+          </div>
+          <div>
+            <img src="./../../../../assets/icon/onboarding0.svg">
+          </div>
+        </div>
+      </ng-template>
 
-            <ng-template swiperSlide>
-                <div class="boarding2">
-
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="boarding3">
-                </div>
-            </ng-template>
-        </swiper>
-    </div>
-
-
-
-
-
+      <ng-template swiperSlide>
+        <div class="boarding-conatiner">
+          <img src="./../../../../assets/images/onboarding3.svg" />
+        </div>
+        <div class="ion-text-center ion-padding-horizontal text-container">
+          <div class="ion-padding-horizontal">
+            <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
+              {{"welcome"|translate}}
+            </p>
+            <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
+              {{"welcome text3"|translate}}
+            </p>
+          </div>
+          <div class="indicators">
+            <div class="not-selected"></div>
+            <div class="not-selected"></div>
+            <div class="selected"></div>
+          </div>
+        </div>
+        <div class="controls-container custom-margin3">
+          <div
+            (click)="start()"
+            class="fn-18 qesaa-Janna-Bold white-color"
+            [ngClass]="currentlangauge=='ar'?'boarding-btn-ar':'boarding-btn-en'"
+          >
+            {{"start"|translate}}
+          </div>
+          <div>
+            <img src="./../../../../assets/icon/onboarding0.svg">
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
 </ion-content>

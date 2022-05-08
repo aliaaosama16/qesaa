@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -54,6 +54,14 @@ const routes: Routes = [
                   import(
                     './../../charity-market-product/charity-market-product.module'
                   ).then((m) => m.CharityMarketProductPageModule),
+              },
+              {
+                path: 'products',
+                loadChildren: () => import('./../../charity-market-products/charity-market-products.module').then( m => m.CharityMarketProductsPageModule)
+              },
+              {
+                path: 'requests',
+                loadChildren: () => import('./../../charity-market-requests/charity-market-requests.module').then( m => m.CharityMarketRequestsPageModule)
               },
             ],
           },

@@ -1,6 +1,24 @@
-<app-header [isGallary]="false" [title]="'order-details'" [isHome]="false"></app-header>
+<app-header
+  [isGallary]="false"
+  [title]="'order-details'"
+  [isHome]="false"
+></app-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div class="order-details ion-padding">
+    <div class="request-data" *ngFor="let item of requestItems">
+      <div class="text primary-color fn-16 qesaa-Janna-Bold">
+        {{item.text|translate}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Bold">{{item.value}}</div>
+    </div>
 
 
-<ion-content class="ion-margin-horizontal">
-
+    <div class="client-data" *ngFor="let item of requestItems">
+        <div class="text primary-color fn-16 qesaa-Janna-Bold">
+          {{item.text|translate}}
+        </div>
+        <div class="value fn-16 qesaa-Janna-Bold">{{item.value}}</div>
+      </div>
+  </div>
 </ion-content>

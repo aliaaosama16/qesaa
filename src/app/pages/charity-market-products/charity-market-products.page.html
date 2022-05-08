@@ -1,0 +1,40 @@
+<app-header
+  [isGallary]="false"
+  [isGallary]="false"
+  [title]="'products'"
+  [isHome]="false"
+></app-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div
+    class="product-container ion-margin-bottom"
+    *ngFor="let product of products"
+  >
+    <div class="product-image">
+      <img [src]="product.image" />
+    </div>
+
+    <div class="names">
+      <h6 class="ion-no-margin fn-22 qesaa-Janna-Bold">{{product.name}}</h6>
+      <p class="ion-no-margin fn-14 qesaa-Janna-Regular light-grayed-color">
+        {{product.categoryName}}
+      </p>
+    </div>
+
+    <div class="delete-icon" (click)="deleteProduct()">
+      <ion-icon src="./../../../assets/icon/Delete.svg"></ion-icon>
+    </div>
+  </div>
+
+  <div class="checkout-btn">
+    <ion-button
+    routerLink="/tabs/home/market/requests"
+      (click)="checkout()"
+      color="primary"
+      expand="block"
+      class="fn-20 qesaa-Janna-Bold"
+    >
+      {{ "complete-request"|translate}}
+    </ion-button>
+  </div>
+</ion-content>

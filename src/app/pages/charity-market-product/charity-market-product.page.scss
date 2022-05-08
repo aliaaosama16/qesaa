@@ -29,10 +29,15 @@
     margin-bottom: 100px;
 }
 
-ion-button{
+.add-btn{
+  margin-bottom: 30px;
+  ion-button{
    
     &::part(native){
         height: 50px;
         border-radius: 25px;
     }
 }
+}
+
+

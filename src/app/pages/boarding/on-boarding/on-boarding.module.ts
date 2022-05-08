@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SwiperModule } from 'swiper/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { OnBoardingPage } from './on-boarding.page';
     FormsModule,
     IonicModule,
     OnBoardingPageRoutingModule,
-    SwiperModule
+    SwiperModule,
+    TranslateModule
   ],
   declarations: [OnBoardingPage]
 })

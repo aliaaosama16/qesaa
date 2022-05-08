@@ -46,6 +46,7 @@ export class HomePage implements OnInit {
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.langaugeservice.getLanguage();
+    this.menuCtrl.enable(true, 'main');
   }
 
   ngOnInit() {

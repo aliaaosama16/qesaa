@@ -1,43 +1,35 @@
-<app-header [isGallary]="false" [isGallary]="false" [title]="'charity-market'" [isHome]="false"></app-header>
+<app-header
+  [isGallary]="false"
+  [isGallary]="false"
+  [title]="'charity-market'"
+  [isHome]="false"
+></app-header>
 
 <ion-content class="ion-padding-horizontal">
+  <div class="category-section">
+    <ion-segment scrollable="true" (ionChange)="segmentChanged($event)">
+      <ion-segment-button [value]="category.id" *ngFor="let category of categories;">
+        <span class="fn-14 qesaa-Janna-Regular white-color">
+          {{category.title}}
+        </span>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-    <div class="category-section">
-
-        <ion-segment scrollable="true" (ionChange)="segmentChanged($event)">
-            <ion-segment-button value="camera" *ngFor="let category of categories;">
-                <span class="fn-14 qesaa-Janna-Regular white-color">
-                    {{category.title}}
-                </span>
-            </ion-segment-button>
-         
-          </ion-segment>
-        <!-- <swiper #swiper [config]="categoriesConfig" class="custom-swiper"
-            [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
-            <ng-template swiperSlide *ngFor="let category of categories; let i = index">
-                <ion-button block [class.selected]="selectedIndex==i">
-                    <span class="fn-14 qesaa-Janna-Regular">
-                        {{category.title}}
-                    </span>
-                </ion-button>
-            </ng-template>
-        </swiper> -->
-    </div>
-
-
-    <div class="products-conatiner">
-        <div clas="product-wrapper" *ngFor="let product of products" routerLink="/tabs/home/market/product/{{product.id}}">
-            <div class="product ion-padding ion-text-center">
-                <div class="icon">
-                    <img [src]="product.icon">
-                </div>
-            </div>
-            <div class="ion-text-center title">
-                <p class="ion-no-margin fn-18 qesaa-Janna-Bold">
-                    {{product.title}}
-                </p>
-            </div>
+  <div class="products-conatiner">
+    <div
+      clas="product-wrapper"
+      *ngFor="let product of products"
+      routerLink="/tabs/home/market/product/{{product.id}}"
+    >
+      <div class="product ion-padding ion-text-center">
+        <div class="icon">
+          <img [src]="product.icon" />
         </div>
+      </div>
+      <div class="ion-text-center title">
+        <p class="ion-no-margin fn-18 qesaa-Janna-Bold">{{product.title}}</p>
+      </div>
     </div>
-
+  </div>
 </ion-content>
