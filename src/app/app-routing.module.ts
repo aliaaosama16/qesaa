@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./../app/pages/tabs-pages/tabs/tabs.module').then(
+  //       (m) => m.TabsPageModule
+  //     ),
+  // },
   {
-    path: '',
-    loadChildren: () =>
-      import('./../app/pages/tabs-pages/tabs/tabs.module').then(
-        (m) => m.TabsPageModule
-      ),
+    path: '',//on-boarding
+    loadChildren: () => import('./pages/boarding/on-boarding/on-boarding.module').then( m => m.OnBoardingPageModule)
   },
   {
     path: 'login',
@@ -42,6 +46,7 @@ const routes: Routes = [
         (m) => m.ChangePasswordPageModule
       ),
   },
+  
 ];
 @NgModule({
   imports: [
