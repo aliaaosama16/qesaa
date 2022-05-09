@@ -5,7 +5,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { DataService } from 'src/app/services/data/data.service';
-
+import SwiperCore,{Pagination, Autoplay} from 'swiper';
+SwiperCore.use([Pagination,Autoplay]);
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',

@@ -3,27 +3,27 @@
 
 <ion-content>
 
-    <form (ngSubmit)="contactUs()" [formGroup]="suggestionsForm" class="form-container">
-        <ion-item lines="none">
-            <ion-icon [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
+    <form (ngSubmit)="contactUs()" [formGroup]="suggestionsForm" class="form-container ion-padding-horizontal">
+        <ion-item lines="none" class="ion-margin-bottom"> 
+            <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
                 src="./../../../../assets/icon/forms/person.svg"></ion-icon>
-            <ion-input placeholder="{{'user-name'|translate}}" type="text" formControlName="userName"></ion-input>
+            <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'user-name'|translate}}" type="text" formControlName="userName"></ion-input>
         </ion-item>
 
-        <ion-item lines="none">
-            <ion-icon [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
                 src="./../../../../assets/icon/forms/phone.svg"></ion-icon>
-            <ion-input placeholder="{{'phone number'|translate}}" type="tel" formControlName="phoneNumber"></ion-input>
+            <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'phone number'|translate}}" type="tel" formControlName="phoneNumber"></ion-input>
         </ion-item>
 
-        <ion-item lines="none">
-            <ion-icon [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
                 src="./../../../../assets/icon/forms/email.svg"></ion-icon>
-            <ion-input placeholder="{{'email-address'|translate}}" type="email" formControlName="email"></ion-input>
+            <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'email-address'|translate}}" type="email" formControlName="email"></ion-input>
         </ion-item>
 
-        <ion-item lines="none">
-            <ion-textarea class="ion-padding-horizontal" rows="5" placeholder="{{'your message'|translate}}" type="text"
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-textarea class="ion-padding-horizontal fn-16 qesaa-Janna-Regular" rows="5" placeholder="{{'your message'|translate}}" type="text"
                 formControlName="message"></ion-textarea>
         </ion-item>
 

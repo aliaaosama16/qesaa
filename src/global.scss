@@ -127,13 +127,76 @@ ion-badge {
   }
 }
 
-.form-container {
-  margin: 0 32px;
+.custom-form-container{
   ion-item {
-    margin-bottom: 16px;
     border: 1px solid var(--ion-color-secondary);
     border-radius: 24px;
-    ion-icon {
+    height: 50px;
+
+    ion-input {
+      --placeholder-color: var(--ion-color-gray);
+      --placeholder-opacity: 1;
+      --placeholder-font-style: "qesaa-Janna-Regular";
+      --placeholder-font-weight: "Regular";
+      --color: var(--ion-color-primary) !important;
+    }
+
+    .custom-form-icon {
+      font-size: 20px;
+     // background: var(--ion-color-secondary);
+     // padding: 14px;
+      border-radius: 24px;
+    }
+
+    .icon-ar {
+      margin: 0px -1px 0 24px;
+    }
+
+    .icon-en {
+      margin: 0px 24px 0 -1px;
+    }
+
+    &::part(native) {
+      padding-inline-start: 0px !important;
+      padding-inline-end: 0px !important;
+      background: transparent;
+    }
+
+    &:last-of-type {
+      margin-bottom: 24px;
+    }
+  }
+
+  ion-button {
+    --border-radius: 100px;
+    height: 50px;
+    --ripple-color: transparent;
+  }
+}
+
+
+.form-container {
+  .item-has-focus {
+    border: 1px solid var(--ion-color-primary);
+
+    .custom-form-icon {
+      background: var(--ion-color-primary);
+    }
+  }
+
+  ion-item {
+    border: 1px solid var(--ion-color-secondary);
+    border-radius: 24px;
+
+    ion-input {
+      --placeholder-color: var(--ion-color-gray);
+      --placeholder-opacity: 1;
+      --placeholder-font-style: "qesaa-Janna-Regular";
+      --placeholder-font-weight: "Regular";
+      --color: var(--ion-color-primary) !important;
+    }
+
+    .custom-form-icon {
       font-size: 20px;
       background: var(--ion-color-secondary);
       padding: 14px;
@@ -147,17 +210,22 @@ ion-badge {
     .icon-en {
       margin: 0px 24px 0 -1px;
     }
+
     &::part(native) {
       padding-inline-start: 0px !important;
       padding-inline-end: 0px !important;
       background: transparent;
     }
-  }
-  ion-button {
-    &::part(native) {
-      height: 50px;
-      border-radius: 20px;
+
+    &:last-of-type {
+      margin-bottom: 24px;
     }
+  }
+
+  ion-button {
+    --border-radius: 100px;
+    height: 50px;
+    --ripple-color: transparent;
   }
 }
 

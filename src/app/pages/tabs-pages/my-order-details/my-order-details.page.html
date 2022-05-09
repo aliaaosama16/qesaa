@@ -1,4 +1,8 @@
-<app-header [isGallary]="false" [title]="'order-details'" [isHome]="false"></app-header>
+<app-header
+  [isGallary]="false"
+  [title]="'order-details'"
+  [isHome]="false"
+></app-header>
 
 <ion-content class="ion-padding-horizontal">
   <div class="order-details ion-padding">
@@ -6,34 +10,70 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{item.text|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Bold">{{item.value}}</div>
+      <div class="value fn-16 qesaa-Janna-Regular">{{item.value|translate}}</div>
     </div>
 
-    <div class="divider">
-
-    </div>
+    <div class="divider"></div>
 
     <div class="client-data" *ngFor="let item of clientData">
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{item.text|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Bold">{{item.value|translate}}</div>
+      <div class="value fn-16 qesaa-Janna-Regular">{{item.value|translate}}</div>
     </div>
   </div>
 
   <div class="order-images">
-
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order images"|translate}}
     </p>
 
-
     <div class="images">
-      <swiper #swiper [config]="orderConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+      <swiper
+        #swiper
+        [config]="orderConfig"
+        class="custom-swiper"
+        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+      >
         <ng-template swiperSlide *ngFor="let image of orderImages">
           <img [src]="image" />
         </ng-template>
       </swiper>
     </div>
+  </div>
+
+  <div class="order-notices">
+    <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
+      {{"order notices"|translate}}
+    </p>
+
+    <div class="notices">
+      <p class="ion-no-margin fn-16 qesaa-Janna-Regular">
+        {{orderDetails.notices}}
+      </p>
+    </div>
+  </div>
+
+  <div class="ion-padding-horizontal ion-margin-bottom">
+    <ion-button
+      (click)="driverContact()"
+      color="primary"
+      expand="block"
+      class="fn-20 qesaa-Janna-Bold"
+    >
+      {{ "track driver"|translate}}
+    </ion-button>
+  </div>
+
+  <div class="ion-padding-horizontal">
+    <ion-button
+      (click)="driverContact()"
+      color="secondary"
+      expand="block"
+      class="fn-20 qesaa-Janna-Bold"
+    >
+    <ion-icon src="./../../../../assets/icon/phone.svg"></ion-icon>
+      {{ "contact with driver"|translate}}
+    </ion-button>
   </div>
 </ion-content>

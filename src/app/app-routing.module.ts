@@ -56,6 +56,10 @@ const routes: Routes = [
         (m) => m.ChangePasswordPageModule
       ),
   },
+  {
+    path: 'image-modal',
+    loadChildren: () => import('./pages/modals/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
+  },
   
 ];
 @NgModule({

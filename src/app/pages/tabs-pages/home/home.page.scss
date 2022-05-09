@@ -19,23 +19,25 @@
     text-align: center;
 
     .swiper-pagination-bullet {
-      background: var(--ion-color-primary) !important;
+      background: var(--ion-color-secondary) !important;
       top: 70% !important;
       right: 50% !important;
-      height: 10px !important;
-      width: 15px !important;
+      height: 4px !important;
+      width: 6px !important;
       border-radius: 10px;
-      opacity: 0.5 !important;
+      opacity: 1 !important;
+      margin: 0 2px;
     }
 
     .swiper-pagination-bullet-active {
       background-color: var(--ion-color-primary) !important;
       top: 70% !important;
       right: 50% !important;
-      height: 10px !important;
-      width: 30px !important;
+      height: 4px !important;
+      width: 12px !important;
       border-radius: 10px;
       opacity: 1 !important;
+      margin: 0 2px;
     }
 
     .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,

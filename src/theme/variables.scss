@@ -138,6 +138,27 @@
 	--ion-color-black-text-contrast-rgb: 255,255,255;
 	--ion-color-black-text-shade: #343434;
 	--ion-color-black-text-tint: #4f4f4f;
+
+   /** secondary-dark **/
+  --ion-color-secondary-dark: #056839;
+	--ion-color-secondary-dark-rgb: 5,104,57;
+	--ion-color-secondary-dark-contrast: #ffffff;
+	--ion-color-secondary-dark-contrast-rgb: 255,255,255;
+	--ion-color-secondary-dark-shade: #045c32;
+	--ion-color-secondary-dark-tint: #1e774d;
+}
+
+.ion-color-gray {
+	--ion-color-base: var(--ion-color-gray);
+	--ion-color-base-rgb: var(--ion-color-gray-rgb);
+	--ion-color-contrast: var(--ion-color-gray-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-gray-contrast-rgb);
+	--ion-color-shade: var(--ion-color-gray-shade);
+	--ion-color-tint: var(--ion-color-gray-tint);
+}
+
+.gray-color{
+  color:var(--ion-color-gray);
 }
 
 .background-color {
@@ -216,24 +237,12 @@
   font-size: 24px !important;
 }
 
-// .qesaa-Regular {
-//   font-family: "Cairo-Regular";
-// }
-
-// .qesaa-Bold {
-//   font-family: "Cairo-Bold";
-// }
-
-// .qesaa-SemiBold {
-//   font-family: "Cairo-SemiBold";
-// }
-
 .qesaa-Janna-Regular {
-  font-family: "Janna-LT-Regular";
+  font-family: "Janna-LT-Regular" !important;
 }
 
 .qesaa-Janna-Bold {
-  font-family: "Janna-LT-Bold";
+  font-family: "Janna-LT-Bold" !important;
 }
 
 .custom-top-margin {
