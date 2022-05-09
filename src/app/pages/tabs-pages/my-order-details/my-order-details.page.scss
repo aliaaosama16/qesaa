@@ -3,6 +3,7 @@
   background-color: var(--ion-color-white);
   border-radius: var(--custom-border-10-radius);
   padding: 20px 16px;
+  margin-bottom: 20px;
 
   .request-data {
     display: flex;
@@ -10,15 +11,29 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+  }
 
-    // .title {
-    //   flex-grow: 1;
-    // }
-    // .requestNumber {
-    //   flex-grow: 1;
-    // }
-    // .requestDate {
-    //   flex-grow: 10;
-    // }
+  .divider {
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-top: 19.5px;
+    margin-bottom: 20.5px;
+  }
+
+  .client-data {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+}
+
+.order-images {
+  .title {
+    margin-bottom: 9px;
+  }
+  .images {
+    img {
+      border-radius: var(--custom-border-10-radius);
+    }
+    margin-bottom: 20px;
   }
 }

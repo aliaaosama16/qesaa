@@ -1,3 +1,4 @@
+import { SwiperModule } from 'swiper/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +18,8 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     IonicModule,
     MyOrderDetailsPageRoutingModule,
     SharedComponentModule,
-    TranslateModule
+    TranslateModule,
+    SwiperModule
   ],
   declarations: [MyOrderDetailsPage]
 })
