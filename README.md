@@ -28,3 +28,8 @@ npx cap init
             <string>This App wants to track your location</string>
         </edit-config>
 
+        add gogle mpas
+
+      npm install @types/googlemaps --save-dev
+
+
