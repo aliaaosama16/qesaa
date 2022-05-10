@@ -1,6 +1,8 @@
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SwiperOptions } from 'swiper';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DriverLocationPage } from '../../modals/driver-location/driver-location.page';
 
 @Component({
   selector: 'app-my-order-details',
@@ -57,7 +59,8 @@ export class MyOrderDetailsPage implements OnInit {
       value: this.orderDetails.neighborhood,
     },
   ];
-  constructor(private LanguageService: LanguageService) {
+  constructor(private LanguageService: LanguageService,
+    private modalController:ModalController) {
     this.currentlangauge = this.LanguageService.getLanguage();
   }
 
@@ -70,7 +73,14 @@ export class MyOrderDetailsPage implements OnInit {
     };
   }
 
-  driverContact(){
-
+  async driverContact(){
+   
+      const modal = await this.modalController.create({
+        component: DriverLocationPage,
+        initialBreakpoint: 0.75,
+        breakpoints: [0, 0.5,0.75, 1]
+      });
+      return await modal.present();
+    
   }
 }

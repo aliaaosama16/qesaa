@@ -143,6 +143,13 @@
   "Communicate with management":"communicate with management",
   "use policy":"use policy",
   "about app":"about app",
-  "app version":"app version",
-  "image change":"image change"
+  "app-copyright": "all rights reserved | kesaa app |2022 | ",
+  "image change":"update image",
+  "map location":"place on map",
+  "the request":"the request",
+  "request image":"request image",
+  "donate":"donate",
+  "request notices":"request notices",
+  "request-time":"request time",
+  "attach request image":"attach request image"
 }

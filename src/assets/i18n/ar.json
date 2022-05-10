@@ -145,5 +145,12 @@
   "about app": "عن التطبيق",
   "app version": "اصدار التطبيق",
   "app-copyright": "الحقوق محفوظة | منصة كساء |2022 | ",
-  "image change": "تغيير الصورة "
+  "image change": "تغيير الصورة ",
+  "map location":"المكان على الخريطة",
+  "the request":"الطلب",
+  "request image":"صورة الطلب",
+  "donate":"تبرع",
+  "request notices":"ملاحظات الطلب",
+  "request-time":"وقت الطلب",
+  "attach request image":"ارفق صورة الطلب"
 }

@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'image-modal',
     loadChildren: () => import('./pages/modals/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   },
+  {
+    path: 'driver-location',
+    loadChildren: () => import('./pages/modals/driver-location/driver-location.module').then( m => m.DriverLocationPageModule)
+  },
   
 ];
 @NgModule({

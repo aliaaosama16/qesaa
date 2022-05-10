@@ -9,6 +9,7 @@ import { DonationOrderPageRoutingModule } from './donation-order-routing.module'
 
 import { DonationOrderPage } from './donation-order.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SharedComponentModule } from 'src/app/components/shared-component.modul
     ReactiveFormsModule,
     TranslateModule
   ],
-  declarations: [DonationOrderPage]
+  declarations: [DonationOrderPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DonationOrderPageModule {}
