@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
   styleUrls: ['./donation-order.page.scss'],
 })
 export class DonationOrderPage implements OnInit {
+  //@ViewChild('item', {static: false}) myItem:ElementRef;
   currentLanguage: string;
   donationForm: FormGroup;
   constructor(
@@ -15,6 +16,9 @@ export class DonationOrderPage implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.currentLanguage = this.languageService.getLanguage();
+    //console.log(this.myItem.nativeElement)
+    var elem=document.getElementById('item1')
+    console.log(elem.classList.value)
   }
 
   ngOnInit() {
