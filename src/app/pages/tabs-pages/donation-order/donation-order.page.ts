@@ -75,9 +75,7 @@ export class DonationOrderPage implements OnInit {
       coordinate: this.center,
       draggable: true,
     });
-    await this.newMap.setCamera({
-      coordinate: this.center,
-    });
+    
   }
 
   ngOnInit() {
