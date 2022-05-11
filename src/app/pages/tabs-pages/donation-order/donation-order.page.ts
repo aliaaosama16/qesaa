@@ -1,25 +1,28 @@
+import { Platform } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { environment } from 'src/environments/environment';
-import { GoogleMap } from '@capacitor/google-maps';
-import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
-
+// import { GoogleMap } from '@capacitor/google-maps';
+// import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
+declare var google: any;
 @Component({
   selector: 'app-donation-order',
   templateUrl: './donation-order.page.html',
   styleUrls: ['./donation-order.page.scss'],
 })
 export class DonationOrderPage implements OnInit {
+  @ViewChild('map', { static: false }) mapElement: ElementRef;
+  map: google.maps.Map;
+  home: google.maps.Marker;
+  lat: number = 31;
+  long: number = 31;
+  infowindow = new google.maps.InfoWindow();
   currentLanguage: string;
   donationForm: FormGroup;
   requestImage: string = '';
-  @ViewChild('map')
-  mapRef: ElementRef<HTMLElement>;
-  newMap: GoogleMap;
-  center: LatLng;
-  markerId: string;
-  requestTimes : any = [
+
+  requestTimes: any = [
     {
       id: 1,
       text: 'من  9 الى 11 ظهرا ',
@@ -47,9 +50,11 @@ export class DonationOrderPage implements OnInit {
   ];
   constructor(
     private languageService: LanguageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private plt: Platform
   ) {
     this.currentLanguage = this.languageService.getLanguage();
+<<<<<<< HEAD
     this.center = {
       lat: 31,
       lng: 31,
@@ -76,14 +81,19 @@ export class DonationOrderPage implements OnInit {
       draggable: true,
     });
     
+=======
+>>>>>>> a3d6e34c8dfcdc74e23deba0d490eca9a3e5b1c1
   }
 
   ngOnInit() {
     this.buildForm();
+   
   }
 
+  
   ngAfterViewInit() {
-    this.createMap();
+    this.loadMap();
+    this.loadItemPosition();
   }
 
   buildForm() {
@@ -105,8 +115,8 @@ export class DonationOrderPage implements OnInit {
     });
   }
 
-  chooseTime($event){
-    console.log("selected time :"+$event.target.value)
+  chooseTime($event) {
+    console.log('selected time :' + $event.target.value);
   }
 
   attachImage() {
@@ -115,4 +125,53 @@ export class DonationOrderPage implements OnInit {
   }
 
   donate() {}
+
+  loadMap() {
+    let latLng = new google.maps.LatLng(this.lat, this.long);
+
+    let styles: google.maps.MapTypeStyle[] = [
+      {
+        featureType: 'poi',
+        stylers: [
+          {
+            visibility: 'off',
+          },
+        ],
+      },
+    ];
+
+    let mapOptions: google.maps.MapOptions = {
+      center: latLng,
+      zoom: 2,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles: styles,
+      mapTypeControl: false,
+    };
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
+
+  loadItemPosition() {
+    this.plt.ready().then(() => {
+      this.focusMap(this.lat, this.long);
+      this.addMarker(this.lat, this.long);
+    });
+  }
+
+  focusMap(lat, lng) {
+    let latLng = new google.maps.LatLng(lat, lng);
+    this.map.setCenter(latLng);
+    this.map.setZoom(15);
+  }
+
+  addMarker(lat, lng) {
+    let latLng = new google.maps.LatLng(lat, lng);
+
+    this.home = new google.maps.Marker({
+      map: this.map,
+      position: latLng,
+      animation: google.maps.Animation.DROP,
+      icon: './../../../../assets/icon/location-pin-small.svg',
+    });
+  }
 }

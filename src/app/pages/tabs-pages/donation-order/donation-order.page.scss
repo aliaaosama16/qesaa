@@ -1,9 +1,4 @@
-ion-select{
-  width:100%;
-  &::part(text){
-    color: var(--ion-color-gray);
-  }
-}
+
 
 .map-location {
   .map-container {
@@ -11,18 +6,15 @@ ion-select{
     height: 167px;
     margin-top: 10px;
     border-radius: 20px;
+
+    //background: none !important;
   }
 
-  capacitor-google-map {
-    display: inline-block;
-    height: 167px;
-    border-radius: 20px;
-  }
+ 
 }
 
 .request-date {
   .image-container {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,12 +28,13 @@ ion-select{
       border-radius: 20px;
     }
 
-    ion-icon{
+    ion-icon {
       font-size: 20px;
     }
   }
 }
 
-.request-time{
+.request-time {
   margin-bottom: 6px;
 }
+// ion-content {--background	:none}

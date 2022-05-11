@@ -10,7 +10,9 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{item.text|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular">{{item.value|translate}}</div>
+      <div class="value fn-16 qesaa-Janna-Regular">
+        {{item.value|translate}}
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -19,7 +21,9 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{item.text|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular">{{item.value|translate}}</div>
+      <div class="value fn-16 qesaa-Janna-Regular">
+        {{item.value|translate}}
+      </div>
     </div>
   </div>
 
@@ -35,8 +39,12 @@
         class="custom-swiper"
         [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
       >
-        <ng-template swiperSlide *ngFor="let image of orderImages">
-          <img [src]="image" />
+        <ng-template
+          swiperSlide
+          *ngFor="let image of orderImages; let i = index"
+          
+        >
+          <img [src]="image.image"(click)="openPreview(orderImages,i)" />
         </ng-template>
       </swiper>
     </div>
@@ -56,7 +64,7 @@
 
   <div class="ion-padding-horizontal ion-margin-bottom">
     <ion-button
-      (click)="driverContact()"
+      (click)="driverTrack()"
       color="primary"
       expand="block"
       class="fn-20 qesaa-Janna-Bold"
@@ -72,7 +80,7 @@
       expand="block"
       class="fn-20 qesaa-Janna-Bold"
     >
-    <ion-icon src="./../../../../assets/icon/phone.svg"></ion-icon>
+      <ion-icon src="./../../../../assets/icon/phone.svg"></ion-icon>
       {{ "contact with driver"|translate}}
     </ion-button>
   </div>

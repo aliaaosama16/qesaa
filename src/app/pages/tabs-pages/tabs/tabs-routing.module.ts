@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IsAuthGuard } from 'src/app/guards/isAuth/is-auth.guard';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -69,6 +70,7 @@ const routes: Routes = [
       },
       {
         path: 'notifications',
+        canActivate: [IsAuthGuard],
         loadChildren: () =>
           import('./../../tabs-pages/notifications/notifications.module').then(
             (m) => m.NotificationsPageModule
@@ -83,6 +85,7 @@ const routes: Routes = [
       },
       {
         path: 'my-orders',
+        canActivate: [IsAuthGuard],
         children: [
           {
             path: '',
@@ -102,6 +105,7 @@ const routes: Routes = [
       },
       {
         path: 'account',
+        canActivate: [IsAuthGuard],
         children: [
           {
             path: '',

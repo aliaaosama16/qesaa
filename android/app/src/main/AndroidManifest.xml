@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ"/>
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
@@ -35,14 +36,11 @@
 
         </provider>
 
-      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ"/>
 
     </application>
 
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
-  <uses-feature android:name="android.hardware.location.gps" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 </manifest>
