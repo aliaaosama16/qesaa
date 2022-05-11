@@ -63,7 +63,7 @@
 .next-initiative {
   height: 100px;
   background: var(--ion-color-white);
-  border-radius: 5px;
+  border-radius: var( --custom-border-10-radius);
   box-shadow: var(--custom-box-shadow);
   padding: 21px 20px;
 
@@ -133,7 +133,7 @@
     width: 100%;
     //height: 100px;
     background: var(--ion-color-white);
-    border-radius: 5px;
+    border-radius: var( --custom-border-10-radius);
     box-shadow: var(--custom-box-shadow);
     padding: 18px 11px;
     display: flex;

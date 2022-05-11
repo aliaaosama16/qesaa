@@ -7,30 +7,15 @@
       <feComposite operator="in" in2="blur"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <clipPath id="clip-_06-sign_1">
+    <clipPath id="clip-_07-forget_password_1">
       <rect width="375" height="240"/>
     </clipPath>
   </defs>
-  <g id="_06-sign_1" data-name="06-sign – 1" clip-path="url(#clip-_06-sign_1)">
+  <g id="_07-forget_password_1" data-name="07-forget password – 1" clip-path="url(#clip-_07-forget_password_1)">
     <rect width="375" height="240" fill="#fff"/>
-    <path id="sign_shape" data-name="sign shape" d="M280.505,82.889V223.34c10.135,10.121,27.119,19.41,55.387,24.12C417.38,261.042,454.05,187.7,528.748,217.582s65.19,92.352,129.022,112.724c2.673.854,5.234,1.638,7.745,2.394V82.889Z" transform="translate(-285.515 -90.889)" fill="#056839"/>
+    <path id="Path_13430" data-name="Path 13430" d="M314.726,64.654H631.294a34.222,34.222,0,0,1,34.221,34.223V223.339c-10.135,10.121-27.119,19.41-55.387,24.12C528.64,261.042,491.97,187.7,417.272,217.582s-65.19,92.352-129.022,112.724c-2.673.854-5.234,1.638-7.745,2.394V98.877A34.222,34.222,0,0,1,314.726,64.654Z" transform="translate(-285.515 -90.889)" fill="#056839"/>
     <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Ellipse_147)">
       <circle id="Ellipse_147-2" data-name="Ellipse 147" cx="75" cy="75" r="75" transform="translate(193 64)" fill="#fff"/>
-    </g>
-    <g id="Status_Bar" data-name="Status Bar" transform="translate(8 16)">
-      <g id="Battery" transform="translate(326 3)">
-        <g id="Border" fill="#fff" stroke="#000" stroke-miterlimit="10" stroke-width="1">
-          <rect width="22" height="11.333" rx="2.667" stroke="none"/>
-          <rect x="0.5" y="0.5" width="21" height="10.333" rx="2.167" fill="none"/>
-        </g>
-        <path id="Cap" d="M0,0V4A2.17,2.17,0,0,0,1.328,2,2.17,2.17,0,0,0,0,0" transform="translate(23 3.667)" fill="#fff"/>
-        <rect id="Capacity" width="18" height="7.333" rx="1.333" transform="translate(2 2)" fill="#fff"/>
-      </g>
-      <path id="Wifi" d="M7.637,10.966a.313.313,0,0,1-.221-.093l-2-2.016a.313.313,0,0,1,.01-.456,3.421,3.421,0,0,1,4.419,0,.311.311,0,0,1,.1.226.315.315,0,0,1-.094.23l-2,2.016A.308.308,0,0,1,7.637,10.966Zm3.508-3.538a.312.312,0,0,1-.214-.085,4.9,4.9,0,0,0-6.585,0,.312.312,0,0,1-.214.085.308.308,0,0,1-.22-.091L2.758,6.17a.322.322,0,0,1,0-.459,7.158,7.158,0,0,1,9.752,0,.322.322,0,0,1,.1.229.326.326,0,0,1-.094.23L11.364,7.337A.309.309,0,0,1,11.145,7.428ZM13.8,4.743a.3.3,0,0,1-.214-.087,8.64,8.64,0,0,0-11.907,0,.3.3,0,0,1-.214.087.308.308,0,0,1-.22-.091L.094,3.486a.322.322,0,0,1,0-.456,10.9,10.9,0,0,1,15.08,0,.325.325,0,0,1,.1.228.319.319,0,0,1-.094.229L14.023,4.652A.307.307,0,0,1,13.8,4.743Z" transform="translate(305.694 4)" fill="#fff"/>
-      <path id="Cellular_Connection" data-name="Cellular Connection" d="M16,10.667H15a1,1,0,0,1-1-1V1a1,1,0,0,1,1-1h1a1,1,0,0,1,1,1V9.667A1,1,0,0,1,16,10.667Zm-4.667,0h-1a1,1,0,0,1-1-1V3.334a1,1,0,0,1,1-1h1a1,1,0,0,1,1,1V9.667A1,1,0,0,1,11.334,10.667Zm-4.667,0h-1a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h1a1,1,0,0,1,1,1v4A1,1,0,0,1,6.666,10.667ZM2,10.667H1a1,1,0,0,1-1-1v-2a1,1,0,0,1,1-1H2a1,1,0,0,1,1,1v2A1,1,0,0,1,2,10.667Z" transform="translate(283.667 4)" fill="#fff"/>
-      <g id="Time_Style" data-name="Time Style" transform="translate(8 -6)">
-        <text id="_9:41" data-name="9:41" transform="translate(0 21)" fill="#fff" font-size="16" font-family="Cairo-SemiBold, Cairo" font-weight="600"><tspan x="0" y="0">9:41</tspan></text>
-      </g>
     </g>
     <g id="Group_14457" data-name="Group 14457" transform="translate(115.254 57.884)">
       <g id="Group_14454" data-name="Group 14454" transform="translate(105.683 86.978)">

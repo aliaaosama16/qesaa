@@ -1,11 +1,25 @@
-ion-content{
-   &::part(background){
+ion-content {
+  &::part(background) {
     background-color: var(--ion-color-white) !important;
+  }
 
-   }
-    .logo{
-        img {
-            width: 100%;
-        }
+  .auth-image {
+    img {
+      width: 100%;
     }
+  }
+
+  .title {
+    margin-bottom: 24px;
+  }
+
+  .other-content {
+    .forget-text {
+      margin-bottom: 24px;
+    }
+
+    .language-contact{
+        margin-top: 57px;
+    }
+  }
 }

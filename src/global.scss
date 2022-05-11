@@ -183,7 +183,12 @@ ion-badge {
     --ripple-color: transparent;
   }
 }
-
+ion-select {
+  width: 100%;
+  &::part(text) {
+    color: var(--ion-color-gray);
+  }
+}
 .form-container {
   .item-has-focus {
     border: 1px solid var(--ion-color-primary);
@@ -195,7 +200,7 @@ ion-badge {
 
   ion-item {
     border: 1px solid var(--ion-color-secondary);
-    border-radius: 24px;
+    border-radius: 100px;
 
     ion-input {
       --placeholder-color: var(--ion-color-gray);
@@ -209,7 +214,7 @@ ion-badge {
       font-size: 20px;
       background: var(--ion-color-secondary);
       padding: 14px;
-      border-radius: 24px;
+      border-radius: 100px;
     }
 
     .icon-ar {
@@ -364,4 +369,12 @@ ion-tabs {
 ion-modal{
   --background:transparent !important;
   --backdrop-opacity: var(--ion-backdrop-opacity, 1);
+}
+
+.transparent-modal {
+  --background: rgba(44, 39, 45, 0.2);
+
+  &::part(content) {
+    backdrop-filter: blur(12px);
+  }
 }
