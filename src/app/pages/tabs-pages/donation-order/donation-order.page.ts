@@ -2,9 +2,6 @@ import { Platform } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
-import { environment } from 'src/environments/environment';
-// import { GoogleMap } from '@capacitor/google-maps';
-// import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
 declare var google: any;
 @Component({
   selector: 'app-donation-order',
@@ -54,36 +51,9 @@ export class DonationOrderPage implements OnInit {
     private plt: Platform
   ) {
     this.currentLanguage = this.languageService.getLanguage();
-<<<<<<< HEAD
-    this.center = {
-      lat: 31,
-      lng: 31,
-    };
-  }
-
-  async createMap() {
-    this.newMap = await GoogleMap.create({
-      id: 'capacitor-google-map',
-      element: this.mapRef.nativeElement,
-      apiKey: environment.Google_API_KEY,
-      config: {
-        center: this.center,
-        zoom: 8,
-      },
-    });
-    //this. addMarker();
-  }
-
-  async addMarker() {
-    // Add a marker to the map
-    await this.newMap.addMarker({
-      coordinate: this.center,
-      draggable: true,
-    });
     
-=======
->>>>>>> a3d6e34c8dfcdc74e23deba0d490eca9a3e5b1c1
   }
+
 
   ngOnInit() {
     this.buildForm();

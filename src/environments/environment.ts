@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   BASE_URL:'https://kesa.sa/',
   Google_API_KEY:'AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ',
-  ImageBaseUrl:'https://dalell.online/public/'
+  ImageBaseUrl:'https://kesa.sa/'
 };
 
 /*

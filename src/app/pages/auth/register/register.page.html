@@ -35,7 +35,7 @@
           [value]="type.id"
           *ngFor="let type of userTypes"
         >
-          {{type.text}}
+          {{type.type|translate}}
         </ion-select-option>
       </ion-select>
     </ion-item>
@@ -93,10 +93,10 @@
       <ion-input
         class="fn-16 qesaa-Janna-Regular"
         placeholder="{{'password'|translate}}"
-        type="password"
+        [type]="inputRegisterType"
         formControlName="password"
       ></ion-input>
-      <ion-icon item-end color="gray" name="eye-outline"></ion-icon>
+      <ion-icon (click)="showRegisterPassword()" item-end color="gray" [name]="iconRegisterName"></ion-icon>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
@@ -111,10 +111,10 @@
       <ion-input
         class="fn-16 qesaa-Janna-Regular"
         placeholder="{{'confirm-password'|translate}}"
-        type="password"
+        [type]="inputRegisterConfirmType"
         formControlName="confirmPassword"
       ></ion-input>
-      <ion-icon item-end color="gray" name="eye-outline"></ion-icon>
+      <ion-icon (click)="showRegisterConfirmPassword()" item-end color="gray"  [name]="iconRegisterConfirmName"></ion-icon>
     </ion-item>
 
     <ion-button class="form-btn" expand="block" type="submit" color="primary">

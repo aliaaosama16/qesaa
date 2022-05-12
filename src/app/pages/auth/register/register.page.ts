@@ -3,32 +3,42 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { Location } from '@angular/common';
-
+import { UserType, UserTypeData } from './../../../models/userType';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  userTypes: any = [
+  userTypes:any[]=[
     {
-      id: 1,
-      text: 'client',
+      id:UserType.client,
+      type:UserType.client,
     },
     {
-      id: 2,
-      text: 'admin',
+      id:UserType.provider,
+      type:UserType.provider,
     },
+    {
+      id:UserType.market,
+      type:UserType.market,
+    }
   ];
+  showLRegisterPass: boolean;
+  iconRegisterName: string = 'eye-off-outline';
+  inputRegisterType: any = 'password';
+  showLRegisterConfirmPass: boolean;
+  iconRegisterConfirmName: string = 'eye-off-outline';
+  inputRegisterConfirmType: any = 'password';
   currentLanguage: string;
   public registerForm: FormGroup;
   isRegisterSubmitted = false;
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder,
-    private menuCtrl:MenuController,
-    private platform:Platform,
-    private location: Location,
+    private menuCtrl: MenuController,
+    private platform: Platform,
+    private location: Location
   ) {
     this.currentLanguage = this.languaService.getLanguage();
   }
@@ -46,8 +56,8 @@ export class RegisterPage implements OnInit {
 
   buildForm() {
     this.registerForm = this.formBuilder.group({
-      userType:['', [Validators.required]],
-      userName:['',[Validators.required]],
+      userType: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       phoneNumber: [
         '',
         [
@@ -59,15 +69,32 @@ export class RegisterPage implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-    })
+    });
   }
 
   chooseUserType($event) {
-    console.log( 'selected user type :'+$event.target.value);
+    console.log('selected user type :' + $event.target.value);
   }
 
   get registerErrorControl() {
     return this.registerForm.controls;
   }
 
+  showRegisterPassword() {
+    this.showLRegisterPass = !this.showLRegisterPass;
+    this.iconRegisterName = this.showLRegisterPass
+      ? 'eye-outline'
+      : 'eye-off-outline';
+    this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
+  }
+
+  showRegisterConfirmPassword() {
+    this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
+    this.iconRegisterConfirmName = this.showLRegisterConfirmPass
+      ? 'eye-outline'
+      : 'eye-off-outline';
+    this.inputRegisterConfirmType = this.showLRegisterConfirmPass
+      ? 'text'
+      : 'password';
+  }
 }

@@ -1,4 +1,6 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgetPasswordPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  currentLanguage: string;
+  forgetForm: FormGroup;
+  constructor(
+    private languaService: LanguageService,
+    private formBuilder: FormBuilder
+  ) {
+    this.currentLanguage = this.languaService.getLanguage();
   }
 
+  ngOnInit() {
+    this.buildForm();
+  }
+
+  forgetPassword(){}
+
+  buildForm() {
+    this.forgetForm = this.formBuilder.group({
+    
+      phoneNumber: [
+        '',
+        [
+          Validators.required,
+         // Validators.pattern(/^05/),
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
+
+    });
+  }
 }

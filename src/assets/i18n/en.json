@@ -18,6 +18,7 @@
   "password": "password",
   "confirm-password": "confirm password",
   "forget-password": "forget password ?",
+  "forget-password-notice":"Enter your mobile number and we will send you a password recovery code",
   "have an account": "have an account",
   "password-change": "password change",
   "account type":"account type",
@@ -153,5 +154,8 @@
   "donate":"donate",
   "request notices":"request notices",
   "request-time":"request time",
-  "attach request image":"attach request image"
+  "attach request image":"attach request image",
+  "client":"client" , 
+  "provider":"provider" , 
+  "market":"market"
 }

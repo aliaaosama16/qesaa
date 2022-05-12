@@ -17,7 +17,8 @@
   "email-address": "البريد الالكتروني",
   "password": "كلمة المرور",
   "confirm-password": "تأكيد كلمة المرور",
-  "forget-password": "هل نسيت كلمة المرور؟",
+  "forget-password": "نسيت كلمة المرور؟",
+  "forget-password-notice":"اكتب رقم الجوال وسنقوم بارسال كود إسترجاع كلمة المرور",
   "have an account": "لديك حساب بالفعل ؟",
   "password-change": "تغيير كلمة المرور",
   "account type":"نوع الحساب",
@@ -154,5 +155,8 @@
   "donate":"تبرع",
   "request notices":"ملاحظات الطلب",
   "request-time":"وقت الطلب",
-  "attach request image":"ارفق صورة الطلب"
+  "attach request image":"ارفق صورة الطلب",
+  "client":"عميل" , 
+  "provider":"مندوب" , 
+  "market":"سوق"
 }
