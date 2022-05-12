@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
-//import { GoogleMap } from '@capacitor/google-maps';
-//import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
+
 @Component({
   selector: 'app-driver-location',
   templateUrl: './driver-location.page.html',

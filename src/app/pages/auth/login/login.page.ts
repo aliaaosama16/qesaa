@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 export class LoginPage implements OnInit {
   currentLanguage: string;
   loginForm: FormGroup;
+  isSignInSubmitted = false;
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder
@@ -38,5 +39,9 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
 
     });
+  }
+
+  get loginErrorControl() {
+    return this.loginForm.controls;
   }
 }

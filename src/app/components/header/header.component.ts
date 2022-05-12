@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() isHome: boolean;
-  @Input() isGallary:boolean;
+  @Input() haveBeforeHeader:boolean;
   currentPlatform: string;
 
   constructor(

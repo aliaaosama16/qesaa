@@ -158,5 +158,15 @@
   "attach request image":"ارفق صورة الطلب",
   "client":"عميل" , 
   "provider":"مندوب" , 
-  "market":"سوق"
+  "market":"سوق",
+  "add product":"اضافة منتج",
+  "add":"اضف",
+  "District":"الحي",
+  "basic image":"الصورة البارزة",
+  "product image":"صورة المنتج",
+  "instgram link":"رابط الانستجرام",
+  "enter instgram link":"ادخل رابط الانستجرام",
+  "twitter link":"رابط تويتر",
+  "enter twitter link":"ادخل رابط تويتر",
+  "attach image":"ارفق الصورة"
 }

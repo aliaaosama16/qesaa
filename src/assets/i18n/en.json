@@ -146,6 +146,7 @@
   "Communicate with management":"communicate with management",
   "use policy":"use policy",
   "about app":"about app",
+  "app version":"app version",
   "app-copyright": "all rights reserved | kesaa app |2022 | ",
   "image change":"update image",
   "map location":"place on map",
@@ -157,5 +158,15 @@
   "attach request image":"attach request image",
   "client":"client" , 
   "provider":"provider" , 
-  "market":"market"
+  "market":"market",
+  "add product":"add product",
+  "add":"add",
+  "District": "district",
+  "basic image": "basic image",
+  "product image":"product image",
+  "instgram link": "instgram link",
+  "enter instgram link": "enter instgram link",
+  "twitter link": "twitter link",
+  "enter twitter link": "enter twitter link",
+  "attach image":"attach image"
 }
