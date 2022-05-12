@@ -8,7 +8,8 @@
         android:label="كساء"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait">
       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDl02ktqMdvzEwH-_oa7RREoI8Gr-6c9eQ"/>
 
         <activity
