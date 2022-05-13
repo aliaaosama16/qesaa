@@ -71,6 +71,15 @@ export class SupportProductiveFamiliesPage implements OnInit {
     console.log('taken image :' + this.basicImage);
 
     this.convertPhoto(image);
+    this.getData(image);
+  }
+
+  async getData(image) {
+    const contents = await Filesystem.readFile({
+      path: image,
+    });
+
+    console.log('data:', contents);
   }
 
   async convertPhoto(image: Photo) {
@@ -82,11 +91,11 @@ export class SupportProductiveFamiliesPage implements OnInit {
         directory: Directory.Documents,
       });
       file = await this.dataUrlToFile(data);
-       console.log('file converted  hybrid:  '+file);
+      console.log('file converted  hybrid:  ' + file);
     } else {
       const blob = await fetch(image.webPath).then((r) => r.blob());
       file = new File([blob], 'myfile', { type: blob.type });
-      console.log('file converted  not hybrid:  '+file);
+      console.log('file converted  not hybrid:  ' + file);
     }
 
     const formData = new FormData();
@@ -105,7 +114,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
       });
   }
 
-   uploadImage(photo) {
+  uploadImage(photo) {
     this.generalService
       .uploadImage({
         lang: this.languageService.getLanguage(),
