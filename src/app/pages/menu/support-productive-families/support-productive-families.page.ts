@@ -1,9 +1,18 @@
 import { LanguageService } from './../../../services/language/language.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  Photo,
+} from '@capacitor/camera';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { ImageInfo } from 'src/app/models/general';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatform, Platform } from '@ionic/angular';
+const IMAGE_DIR = 'stored-images';
 
 @Component({
   selector: 'app-support-productive-families',
@@ -18,7 +27,9 @@ export class SupportProductiveFamiliesPage implements OnInit {
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    private sanitizer: DomSanitizer,
+    private plt: Platform
   ) {}
 
   ngOnInit() {
@@ -54,20 +65,55 @@ export class SupportProductiveFamiliesPage implements OnInit {
       resultType: CameraResultType.Uri,
     });
 
-   
+    //this.sanitizer.bypassSecurityTrustUrl(this.imgFile)
     this.basicImage = image.webPath;
 
     console.log('taken image :' + this.basicImage);
 
-    const imageData:ImageInfo={
-      lang:this.languageService.getLanguage(),
-      image:this.basicImage
-    }
-    
+    this.convertPhoto(image);
+  }
 
-    this.generalService.uploadImage(imageData).subscribe((res:any)=>{
-      console.log('image upload res :'+JSON.stringify(res))
-    })
+  async convertPhoto(image: Photo) {
+    let file = null;
+
+    if (isPlatform('hybrid')) {
+      const { data } = await Filesystem.readFile({
+        path: image.path,
+        directory: Directory.Documents,
+      });
+      file = await this.dataUrlToFile(data);
+       console.log('file converted  hybrid:  '+file);
+    } else {
+      const blob = await fetch(image.webPath).then((r) => r.blob());
+      file = new File([blob], 'myfile', { type: blob.type });
+      console.log('file converted  not hybrid:  '+file);
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    this.uploadImage(formData);
+  }
+
+  private dataUrlToFile(
+    dataUrl: string,
+    fileName: string = 'myfile'
+  ): Promise<File> {
+    return fetch(`data:image/png;base64,${dataUrl}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        return new File([blob], fileName, { type: 'image/png' });
+      });
+  }
+
+   uploadImage(photo) {
+    this.generalService
+      .uploadImage({
+        lang: this.languageService.getLanguage(),
+        image: photo,
+      })
+      .subscribe((res: any) => {
+        console.log('image upload res :' + JSON.stringify(res));
+      });
   }
 
   attachProductImage() {}

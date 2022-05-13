@@ -72,16 +72,24 @@
       {{ "track driver"|translate}}
     </ion-button>
   </div>
+      <!-- (click)="driverContact()"-->
 
-  <div class="ion-padding-horizontal">
-    <ion-button
-      (click)="driverContact()"
+  <div class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal" >
+
+    <a href="tel:{{orderDetails.number}}" class="fn-20 qesaa-Janna-Bold">
+      {{ "contact with driver"|translate}}
+    </a>
+
+    <!-- <ion-button
       color="secondary"
       expand="block"
       class="fn-20 qesaa-Janna-Bold"
     >
+    <a href="tel:+201010476861"></a>
       <ion-icon src="./../../../../assets/icon/phone.svg"></ion-icon>
-      {{ "contact with driver"|translate}}
-    </ion-button>
+      
+    </ion-button> -->
   </div>
+
+
 </ion-content>

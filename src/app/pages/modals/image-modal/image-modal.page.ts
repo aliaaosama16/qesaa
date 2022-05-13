@@ -37,9 +37,9 @@ export class ImageModalPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('this.currentImage ' + this.imageID);
+   // console.log('this.currentImage ' + this.imageID);
     this.currentlangauge = this.language.getLanguage();
-    console.log(JSON.stringify(this.images));
+   // console.log(JSON.stringify(this.images));
     this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
   }
 

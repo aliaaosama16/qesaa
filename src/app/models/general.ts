@@ -55,5 +55,5 @@ export interface AuthDataResponse {
 }
 
 export interface ImageInfo extends Language {
-  image: string;
+  image: any;
 }
