@@ -8,10 +8,10 @@
           </div>
           <div class="ion-padding-horizontal ion-text-center ion-margin-bottom">
             <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
-              {{"welcome"|translate}}
+              {{introData?.data?.first_title}}
             </p>
             <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
-              {{"welcome text2"|translate}}
+              {{introData?.data?.first_desc}}
             </p>
           </div>
           <div class="indicators">
@@ -25,7 +25,7 @@
               {{"next"|translate}}
             </div>
             <div>
-              <img src="./../../../../assets/icon/onboarding0.svg">
+              <img [src]="introData?.data?.first_image">
             </div>
           </div>
         </div>
@@ -69,10 +69,10 @@
           </div>
           <div class="ion-padding-horizontal ion-text-center ion-margin-bottom">
             <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
-              {{"welcome"|translate}}
+              {{introData?.data?.second_title}}
             </p>
             <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
-              {{"welcome text2"|translate}}
+              {{introData?.data?.second_desc}}
             </p>
           </div>
           <div class="indicators">
@@ -86,7 +86,7 @@
               {{"next"|translate}}
             </div>
             <div>
-              <img src="./../../../../assets/icon/onboarding0.svg">
+              <img [src]="introData?.data?.second_image">
             </div>
           </div>
         </div>
@@ -99,10 +99,10 @@
             </div>
             <div class="ion-padding-horizontal ion-text-center ion-margin-bottom">
               <p class="ion-no-margin fn-24 qesaa-Janna-Bold primary-color">
-                {{"welcome"|translate}}
+                {{introData?.data?.third_title}}
               </p>
               <p class="text ion-no-margin fn-16 qesaa-Janna-Regular">
-                {{"welcome text2"|translate}}
+                {{introData?.data?.second_desc}}
               </p>
             </div>
             <div class="indicators">
@@ -117,7 +117,7 @@
                 {{"start"|translate}}
               </div>
               <div>
-                <img src="./../../../../assets/icon/onboarding0.svg">
+                <img [src]="introData?.data?.third_image">
               </div>
             </div>
           </div>

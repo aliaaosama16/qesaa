@@ -5,6 +5,9 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { Storage } from '@capacitor/storage';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { GeneralService } from 'src/app/services/general/general.service';
+import { Intro } from 'src/app/models/intro';
 
 @Component({
   selector: 'app-on-boarding',
@@ -13,6 +16,8 @@ import { Storage } from '@capacitor/storage';
 })
 export class OnBoardingPage implements OnInit {
   @ViewChild('swiper') swiper: SwiperComponent;
+  introData: Intro;
+  getIntro: boolean = false;
   currentlangauge: string;
   boardingConfig: SwiperOptions = {
     slidesPerView: 1,
@@ -24,10 +29,13 @@ export class OnBoardingPage implements OnInit {
   constructor(
     private langaugeService: LanguageService,
     private router: Router,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private util:UtilitiesService,
+    private general:GeneralService
   ) {
     this.currentlangauge = this.langaugeService.getLanguage();
     this.menuCtrl.enable(false, 'main');
+    this.getIntroData();
   }
 
   ngOnInit() {}
@@ -48,4 +56,22 @@ export class OnBoardingPage implements OnInit {
       value: 'true',
     });
   }
+
+  getIntroData() {
+    this.util.showLoadingSpinner().then((__) => {
+      this.general.intro().subscribe(
+        (data: Intro) => {
+          this.introData = data;
+          console.log('INTRO ' + JSON.stringify(this.introData));
+          this.util.dismissLoading();
+          this.getIntro = true;
+        },
+        (err) => {
+          this.util.dismissLoading();
+          this.getIntro = false;
+        }
+      );
+    });
+  }
+
 }
