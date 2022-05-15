@@ -11,6 +11,9 @@ export class LoginPage implements OnInit {
   currentLanguage: string;
   loginForm: FormGroup;
   isSignInSubmitted = false;
+  iconLoginName: string = 'eye-off-outline';
+  inputLoginType: any = 'password';
+  showLoginPass: boolean;
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder
@@ -43,5 +46,13 @@ export class LoginPage implements OnInit {
 
   get loginErrorControl() {
     return this.loginForm.controls;
+  }
+
+  showLoginPassword(){
+    this.showLoginPass = !this.showLoginPass ;
+    this.iconLoginName = this.showLoginPass
+      ? 'eye-outline'
+      : 'eye-off-outline';
+    this.inputLoginType = this.showLoginPass ? 'text' : 'password';
   }
 }

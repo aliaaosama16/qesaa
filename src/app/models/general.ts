@@ -30,7 +30,7 @@ export interface UserData extends Language {
 }
 
 export interface GeneralSectionResponse {
-  id: string;
+  id?: string;
   title: string;
   image?: string;
   checked?: boolean;
@@ -57,3 +57,16 @@ export interface AuthDataResponse {
 export interface ImageInfo extends Language {
   image: File;
 }
+
+
+export interface CountryData extends UserData{
+  country_id:number;
+}
+
+export interface CitysData extends UserData{
+  city_id:number;
+}
+
+// export interface CountryResponse extends GeneralResponse{
+//   data: GeneralSection[];
+// }

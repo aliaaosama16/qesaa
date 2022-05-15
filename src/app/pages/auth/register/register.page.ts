@@ -10,24 +10,24 @@ import { UserType, UserTypeData } from './../../../models/userType';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  userTypes:any[]=[
+  userTypes: any[] = [
     {
-      id:UserType.client,
-      type:UserType.client,
+      id: UserType.client,
+      type: UserType.client,
     },
     {
-      id:UserType.provider,
-      type:UserType.provider,
+      id: UserType.provider,
+      type: UserType.provider,
     },
     {
-      id:UserType.market,
-      type:UserType.market,
-    }
+      id: UserType.market,
+      type: UserType.market,
+    },
   ];
-  showLRegisterPass: boolean;
+  showRegisterPass: boolean;
   iconRegisterName: string = 'eye-off-outline';
   inputRegisterType: any = 'password';
-  showLRegisterConfirmPass: boolean;
+  showRegisterConfirmPass: boolean;
   iconRegisterConfirmName: string = 'eye-off-outline';
   inputRegisterConfirmType: any = 'password';
   currentLanguage: string;
@@ -81,19 +81,19 @@ export class RegisterPage implements OnInit {
   }
 
   showRegisterPassword() {
-    this.showLRegisterPass = !this.showLRegisterPass;
-    this.iconRegisterName = this.showLRegisterPass
+    this.showRegisterPass = !this.showRegisterPass;
+    this.iconRegisterName = this.showRegisterPass
       ? 'eye-outline'
       : 'eye-off-outline';
-    this.inputRegisterType = this.showLRegisterPass ? 'text' : 'password';
+    this.inputRegisterType = this.showRegisterPass ? 'text' : 'password';
   }
 
   showRegisterConfirmPassword() {
-    this.showLRegisterConfirmPass = !this.showLRegisterConfirmPass;
-    this.iconRegisterConfirmName = this.showLRegisterConfirmPass
+    this.showRegisterConfirmPass = !this.showRegisterConfirmPass;
+    this.iconRegisterConfirmName = this.showRegisterConfirmPass
       ? 'eye-outline'
       : 'eye-off-outline';
-    this.inputRegisterConfirmType = this.showLRegisterConfirmPass
+    this.inputRegisterConfirmType = this.showRegisterConfirmPass
       ? 'text'
       : 'password';
   }

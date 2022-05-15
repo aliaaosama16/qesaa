@@ -6,7 +6,7 @@
       <ng-template swiperSlide *ngFor="let slide of Sliders">
         <div class="slide-item-container">
           <img [src]="slide.image" />
-          <div>
+          <!-- <div>
             <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
               قال رسول الله صلى الله عليه وسلم
             </p>
@@ -17,7 +17,7 @@
             <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
               صدق رسول الله
             </p>
-          </div>
+          </div> -->
         </div>
       </ng-template>
     </swiper>
@@ -87,8 +87,8 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
-      (click)="charityInfo('goals','app-goal')">
+    <div *ngFor="let static of appDataResponse" class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
+      (click)="charityInfo(static.title,static.desc)">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/goals.svg"></ion-icon>
       </div>
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <div class="card-container info-item" (click)="charityInfo('message','app-message')">
+    <!-- <div class="card-container info-item" (click)="charityInfo('message','app-message')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/message.svg"></ion-icon>
       </div>
@@ -123,7 +123,7 @@
           {{"vision"|translate}}
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="partners ion-padding-horizontal">
@@ -133,7 +133,7 @@
       <swiper #swiper [config]="partenrsConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
         <ng-template swiperSlide *ngFor="let slide of partenrs">
           <div class="slide-item-container custom-top-margin">
-            <img [src]="slide" />
+            <img [src]="slide.image" />
           </div>
         </ng-template>
       </swiper>
@@ -148,7 +148,7 @@
 
       <div class="card-statistics-text ion-text-center">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
-          1250
+         {{volunteers_count}}
         </p>
         <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
           {{"volunteers count"|translate}}
@@ -163,7 +163,7 @@
 
       <div class="card-statistics-text ion-text-center">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
-          1250
+          {{beneficiaries_count}}
         </p>
         <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
           {{"beneficiaries count"|translate}}
@@ -179,7 +179,7 @@
 
       <div class="card-statistics-text ion-text-center">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
-          1250
+         {{satisfaction_masure}}
         </p>
         <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
           {{"satisfaction measure"|translate}}
@@ -201,11 +201,11 @@
                 <ion-icon src="./../../../assets/icon/person.svg"></ion-icon>
               </div>
               <div class="feedback-person-name">
-                <p class="fn-15 qesaa-Janna-Bold ion-no-margin ion-text-nowrap primary-color"> {{feedback.name}}</p>
+                <p class="fn-15 qesaa-Janna-Bold ion-no-margin ion-text-nowrap primary-color"> {{feedback.title}}</p>
               </div>
             </div>
             <div class="feedback-content">
-              <p class="fn-15 qesaa-Janna-Regular ion-no-margin"> {{feedback.content}}</p>
+              <p class="fn-15 qesaa-Janna-Regular ion-no-margin"> {{feedback.desc}}</p>
             </div>
           </div>
         </ng-template>

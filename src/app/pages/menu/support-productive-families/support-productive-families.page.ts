@@ -11,6 +11,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ImageInfo } from 'src/app/models/general';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isPlatform, Platform } from '@ionic/angular';
+import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 const IMAGE_DIR = 'stored-images';
 
 @Component({
@@ -22,14 +23,15 @@ export class SupportProductiveFamiliesPage implements OnInit {
   public productAdditionForm: FormGroup;
   currentLanguage: string;
   basicImage: any = '';
-  productImage: string = '';
+  productImage: any = '';
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
     private generalService: GeneralService,
     private sanitizer: DomSanitizer,
     private plt: Platform,
-    private general: GeneralService
+    private general: GeneralService,
+    private uploadImage:UploadImageService
   ) {}
 
   ngOnInit() {
@@ -65,12 +67,24 @@ export class SupportProductiveFamiliesPage implements OnInit {
       resultType: CameraResultType.Uri,
     });
     this.basicImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
-    console.log('taken image :' + this.basicImage);
-    await this.general.getImageConverted(image);
+    console.log('taken image by camera  :' + this.basicImage);
+    await this.uploadImage.getImageConverted(image);
     this.productAdditionForm.value.basicImage = this.general.uploadedImage;
+    console.log('bsic image  :'+ this.productAdditionForm.value.basicImage)
   }
 
-  attachProductImage() {}
+  async attachProductImage() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+    });
+    this.productImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
+    console.log('taken image by camera  :' + this.basicImage);
+    await this.uploadImage.getImageConverted(image);
+    this.productAdditionForm.value.productImage = this.general.uploadedImage;
+    console.log('bsic image  :'+ this.productAdditionForm.value.productImage)
+  }
 
   addProduct() {}
 }

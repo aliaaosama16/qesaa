@@ -1,17 +1,19 @@
-import { GeneralResponse, UserData } from './general';
+import { GeneralResponse, GeneralSectionResponse, UserData } from './general';
 
 export interface StaticPageData extends UserData {
-  title: string;
+  title: StaticPageTitle;
 }
 
 export interface StaticPageResponse extends GeneralResponse {
-  notification_count: number;
-  data: StaticPageDataResponse;
+  data: GeneralSectionResponse;
 }
 
-export interface StaticPageDataResponse {
-  id: string;
-  title: string;
-  desc: string;
-  image: string;
+export enum StaticPageTitle {
+  about = 'about',
+  condition = 'condition',
+  vission = 'vission',
+  goals = 'goals',
+  message = 'message',
+  policy = 'policy',
+  support = 'support',
 }

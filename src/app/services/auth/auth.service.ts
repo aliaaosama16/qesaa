@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthData, AuthResponse } from 'src/app/models/auth';
 import { ChangePasswordData, ForgetPasswordData } from 'src/app/models/forgetPassword';
-import { GeneralResponse } from 'src/app/models/general';
+import { GeneralResponse, UserData } from 'src/app/models/general';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from '../language/language.service';
 import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationsResponse } from 'src/app/models/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -83,24 +84,24 @@ export class AuthService {
     //this.setNoOfNotifications(parseInt(val.value));
   }
 
-  // setNoOfNotifications(userId: number) {
-  //   // this.getUserIDObservable().subscribe((userID) => {
-  //   //   if (userID) {
-  //   const userData: UserData = {
-  //     lang: this.languageService.getLanguage(),
-  //     user_id: userId,
-  //   };
-  //   this.userNotifications.showNotification(userData).subscribe(
-  //     (data: NotificationsResponse) => {
-  //       if (data.key == 1) {
-  //         this.noOfNotifications.next(data.data.length);
-  //       }
-  //     },
-  //     (err) => {}
-  //   );
-  //   // }
-  //   //});
-  // }
+  setNoOfNotifications(userId: number) {
+    // this.getUserIDObservable().subscribe((userID) => {
+    //   if (userID) {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: userId,
+    };
+    this.userNotifications.showNotification(userData).subscribe(
+      (data: NotificationsResponse) => {
+        if (data.key == 1) {
+          this.noOfNotifications.next(data.data.length);
+        }
+      },
+      (err) => {}
+    );
+    // }
+    //});
+  }
 
   getNoOfNotifications(): Observable<number> {
     return this.noOfNotifications.asObservable();

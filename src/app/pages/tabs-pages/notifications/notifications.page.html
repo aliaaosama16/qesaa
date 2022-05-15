@@ -1,17 +1,36 @@
-<app-header [haveBeforeHeader]="false" [title]="'notifications'" [isHome]="false"></app-header>
+<app-header
+  [haveBeforeHeader]="false"
+  [title]="'notifications'"
+  [isHome]="false"
+></app-header>
 
 <ion-content class="ion-padding-horizontal">
-    <div class="notification-container ion-margin-bottom" *ngFor="let notification of notifications">
+  <ion-item-sliding   class="ion-margin-bottom" *ngFor="let notification of notifications">
+    <ion-item
+    
+      lines="none"
+      (click)="openOrederDetails(notification.order_id)"
+    >
+      <div class="notification-container">
         <div class="icon">
-            <ion-icon src="./../../../../assets/icon/notifications.svg"></ion-icon>
+          <ion-icon
+            src="./../../../../assets/icon/notifications.svg"
+          ></ion-icon>
         </div>
         <div class="ion-margin-horizontal">
-            <p class="ion-no-margin  fn-18 qesaa-Janna-Regular">
-                {{notification.title}}
-            </p>
-            <p class="date ion-no-margin primary-color fn-16 qesaa-Janna-Regular">
-                {{notification.date}}
-            </p>
+          <p class="ion-no-margin fn-18 qesaa-Janna-Regular">
+            {{notification.message}}
+          </p>
+          <p class="date ion-no-margin primary-color fn-16 qesaa-Janna-Regular">
+            {{notification.duration}}
+          </p>
         </div>
-    </div>
+      </div>
+    </ion-item>
+    <ion-item-options side="end" (click)="deleteItem(notification.id)">
+      <ion-item-option color="danger">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-content>

@@ -41,10 +41,10 @@
       <ion-input
         class="fn-16 qesaa-Janna-Regular"
         placeholder="{{'password'|translate}}"
-        type="password"
+        [type]="inputLoginType"
         formControlName="password"
       ></ion-input>
-      <ion-icon item-end color="gray" name="eye-outline"></ion-icon>
+      <ion-icon (click)="showLoginPassword()" item-end color="gray" [name]="iconLoginName"></ion-icon>
     </ion-item>
 
     <ion-button class="form-btn" expand="block" type="submit" color="primary">
