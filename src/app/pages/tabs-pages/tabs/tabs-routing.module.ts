@@ -58,11 +58,17 @@ const routes: Routes = [
               },
               {
                 path: 'products',
-                loadChildren: () => import('./../../charity-market-products/charity-market-products.module').then( m => m.CharityMarketProductsPageModule)
+                loadChildren: () =>
+                  import(
+                    './../../charity-market-products/charity-market-products.module'
+                  ).then((m) => m.CharityMarketProductsPageModule),
               },
               {
                 path: 'requests',
-                loadChildren: () => import('./../../charity-market-requests/charity-market-requests.module').then( m => m.CharityMarketRequestsPageModule)
+                loadChildren: () =>
+                  import(
+                    './../../charity-market-requests/charity-market-requests.module'
+                  ).then((m) => m.CharityMarketRequestsPageModule),
               },
             ],
           },
@@ -120,6 +126,13 @@ const routes: Routes = [
               import(
                 './../../tabs-pages/account-edit/account-edit.module'
               ).then((m) => m.AccountEditPageModule),
+          },
+          {
+            path: 'contact-with-admin',
+            loadChildren: () =>
+              import(
+                './../../contact-with-admin/contact-with-admin.module'
+              ).then((m) => m.ContactWithAdminPageModule),
           },
         ],
       },

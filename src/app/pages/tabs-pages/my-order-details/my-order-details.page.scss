@@ -60,3 +60,15 @@ ion-button {
     margin-bottom: 13px;
   }
 }
+
+.conatct-conatiner {
+  height: 50px;
+  background: var(--ion-color-secondary);
+  border-radius: 25px;
+  padding-top: 10px;
+
+  a{
+    text-decoration: none;
+    color: var(--ion-color-white);
+  }
+}

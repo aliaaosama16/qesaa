@@ -1,9 +1,17 @@
 import { LanguageService } from './../../../services/language/language.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  Photo,
+} from '@capacitor/camera';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { ImageInfo } from 'src/app/models/general';
+import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatform, Platform } from '@ionic/angular';
+const IMAGE_DIR = 'stored-images';
 
 @Component({
   selector: 'app-support-productive-families',
@@ -13,12 +21,15 @@ import { ImageInfo } from 'src/app/models/general';
 export class SupportProductiveFamiliesPage implements OnInit {
   public productAdditionForm: FormGroup;
   currentLanguage: string;
-  basicImage: string = '';
+  basicImage: any = '';
   productImage: string = '';
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    private sanitizer: DomSanitizer,
+    private plt: Platform,
+    private general: GeneralService
   ) {}
 
   ngOnInit() {
@@ -50,24 +61,13 @@ export class SupportProductiveFamiliesPage implements OnInit {
   async attachBasicImage() {
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.Uri,
     });
-
-   
-    this.basicImage = image.webPath;
-
+    this.basicImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
     console.log('taken image :' + this.basicImage);
-
-    const imageData:ImageInfo={
-      lang:this.languageService.getLanguage(),
-      image:this.basicImage
-    }
-    
-
-    this.generalService.uploadImage(imageData).subscribe((res:any)=>{
-      console.log('image upload res :'+JSON.stringify(res))
-    })
+    await this.general.getImageConverted(image);
+    this.productAdditionForm.value.basicImage = this.general.uploadedImage;
   }
 
   attachProductImage() {}

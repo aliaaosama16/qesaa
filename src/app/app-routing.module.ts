@@ -64,6 +64,11 @@ const routes: Routes = [
     path: 'driver-location',
     loadChildren: () => import('./pages/modals/driver-location/driver-location.module').then( m => m.DriverLocationPageModule)
   },
+  {
+    path: 'login-modal',
+    loadChildren: () => import('./pages/modals/login-modal/login-modal.module').then( m => m.LoginModalPageModule)
+  },
+ 
   
 ];
 @NgModule({

@@ -19,13 +19,13 @@ export class IsAuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const loginStatus = await Storage.get({ key: 'status' });
-    console.log('login status'+loginStatus.value);
-    if (loginStatus.value == 'active') {
-      this.auth.isLogined();
+    // console.log('login status'+loginStatus.value);
+    // if (loginStatus.value == 'active') {
+    //   this.auth.isLogined();
       return true;
-    } else {
-      this.router.navigateByUrl('/login');
-      return false;
-    }
+    // } else {
+    //   this.router.navigateByUrl('/login');
+    //   return false;
+    // }
   }
 }
