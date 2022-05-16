@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [
+        children: [   
           {
             path: '',
             loadChildren: () =>

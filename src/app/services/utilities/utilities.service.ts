@@ -63,12 +63,6 @@ export class UtilitiesService {
       cssClass: 'my-loading-class',
       backdropDismiss: false,
       animated: true,
-      // message: `
-      // <div class="custom-spinner-container">
-      //   <div class="custom-spinner-box">
-      //     <p>جار التحميل</p>
-      //   </div>
-      // </div>`,
     });
     this.loading.present();
     return this.loading;
@@ -102,5 +96,16 @@ export class UtilitiesService {
   async getDeviceID() {
     const device = await (await Device.getId()).uuid;
     this.setDeviceID(device);
+  }
+
+  getDatesDifference(dateFrom, dateTo) {
+    let days = Math.floor(
+      (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /
+        1000 /
+        60 /
+        60 /
+        24
+    );
+    return days;
   }
 }

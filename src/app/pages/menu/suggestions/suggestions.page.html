@@ -1,9 +1,9 @@
 <app-header [haveBeforeHeader]="false" [title]="'Suggestions and complaints'" [isHome]="false"></app-header>
 
 
-<ion-content>
+<ion-content class="ion-padding-horizontal">
 
-    <form (ngSubmit)="contactUs()" [formGroup]="suggestionsForm" class="form-container ion-padding-horizontal">
+    <form (ngSubmit)="suggest() " [formGroup]="suggestionsForm" class="form-container ion-padding-horizontal">
         <ion-item lines="none" class="ion-margin-bottom"> 
             <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
                 src="./../../../../assets/icon/forms/person.svg"></ion-icon>
@@ -23,11 +23,11 @@
         </ion-item>
 
         <ion-item lines="none" class="ion-margin-bottom">
-            <ion-textarea class="ion-padding-horizontal fn-16 qesaa-Janna-Regular" rows="5" placeholder="{{'your message'|translate}}" type="text"
+            <ion-textarea autoGrow='true' class="ion-padding-horizontal fn-16 qesaa-Janna-Regular"  placeholder="{{'your message'|translate}}" type="text"
                 formControlName="message"></ion-textarea>
         </ion-item>
 
-        <ion-button expand="block" type="submit" color="primary">
+        <ion-button class="margin-8-top" expand="block" type="submit" color="primary">
             <span class=" fn-20 qesaa-Janna-Bold"> {{ "send"|translate}} </span>
         </ion-button>
     </form>

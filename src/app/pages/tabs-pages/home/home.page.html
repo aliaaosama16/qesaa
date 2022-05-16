@@ -6,18 +6,6 @@
       <ng-template swiperSlide *ngFor="let slide of Sliders">
         <div class="slide-item-container">
           <img [src]="slide.image" />
-          <!-- <div>
-            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
-              قال رسول الله صلى الله عليه وسلم
-            </p>
-            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
-              (كُلُّ امْرِئٍ في ظِلِّ صَدَقَتِهِ حَتَّى يُفْصَلَ بَيْنَ
-              النَّاسِ)
-            </p>
-            <p class="ion-text-nowrap white-color fn-12 qesaa-Janna-Bold">
-              صدق رسول الله
-            </p>
-          </div> -->
         </div>
       </ng-template>
     </swiper>
@@ -32,25 +20,25 @@
       </div>
 
       <div class="flex-container">
-        <div style="order: 1">
+        <div class="flex-container-item">
           <div class="time-detail primary-color">1</div>
           <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
             {{"days"|translate}}
           </div>
         </div>
-        <div style="order: 2">
+        <div class="flex-container-item">
           <div class="time-detail primary-color">2</div>
           <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
             {{"hours"|translate}}
           </div>
         </div>
-        <div style="order: 3">
+        <div class="flex-container-item">
           <div class="time-detail primary-color">30</div>
           <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
             {{"minutes"|translate}}
           </div>
         </div>
-        <div style="order: 4">
+        <div class="flex-container-item">
           <div class="time-detail primary-color">10</div>
           <div class="time-unit fn-14 qesaa-Janna-Regular secondary-color">
             {{"seconds"|translate}}
@@ -61,19 +49,21 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div routerLink="/tabs/home/market" class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
+    <div routerLink="/tabs/home/market" class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'item-left':'item-right' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/market.svg"></ion-icon>
       </div>
 
-      <div class="card-text" >
+      <div class="card-text">
         <p class="fn-20 qesaa-Janna-Bold primary-color">
           {{ "charity-market"|translate}}
         </p>
       </div>
     </div>
 
-    <div routerLink="/tabs/home/families" class="card-container" [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
+    <div routerLink="/tabs/home/families" class="card-container"
+      [ngClass]="currentlangauge == 'ar' ?'item-right':'item-left' ">
       <div class="card-icon">
         <ion-icon src="./../../../assets/icon/families.svg"></ion-icon>
       </div>
@@ -87,8 +77,8 @@
   </div>
 
   <div class="cards ion-margin-horizontal custom-top-margin">
-    <div *ngFor="let static of appDataResponse" class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
-      (click)="charityInfo(static.title,static.desc)">
+    <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-left':'info-item-right' "
+      (click)="charityInfo('goals')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/goals.svg"></ion-icon>
       </div>
@@ -100,7 +90,7 @@
       </div>
     </div>
 
-    <!-- <div class="card-container info-item" (click)="charityInfo('message','app-message')">
+    <div class="card-container info-item" (click)="charityInfo('message')">
       <div class="card-info-icon">
         <ion-icon src="./../../../assets/icon/message.svg"></ion-icon>
       </div>
@@ -113,17 +103,17 @@
     </div>
 
     <div class="card-container" [ngClass]="currentlangauge == 'ar' ?'info-item-right':'info-item-left' "
-      (click)="charityInfo('vision','app-vision')">
+      (click)="charityInfo('vission')">
       <div class="card-info-icon">
-        <ion-icon src="./../../../assets/icon/vision.svg"></ion-icon>
+        <ion-icon src="./../../../assets/icon/vission.svg"></ion-icon>
       </div>
 
       <div class="card-text">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color">
-          {{"vision"|translate}}
+          {{"vission"|translate}}
         </p>
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div class="partners ion-padding-horizontal">
@@ -148,7 +138,7 @@
 
       <div class="card-statistics-text ion-text-center">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
-         {{volunteers_count}}
+          {{volunteers_count}}
         </p>
         <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
           {{"volunteers count"|translate}}
@@ -179,7 +169,7 @@
 
       <div class="card-statistics-text ion-text-center">
         <p class="fn-18 ion-text-nowrap qesaa-Janna-Bold primary-color ion-no-margin">
-         {{satisfaction_masure}}
+          {{satisfaction_masure}}
         </p>
         <p class="fn-18  qesaa-Janna-Bold ion-no-margin">
           {{"satisfaction measure"|translate}}

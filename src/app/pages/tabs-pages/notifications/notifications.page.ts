@@ -76,7 +76,7 @@ export class NotificationsPage implements OnInit {
 
   openOrederDetails(orderID) {
     this.router.navigateByUrl(
-      `/tabs/my-reservations/my-reservations-details/` + orderID
+      `/tabs/my-orders/details/` + orderID
     );
   }
 

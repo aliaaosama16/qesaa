@@ -1,54 +1,83 @@
-<app-header
-  [haveBeforeHeader]="false"
-  [title]="'order-details'"
-  [isHome]="false"
-></app-header>
+<app-header [haveBeforeHeader]="false" [title]="'order-details'" [isHome]="false"></app-header>
 
 <ion-content class="ion-padding-horizontal">
   <div class="order-details ion-padding">
-    <div class="request-data" *ngFor="let item of requestItems">
+    <div class="request-data">
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
-        {{item.text|translate}}
+        {{'orderNumber'|translate}}
       </div>
       <div class="value fn-16 qesaa-Janna-Regular">
-        {{item.value|translate}}
+        {{orderDetails?.id}}
+      </div>
+    </div>
+
+    <div class="request-data">
+      <div class="text primary-color fn-16 qesaa-Janna-Bold">
+        {{'orderStatus'|translate}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular">
+        {{orderDetails?.status_f}}
+      </div>
+    </div>
+
+    <div class="request-data">
+      <div class="text primary-color fn-16 qesaa-Janna-Bold">
+        {{'orderDate'|translate}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular">
+        {{orderDetails?.date}}
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <div class="client-data" *ngFor="let item of clientData">
+    <div class="client-data">
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
-        {{item.text|translate}}
+        {{'cleint-name'|translate}}
       </div>
       <div class="value fn-16 qesaa-Janna-Regular">
-        {{item.value|translate}}
+        {{orderDetails?.provider_name}}
+      </div>
+    </div>
+
+    <div class="client-data">
+      <div class="text primary-color fn-16 qesaa-Janna-Bold">
+        {{'city'|translate}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
+        {{ orderDetails?.city_title_ar}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
+        {{ orderDetails?.city_title_en}}
+      </div>
+    </div>
+
+    <div class="client-data">
+      <div class="text primary-color fn-16 qesaa-Janna-Bold">
+        {{'the area or neighborhood'|translate}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
+        {{orderDetails?.neighborhood_title_ar}}
+      </div>
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
+        {{orderDetails?.neighborhood_title_en}}
       </div>
     </div>
   </div>
 
-  <div class="order-images">
+  <!-- <div class="order-images">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order images"|translate}}
     </p>
 
     <div class="images">
-      <swiper
-        #swiper
-        [config]="orderConfig"
-        class="custom-swiper"
-        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-      >
-        <ng-template
-          swiperSlide
-          *ngFor="let image of orderImages; let i = index"
-          
-        >
-          <img [src]="image.image"(click)="openPreview(orderImages,i)" />
+      <swiper #swiper [config]="orderConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
+        <ng-template swiperSlide *ngFor="let image of orderImages; let i = index">
+          <img [src]="image.image" (click)="openPreview(orderImages,i)" />
         </ng-template>
       </swiper>
     </div>
-  </div>
+  </div> -->
 
   <div class="order-notices">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
@@ -57,26 +86,21 @@
 
     <div class="notices">
       <p class="ion-no-margin fn-16 qesaa-Janna-Regular">
-        {{orderDetails.notices}}
+        {{orderDetails?.notes}}
       </p>
     </div>
   </div>
 
   <div class="ion-padding-horizontal ion-margin-bottom">
-    <ion-button
-      (click)="driverTrack()"
-      color="primary"
-      expand="block"
-      class="fn-20 qesaa-Janna-Bold"
-    >
+    <ion-button (click)="driverTrack()" color="primary" expand="block" class="fn-20 qesaa-Janna-Bold">
       {{ "track driver"|translate}}
     </ion-button>
   </div>
-      <!-- (click)="driverContact()"-->
+  <!-- (click)="driverContact()"-->
 
-  <div class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal" >
+  <div class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal">
 
-    <a href="tel:{{orderDetails.number}}" class="fn-20 qesaa-Janna-Bold">
+    <a href="tel:{{orderDetails?.phone_full}}" class="fn-20 qesaa-Janna-Bold">
       {{ "contact with driver"|translate}}
     </a>
 

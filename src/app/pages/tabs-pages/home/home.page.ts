@@ -32,6 +32,7 @@ export class HomePage implements OnInit {
   currentlangauge: string;
   appData: any;
   appDataResponse: GeneralSectionResponse[];
+  //charityInfoTitle:StaticPageTitle;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -76,61 +77,64 @@ export class HomePage implements OnInit {
     };
     this.getHomeData(userData);
 
-    const statisPageList = [
-      {
-        type: StaticPageTitle.goals,
-      },
-      {
-        type: StaticPageTitle.message,
-      },
-      {
-        type: StaticPageTitle.message,
-      },
-    ];
+    // const statisPageList = [
+    //   {
+    //     type: StaticPageTitle.goals,
+    //   },
+    //   {
+    //     type: StaticPageTitle.message,
+    //   },
+    //   {
+    //     type: StaticPageTitle.message,
+    //   },
+    // ];
 
-    for (let i = 0; i < statisPageList.length; i++) {
-      this.appData = {
-        lang: this.languageService.getLanguage(),
-        user_id: 1,
-        title: statisPageList[i].type,
-      };
-      this.util.showLoadingSpinner().then((__) => {
-        this.general.staticPages(this.appData).subscribe(
-          (data: StaticPageResponse) => {
-            if (data.key == 1) {
-              this.appDataResponse.push({
-                title: data.data.title,
-                desc: data.data.desc,
-              });
+    // for (let i = 0; i < statisPageList.length; i++) {
+    //   this.appData = {
+    //     lang: this.languageService.getLanguage(),
+    //     user_id: 1,
+    //     title: statisPageList[i].type,
+    //   };
+    //   this.util.showLoadingSpinner().then((__) => {
+    //     this.general.staticPages(this.appData).subscribe(
+    //       (data: StaticPageResponse) => {
+    //         if (data.key == 1) {
+    //           this.appDataResponse.push({
+    //             title: data.data.title,
+    //             desc: data.data.desc,
+    //           });
 
-              console.log(
-                ' appDataResponse  res : ' +
-                  JSON.stringify(this.appDataResponse)
-              );
-              this.util.showMessage(data.msg);
-            } else {
-              this.util.showMessage(data.msg);
-            }
-            this.util.dismissLoading();
-          },
-          (err) => {
-            this.util.dismissLoading();
-          }
-        );
-      });
-    }
+    //           console.log(
+    //             ' appDataResponse  res : ' +
+    //               JSON.stringify(this.appDataResponse)
+    //           );
+    //           this.util.showMessage(data.msg);
+    //         } else {
+    //           this.util.showMessage(data.msg);
+    //         }
+    //         this.util.dismissLoading();
+    //       },
+    //       (err) => {
+    //         this.util.dismissLoading();
+    //       }
+    //     );
+    //   });
+    // }
   }
 
   openMenu() {
     this.menuCtrl.open();
   }
 
-  charityInfo(title: string, content: string) {
-    this.router.navigate(['/tabs/home/info']);
-    this.data.setPageData(title, title, content);
+  charityInfo(title: string) {
+    this.router.navigate([`/tabs/home/info`]);
+    if (title == 'goals') this.data.setPageData(StaticPageTitle.goals);
+    if (title == 'message') this.data.setPageData(StaticPageTitle.vission);
+    if (title == 'vission') this.data.setPageData(StaticPageTitle.message);
   }
 
   getHomeData(userData: UserData) {
+    
     this.util.showLoadingSpinner().then((__) => {
       this.home.home(userData).subscribe(
         (data: HomeResponse) => {
@@ -141,10 +145,6 @@ export class HomePage implements OnInit {
             this.volunteers_count = data.data.volunteers_count;
             this.satisfaction_masure = data.data?.satisfaction_masure;
             this.beneficiaries_count = data.data?.beneficiaries_count;
-
-            // this.sections = data.data.sections;
-            // this.Sliders = data.data.sliders;
-            // this.nearDepartments = data.data.near_departments;
           }
           this.util.dismissLoading();
         },
@@ -153,5 +153,28 @@ export class HomePage implements OnInit {
         }
       );
     });
+  }
+
+
+  doRefresh($event) {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.home.home(userData).subscribe(
+      (data: HomeResponse) => {
+        if (data.key == 1) {
+          this.partenrs = data.data?.partners;
+          this.Sliders = data.data?.sliders;
+          this.people_feedback = data.data?.says;
+          this.volunteers_count = data.data.volunteers_count;
+          this.satisfaction_masure = data.data?.satisfaction_masure;
+          this.beneficiaries_count = data.data?.beneficiaries_count;
+        }
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();      }
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 @Component({
@@ -7,11 +7,13 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./driver-location.page.scss'],
 })
 export class DriverLocationPage implements OnInit {
+  @Input() lat:number;
+  @Input() lng:number;
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number = 31;
-  long: number = 31;
+  // lat: number = 31;
+  // long: number = 31;
   infowindow = new google.maps.InfoWindow();
   constructor(private plt:Platform) { 
     // this.center = {
@@ -52,7 +54,7 @@ export class DriverLocationPage implements OnInit {
     
   }
   loadMap() {
-    let latLng = new google.maps.LatLng(this.lat, this.long);
+    let latLng = new google.maps.LatLng(this.lat, this.lng);
 
     let styles: google.maps.MapTypeStyle[] = [
       {
@@ -78,8 +80,8 @@ export class DriverLocationPage implements OnInit {
 
   loadItemPosition() {
     this.plt.ready().then(() => {
-      this.focusMap(this.lat, this.long);
-      this.addMarker(this.lat, this.long);
+      this.focusMap(this.lat, this.lng);
+      this.addMarker(this.lat, this.lng);
     });
   }
 

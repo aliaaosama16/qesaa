@@ -2,7 +2,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedComponentModule } from './../../components/shared-component.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -17,7 +17,8 @@ import { ContactWithAdminPage } from './contact-with-admin.page';
     IonicModule,
     ContactWithAdminPageRoutingModule,
     SharedComponentModule,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule
   ],
   declarations: [ContactWithAdminPage]
 })

@@ -6,13 +6,17 @@
         <div >
             <p class="order-number  fn-16 qesaa-Janna-Bold">
                 <span class="primary-color">{{"orderNumber"|translate}}</span>
-                <span class="custom-margin secondary-color">#{{order.orderID}}</span>
+                <span class="custom-margin secondary-color">#{{order.id}}</span>
             </p>
             <p class="order-status  fn-16 qesaa-Janna-Bold">
                 <span  class="primary-color">{{"orderStatus"|translate}}</span>
-                <span class="custom-margin green-color" *ngIf="order.status==1">{{order.orderStatus|translate}}</span>
+                <!-- <span class="custom-margin green-color" *ngIf="order.status==1">{{order.orderStatus|translate}}</span>
                 <span class="custom-margin red-color" *ngIf="order.status==2">{{order.orderStatus|translate}}</span>
-                <span class="custom-margin " *ngIf="order.status==3">{{order.orderStatus|translate}}</span>
+                <span class="custom-margin " *ngIf="order.status==3">{{order.orderStatus|translate}}</span> -->
+
+                
+                <span class="custom-margin " >{{order.status_f}}</span> 
+
             </p>
             <p class="date ion-no-margin  fn-12 qesaa-Janna-Regular">
                 {{order.date}}

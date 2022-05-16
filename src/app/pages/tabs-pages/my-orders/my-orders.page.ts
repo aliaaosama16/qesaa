@@ -1,4 +1,9 @@
+import { UserData } from './../../../models/general';
+import { Order, OrderListResponse, OrderResponse } from './../../../models/order';
+import { OrdersService } from './../../../services/orders/orders.service';
+import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -6,67 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-orders.page.scss'],
 })
 export class MyOrdersPage implements OnInit {
-  orders:any=[
-    {
-      id:1,
-      orderID:'6868',
-      orderStatus:'waiting',
-      status:3,
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:2,
-      orderID:'6868',
-      status:3,
-      orderStatus:'waiting',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:3,
-      orderID:'6868',
-      status:3,
-      orderStatus:'waiting',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:4,
-      orderID:'6868',
-      status:1,
-      orderStatus:'already-delivered',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:5,
-      orderID:'6868',
-      status:3,
-      orderStatus:'waiting',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:6,
-      orderID:'6868',
-      status:3,
-      orderStatus:'waiting',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:7,
-      orderID:'6868',
-      status:2,
-      orderStatus:'refused',
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:8,
-      orderID:'6868',
-      status:3,
-      orderStatus:'waiting',
-      date:'الخميس12 مارس 2021'
-    }
-  ]
-  constructor() { }
+  orders: Order[];
+  constructor(
+    private util: UtilitiesService,
+    private orderService: OrdersService,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit() {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.showAllOrdersByUserId(userData);
   }
 
+  showAllOrdersByUserId(userData: UserData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.orderService.showAllorders(userData).subscribe(
+        (data: OrderListResponse) => {
+          if (data.key == 1) {
+            this.orders=data.data;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
 }

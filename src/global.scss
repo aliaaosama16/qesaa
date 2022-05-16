@@ -64,6 +64,13 @@
   }
 }
 
+.margin-8-top{
+  margin-top: 8px;
+}
+
+.margin-18-bottom{
+  margin-bottom: 18px;
+}
 .custom-border-10-radius {
   border-radius: var(--custom-border-10-radius);
 }
@@ -194,6 +201,7 @@ ion-select {
   }
 }
 .form-container {
+ 
   .item-has-focus {
     border: 1px solid var(--ion-color-primary);
 
@@ -213,6 +221,10 @@ ion-select {
       --placeholder-font-weight: "Regular";
       --color: var(--ion-color-primary) !important;
     }
+
+    // ion-textarea.textarea-wrapper{
+      
+    // }
 
     .custom-form-icon {
       font-size: 20px;
