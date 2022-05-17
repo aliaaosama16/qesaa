@@ -1,4 +1,19 @@
+import { UserData } from './../../models/general';
+import { Family, FamilyData, FamilyListResponse } from './../../models/family';
+import { PageData } from 'src/app/models/pageData';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/data/data.service';
+import {
+  StaticPageData,
+  StaticPageResponse,
+  StaticPageTitle,
+} from 'src/app/models/staticPage';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { GeneralService } from 'src/app/services/general/general.service';
+import { GeneralSectionResponse } from 'src/app/models/general';
+import { FamilyService } from 'src/app/services/family/family.service';
 
 @Component({
   selector: 'app-productive-families',
@@ -6,44 +21,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productive-families.page.scss'],
 })
 export class ProductiveFamiliesPage implements OnInit {
-  families: any[] = [
-    {
-      id:1,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:2,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:3,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:4,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:5,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:6,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },
-    {
-      id:7,
-      name: 'اسم الشخص',
-      image: './../assets/images/family.svg',
-    },  
-  ];
-  constructor() {}
+  families: Family[];
+  familyListResponse: Family[];
+  constructor(
+    private languageService: LanguageService,
+    private util: UtilitiesService,
+    private general: GeneralService,
+    private familyService: FamilyService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.charityInfoType = this.data.getPageData();
+    //console.log('charity page title :  '+this.charityInfoType.title);
+    const familyData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.familyService.providers(familyData).subscribe(
+        (data: FamilyListResponse) => {
+          if (data.key == 1) {
+            this.families = data.data;
+            
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
 }

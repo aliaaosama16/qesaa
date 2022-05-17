@@ -1,20 +1,24 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" menuId="main" [ngClass]="currentPlatform=='ios'?'ios-menu-header':''">
+    <ion-menu
+      contentId="main-content"
+      menuId="main"
+      [ngClass]="currentPlatform == 'ios' ? 'ios-menu-header' : ''"
+    >
       <ion-header class="header-image ion-no-border background-color">
         <img
           [ngClass]="language == 'ar' ? 'image-right' : 'image-left'"
           src="./../assets/images/app_logo.svg"
         />
       </ion-header>
-            <!-- [routerLink]="p.url=='share'?? [p.url]" -->
+      <!-- [routerLink]="p.url=='share'?? [p.url]" -->
 
       <ion-content class="my-menu-content">
-        <ion-list >
+        <ion-list>
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of pages; let i = index"
-            (click)="selectMenuItem(i,p.url)"
+            (click)="selectMenuItem(i, p.url)"
             routerDirection="root"
             [class.selected]="selectedIndex == i"
           >
@@ -25,7 +29,7 @@
                 [ngClass]="currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'"
               ></ion-icon>
               <ion-label
-              class="fn-16 qesaa-Janna-Regular"
+                class="fn-16 qesaa-Janna-Regular"
                 [ngStyle]="
                   currentLanguage == 'ar'
                     ? { 'margin-right': '10px' }
@@ -38,13 +42,13 @@
         </ion-list>
       </ion-content>
 
-      <ion-footer  class="ion-padding  ion-no-border">
+      <ion-footer class="ion-padding ion-no-border">
         <div class="menu-footer-images">
           <div>
-            <img src="./../assets/images/2030vision.svg">
+            <img src="./../assets/images/2030vision.svg" />
           </div>
           <div>
-            <img src="./../assets/images/maroof_logo.svg">
+            <img src="./../assets/images/maroof_logo.svg" />
           </div>
         </div>
       </ion-footer>

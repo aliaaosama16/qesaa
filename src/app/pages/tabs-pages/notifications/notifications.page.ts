@@ -99,7 +99,7 @@ export class NotificationsPage implements OnInit {
                   console.log(
                     'delete item ' + JSON.stringify(this.notifications)
                   );
-                  this.util.showMessage(data.msg);
+                 // this.util.showMessage(data.msg);
 
                   this.showNotification(this.UserData);
                   this.updateNoOfNotifications();

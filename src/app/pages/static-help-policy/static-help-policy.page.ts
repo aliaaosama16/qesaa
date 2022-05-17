@@ -1,28 +1,28 @@
 import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ContactUsData } from 'src/app/models/contactUs';
 import { GeneralService } from 'src/app/services/general/general.service';
-import { StaticPageData, StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
+import { StaticPageData, StaticPageResponse } from 'src/app/models/staticPage';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { GeneralResponse, GeneralSectionResponse } from 'src/app/models/general';
+import { GeneralSectionResponse } from 'src/app/models/general';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
-  selector: 'app-rules',
-  templateUrl: './rules.page.html',
-  styleUrls: ['./rules.page.scss'],
+  selector: 'app-static-help-policy',
+  templateUrl: './static-help-policy.page.html',
+  styleUrls: ['./static-help-policy.page.scss'],
 })
-export class RulesPage implements OnInit {
-
-  rulesData : StaticPageData;
-  rulesDataResponse:GeneralSectionResponse;
+export class StaticHelpPolicyPage implements OnInit {
+  helpData: StaticPageData;
+  helpDataResponse: GeneralSectionResponse;
   constructor(
     private platform: Platform,
     private location: Location,
     private general: GeneralService,
-    private languageService:LanguageService,
-    private util:UtilitiesService
+    private languageService: LanguageService,
+    private util: UtilitiesService,
+    private data: DataService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -31,18 +31,21 @@ export class RulesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.rulesData = {
+    const helpData: StaticPageData = {
       lang: this.languageService.getLanguage(),
-      user_id:1,
-      title:StaticPageTitle.condition
+      user_id: 1,
+      title: this.data.getPageData().title,
     };
     this.util.showLoadingSpinner().then((__) => {
-      this.general.staticPages(this.rulesData).subscribe(
+      this.general.staticPages(helpData).subscribe(
         (data: StaticPageResponse) => {
           if (data.key == 1) {
-            this.rulesDataResponse=data.data;
-            console.log('aboutDataResponse  :  '+JSON.stringify(this.rulesDataResponse))
-            //this.util.showMessage(data.msg);
+            this.helpDataResponse = data.data;
+            console.log(
+              'StaticHelpPolicy Response  :  ' +
+                JSON.stringify(this.helpDataResponse)
+            );
+            //  this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
           }
@@ -55,5 +58,3 @@ export class RulesPage implements OnInit {
     });
   }
 }
-
-

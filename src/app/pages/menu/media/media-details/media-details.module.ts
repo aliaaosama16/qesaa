@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProductiveFamiliesPageRoutingModule } from './productive-families-routing.module';
+import { MediaDetailsPageRoutingModule } from './media-details-routing.module';
 
-import { ProductiveFamiliesPage } from './productive-families.page';
+import { MediaDetailsPage } from './media-details.page';
 import { SharedComponentModule } from 'src/app/components/shared-component.module';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,10 +15,10 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductiveFamiliesPageRoutingModule,
+    MediaDetailsPageRoutingModule,
     SharedComponentModule,
     TranslateModule
   ],
-  declarations: [ProductiveFamiliesPage]
+  declarations: [MediaDetailsPage]
 })
-export class ProductiveFamiliesPageModule {}
+export class MediaDetailsPageModule {}

@@ -1,0 +1,17 @@
+<app-header
+  [haveBeforeHeader]="false"
+  [title]="helpDataResponse?.title"
+  [isHome]="false"
+></app-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <img src="./../../../../assets/images/about.svg" />
+
+    <div class="ion-text-center about-container">
+      <p class="ion-no-margin fn-18 qesaa-Janna-Regular">
+        {{helpDataResponse?.desc}}
+      </p>
+    </div>
+  </div>
+</ion-content>

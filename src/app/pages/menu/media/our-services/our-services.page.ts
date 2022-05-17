@@ -1,28 +1,26 @@
 import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ContactUsData } from 'src/app/models/contactUs';
-import { GeneralService } from 'src/app/services/general/general.service';
-import { StaticPageData, StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { GeneralResponse, GeneralSectionResponse } from 'src/app/models/general';
+import { MediaService } from 'src/app/services/media/media.service';
+import { Artical, ArticalsData, ArticalsDataResponse, ArticalType } from 'src/app/models/articals';
 
 @Component({
-  selector: 'app-rules',
-  templateUrl: './rules.page.html',
-  styleUrls: ['./rules.page.scss'],
+  selector: 'app-our-services',
+  templateUrl: './our-services.page.html',
+  styleUrls: ['./our-services.page.scss'],
 })
-export class RulesPage implements OnInit {
-
-  rulesData : StaticPageData;
-  rulesDataResponse:GeneralSectionResponse;
+export class OurServicesPage implements OnInit {
+  services:Artical[];
+  articalData: ArticalsData;
+  articalDataResponse:ArticalsDataResponse;
   constructor(
     private platform: Platform,
     private location: Location,
-    private general: GeneralService,
     private languageService:LanguageService,
-    private util:UtilitiesService
+    private util:UtilitiesService,
+    private mediaService:MediaService 
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -31,18 +29,18 @@ export class RulesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.rulesData = {
+    this.articalData = {
       lang: this.languageService.getLanguage(),
       user_id:1,
-      title:StaticPageTitle.condition
+      type:ArticalType.services
     };
     this.util.showLoadingSpinner().then((__) => {
-      this.general.staticPages(this.rulesData).subscribe(
-        (data: StaticPageResponse) => {
+      this.mediaService.articals(this.articalData).subscribe(
+        (data: ArticalsDataResponse) => {
           if (data.key == 1) {
-            this.rulesDataResponse=data.data;
-            console.log('aboutDataResponse  :  '+JSON.stringify(this.rulesDataResponse))
-            //this.util.showMessage(data.msg);
+           this.services=data.data;
+            console.log('articalDataResponse  :  '+JSON.stringify(this.articalDataResponse))
+          //  this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
           }
@@ -55,5 +53,3 @@ export class RulesPage implements OnInit {
     });
   }
 }
-
-

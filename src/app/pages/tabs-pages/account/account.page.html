@@ -23,7 +23,7 @@
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{"account-settings"|translate}}</span>
       </div>
-      <div class="tailing-icon" [routerLink]="'/tabs/account/edit'">
+      <div class="tailing-icon" routerLink="'/tabs/account/edit'">
         <ion-icon src="./../../../../assets/icon/account/edit.svg"></ion-icon>
       </div>
     </div>
@@ -44,7 +44,7 @@
 
     <div class="divider"></div>
 
-    <div class="container">
+    <div class="container" (click)="helpPage()">
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/help.svg"></ion-icon>
       </div>
@@ -66,7 +66,7 @@
 
     <div class="divider"></div>
 
-    <div class="container">
+    <div class="container" (click)="policyPage()">
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/policy.svg"></ion-icon>
       </div>
@@ -77,7 +77,7 @@
   </div>
 
   <div class="wrapper">
-    <div class="container">
+    <div class="container"  (click)="aboutPage()">
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/about.svg"></ion-icon>
       </div>

@@ -1,11 +1,21 @@
 import { UserData, GeneralResponse } from './general';
 
+// ALL articles  [services , news , projects , photos , videos]
 export interface ArticalsData extends UserData {
   type: ArticalType;
 }
 
 export interface ArticalsDataResponse extends GeneralResponse {
   data: Artical[];
+}
+
+// specifiec article  [services , news , projects , photos , videos]
+export interface ArticalData extends UserData{
+  media_id:Number;
+}
+
+export interface ArticalDataResponse extends GeneralResponse {
+  data: Artical;
 }
 
 export interface Artical {

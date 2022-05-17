@@ -15,6 +15,7 @@ import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -23,6 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [],
   imports: [
     BrowserModule,
+    CommonModule,
     IonicModule.forRoot({
       backButtonText: '',
       mode: 'md',

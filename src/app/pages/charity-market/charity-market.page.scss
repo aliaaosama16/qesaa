@@ -27,15 +27,8 @@
   --background: var(--ion-color-primary);
 }
 
-.products-conatiner {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-basis: 33%;
-  justify-content: space-around;
-
   .product {
-    border-radius: 10px;
+    border-radius: var( --custom-border-10-radius);
     background: var(--ion-color-white);
     padding: 25px 15px;
     .icon {
@@ -46,4 +39,4 @@
   .title {
     margin: 7px 0 19px 0;
   }
-}
+/

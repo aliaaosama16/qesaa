@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [   
+        children: [
           {
             path: '',
             loadChildren: () =>
@@ -134,6 +134,13 @@ const routes: Routes = [
                 './../../contact-with-admin/contact-with-admin.module'
               ).then((m) => m.ContactWithAdminPageModule),
           },
+          {
+            path: 'static-help-policy',
+            loadChildren: () =>
+              import(
+                './../../static-help-policy/static-help-policy.module'
+              ).then((m) => m.StaticHelpPolicyPageModule),
+          },
         ],
       },
       {
@@ -145,10 +152,22 @@ const routes: Routes = [
       },
       {
         path: 'our-services',
-        loadChildren: () =>
-          import('./../../menu/our-services/our-services.module').then(
-            (m) => m.OurServicesPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import(
+                './../../menu/media/our-services/our-services.module'
+              ).then((m) => m.OurServicesPageModule),
+          },
+          {
+            path: 'details/:id',
+            loadChildren: () =>
+              import(
+                './../../menu/media/media-details/media-details.module'
+              ).then((m) => m.MediaDetailsPageModule),
+          },
+        ],
       },
       {
         path: 'news',
@@ -156,32 +175,56 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('./../../menu/news/news.module').then(
+              import('./../../menu/media/news/news.module').then(
                 (m) => m.NewsPageModule
               ),
           },
           {
             path: 'details/:id',
             loadChildren: () =>
-              import('./../../menu/news-details/news-details.module').then(
-                (m) => m.NewsDetailsPageModule
-              ),
+              import(
+                './../../menu/media/media-details/media-details.module'
+              ).then((m) => m.MediaDetailsPageModule),
           },
         ],
       },
       {
         path: 'our-projects',
-        loadChildren: () =>
-          import('./../../menu/our-projects/our-projects.module').then(
-            (m) => m.OurProjectsPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import(
+                './../../menu/media/our-projects/our-projects.module'
+              ).then((m) => m.OurProjectsPageModule),
+          },
+          {
+            path: 'details/:id',
+            loadChildren: () =>
+              import(
+                './../../menu/media/media-details/media-details.module'
+              ).then((m) => m.MediaDetailsPageModule),
+          },
+        ],
       },
       {
         path: 'gallery',
-        loadChildren: () =>
-          import('./../../menu/gallery/gallery.module').then(
-            (m) => m.GalleryPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../../menu/media/gallery/gallery.module').then(
+                (m) => m.GalleryPageModule
+              ),
+          },
+          {
+            path: 'details/:id',
+            loadChildren: () =>
+              import(
+                './../../menu/media/media-details/media-details.module'
+              ).then((m) => m.MediaDetailsPageModule),
+          },
+        ],
       },
       {
         path: 'volunteer-with-us',
@@ -225,7 +268,6 @@ const routes: Routes = [
             (m) => m.RulesPageModule
           ),
       },
-
       {
         path: '',
         redirectTo: '/tabs/home',

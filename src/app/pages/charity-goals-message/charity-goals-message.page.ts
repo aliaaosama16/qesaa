@@ -47,7 +47,7 @@ export class CharityGoalsMessagePage implements OnInit {
               'charityInfoDataResponse  :  ' +
                 JSON.stringify(this.charityInfoDataResponse)
             );
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
           }

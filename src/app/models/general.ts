@@ -38,6 +38,8 @@ export interface GeneralSectionResponse {
   desc?: string;
   lat?: string;
   lng?: string;
+  section_id?: number;
+  section_title?: string;
 }
 
 export interface AuthDataResponse {
@@ -58,13 +60,12 @@ export interface ImageInfo extends Language {
   image: File;
 }
 
-
-export interface CountryData extends UserData{
-  country_id:number;
+export interface CountryData extends UserData {
+  country_id: number;
 }
 
-export interface CitysData extends UserData{
-  city_id:number;
+export interface CitysData extends UserData {
+  city_id: number;
 }
 
 // export interface CountryResponse extends GeneralResponse{

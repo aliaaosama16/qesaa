@@ -41,7 +41,7 @@ export class AboutPage implements OnInit {
           if (data.key == 1) {
             this.aboutDataResponse=data.data;
             console.log('aboutDataResponse  :  '+JSON.stringify(this.aboutDataResponse))
-            this.util.showMessage(data.msg);
+          //  this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
           }

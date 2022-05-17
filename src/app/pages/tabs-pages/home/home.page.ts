@@ -76,50 +76,6 @@ export class HomePage implements OnInit {
       user_id: 1,
     };
     this.getHomeData(userData);
-
-    // const statisPageList = [
-    //   {
-    //     type: StaticPageTitle.goals,
-    //   },
-    //   {
-    //     type: StaticPageTitle.message,
-    //   },
-    //   {
-    //     type: StaticPageTitle.message,
-    //   },
-    // ];
-
-    // for (let i = 0; i < statisPageList.length; i++) {
-    //   this.appData = {
-    //     lang: this.languageService.getLanguage(),
-    //     user_id: 1,
-    //     title: statisPageList[i].type,
-    //   };
-    //   this.util.showLoadingSpinner().then((__) => {
-    //     this.general.staticPages(this.appData).subscribe(
-    //       (data: StaticPageResponse) => {
-    //         if (data.key == 1) {
-    //           this.appDataResponse.push({
-    //             title: data.data.title,
-    //             desc: data.data.desc,
-    //           });
-
-    //           console.log(
-    //             ' appDataResponse  res : ' +
-    //               JSON.stringify(this.appDataResponse)
-    //           );
-    //           this.util.showMessage(data.msg);
-    //         } else {
-    //           this.util.showMessage(data.msg);
-    //         }
-    //         this.util.dismissLoading();
-    //       },
-    //       (err) => {
-    //         this.util.dismissLoading();
-    //       }
-    //     );
-    //   });
-    // }
   }
 
   openMenu() {
@@ -134,7 +90,6 @@ export class HomePage implements OnInit {
   }
 
   getHomeData(userData: UserData) {
-    
     this.util.showLoadingSpinner().then((__) => {
       this.home.home(userData).subscribe(
         (data: HomeResponse) => {
@@ -155,7 +110,6 @@ export class HomePage implements OnInit {
     });
   }
 
-
   doRefresh($event) {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
@@ -174,7 +128,8 @@ export class HomePage implements OnInit {
         $event.target.complete();
       },
       (err) => {
-        $event.target.complete();      }
+        $event.target.complete();
+      }
     );
   }
 }

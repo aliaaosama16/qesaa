@@ -1,21 +1,18 @@
-<app-header [haveBeforeHeader]="false" [title]="charityInfoDataResponse?.title"></app-header>
+<app-header
+  [haveBeforeHeader]="false"
+  [title]="charityInfoDataResponse?.title"
+></app-header>
 <ion-content class="charity-info">
   <div class="custom-card ion-text-center custom-content-margin">
-    <img [src]="'./../../../assets/icon/'+charityInfoType.title+'.svg'">
+    <img [src]="'./../../../assets/icon/'+charityInfoType.title+'.svg'" />
 
-    <p class="fn-30 qesaa-Janna-Bold primary-color ion-no-margin">{{  charityInfoDataResponse?.title}}</p>
+    <p class="fn-30 qesaa-Janna-Bold primary-color ion-no-margin">
+      {{ charityInfoDataResponse?.title}}
+    </p>
   </div>
-  <!-- *ngIf="pageData.title!='goals'" -->
-  <div class="charity-info-content  ion-text-center" >
-     <p class="fn-18 qesaa-Janna-Regular ion-no-margin"> {{charityInfoDataResponse?.desc}}</p>
+  <div class="charity-info-content ion-text-center">
+    <p class="fn-18 qesaa-Janna-Regular ion-no-margin">
+      {{charityInfoDataResponse?.desc}}
+    </p>
   </div>
-
-  <!-- <div class="charity-info-content  ion-text-center" *ngIf="pageData.title=='goals'">
-     {{charityInfoDataResponse.desc}}
-     <ul>
-      <li *ngFor="let i of [1,2,3,4,5,6,7]" class="ion-text-start">
-        <p  class="fn-18 qesaa-Janna-Regular ion-no-margin ion-text-start"> {{pageData.content+i|translate}}</p>
-      </li>
-    </ul> 
- </div> -->
 </ion-content>

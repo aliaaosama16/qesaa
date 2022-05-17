@@ -24,8 +24,7 @@ export class GeneralService {
   uploadedImage: string;
   constructor(
     private httpclient: HttpClient,
-    private languageService: LanguageService,
-    private util: UtilitiesService
+   
   ) {}
 
   intro(): Observable<Intro> {

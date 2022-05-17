@@ -1,19 +1,29 @@
-<app-header [haveBeforeHeader]="false" [title]="'productive-families'" [isHome]="false"></app-header>
+<app-header
+  [haveBeforeHeader]="false"
+  [title]="'productive-families'"
+  [isHome]="false"
+></app-header>
 
-<ion-content class="ion-padding">
-  <div class="families-container">
-
-    <div class="family" *ngFor="let family of families" routerLink="/tabs/home/families/{{family.id}}">
+<ion-content>
+  <div class="families-container" *ngIf="families?.length!=0">
+    <div
+      class="family"
+      *ngFor="let family of families"
+      routerLink="/tabs/home/families/{{family?.id}}"
+    >
       <div class="family-image">
-        <img [src]="family.image">
+        <img [src]="family?.avatar" />
       </div>
 
       <div class="family-name ion-text-center">
         <p class="ion-no-margin fn-18 qesaa-Janna-Bold">
-          {{family.name}}
+          {{family?.first_name}}
         </p>
       </div>
     </div>
+  </div>
 
+  <div *ngIf="families?.length==0" class="no-data">
+    <p>{{"no prodiders"|translate}}</p>
   </div>
 </ion-content>

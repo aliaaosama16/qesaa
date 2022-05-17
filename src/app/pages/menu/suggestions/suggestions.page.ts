@@ -77,7 +77,7 @@ export class SuggestionsPage implements OnInit {
       this.general.contactUs(this.contactData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
           }

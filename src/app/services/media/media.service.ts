@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArticalsData, ArticalsDataResponse } from 'src/app/models/articals';
+import { ArticalData, ArticalDataResponse, ArticalsData, ArticalsDataResponse } from 'src/app/models/articals';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,6 +13,13 @@ export class MediaService {
   articals(data: ArticalsData): Observable<ArticalsDataResponse> {
     return this.httpclient.post<ArticalsDataResponse>(
       `${environment.BASE_URL}articals`,
+      data
+    );
+  }
+
+  getArticalByID(data: ArticalData): Observable<ArticalDataResponse> {
+    return this.httpclient.post<ArticalDataResponse>(
+      `${environment.BASE_URL}show-artical`,
       data
     );
   }
