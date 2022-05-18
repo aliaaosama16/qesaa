@@ -1,9 +1,10 @@
-import { UserData } from './../../models/general';
+import { GeneralResponse, UserData } from './../../models/general';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
+  CartData,
   ProductData,
   ProductResponse,
   SectionProductsData,
@@ -36,6 +37,27 @@ export class SectionsProductsService {
   showService(data: ProductData): Observable<ProductResponse> {
     return this.httpclient.post<ProductResponse>(
       `${environment.BASE_URL}show-service`,
+      data
+    );
+  }
+
+  addToCart(data: ProductData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
+      `${environment.BASE_URL}add-to-cart`,
+      data
+    );
+  }
+
+  updateToCart(data: CartData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
+      `${environment.BASE_URL}update-to-cart`,
+      data
+    );
+  }
+
+  showCart(data: UserData): Observable<ProductResponse> {
+    return this.httpclient.post<ProductResponse>(
+      `${environment.BASE_URL}show-cart`,
       data
     );
   }

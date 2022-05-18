@@ -2,7 +2,7 @@
   [haveBeforeHeader]="false"
   [title]="charityInfoDataResponse?.title"
 ></app-header>
-<ion-content class="charity-info">
+<ion-content class="charity-info" *ngIf="charityInfoDataResponse">
   <div class="custom-card ion-text-center custom-content-margin">
     <img [src]="'./../../../assets/icon/'+charityInfoType.title+'.svg'" />
 

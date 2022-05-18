@@ -13,12 +13,15 @@ export interface SectionProductsResponse extends GeneralResponse {
   data: GeneralSectionResponse[];
 }
 
-
-export  interface ProductData extends UserData{
-    service_id:number;
+export interface ProductData extends UserData {
+  service_id: number;
 }
 
 export interface ProductResponse extends GeneralResponse {
-    data: GeneralSectionResponse[];
-  }
-  
+  data: GeneralSectionResponse;
+}
+
+export interface CartData extends UserData {
+  cart_id: number;
+  count: number;
+}

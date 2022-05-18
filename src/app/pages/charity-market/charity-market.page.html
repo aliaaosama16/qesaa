@@ -40,7 +40,7 @@
       <ion-col
         size="4"
         *ngFor="let product of sectionProducts"
-        routerLink="/tabs/home/market/product/{{product.id}}"
+       (click)="showService(product?.id)"
       >
         <div class="product  ion-text-center">
           <div class="icon">
