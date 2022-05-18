@@ -31,7 +31,7 @@ export interface UserData extends Language {
 
 export interface GeneralSectionResponse {
   id?: string;
-  title: string;
+  title?: string;
   image?: string;
   checked?: boolean;
   url?: string;
@@ -40,6 +40,8 @@ export interface GeneralSectionResponse {
   lng?: string;
   section_id?: number;
   section_title?: string;
+  service_id?: number;
+  service_title?: string;
 }
 
 export interface AuthDataResponse {
@@ -67,6 +69,8 @@ export interface CountryData extends UserData {
 export interface CitysData extends UserData {
   city_id: number;
 }
+
+
 
 // export interface CountryResponse extends GeneralResponse{
 //   data: GeneralSection[];

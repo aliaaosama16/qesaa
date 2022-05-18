@@ -1,6 +1,6 @@
 ion-header {
   ion-toolbar {
-   // --min-height: 124px;
+    // --min-height: 124px;
     padding: 0 14px !important;
     ion-button {
       &::part(native) {
@@ -25,23 +25,33 @@ ion-header {
     ion-buttons[slot="end"] {
       margin-inline-end: 0px !important;
     }
+
+    .cart-icon {
+      display: flex;
+      flex-direction: column;
+      span {
+        color: var(--ion-color-primary);
+      }
+
+      ion-icon {
+        font-size: 24px;
+      }
+    }
   }
 
-   
-    .header-extenstion{
-      height: 23px;
-      background: var(--ion-color-background);
-      
-      border-radius: 35px 35px 0 0;
-    }
+  .header-extenstion {
+    height: 23px;
+    background: var(--ion-color-background);
 
-    .header-extenstion-Gallary{
-      height: 50px;
-      background: var(--ion-color-background);
-      
-      border-radius: 35px 35px 0 0;
-    }
-  
+    border-radius: 35px 35px 0 0;
+  }
+
+  .header-extenstion-Gallary {
+    height: 50px;
+    background: var(--ion-color-background);
+
+    border-radius: 35px 35px 0 0;
+  }
 }
 
 .ios-header {

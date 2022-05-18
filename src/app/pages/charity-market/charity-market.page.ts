@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { GeneralSectionResponse, UserData } from 'src/app/models/general';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
+
+import { Router } from '@angular/router';
 import {
   SectionProductsData,
   SectionProductsResponse,
@@ -24,7 +26,8 @@ export class CharityMarketPage implements OnInit {
   constructor(
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private sectionsService: SectionsProductsService
+    private sectionsService: SectionsProductsService,
+    private router: Router
   ) {
     this.currentlangauge = this.languageService.getLanguage();
   }
@@ -47,6 +50,7 @@ export class CharityMarketPage implements OnInit {
           if (data.key == 1) {
             this.sections = data.data;
             console.log('all sections :' + this.sections);
+            this.getProductsBySection(  this.sections[0].id);
           } else {
             this.util.showMessage(data.msg);
           }
@@ -62,55 +66,36 @@ export class CharityMarketPage implements OnInit {
   segmentChanged($event) {
     console.log('selected :' + $event.target.value);
 
+    this.getProductsBySection($event.target.value);
+  }
+
+  getProductsBySection(sectionID) {
     const sectionProductsData: SectionProductsData = {
       lang: this.languageService.getLanguage(),
       user_id: 1,
-      section_id: $event.target.value,
+      section_id: sectionID,
     };
-    this.sectionProducts = [
-      {
-        id: '1',
-        title: 'تيشرت',
-        desc: 'تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت',
-        section_id: 2,
-        section_title: 'ملابس',
-        image:
-          'https://kesa.sa/public/images/sections/25-04-221650898645400326334.png',
-      },
-      {
-        id: '1',
-        title: 'تيشرت',
-        desc: 'تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت',
-        section_id: 2,
-        section_title: 'ملابس',
-        image:
-          'https://kesa.sa/public/images/sections/25-04-221650898645400326334.png',
-      },
-      {
-        id: '1',
-        title: 'تيشرت',
-        desc: 'تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت تيشرت',
-        section_id: 2,
-        section_title: 'ملابس',
-        image:
-          'https://kesa.sa/public/images/sections/25-04-221650898645400326334.png',
-      },
-    ];
-    // this.util.showLoadingSpinner().then((__) => {
-    //   this.sectionsService.getSectionByID(sectionProductsData).subscribe(
-    //     (data: SectionProductsResponse) => {
-    //       if (data.key == 1) {
-    //         this.sectionProducts = data.data;
-    //         console.log('all products by section :' + this.sections);
-    //       } else {
-    //         this.util.showMessage(data.msg);
-    //       }
-    //       this.util.dismissLoading();
-    //     },
-    //     (err) => {
-    //       this.util.dismissLoading();
-    //     }
-    //   );
-    // });
+
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.getSectionByID(sectionProductsData).subscribe(
+        (data: SectionProductsResponse) => {
+          if (data.key == 1) {
+            this.sectionProducts = data.data;
+            console.log('all products by section :' + this.sections);
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  showService(productID) {
+    console.log('product id :' + productID);
+    this.router.navigateByUrl(`/tabs/home/market/product/${productID}`);
   }
 }

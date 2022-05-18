@@ -1,6 +1,6 @@
 <app-header
   [haveBeforeHeader]="false"
-  [haveBeforeHeader]="false"
+  [hasMarketCart]="true"
   [title]="'charity-market'"
   [isHome]="false"
 ></app-header>
@@ -13,7 +13,7 @@
         *ngFor="let section of sections;"
       >
         <span class="fn-14 qesaa-Janna-Regular white-color">
-          {{section.title}}
+          {{section?.title}}
         </span>
       </ion-segment-button>
     </ion-segment>
@@ -40,7 +40,7 @@
       <ion-col
         size="4"
         *ngFor="let product of sectionProducts"
-        routerLink="/tabs/home/market/product/{{product.id}}"
+       (click)="showService(product?.id)"
       >
         <div class="product  ion-text-center">
           <div class="icon">

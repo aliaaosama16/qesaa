@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralSectionResponse, UserData, GeneralResponse } from 'src/app/models/general';
+import { Router } from '@angular/router';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { CartCount, CartData, ProductsResponse } from '../../models/sections';
+import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 
 @Component({
   selector: 'app-charity-market-products',
@@ -6,44 +12,73 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charity-market-products.page.scss'],
 })
 export class CharityMarketProductsPage implements OnInit {
+  products: GeneralSectionResponse[];
 
-  products:any=[
-    {
-      id: 1,
-      name: 'اسم المنتج',
-      categoryName: 'اسم القسم',
-      description:
-        'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا قمت بإدخال "lorem ipsum" في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة، وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها.',
-      image: './../../../assets/images/product.svg',
-    },
-    {
-      id: 2,
-      name: 'اسم المنتج',
-      categoryName: 'اسم القسم',
-      description:
-        'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا قمت بإدخال "lorem ipsum" في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة، وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها.',
-      image: './../../../assets/images/product.svg',
-    },
-    {
-      id: 3,
-      name: 'اسم المنتج',
-      categoryName: 'اسم القسم',
-      description:
-        'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا قمت بإدخال "lorem ipsum" في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة، وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها.',
-      image: './../../../assets/images/product.svg',
-    }
-  ]
-  constructor() { }
+  constructor(
+    private router: Router,
+    private util: UtilitiesService,
+    private languageService: LanguageService,
+    private sectionsService: SectionsProductsService
+  ) {}
 
   ngOnInit() {
+    const cartData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.getCartProducts(cartData);
   }
 
-  deleteProduct(){
-    console.log('delete product ');
+  getCartProducts(cartData: UserData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.showCart(cartData).subscribe(
+        (data: ProductsResponse) => {
+          if (data.key == 1) {
+            this.products = data.data;
+            console.log('cart products  :' + this.products);
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
-  checkout(){
-    
+  deleteProduct(productID) {
+    console.log('delete product with id : '+productID);
+    const cartData:  CartData= {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+      cart_id:productID,
+      count:CartCount.delete
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.updateToCart(cartData).subscribe(
+        (data: GeneralResponse) => {
+          if (data.key == 1) {
+           this.util.showMessage(data.msg).then((_)=>{
+            const cartData: UserData = {
+              lang: this.languageService.getLanguage(),
+              user_id: 1,
+            };
+            this.getCartProducts(cartData);
+           });
+          
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 
+  checkout() {}
 }

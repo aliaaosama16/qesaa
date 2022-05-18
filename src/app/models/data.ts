@@ -2,8 +2,13 @@ import {
   GeneralResponse,
   GeneralSectionResponse,
 } from 'src/app/models/general';
-export interface AppDataResponse extends GeneralResponse {
-  data: GeneralSectionResponse[];
-  order_times: GeneralSectionResponse[];
-  our_location: GeneralSectionResponse[];
+
+export interface AppData extends GeneralResponse{
+  data:AppDataOptions;
+}
+
+export interface AppDataOptions {
+  cities:GeneralSectionResponse[];
+  order_times:GeneralSectionResponse[];
+  our_location:GeneralSectionResponse[];
 }

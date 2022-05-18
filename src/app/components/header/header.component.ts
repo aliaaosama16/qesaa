@@ -2,6 +2,8 @@ import { UtilitiesService } from './../../services/utilities/utilities.service';
 import { MenuController, Platform } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 
 @Component({
   selector: 'app-header',
@@ -11,18 +13,29 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() isHome: boolean;
-  @Input() haveBeforeHeader:boolean;
+  @Input() haveBeforeHeader: boolean;
+  @Input() hasMarketCart: boolean;
   currentPlatform: string;
+  cartCount:number=0;
 
   constructor(
     private menuCtrl: MenuController,
     private platform: Platform,
     private location: Location,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private router:Router,
+    private sectionsProductsService:SectionsProductsService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
       this.location.back();
+    });
+    this.sectionsProductsService.getCartCount().subscribe((val) => {
+      if (val != 0) {
+        this.cartCount = val;
+      } else {
+        this.cartCount = 0;
+      }
     });
   }
 
@@ -37,5 +50,9 @@ export class HeaderComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  showUserCart(){
+    this.router.navigateByUrl('/tabs/home/market/products');
   }
 }

@@ -1,4 +1,4 @@
-<app-header [haveBeforeHeader]="false" [title]="'account'" [isHome]="false"></app-header>
+<app-header  [hasMarketCart]="false" [haveBeforeHeader]="false" [title]="'account'" [isHome]="false"></app-header>
 
 <ion-content class="ion-padding-horizontal">
   <div class="info">
@@ -23,7 +23,7 @@
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{"account-settings"|translate}}</span>
       </div>
-      <div class="tailing-icon" routerLink="'/tabs/account/edit'">
+      <div class="tailing-icon" routerLink="/tabs/account/edit">
         <ion-icon src="./../../../../assets/icon/account/edit.svg"></ion-icon>
       </div>
     </div>

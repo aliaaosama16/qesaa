@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthData, AuthResponse } from 'src/app/models/auth';
+import { BehaviorSubject, Observable } from 'rxjs'; import { ActivationData, AuthResponse, LoginData, LogOutData, RegisterData } from 'src/app/models/auth';
 import { ChangePasswordData, ForgetPasswordData } from 'src/app/models/forgetPassword';
 import { GeneralResponse, UserData } from 'src/app/models/general';
 import { environment } from 'src/environments/environment';
@@ -153,6 +152,53 @@ export class AuthService {
   //     data
   //   );
   // }
+  // updateUserData(data: UpdateUserData): Observable<UserResponse> {
+  //   return this.httpclient.post<UserResponse>(
+  //     `${environment.BASE_URL}update-user`,
+  //     data
+  //   );
+  // }
 
+  login(data: LoginData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}login`,
+      data
+    );
+  }
+
+  register(data: RegisterData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}register`,
+      data
+    );
+  }
+
+  activeAccount(data: ActivationData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
+      `${environment.BASE_URL}active-account`,
+      data
+    );
+  }
+
+  logout(data: LogOutData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}logout`,
+      data
+    );
+  }
+
+  forgetPassword(data: ForgetPasswordData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}forget-password`,
+      data
+    );
+  }
+
+  changePassword(data: ChangePasswordData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}reset-password`,
+      data
+    );
+  }
   
 }
