@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthData } from './models/auth';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
 import { NetworkService } from './services/network/network.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 import { Share } from '@capacitor/share';
+import { LogOutData } from './models/auth';
+import { DataService } from './services/data/data.service';
+import { UserData } from './models/general';
+import { AppDataResponse } from './models/data';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +21,8 @@ export class AppComponent {
   currentLanguage: string = '';
   language: string = '';
   selectedIndex: number;
-  logoutData: AuthData;
-  logined: boolean = this.auth.isAuthenticated.value;
-  currentPlatform:string;
+  logoutData: LogOutData;
+  currentPlatform: string;
   pages = [
     {
       title: 'about',
@@ -43,55 +45,55 @@ export class AppComponent {
     {
       title: 'our-projects',
       url: '/tabs/our-projects',
-       iconActive: './../assets/icon/menu-icons/projects-active.svg',
+      iconActive: './../assets/icon/menu-icons/projects-active.svg',
       iconInActive: './../assets/icon/menu-icons/projects-inactive.svg',
     },
     {
       title: 'gallery',
       url: '/tabs/gallery',
-       iconActive: './../assets/icon/menu-icons/gallary-active.svg',
+      iconActive: './../assets/icon/menu-icons/gallary-active.svg',
       iconInActive: './../assets/icon/menu-icons/gallary-inactive.svg',
     },
     {
       title: 'volunteer with us',
       url: '/tabs/volunteer-with-us',
-       iconActive: './../assets/icon/menu-icons/donate-active.svg',
+      iconActive: './../assets/icon/menu-icons/donate-active.svg',
       iconInActive: './../assets/icon/menu-icons/donate-inactive.svg',
     },
     {
       title: 'Supporting productive families',
       url: '/tabs/support-productive-families',
-       iconActive: './../assets/icon/menu-icons/families-active.svg',
+      iconActive: './../assets/icon/menu-icons/families-inactive.svg',
       iconInActive: './../assets/icon/menu-icons/families-inactive.svg',
     },
     {
       title: 'share app',
       url: 'share',
-       iconActive: './../assets/icon/menu-icons/share-active.svg',
+      iconActive: './../assets/icon/menu-icons/share-active.svg',
       iconInActive: './../assets/icon/menu-icons/share-inactive.svg',
     },
     {
       title: 'our presence',
       url: '/tabs/our-presence',
-       iconActive: './../assets/icon/menu-icons/presence-active.svg',
+      iconActive: './../assets/icon/menu-icons/presence-active.svg',
       iconInActive: './../assets/icon/menu-icons/news-inactive.svg',
     },
     {
       title: 'contact us',
       url: '/tabs/contact-with-us',
-       iconActive: './../assets/icon/menu-icons/contact-active.svg',
+      iconActive: './../assets/icon/menu-icons/contact-active.svg',
       iconInActive: './../assets/icon/menu-icons/contact-inactive.svg',
     },
     {
       title: 'Suggestions and complaints',
       url: '/tabs/suggestions',
-       iconActive: './../assets/icon/menu-icons/notices-active.svg',
+      iconActive: './../assets/icon/menu-icons/notices-active.svg',
       iconInActive: './../assets/icon/menu-icons/notices-inactive.svg',
     },
     {
       title: 'Terms and Conditions',
       url: '/tabs/rules',
-       iconActive: './../assets/icon/menu-icons/rules-active.svg',
+      iconActive: './../assets/icon/menu-icons/rules-active.svg',
       iconInActive: './../assets/icon/menu-icons/rules-inactive.svg',
     },
   ];
@@ -105,7 +107,7 @@ export class AppComponent {
     private translate: TranslateService,
     private network: NetworkService,
     private menuCtrl: MenuController,
-    private auth: AuthService
+    private dataService: DataService
   ) {
     this.initializeApp();
 
@@ -116,7 +118,7 @@ export class AppComponent {
     this.languageService.getUpdatedLanguage().subscribe((val) => {
       this.language = val;
     });
-    console.log('logined : ' + this.logined);
+    // console.log('logined : ' + this.logined);
 
     console.log('current platform : ' + this.util.getCapacitorPlatform());
     this.currentPlatform = this.util.getCapacitorPlatform();
@@ -131,8 +133,10 @@ export class AppComponent {
       this.util.getDeviceID();
 
       // this.fcmService.initFcm();
+      //this.getData();
     });
   }
+
 
   async shareApp() {
     await Share.share({
@@ -143,15 +147,13 @@ export class AppComponent {
     });
   }
 
-  selectMenuItem(index,url) {
+  selectMenuItem(index, url) {
     this.selectedIndex = index;
     if (index == 7) {
       console.log('share app');
       this.shareApp();
-    }else{
+    } else {
       this.router.navigateByUrl(url);
     }
-
-    
   }
 }

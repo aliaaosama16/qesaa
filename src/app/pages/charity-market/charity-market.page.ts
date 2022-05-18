@@ -50,6 +50,7 @@ export class CharityMarketPage implements OnInit {
           if (data.key == 1) {
             this.sections = data.data;
             console.log('all sections :' + this.sections);
+            this.getProductsBySection(  this.sections[0].id);
           } else {
             this.util.showMessage(data.msg);
           }
@@ -65,10 +66,14 @@ export class CharityMarketPage implements OnInit {
   segmentChanged($event) {
     console.log('selected :' + $event.target.value);
 
+    this.getProductsBySection($event.target.value);
+  }
+
+  getProductsBySection(sectionID) {
     const sectionProductsData: SectionProductsData = {
       lang: this.languageService.getLanguage(),
       user_id: 1,
-      section_id: $event.target.value,
+      section_id: sectionID,
     };
 
     this.util.showLoadingSpinner().then((__) => {
@@ -90,8 +95,7 @@ export class CharityMarketPage implements OnInit {
   }
 
   showService(productID) {
-    console.log('product id :'+productID)
-    this.router.navigateByUrl(`/tabs/home/market/product/${ productID }`);
-    //routerLink="/tabs/home/market/product/{{product.id}}"
+    console.log('product id :' + productID);
+    this.router.navigateByUrl(`/tabs/home/market/product/${productID}`);
   }
 }

@@ -21,7 +21,35 @@ export interface ProductResponse extends GeneralResponse {
   data: GeneralSectionResponse;
 }
 
+export interface ProductsResponse extends GeneralResponse {
+  data: GeneralSectionResponse[];
+}
+
 export interface CartData extends UserData {
   cart_id: number;
   count: number;
+}
+
+export enum CartCount {
+  delete,
+  update,
+}
+
+//store-order
+export interface StoreOrderData extends UserData {
+  type: StoreOrderType;
+  name?: string;
+  phone?: string;
+  city_id?: number;
+  neighborhood_id?: number;
+  lat?: number;
+  lng?: number;
+  date?: string;
+  image?: string;
+  notes?: string;
+}
+
+export enum StoreOrderType {
+  service = 'service',
+  volunteer = 'volunteer',
 }

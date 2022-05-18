@@ -25,12 +25,14 @@ export class CharityMarketProductPage implements OnInit {
     private router: Router,
     private util: UtilitiesService,
     private sectionsService: SectionsProductsService,
-    private activatedRoute:ActivatedRoute,
-    private languageService:LanguageService
+    private activatedRoute: ActivatedRoute,
+    private languageService: LanguageService
   ) {}
 
   ngOnInit() {
-   console.log('id : '+JSON.stringify(this.activatedRoute.snapshot.paramMap.get('id')));
+    console.log(
+      'id : ' + JSON.stringify(this.activatedRoute.snapshot.paramMap.get('id'))
+    );
     const productData: ProductData = {
       lang: this.languageService.getLanguage(),
       user_id: 1,
@@ -38,11 +40,11 @@ export class CharityMarketProductPage implements OnInit {
     };
 
     this.util.showLoadingSpinner().then((__) => {
-      this.sectionsService.showService(productData).subscribe(
+      this.sectionsService.showService (productData).subscribe(
         (data: ProductResponse) => {
           if (data.key == 1) {
             this.productDetails = data.data;
-             console.log('get priduct by  :' +   this.productDetails );
+            console.log('get priduct by  :' + this.productDetails);
           } else {
             this.util.showMessage(data.msg);
           }
@@ -56,8 +58,31 @@ export class CharityMarketProductPage implements OnInit {
   }
 
   addProduct() {
-    // call api to add this product to charity cart
-    // show toast to successful addtion
-    this.router.navigateByUrl('/tabs/home/market/products');
+    const productData: ProductData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+      service_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
+    };
+
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.addToCart(productData).subscribe(
+        (data: ProductResponse) => {
+          if (data.key == 1) {
+            this.productDetails = data.data;
+            console.log('get priduct by  :' + this.productDetails);
+            this.util.showMessage(data.msg).then((_) => {
+              this.router.navigateByUrl('/tabs/home/market/products');
+            });
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+   
   }
 }
