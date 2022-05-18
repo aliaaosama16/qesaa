@@ -9,8 +9,6 @@ import { UtilitiesService } from './services/utilities/utilities.service';
 import { Share } from '@capacitor/share';
 import { LogOutData } from './models/auth';
 import { DataService } from './services/data/data.service';
-import { UserData } from './models/general';
-import { AppDataResponse } from './models/data';
 
 @Component({
   selector: 'app-root',
@@ -136,7 +134,6 @@ export class AppComponent {
       //this.getData();
     });
   }
-
 
   async shareApp() {
     await Share.share({

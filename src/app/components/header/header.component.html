@@ -19,10 +19,10 @@
     }}</ion-title>
 
     
-    <ion-buttons slot="end" *ngIf="hasMarketCart" (click)="showUserCart()">
+    <ion-buttons class="cart-icon" slot="end" *ngIf="hasMarketCart" (click)="showUserCart()">
       <!-- <ion-button fill="solid" shape="round" color="primary"> -->
-        <span>{{cartCount}}</span>
-        <ion-icon size="large" name="cart-outline" color="primary"></ion-icon>
+        <span >{{cartCount}}</span>
+        <ion-icon  name="cart-outline" color="primary"></ion-icon>
       <!-- </ion-button> -->
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="!isHome" (click)="goBack()">
