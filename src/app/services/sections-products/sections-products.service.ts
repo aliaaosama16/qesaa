@@ -98,8 +98,6 @@ export class SectionsProductsService {
     );
   }
 
-  // StoreOrderData
-
   storeOrder(data: StoreOrderData): Observable<ProductsResponse> {
     return this.httpclient.post<ProductsResponse>(
       `${environment.BASE_URL}store-order`,

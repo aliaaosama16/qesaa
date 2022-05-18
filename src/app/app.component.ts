@@ -9,6 +9,7 @@ import { UtilitiesService } from './services/utilities/utilities.service';
 import { Share } from '@capacitor/share';
 import { LogOutData } from './models/auth';
 import { DataService } from './services/data/data.service';
+import { AppDataService } from './services/app-data/app-data.service';
 
 @Component({
   selector: 'app-root',
@@ -105,7 +106,7 @@ export class AppComponent {
     private translate: TranslateService,
     private network: NetworkService,
     private menuCtrl: MenuController,
-    private dataService: DataService
+    private appDataService: AppDataService
   ) {
     this.initializeApp();
 
@@ -131,7 +132,7 @@ export class AppComponent {
       this.util.getDeviceID();
 
       // this.fcmService.initFcm();
-      //this.getData();
+     
     });
   }
 

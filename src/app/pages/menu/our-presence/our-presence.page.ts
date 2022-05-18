@@ -1,5 +1,11 @@
+import { UtilitiesService } from './../../../services/utilities/utilities.service';
+import { GeneralSectionResponse, UserData } from './../../../models/general';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { AppDataService } from 'src/app/services/app-data/app-data.service';
+import { AppData, AppDataOptions } from 'src/app/models/data';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-our-presence',
@@ -7,27 +13,62 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./our-presence.page.scss'],
 })
 export class OurPresencePage implements OnInit {
-
+  ourLocations: GeneralSectionResponse[];
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number = 31;
-  long: number = 31;
+  lat: number = 0;
+  long: number = 0;
   infowindow = new google.maps.InfoWindow();
-  constructor(private plt:Platform) { 
-    
+  locations: GeneralSectionResponse[];
+  constructor(
+    private plt: Platform,
+    private appData: AppDataService,
+    private languageService: LanguageService,
+    private util: UtilitiesService,
+    private dataService: DataService
+  ) {
+    //this.getLocations();
   }
 
+  getLocations() {}
 
   ngAfterViewInit() {
-    this.loadMap();
-    this.loadItemPosition();
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.appData(userData).subscribe(
+        (data: AppData) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.locations = data.data.our_location;
+
+            for (let i = 0; i < this.locations.length; i++) {
+              this.loadMap(this.locations[i].lat, this.locations[i].lng);
+              this.loadItemPosition(
+                this.locations[i].lat,
+                this.locations[i].lng,
+                this.locations[i].title
+              );
+            }
+
+            console.log(' this.locations  :' + JSON.stringify(this.locations));
+          } else {
+            this.util.showMessage(data.msg);
+          }
+         
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
-  ngOnInit() {
-    
-  }
-  loadMap() {
-    let latLng = new google.maps.LatLng(this.lat, this.long);
+  ngOnInit() {}
+  loadMap(lat, long) {
+    let latLng = new google.maps.LatLng(lat, long);
 
     let styles: google.maps.MapTypeStyle[] = [
       {
@@ -51,10 +92,12 @@ export class OurPresencePage implements OnInit {
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
   }
 
-  loadItemPosition() {
+  loadItemPosition(lat, long, title) {
     this.plt.ready().then(() => {
-      this.focusMap(this.lat, this.long);
-      this.addMarker(this.lat, this.long);
+      //for(let i=0;i<this.ourLocations.length;i++){
+      this.focusMap(lat, long);
+      this.addMarker(lat, long, title);
+      // }
     });
   }
 
@@ -64,7 +107,7 @@ export class OurPresencePage implements OnInit {
     this.map.setZoom(10);
   }
 
-  addMarker(lat, lng) {
+  addMarker(lat, lng, title) {
     let latLng = new google.maps.LatLng(lat, lng);
 
     this.home = new google.maps.Marker({
@@ -72,7 +115,15 @@ export class OurPresencePage implements OnInit {
       position: latLng,
       animation: google.maps.Animation.DROP,
       icon: './../../../../assets/icon/location_pin.svg',
+      title: title,
     });
-  }
 
+    let infoWindow = new google.maps.InfoWindow({
+      content: title
+    });
+    this.home.addListener('click', () => {
+      infoWindow.open(this.map, this.home);
+    });
+  
+  }
 }
