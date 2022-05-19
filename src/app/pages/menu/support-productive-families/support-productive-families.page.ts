@@ -1,3 +1,5 @@
+import { CitysData, CitysResponse } from './../../../models/general';
+import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { LanguageService } from './../../../services/language/language.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -8,10 +10,16 @@ import {
   Photo,
 } from '@capacitor/camera';
 import { GeneralService } from 'src/app/services/general/general.service';
-import { ImageInfo } from 'src/app/models/general';
+import {
+  ImageInfo,
+  UserData,
+  GeneralSectionResponse,
+} from 'src/app/models/general';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isPlatform, Platform } from '@ionic/angular';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
+import { DataService } from 'src/app/services/data/data.service';
+import { AppData } from 'src/app/models/data';
 const IMAGE_DIR = 'stored-images';
 
 @Component({
@@ -24,6 +32,8 @@ export class SupportProductiveFamiliesPage implements OnInit {
   currentLanguage: string;
   basicImage: any = '';
   productImage: any = '';
+  cities: GeneralSectionResponse[];
+  neighborhoods: GeneralSectionResponse[];
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
@@ -31,12 +41,15 @@ export class SupportProductiveFamiliesPage implements OnInit {
     private sanitizer: DomSanitizer,
     private plt: Platform,
     private general: GeneralService,
-    private uploadImage:UploadImageService
+    private uploadImage: UploadImageService,
+    private util: UtilitiesService,
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
     this.currentLanguage = this.languageService.getLanguage();
     this.buildForm();
+    this.getAllCities();
   }
 
   buildForm() {
@@ -55,8 +68,14 @@ export class SupportProductiveFamiliesPage implements OnInit {
       neighborhood: ['', [Validators.required, Validators.minLength(2)]],
       twitterLink: ['', [Validators.required, Validators.minLength(2)]],
       instgramLink: ['', [Validators.required, Validators.minLength(2)]],
-      basicImage: this.basicImage,
-      productImage: this.productImage,
+      basicImage: [
+        this.basicImage,
+        [Validators.required, Validators.minLength(2)],
+      ],
+      productImage: [
+        this.productImage,
+        [Validators.required, Validators.minLength(2)],
+      ],
     });
   }
 
@@ -70,7 +89,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
     console.log('taken image by camera  :' + this.basicImage);
     await this.uploadImage.getImageConverted(image);
     this.productAdditionForm.value.basicImage = this.general.uploadedImage;
-    console.log('bsic image  :'+ this.productAdditionForm.value.basicImage)
+    console.log('bsic image  :' + this.productAdditionForm.value.basicImage);
   }
 
   async attachProductImage() {
@@ -83,8 +102,66 @@ export class SupportProductiveFamiliesPage implements OnInit {
     console.log('taken image by camera  :' + this.basicImage);
     await this.uploadImage.getImageConverted(image);
     this.productAdditionForm.value.productImage = this.general.uploadedImage;
-    console.log('bsic image  :'+ this.productAdditionForm.value.productImage)
+    console.log(
+      'product image  :' + this.productAdditionForm.value.productImage
+    );
   }
 
-  addProduct() {}
+  getAllCities() {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.appData(userData).subscribe(
+        (data: AppData) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.cities = data.data.cities;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseCity($event) {
+    const cityData: CitysData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+      city_id: $event.target.value,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.getNeighborhoods(cityData).subscribe(
+        (data: CitysResponse) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.neighborhoods = data.data;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseNeighborhood($event) {
+    console.log('Neighborhood : ' + $event.target.value);
+    this.productAdditionForm.value.neighborhood = $event.target.value;
+  }
+
+  // support productive families
+  addProduct() {
+    console.log(
+      'support productive families ' +
+        JSON.stringify(this.productAdditionForm.value)
+    );
+  }
 }

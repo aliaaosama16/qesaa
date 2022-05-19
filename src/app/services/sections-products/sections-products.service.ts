@@ -15,6 +15,7 @@ import {
   SectionResponse,
   StoreOrderData,
 } from 'src/app/models/sections';
+import { OrderListResponse } from 'src/app/models/order';
 
 @Injectable({
   providedIn: 'root',
@@ -28,26 +29,33 @@ export class SectionsProductsService {
   ) {}
 
   setCartCount() {
+    var count=0;
     const cartData: UserData = {
       lang: this.languageService.getLanguage(),
       user_id: 1,
     };
-    this.util.showLoadingSpinner().then((__) => {
+   // this.util.showLoadingSpinner().then((__) => {
       this.showCart(cartData).subscribe(
         (data: ProductsResponse) => {
           if (data.key == 1) {
             console.log('cart products  :' + data.data);
-            this.cartCount.next(data.data.length);
+            for(let i=0;i<data.data.length;i++){
+             count =data.data[i].count++;
+             
+            }
+
+            this.cartCount.next(count);
+           
           } else {
             this.util.showMessage(data.msg);
           }
-          this.util.dismissLoading();
+        //  this.util.dismissLoading();
         },
         (err) => {
-          this.util.dismissLoading();
+         // this.util.dismissLoading();
         }
       );
-    });
+   // });
   }
 
   getCartCount(): Observable<number> {
@@ -101,6 +109,13 @@ export class SectionsProductsService {
   storeOrder(data: StoreOrderData): Observable<ProductsResponse> {
     return this.httpclient.post<ProductsResponse>(
       `${environment.BASE_URL}store-order`,
+      data
+    );
+  }
+
+  showAllOrders(data: UserData): Observable<OrderListResponse> {
+    return this.httpclient.post<OrderListResponse>(
+      `${environment.BASE_URL}show-all-orders`,
       data
     );
   }

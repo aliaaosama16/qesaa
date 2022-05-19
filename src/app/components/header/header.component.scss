@@ -26,11 +26,14 @@ ion-header {
       margin-inline-end: 0px !important;
     }
 
+    // animate__slideInDown
     .cart-icon {
       display: flex;
       flex-direction: column;
+      margin-top: 8px;
       span {
         color: var(--ion-color-primary);
+        font-size: 10px;
       }
 
       ion-icon {

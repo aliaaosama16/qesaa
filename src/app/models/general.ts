@@ -42,6 +42,7 @@ export interface GeneralSectionResponse {
   section_title?: string;
   service_id?: number;
   service_title?: string;
+  count?: number;
 }
 
 export interface AuthDataResponse {
@@ -70,8 +71,6 @@ export interface CitysData extends UserData {
   city_id: number;
 }
 
-
-
-// export interface CountryResponse extends GeneralResponse{
-//   data: GeneralSection[];
-// }
+export interface CitysResponse extends GeneralResponse {
+  data: GeneralSectionResponse[];
+}

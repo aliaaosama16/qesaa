@@ -1,4 +1,9 @@
+import { UserData } from 'src/app/models/general';
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { Order, OrderListResponse } from 'src/app/models/order';
 
 @Component({
   selector: 'app-charity-market-requests',
@@ -6,40 +11,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charity-market-requests.page.scss'],
 })
 export class CharityMarketRequestsPage implements OnInit {
-// 1 waiting 2 canceled 3  confirmed
-  requests:any=[
-    {
-      id:1,
-      status:1,
-      requestStatus:'waiting',
-      requestNumber:3288372,
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:2,
-      status:2,
-      requestStatus:'canceled',
-      requestNumber:3288372,
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:3,
-      status:3,
-      requestStatus:'confirmed',
-      requestNumber:3288372,
-      date:'الخميس12 مارس 2021'
-    },
-    {
-      id:4,
-      status:1,
-      requestStatus:'waiting',
-      requestNumber:3288372,
-      date:'الخميس12 مارس 2021'
-    }
-  ]
-  constructor() { }
+  // 1 waiting 2 canceled 3  confirmed
+  requests: Order[];
 
+  constructor(
+    private languageService: LanguageService,
+    private util: UtilitiesService,
+    private sectionsService: SectionsProductsService
+  ) {}
+  // showAllOrders
   ngOnInit() {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: 1,
+    };
+    this.getAllOrders(userData);
   }
 
+  getAllOrders(userData: UserData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.showAllOrders(userData).subscribe(
+        (data: OrderListResponse) => {
+          if (data.key == 1) {
+            console.log('all orders : ' + JSON.stringify(data.data));
+            this.requests=data.data
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
 }

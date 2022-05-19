@@ -62,7 +62,7 @@ export class OnBoardingPage implements OnInit {
       this.general.intro().subscribe(
         (data: Intro) => {
           this.introData = data;
-          console.log('INTRO ' + JSON.stringify(this.introData));
+         // console.log('INTRO ' + JSON.stringify(this.introData));
           this.util.dismissLoading();
           this.getIntro = true;
         },

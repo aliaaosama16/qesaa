@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@capacitor/storage';
 import { Device } from '@capacitor/device';
 import { Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root',
@@ -73,10 +74,7 @@ export class UtilitiesService {
     this.loadingCtrl.dismiss();
   }
 
-  setUserLocation(lat, long) {
-    this.userLocation.lat = lat;
-    this.userLocation.lng = long;
-  }
+
 
   getCapacitorPlatform() {
     return Capacitor.getPlatform();
@@ -108,4 +106,28 @@ export class UtilitiesService {
     );
     return days;
   }
+
+  getUserLocation() {
+    return new Promise(async (resolve, reject) => {
+      const locationStatus = await Geolocation.requestPermissions().then(
+        async (res) => {
+          if (res['location'] == 'granted') {
+            const coordinates = await Geolocation.getCurrentPosition();
+            console.log(coordinates);
+            this.userLocation.lat = coordinates['coords'].latitude;
+            this.userLocation.lng = coordinates['coords'].longitude;
+            this.setUserLocation(coordinates['coords'].latitude,coordinates['coords'].longitude);
+          }
+        }
+      );
+      resolve(locationStatus);
+    });
+  }
+
+  setUserLocation(lat, long) {
+    this.userLocation.lat = lat;
+    this.userLocation.lng = long;
+  }
+
+
 }

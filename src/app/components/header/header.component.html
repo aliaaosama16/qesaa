@@ -19,9 +19,9 @@
     }}</ion-title>
 
     
-    <ion-buttons class="cart-icon" slot="end" *ngIf="hasMarketCart" (click)="showUserCart()">
+    <ion-buttons  class="cart-icon " slot="end" *ngIf="hasMarketCart" (click)="showUserCart()">
       <!-- <ion-button fill="solid" shape="round" color="primary"> -->
-        <span >{{cartCount}}</span>
+        <span class="animate__zoomOut" *ngIf="cartCount!=0">{{cartCount}}</span>
         <ion-icon  name="cart-outline" color="primary"></ion-icon>
       <!-- </ion-button> -->
     </ion-buttons>

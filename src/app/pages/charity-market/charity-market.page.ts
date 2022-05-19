@@ -40,6 +40,13 @@ export class CharityMarketPage implements OnInit {
       effect: 'fade',
     };
 
+    // set cart count 
+   // this.sectionsService.setCartCount();
+
+    // get all sections
+
+
+
     const sectionData: UserData = {
       lang: this.languageService.getLanguage(),
       user_id: 1,
@@ -50,7 +57,7 @@ export class CharityMarketPage implements OnInit {
           if (data.key == 1) {
             this.sections = data.data;
             console.log('all sections :' + this.sections);
-            this.getProductsBySection(  this.sections[0].id);
+           this.getProductsBySection(  this.sections[0].id);
           } else {
             this.util.showMessage(data.msg);
           }

@@ -1,3 +1,4 @@
+import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
@@ -106,7 +107,8 @@ export class AppComponent {
     private translate: TranslateService,
     private network: NetworkService,
     private menuCtrl: MenuController,
-    private appDataService: AppDataService
+    private appDataService: AppDataService,
+    private sectionsService:SectionsProductsService
   ) {
     this.initializeApp();
 
@@ -132,7 +134,11 @@ export class AppComponent {
       this.util.getDeviceID();
 
       // this.fcmService.initFcm();
-     
+      this.sectionsService.setCartCount();
+
+      this.util.getUserLocation();
+      console.log(this.util.userLocation.lat,this.util.userLocation.lng)
+
     });
   }
 

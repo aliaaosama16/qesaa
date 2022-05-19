@@ -15,9 +15,9 @@
         {{"orderNumber"|translate}}
       </div>
       <div class="requestNumber fn-16 qesaa-Janna-Bold">
-        #{{request.requestNumber}}
+        #{{request?.id}}
       </div>
-      <div class="requestDate fn-12 qesaa-Janna-Regular ion-text-end">{{request.date}}</div>
+      <div class="requestDate fn-12 qesaa-Janna-Regular ion-text-end">{{request?.order_date}}</div>
     </div>
     <!-- // 1 waiting 2 canceled 3  confirmed -->
     <div class="request-status">
@@ -25,7 +25,7 @@
         {{"orderStatus"|translate}}
       </div>
       <div class="requestStatus fn-16 qesaa-Janna-Bold">
-        <span class="green-color" *ngIf="request.status==3">
+        <!-- <span class="green-color" *ngIf="request.status==3">
           {{request.requestStatus|translate}}
         </span>
         <span class="red-color" *ngIf="request.status==2">
@@ -33,6 +33,10 @@
         </span>
         <span class="black-text-color" *ngIf="request.status==1">
           {{request.requestStatus|translate}}
+        </span> -->
+
+        <span  >
+          {{request?.status_f}}
         </span>
       </div>
     </div>

@@ -177,11 +177,9 @@ ion-badge {
       margin-right: 17px;
     }
 
-    // &::part(native) {
-    //   padding-inline-start: 0px !important;
-    //   padding-inline-end: 0px !important;
-    //   background: transparent;
-    // }
+    &::part(native) {
+     
+      border-radius: 24px;    }
 
     &:last-of-type {
       margin-bottom: 24px;
@@ -214,6 +212,8 @@ ion-select {
     border: 1px solid var(--ion-color-secondary);
     border-radius: 24px;
 
+
+
     ion-input,ion-textarea {
       --placeholder-color: var(--ion-color-gray);
       --placeholder-opacity: 1;
@@ -245,6 +245,7 @@ ion-select {
       padding-inline-start: 0px !important;
       padding-inline-end: 0px !important;
       background: transparent;
+      border-radius: 24px;
     }
 
     &:last-of-type {

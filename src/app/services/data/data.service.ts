@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { PageData } from 'src/app/models/pageData';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { UserData } from 'src/app/models/general';
+import { CitysData, CitysResponse, UserData } from 'src/app/models/general';
 import { Observable } from 'rxjs';
 import { AppData,  } from '../../models/data';
 
@@ -26,6 +26,13 @@ export class DataService {
   appData(data: UserData): Observable<AppData> {
     return this.httpclient.post<AppData>(
       `${environment.BASE_URL}app-data`,
+      data
+    );
+  }
+
+  getNeighborhoods(data: CitysData): Observable<CitysResponse> {
+    return this.httpclient.post<CitysResponse>(
+      `${environment.BASE_URL}neighborhoods`,
       data
     );
   }
