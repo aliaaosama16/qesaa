@@ -4,6 +4,7 @@ import { Filesystem } from '@capacitor/filesystem';
 import { Observable } from 'rxjs';
 import { GeneralResponse } from 'src/app/models/general';
 import { environment } from 'src/environments/environment';
+import { GeneralService } from '../general/general.service';
 import { LanguageService } from '../language/language.service';
 import { UtilitiesService } from '../utilities/utilities.service';
 
@@ -15,11 +16,12 @@ export class UploadImageService {
   constructor(
     private httpclient: HttpClient,
     private languageService: LanguageService,
-    private util: UtilitiesService
+    private util: UtilitiesService,
+    private generalService: GeneralService
   ) {}
 
   // read taken image then convert it to file ready to upload
-  async getImageConverted(image) {
+  async getImageConverted(image, imageComeFrom: string) {
     const data = await Filesystem.readFile({
       path: image.path,
     });
@@ -29,17 +31,23 @@ export class UploadImageService {
     formData.append('image', file);
     formData.append('lang', this.languageService.getLanguage());
     console.log('form data : ' + JSON.stringify(formData));
-    this.uploadTakenImage(formData);
+    this.uploadTakenImage(formData, imageComeFrom);
   }
 
-  uploadTakenImage(formData) {
-    this.uploadedImage = '';
+  uploadTakenImage(formData, imageComeFrom: string) {
     this.util.showLoadingSpinner().then((__) => {
       this.uploadImage(formData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
             alert('uploaded image is : ' + data.app_url);
-            this.uploadedImage = data.app_url;
+            if (imageComeFrom == 'basic')
+              this.generalService.setFamiliesBasicImage(data.app_url);
+            if (imageComeFrom == 'product')
+              this.generalService.setFamiliesProductImage(data.app_url);
+            if (imageComeFrom == 'profile')
+              this.generalService.setProfileImage(data.app_url);
+            if (imageComeFrom == 'donation')
+              this.generalService.setDonationImage(data.app_url);
           } else {
             this.util.showMessage(data.msg);
           }

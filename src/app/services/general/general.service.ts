@@ -21,11 +21,44 @@ import { ContactUsData } from 'src/app/models/contactUs';
   providedIn: 'root',
 })
 export class GeneralService {
-  uploadedImage: string;
-  constructor(
-    private httpclient: HttpClient,
-   
-  ) {}
+  familiesBasicImage: string = '';
+  familiesProductImage: string = '';
+  profileImage: string = '';
+  donationImage: string = '';
+
+  constructor(private httpclient: HttpClient) {}
+
+  setFamiliesBasicImage(image) {
+    this.familiesBasicImage = image;
+  }
+  getFamiliesBasicImage() {
+    return this.familiesBasicImage;
+  }
+
+
+  setFamiliesProductImage(image) {
+    this.familiesProductImage = image;
+  }
+  getFamiliesProductImage() {
+    return this.familiesProductImage;
+  }
+
+
+  setProfileImage(image) {
+    this.profileImage = image;
+  }
+  getProfileImage() {
+    return this.profileImage;
+  }
+
+
+  setDonationImage(image) {
+    this.donationImage = image;
+  }
+  getDonationImage() {
+    return this.donationImage;
+  }
+
 
   intro(): Observable<Intro> {
     return this.httpclient.get<Intro>(`${environment.BASE_URL}intro`);
@@ -65,6 +98,4 @@ export class GeneralService {
   //     data
   //   );
   // }
-
-  
 }

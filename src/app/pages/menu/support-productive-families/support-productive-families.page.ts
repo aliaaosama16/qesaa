@@ -87,9 +87,8 @@ export class SupportProductiveFamiliesPage implements OnInit {
     });
     this.basicImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
     console.log('taken image by camera  :' + this.basicImage);
-    await this.uploadImage.getImageConverted(image);
-    this.productAdditionForm.value.basicImage = this.general.uploadedImage;
-    console.log('bsic image  :' + this.productAdditionForm.value.basicImage);
+    await this.uploadImage.getImageConverted(image,'basic');
+   
   }
 
   async attachProductImage() {
@@ -100,11 +99,8 @@ export class SupportProductiveFamiliesPage implements OnInit {
     });
     this.productImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
     console.log('taken image by camera  :' + this.basicImage);
-    await this.uploadImage.getImageConverted(image);
-    this.productAdditionForm.value.productImage = this.general.uploadedImage;
-    console.log(
-      'product image  :' + this.productAdditionForm.value.productImage
-    );
+    await this.uploadImage.getImageConverted(image,'product');
+   
   }
 
   getAllCities() {
@@ -159,6 +155,12 @@ export class SupportProductiveFamiliesPage implements OnInit {
 
   // support productive families
   addProduct() {
+    this.productAdditionForm.value.basicImage = this.general.getFamiliesBasicImage();
+    console.log('bsic image  :' + this.general.getFamiliesBasicImage());
+    this.productAdditionForm.value.productImage = this.general.getFamiliesProductImage();
+    console.log(
+      'product image  :' + this.general.getFamiliesProductImage()
+    );
     console.log(
       'support productive families ' +
         JSON.stringify(this.productAdditionForm.value)

@@ -266,3 +266,43 @@
     }
   }
 }
+
+
+.bar {
+  position: relative;
+  width: 90%;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.home {
+  position: absolute;
+  top: 0px;
+  left: 60%;
+  width: 20%;
+  text-align: center;
+}
+
+.bar:before, .bar:after {
+  content:'';
+  position: absolute;
+  top: 0;
+  height: 0;
+  border-top: 30px solid white;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.bar:before {
+  left: 0;
+  width: 70%;
+  border-right: 30px solid transparent;
+}
+
+.bar:after {
+  right:0;
+  width: 30%;
+  border-left: 30px solid transparent;
+}
