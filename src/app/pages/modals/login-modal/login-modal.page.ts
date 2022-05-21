@@ -1,4 +1,6 @@
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginModalPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,public modal:ModalController) { }
 
   ngOnInit() {
   }
 
+
+  goLogin(){
+    this.modal.dismiss().then((_)=>{
+
+      this.router.navigateByUrl('/login')
+    })
+    
+  }
 }

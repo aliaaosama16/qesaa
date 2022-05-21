@@ -42,7 +42,7 @@
   --custom-border-6-radius: 6px;
   --custom-border-10-radius: 10px;
   --ion-background-color: var(--ion-color-white);
- 
+
   * {
     text-transform: lowercase;
   }
@@ -64,11 +64,11 @@
   }
 }
 
-.margin-8-top{
+.margin-8-top {
   margin-top: 8px;
 }
 
-.margin-18-bottom{
+.margin-18-bottom {
   margin-bottom: 18px;
 }
 .custom-border-10-radius {
@@ -157,7 +157,8 @@ ion-badge {
       height: 50px !important;
     }
 
-    ion-input,ion-textarea {
+    ion-input,
+    ion-textarea {
       --placeholder-color: var(--ion-color-gray);
       --placeholder-opacity: 1;
       --placeholder-font-style: "qesaa-Janna-Regular";
@@ -178,8 +179,8 @@ ion-badge {
     }
 
     &::part(native) {
-     
-      border-radius: 24px;    }
+      border-radius: 24px;
+    }
 
     &:last-of-type {
       margin-bottom: 24px;
@@ -199,7 +200,6 @@ ion-select {
   }
 }
 .form-container {
- 
   .item-has-focus {
     border: 1px solid var(--ion-color-primary);
 
@@ -212,9 +212,8 @@ ion-select {
     border: 1px solid var(--ion-color-secondary);
     border-radius: 24px;
 
-
-
-    ion-input,ion-textarea {
+    ion-input,
+    ion-textarea {
       --placeholder-color: var(--ion-color-gray);
       --placeholder-opacity: 1;
       --placeholder-font-style: "qesaa-Janna-Regular";
@@ -223,7 +222,7 @@ ion-select {
     }
 
     // ion-textarea.textarea-wrapper{
-      
+
     // }
 
     .custom-form-icon {
@@ -318,9 +317,9 @@ ion-tabs {
       }
     }
   }
-.my-tabs{
-  position: relative;
-}
+  .my-tabs {
+    position: relative;
+  }
   .tabs-up {
     width: 100%;
     height: 19.5px;
@@ -398,5 +397,30 @@ ion-modal {
 
   &::part(content) {
     backdrop-filter: blur(12px);
+  }
+}
+
+.my-custom-modal {
+  --border-radius: 20px;
+  --backdrop-opacity: 0.;
+  --min-height: 10vh;
+  --max-height: 30vh;
+  padding: 31px;
+
+  .content {
+    padding: 35px 32px;
+    .image {
+      margin-bottom: 15.3px;
+    }
+    .title {
+      margin-bottom: 28px;
+    }
+    .modal-btn {
+      ion-button {
+        &::part(native) {
+          height: 50px;
+        }
+      }
+    }
   }
 }
