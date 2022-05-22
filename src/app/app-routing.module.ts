@@ -77,6 +77,13 @@ const routes: Routes = [
         (m) => m.LoginModalPageModule
       ),
   },
+  {
+    path: 'rules',
+    loadChildren: () =>
+      import('./pages/menu/rules/rules.module').then(
+        (m) => m.RulesPageModule
+      ),
+  },
  
 ];
 @NgModule({

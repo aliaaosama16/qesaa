@@ -64,6 +64,10 @@
   }
 }
 
+.custom-6-margin-bottom {
+  margin-bottom: 6px;
+}
+
 .margin-8-top {
   margin-top: 8px;
 }
@@ -71,16 +75,17 @@
 .margin-18-bottom {
   margin-bottom: 18px;
 }
+
+.margin-24-bottom {
+  margin-bottom: 24px;
+}
+
 .custom-border-10-radius {
   border-radius: var(--custom-border-10-radius);
 }
 
 .custom-border-6-radius {
   border-radius: var(--custom-border-6-radius);
-}
-
-.custom-6-margin-bottom {
-  margin-bottom: 6px;
 }
 
 .ios-menu-header {
@@ -207,6 +212,27 @@ ion-select {
       background: var(--ion-color-primary);
     }
   }
+
+  .rules-container{
+    display: flex;
+    flex-direction: row;
+    .custom-item{
+      border: none !important;
+  
+     
+  
+      ion-checkbox {
+        --border-radius: 12px;
+        --size: 24px;
+        margin-inline-end:6px !important;
+      }
+    }
+    .rules{
+      color: #50A377;
+      margin-top: 12px;
+    }
+  }
+  
 
   ion-item {
     border: 1px solid var(--ion-color-secondary);
