@@ -10,6 +10,7 @@ import { AppData } from 'src/app/models/data';
 import { DataService } from 'src/app/services/data/data.service';
 declare var google: any;
 import * as moment from 'moment';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-donation-order',
@@ -34,7 +35,8 @@ export class DonationOrderPage implements OnInit {
     private plt: Platform,
     private util:UtilitiesService,
     private sectionsService:SectionsProductsService,
-    private dataService:DataService
+    private dataService:DataService,
+    private auth:AuthService
   ) {
     this.currentLanguage = this.languageService.getLanguage();
     
@@ -79,7 +81,7 @@ export class DonationOrderPage implements OnInit {
   getOrderTimes(){
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(
@@ -126,7 +128,7 @@ export class DonationOrderPage implements OnInit {
     console.log('donation form : '+JSON.stringify(this.donationForm.value))
     // const storeOrderData: StoreOrderData = {
     //   lang: this.languageService.getLanguage(),
-    //   user_id: 1,
+    //   user_id: this.auth.userID.value,
     //   type: StoreOrderType.volunteer,
     // };
     // this.util.showLoadingSpinner().then((__) => {

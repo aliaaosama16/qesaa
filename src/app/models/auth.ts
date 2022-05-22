@@ -10,14 +10,14 @@ export interface LoginData extends Language {
   phone: number;
   password: string;
   device_id: string;
-  user_type: UserType;
+  user_type?: UserType;
 }
 
 export interface RegisterData extends UserData {
-  user_type:UserType;
-  first_name:string;
-  phone:number;
-  password:string;
+  user_type: UserType;
+  first_name: string;
+  phone: number;
+  password: string;
   city_id?: number;
   neighborhood_id?: number;
   instagram?: string;
@@ -34,7 +34,7 @@ export interface ActivationData extends UserData {
   device_id: string;
 }
 
-export interface LogOutData extends UserData{
+export interface LogOutData extends UserData {
   device_id: string;
 }
 
@@ -47,4 +47,5 @@ export enum Status {
   Active = 'active',
   NonActive = 'non-active',
   Blocked = 'blocked',
+  NonConfirm = 'non-confirm',
 }

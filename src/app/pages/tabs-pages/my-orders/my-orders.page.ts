@@ -4,6 +4,7 @@ import { OrdersService } from './../../../services/orders/orders.service';
 import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -15,13 +16,14 @@ export class MyOrdersPage implements OnInit {
   constructor(
     private util: UtilitiesService,
     private orderService: OrdersService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
     this.showAllOrdersByUserId(userData);
   }

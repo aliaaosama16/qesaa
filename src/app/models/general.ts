@@ -46,6 +46,15 @@ export interface GeneralSectionResponse {
 }
 
 export interface AuthDataResponse {
+  first_name: string;
+  full_phone: string;
+  instagram: string;
+  twitter: string;
+  city_id: number;
+  city_title: string;
+  neighborhood_id: number;
+  neighborhood_title: string;
+  license_image: string;
   id?: number;
   user_type?: string;
   name: string;

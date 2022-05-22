@@ -3,15 +3,42 @@
     <img src="./../../../../assets/images/auth-left.svg" />
   </div>
 
-  <div class="title ion-padding-horizontal ion-margin-horizontal ">
+  <div class="title ion-padding-horizontal ion-margin-horizontal">
     <p class="ion-no-margin fn-24 qesaa-Janna-Bold">{{"signin"|translate}}</p>
   </div>
 
   <form
     (ngSubmit)="login()"
     [formGroup]="loginForm"
-    class="ion-margin-bottom ion-margin-horizontal  ion-padding-horizontal"
+    class="ion-margin-bottom ion-margin-horizontal ion-padding-horizontal"
   >
+    <!-- <ion-item lines="none" class="ion-margin-bottom">
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'custom-form-select-icon-ar':'custom-form-select-icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/forms/person.svg"
+      >
+      </ion-icon>
+      <ion-select
+        formControlName="userType"
+        (ionChange)="chooseUserType($event)"
+        placeholder='{{"account type"|translate}}'
+        okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}'
+        interface="popover"
+        mode="ios"
+      >
+        <ion-select-option
+          class="fn-16 qesaa-Janna-Regular"
+          [value]="type.id"
+          *ngFor="let type of userTypes"
+        >
+          {{type.type|translate}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item> -->
     <ion-item lines="none" class="ion-margin-bottom">
       <ion-icon
         class="custom-form-icon"
@@ -44,7 +71,12 @@
         [type]="inputLoginType"
         formControlName="password"
       ></ion-input>
-      <ion-icon (click)="showLoginPassword()" item-end color="gray" [name]="iconLoginName"></ion-icon>
+      <ion-icon
+        (click)="showLoginPassword()"
+        item-end
+        color="gray"
+        [name]="iconLoginName"
+      ></ion-icon>
     </ion-item>
 
     <ion-button class="form-btn" expand="block" type="submit" color="primary">
@@ -52,14 +84,21 @@
     </ion-button>
   </form>
 
-  <div class="other-content ion-padding-horizontal ion-margin-horizontal ion-text-center">
+  <div
+    class="other-content ion-padding-horizontal ion-margin-horizontal ion-text-center"
+  >
     <div routerLink="/forget-password" class="forget-text ion-margin-top">
       <p class="ion-no-margin fn-16 qesaa-Janna-Regular red-color">
         {{"forget-password"|translate}}
       </p>
     </div>
 
-    <ion-button class="form-btn" expand="block" routerLink="/register" color="secondary">
+    <ion-button
+      class="form-btn"
+      expand="block"
+      routerLink="/register"
+      color="secondary"
+    >
       <span class="fn-20 qesaa-Janna-Bold"> {{ "register"|translate}} </span>
     </ion-button>
 
@@ -70,15 +109,16 @@
     </div>
 
     <div class="language-contact">
-      <div routerLink="/tabs/contact-with-us"  class=" ion-text-center  contact ion-padding-horizontal ion-margin-horizontal ">
+      <div routerLink="/tabs/contact-with-us" class="ion-text-center contact">
         <p class="ion-no-margin fn-18 qesaa-Janna-Regular">
-          {{"contact us"|translate}}</p>
+          {{"contact us"|translate}}
+        </p>
       </div>
-    
+
       <div class="divider"></div>
-      <div   class=" ion-text-center  contact ion-padding-horizontal ion-margin-horizontal ">
+      <div class="ion-text-center contact" (click)="changeLanguage()">
         <p class="ion-no-margin fn-18 qesaa-Janna-Regular">
-          English
+          {{otherLanguage|uppercase}}
         </p>
       </div>
     </div>

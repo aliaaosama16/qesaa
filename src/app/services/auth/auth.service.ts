@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs'; import { ActivationData, AuthResponse, LoginData, LogOutData, RegisterData } from 'src/app/models/auth';
-import { ChangePasswordData, ForgetPasswordData } from 'src/app/models/forgetPassword';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  ActivationData,
+  AuthResponse,
+  LoginData,
+  LogOutData,
+  RegisterData,
+} from 'src/app/models/auth';
+import {
+  ChangePasswordData,
+  ForgetPasswordData,
+} from 'src/app/models/forgetPassword';
 import { GeneralResponse, UserData } from 'src/app/models/general';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@capacitor/storage';
@@ -8,12 +18,12 @@ import { HttpClient } from '@angular/common/http';
 import { LanguageService } from '../language/language.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { NotificationsResponse } from 'src/app/models/notifications';
+import { UserType } from 'src/app/models/userType';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   isAuthenticated = new BehaviorSubject(false);
   userID = new BehaviorSubject(0);
   noOfNotifications = new BehaviorSubject(0);
@@ -27,8 +37,8 @@ export class AuthService {
 
   storeStatusAfterRegisteration(data: AuthResponse) {
     this.storeToken(data.data?.api_token);
-    this.store('activation-status', data.data.is_active);
-    this.store('confirmation-status', data.data.is_confirmed);
+    this.store('qesaa-activation-status', data.data.is_active);
+    this.store('qesaa-confirmation-status', data.data.is_confirmed);
     this.setUserID(data.data.id);
   }
 
@@ -36,27 +46,34 @@ export class AuthService {
     this.isLogined();
     this.setUserID(data?.data?.id);
     this.storeToken(data?.data?.api_token);
-    this.store('status', data.status);
-    this.storeUserId( data?.data?.id);
-    //this.setNoOfNotifications(data?.data?.id);
+    this.store('qesaa-activation-status', data.data.is_active);
+    this.storeUserId(data?.data?.id);
+    this.storeUserType(data?.data?.user_type);
+    this.setNoOfNotifications(data?.data?.id);
   }
 
-  async storeUserId(id:number) {
+  async storeUserType(type: string) {
     await Storage.set({
-      key: "userID",
-      value: id.toString(),
+      key: 'qesaa-UserType',
+      value: type,
     });
   }
 
+  async storeUserId(id: number) {
+    await Storage.set({
+      key: 'qesaa-UserID',
+      value: id.toString(),
+    });
+  }
 
   async removeRegistrationData() {
     this.isLogout();
     this.removeToken();
     this.removeUserID();
     this.noOfNotifications.next(0);
-    await Storage.remove({ key: 'activation-status' });
-    await Storage.remove({ key: 'confirmation-status' });
-    await Storage.remove({ key: 'status' });
+    await Storage.remove({ key: 'qesaa-activation-status' });
+    await Storage.remove({ key: 'qesaa-confirmation-status' });
+    await Storage.remove({ key: 'qesaa-status' });
     //await Storage.clear();
   }
 
@@ -78,9 +95,9 @@ export class AuthService {
   }
 
   async getStoredUserID() {
-    const val = await Storage.get({ key: 'userID' });
+    const val = await Storage.get({ key: 'qesaa-UserID' });
     this.setUserID(parseInt(val.value));
-    //this.setNoOfNotifications(parseInt(val.value));
+    this.setNoOfNotifications(parseInt(val.value));
   }
 
   setNoOfNotifications(userId: number) {
@@ -116,20 +133,20 @@ export class AuthService {
 
   async storeToken(token: string) {
     await Storage.set({
-      key: 'USER-TOKEN',
+      key: 'qesaa-USER-TOKEN',
       value: token,
     });
   }
 
   async removeToken() {
     await Storage.remove({
-      key: 'USER-TOKEN',
+      key: 'qesaa-USER-TOKEN',
     });
   }
 
   async storeActivationStatus(status: boolean) {
     await Storage.set({
-      key: 'activation-status',
+      key: 'qesaa-activation-status',
       value: status.toString(),
     });
   }
@@ -142,16 +159,16 @@ export class AuthService {
   }
 
   async getUserToken() {
-    const val = await Storage.get({ key: 'USER-TOKEN' });
+    const val = await Storage.get({ key: 'qesaa-USER-TOKEN' });
     this.userToken = val.value;
   }
 
-  // userData(data: UserData): Observable<UserResponse> {
-  //   return this.httpclient.post<UserResponse>(
-  //     `${environment.BASE_URL}show-user`,
-  //     data
-  //   );
-  // }
+  userData(data: UserData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}show-user`,
+      data
+    );
+  }
   // updateUserData(data: UpdateUserData): Observable<UserResponse> {
   //   return this.httpclient.post<UserResponse>(
   //     `${environment.BASE_URL}update-user`,
@@ -200,5 +217,4 @@ export class AuthService {
       data
     );
   }
-  
 }

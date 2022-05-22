@@ -43,14 +43,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'verification-code',
+    path: 'verification-code/:userID',
     loadChildren: () =>
       import('./pages/auth/verification-code/verification-code.module').then(
         (m) => m.VerificationCodePageModule
       ),
   },
   {
-    path: 'change-password',
+    path: 'change-password/:userID',
     loadChildren: () =>
       import('./pages/auth/change-password/change-password.module').then(
         (m) => m.ChangePasswordPageModule

@@ -46,7 +46,7 @@ export class NotificationsPage implements OnInit {
 
     this.UserData = {
       lang: this.langaugeservice.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
     this.showNotification(this.UserData);
   }
@@ -127,7 +127,7 @@ export class NotificationsPage implements OnInit {
   }
 
   async updateNoOfNotifications() {
-    const userID = await Storage.get({ key: 'userID' });
+    const userID = await Storage.get({ key: 'qesaa-userID' });
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
   }

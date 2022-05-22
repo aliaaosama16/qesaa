@@ -14,6 +14,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { GeneralSectionResponse } from 'src/app/models/general';
 import { FamilyService } from 'src/app/services/family/family.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-productive-families',
@@ -27,7 +28,8 @@ export class ProductiveFamiliesPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private general: GeneralService,
-    private familyService: FamilyService
+    private familyService: FamilyService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class ProductiveFamiliesPage implements OnInit {
     //console.log('charity page title :  '+this.charityInfoType.title);
     const familyData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.familyService.providers(familyData).subscribe(

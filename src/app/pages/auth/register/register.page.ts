@@ -9,6 +9,9 @@ import { Location } from '@angular/common';
 import { UserType, UserTypeData } from './../../../models/userType';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CitysData, CitysResponse, GeneralSectionResponse, UserData } from 'src/app/models/general';
+import { AppData } from 'src/app/models/data';
+import { DataService } from 'src/app/services/data/data.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -40,8 +43,11 @@ export class RegisterPage implements OnInit {
   public registerForm: FormGroup;
   isRegisterSubmitted = false;
   isRulesChecked:boolean=false;
+  cities: GeneralSectionResponse[];
+  neighborhoods: GeneralSectionResponse[];
+  showProviderOptions:boolean=false;
   constructor(
-    private languaService: LanguageService,
+    private languageService: LanguageService,
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     private platform: Platform,
@@ -50,9 +56,10 @@ export class RegisterPage implements OnInit {
     private langaugeservice: LanguageService,
     private auth:AuthService,
     private router:Router,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private dataService:DataService
   ) {
-    this.currentLanguage = this.languaService.getLanguage();
+    this.currentLanguage = this.languageService.getLanguage();
   }
 
   ngOnInit() {
@@ -81,6 +88,8 @@ export class RegisterPage implements OnInit {
          
           phone: this.registerForm.value.phoneNumber,
           password: this.registerForm.value.password,
+          city_id: this.registerForm.value.city,
+          neighborhood_id:this.registerForm.value.neighborhood
         };
         this.util.showLoadingSpinner().then((__) => {
           this.auth.register(this.registerData).subscribe(
@@ -90,7 +99,7 @@ export class RegisterPage implements OnInit {
                 this.util.showMessage(data.msg);
                 this.auth.userID.next(data.data.id);
                 this.auth.storeStatusAfterRegisteration(data);
-                this.router.navigateByUrl('/code');
+                this.router.navigateByUrl(`/verification-code/${data.data.id}`);
                 this.registerForm.reset();
               } else {
                 this.util.showMessage(data.msg);
@@ -128,12 +137,69 @@ export class RegisterPage implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      rulesAcception:[false,[Validators.required]]
+      rulesAcception:[false,[Validators.required]],
+      city:[''],
+      neighborhood:['']
     });
+  }
+
+  getAllCities() {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+     // user_id: this.auth.userID.value,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.appData(userData).subscribe(
+        (data: AppData) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.cities = data.data.cities;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseCity($event) {
+    const cityData: CitysData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      city_id: $event.target.value,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.getNeighborhoods(cityData).subscribe(
+        (data: CitysResponse) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.neighborhoods = data.data;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseNeighborhood($event) {
+    console.log('Neighborhood : ' + $event.target.value);
+    
   }
 
   chooseUserType($event) {
     console.log('selected user type :' + $event.target.value);
+    if( $event.target.value=='provider'){
+      console.log('choosen user type');
+      this.showProviderOptions=true;
+      this.getAllCities();
+    }
   }
 
   get registerErrorControl() {

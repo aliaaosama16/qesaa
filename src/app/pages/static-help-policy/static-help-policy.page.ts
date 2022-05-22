@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { GeneralSectionResponse } from 'src/app/models/general';
 import { DataService } from 'src/app/services/data/data.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-static-help-policy',
@@ -22,7 +23,8 @@ export class StaticHelpPolicyPage implements OnInit {
     private general: GeneralService,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private data: DataService
+    private data: DataService,
+    private auth:AuthService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -33,7 +35,7 @@ export class StaticHelpPolicyPage implements OnInit {
   ngOnInit() {
     const helpData: StaticPageData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+    //  user_id: this.auth.userID.value,
       title: this.data.getPageData().title,
     };
     this.util.showLoadingSpinner().then((__) => {
@@ -47,7 +49,7 @@ export class StaticHelpPolicyPage implements OnInit {
             );
             //  this.util.showMessage(data.msg);
           } else {
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },

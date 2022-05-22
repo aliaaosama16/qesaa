@@ -77,7 +77,7 @@ export class ContactWithUsPage implements OnInit {
           if (data.key == 1) {
           //  this.util.showMessage(data.msg);
           } else {
-            this.util.showMessage(data.msg);
+          //  this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },

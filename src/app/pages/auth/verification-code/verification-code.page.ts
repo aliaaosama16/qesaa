@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -29,7 +29,7 @@ export class VerificationCodePage implements OnInit {
     private util:UtilitiesService,
     private language:LanguageService,
     private router:Router,
-    private data:DataService
+    private activatedRoute:ActivatedRoute
   ) {
     this.currentLanguage = this.languaService.getLanguage();
   }
@@ -44,7 +44,7 @@ export class VerificationCodePage implements OnInit {
 
     this.activationData = {
       lang: this.language.getLanguage(),
-      user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+      user_id:parseInt( this.activatedRoute.snapshot.paramMap.get('userID')),
       code: parseInt( this.codeValues.substring(9)),
       device_id: this.util.deviceID,
     };
@@ -55,7 +55,7 @@ export class VerificationCodePage implements OnInit {
           if (data.key == 1) {
             console.log('activeAccount  res :' + JSON.stringify(data));
             this.util.showMessage(data.msg);
-            this.util.showMessage('login now');
+           // this.util.showMessage('login now');
            // this.data.setPreviousPage('signin');
             this.router.navigateByUrl('/login');
           } else {

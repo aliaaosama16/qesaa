@@ -32,7 +32,7 @@ export class AboutPage implements OnInit {
   ngOnInit() {
     this.aboutData = {
       lang: this.languageService.getLanguage(),
-      user_id:1,
+     
       title:StaticPageTitle.about
     };
     this.util.showLoadingSpinner().then((__) => {
@@ -40,10 +40,10 @@ export class AboutPage implements OnInit {
         (data: StaticPageResponse) => {
           if (data.key == 1) {
             this.aboutDataResponse=data.data;
-            console.log('aboutDataResponse  :  '+JSON.stringify(this.aboutDataResponse))
+            //console.log('aboutDataResponse  :  '+JSON.stringify(this.aboutDataResponse))
           //  this.util.showMessage(data.msg);
           } else {
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },

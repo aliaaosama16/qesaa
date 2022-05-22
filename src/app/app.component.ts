@@ -1,17 +1,13 @@
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, MenuController, Platform } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { Platform } from '@ionic/angular';
 import { AuthService } from './services/auth/auth.service';
 import { LanguageService } from './services/language/language.service';
-import { NetworkService } from './services/network/network.service';
 import { UtilitiesService } from './services/utilities/utilities.service';
 import { Share } from '@capacitor/share';
-import { LogOutData } from './models/auth';
-import { DataService } from './services/data/data.service';
-import { AppDataService } from './services/app-data/app-data.service';
-
+import { LogOutData, Status } from './models/auth';
+import { Storage } from '@capacitor/storage';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -103,12 +99,8 @@ export class AppComponent {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private router: Router,
-    private alertController: AlertController,
-    private translate: TranslateService,
-    private network: NetworkService,
-    private menuCtrl: MenuController,
-    private appDataService: AppDataService,
-    private sectionsService:SectionsProductsService
+    private auth: AuthService,
+    private sectionsService: SectionsProductsService
   ) {
     this.initializeApp();
 
@@ -135,11 +127,26 @@ export class AppComponent {
 
       // this.fcmService.initFcm();
       this.sectionsService.setCartCount();
-
+      this.getLoginStatus();
       this.util.getUserLocation();
-      console.log(this.util.userLocation.lat,this.util.userLocation.lng)
-
+      console.log(this.util.userLocation.lat, this.util.userLocation.lng);
     });
+  }
+
+  async getLoginStatus() {
+    const loginStatus = await Storage.get({ key: 'qesaa-activation-status' });
+
+    if (loginStatus.value) {
+      this.auth.isLogined();
+      this.getUserNotifications();
+    }
+  }
+
+  async getUserNotifications() {
+    const userID = await Storage.get({ key: 'qesaa-userID' });
+    console.log('stored user id : ' + parseInt(userID.value));
+    this.auth.setNoOfNotifications(parseInt(userID.value));
+    this.auth.userID.next(parseInt(userID.value));
   }
 
   async shareApp() {

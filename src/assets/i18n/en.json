@@ -175,5 +175,9 @@
   "no prodiders":"no prodiders",
   "no products":"no products",
   "please login":"please login first",
-  "accept to":"accept to"
+  "accept to":"accept to",
+  "restore password":"restore password",
+  "enter new password":"enter new password",
+  "no orders": "no orders",
+  "waiting for admin approval":"waiting for admin approval"
 }

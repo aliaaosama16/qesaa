@@ -1,29 +1,36 @@
-<app-header  [hasMarketCart]="false" [haveBeforeHeader]="false" [title]="'account'" [isHome]="false"></app-header>
+<app-header
+  [hasMarketCart]="false"
+  [haveBeforeHeader]="false"
+  [title]="'account'"
+  [isHome]="false"
+></app-header>
 
 <ion-content class="ion-padding-horizontal">
   <div class="info">
     <div>
-      <img [src]="userData.avatar" />
+      <img [src]="userData?.avatar" />
     </div>
 
     <div class="name-phone">
-      <p class="name primary-color fn-22 qesaa-Janna-Bold">{{userData.name}}</p>
+      <p class="name primary-color fn-22 qesaa-Janna-Bold">
+        {{userData?.first_name}}
+      </p>
 
       <p class="fn-20 secondary-color qesaa-Janna-Regular">
-        {{userData.phone}}
+        {{userData?.phone}}
       </p>
     </div>
   </div>
 
-  <div class="wrapper"  routerLink="/tabs/account/edit">
+  <div class="wrapper" routerLink="/tabs/account/edit">
     <div class="container">
       <div class="icon">
-        <ion-icon src="./../../../../assets/icon/account/account_circle.svg"></ion-icon>
+        <img src="./../../../../assets/icon/account/account_circle.svg" />
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{"account-settings"|translate}}</span>
       </div>
-      <div class="tailing-icon" >
+      <div class="tailing-icon">
         <ion-icon src="./../../../../assets/icon/account/edit.svg"></ion-icon>
       </div>
     </div>
@@ -32,7 +39,9 @@
   <div class="wrapper">
     <div class="container">
       <div class="icon">
-        <ion-icon src="./../../../../assets/icon/account/notifications.svg"></ion-icon>
+        <ion-icon
+          src="./../../../../assets/icon/account/notifications.svg"
+        ></ion-icon>
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{"notifications-settings"|translate}}</span>
@@ -57,7 +66,9 @@
 
     <div class="container" routerLink="/tabs/account/contact-with-admin">
       <div class="icon">
-        <ion-icon src="./../../../../assets/icon/account/contact.svg"></ion-icon>
+        <ion-icon
+          src="./../../../../assets/icon/account/contact.svg"
+        ></ion-icon>
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{ "Communicate with management"|translate}}</span>
@@ -77,7 +88,7 @@
   </div>
 
   <div class="wrapper">
-    <div class="container"  (click)="aboutPage()">
+    <div class="container" (click)="aboutPage()">
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/about.svg"></ion-icon>
       </div>
@@ -90,7 +101,9 @@
 
     <div class="container">
       <div class="icon">
-        <ion-icon src="./../../../../assets/icon/account/version.svg"></ion-icon>
+        <ion-icon
+          src="./../../../../assets/icon/account/version.svg"
+        ></ion-icon>
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
         <span>{{"app version"|translate}}</span>

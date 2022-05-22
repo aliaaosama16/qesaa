@@ -1,12 +1,14 @@
 import { GeneralResponse, UserData } from './general';
-export interface OrderListResponse extends GeneralResponse{
-    data:Order[];
+import { StoreOrderType } from './sections';
+export interface OrderListResponse extends GeneralResponse {
+  data: Order[];
 }
 
-export interface OrderResponse extends GeneralResponse{
-    data:Order;
+export interface OrderResponse extends GeneralResponse {
+  data: Order;
 }
 export interface Order {
+  type: StoreOrderType;
   id: string;
   user_id: string;
   user_name: string;
@@ -51,7 +53,6 @@ export interface StatusMap {
   // "finish"='false'
 }
 
-
-export interface  OrderData extends UserData{
-    order_id:number;
+export interface OrderData extends UserData {
+  order_id: number;
 }

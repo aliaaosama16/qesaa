@@ -7,7 +7,9 @@
 
 <ion-content class="ion-padding-horizontal">
   <div class="user-image ion-text-center">
-    <img [src]="userData.avatar" />
+    <img *ngIf="userDetails?.avatar" [src]=" userDetails?.avatar" />
+    <img *ngIf="!userDetails?.avatar" src="./../../../../assets/images/profile.svg" />
+    
 
     <p class="ion-no-margin primary-color fn-22 qesaa-Janna-Bold">
       {{"image change"|translate}}
@@ -29,7 +31,7 @@
           src="./../../../../assets/icon/forms/person.svg"
         ></ion-icon>
         <ion-input
-        
+          [value]=" userDetails?.first_name"
           class="fn-16 qesaa-Janna-Regular"
           placeholder="{{'user-name'|translate}}"
           type="text"
@@ -46,6 +48,7 @@
           src="./../../../../assets/icon/forms/phone.svg"
         ></ion-icon>
         <ion-input
+          [value]=" userDetails?.phone"
           class="fn-16 qesaa-Janna-Regular"
           placeholder="{{'phone number'|translate}}"
           type="tel"

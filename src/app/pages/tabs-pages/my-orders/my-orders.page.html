@@ -30,4 +30,8 @@
             </ion-button>
         </div>
     </div>
+
+    <div *ngIf="orders?.length==0" class="no-data">
+        <p>{{"no orders"|translate}}</p>
+      </div>
 </ion-content>

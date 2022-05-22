@@ -17,7 +17,7 @@ export class LanguageService {
   ) {}
 
   async setInitialAppLanguage() {
-    const lang = await Storage.get({ key: 'lang' });
+    const lang = await Storage.get({ key: 'qesaa-lang' });
     console.log(`stored lang is ${lang.value}`);
     console.log(`stored lang is obj ` + JSON.stringify(lang));
     if (lang.value != null) {
@@ -48,7 +48,7 @@ export class LanguageService {
     this.translate.use(lng);
     this.selected = lng;
     await Storage.set({
-      key: 'lang',
+      key: 'qesaa-lang',
       value: lng,
     });
 

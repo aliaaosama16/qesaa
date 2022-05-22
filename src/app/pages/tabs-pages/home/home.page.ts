@@ -11,6 +11,7 @@ import { HomeService } from 'src/app/services/home/home.service';
 import { HomeResponse } from 'src/app/models/home';
 import { StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 SwiperCore.use([Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
@@ -40,11 +41,13 @@ export class HomePage implements OnInit {
     private router: Router,
     private data: DataService,
     private home: HomeService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private auth:AuthService
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.languageService.getLanguage();
     this.menuCtrl.enable(true, 'main');
+    console.log('user id : '+this.auth.userID.value)
   }
 
   ngOnInit() {
@@ -73,7 +76,7 @@ export class HomePage implements OnInit {
 
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      //user_id: this.auth.userID.value,
     };
     this.getHomeData(userData);
   }
@@ -85,8 +88,8 @@ export class HomePage implements OnInit {
   charityInfo(title: string) {
     this.router.navigate([`/tabs/home/info`]);
     if (title == 'goals') this.data.setPageData(StaticPageTitle.goals);
-    if (title == 'message') this.data.setPageData(StaticPageTitle.vission);
-    if (title == 'vission') this.data.setPageData(StaticPageTitle.message);
+    if (title == 'message') this.data.setPageData(StaticPageTitle.message);
+    if (title == 'vission') this.data.setPageData(StaticPageTitle.vission);
   }
 
   getHomeData(userData: UserData) {
@@ -113,7 +116,7 @@ export class HomePage implements OnInit {
   doRefresh($event) {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
     };
     this.home.home(userData).subscribe(
       (data: HomeResponse) => {

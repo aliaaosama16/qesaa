@@ -6,6 +6,7 @@ import { AppDataService } from 'src/app/services/app-data/app-data.service';
 import { AppData, AppDataOptions } from 'src/app/models/data';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { DataService } from 'src/app/services/data/data.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-our-presence',
@@ -26,7 +27,8 @@ export class OurPresencePage implements OnInit {
     private appData: AppDataService,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private dataService: DataService
+    private dataService: DataService,
+    private auth:AuthService
   ) {
     //this.getLocations();
   }
@@ -36,7 +38,7 @@ export class OurPresencePage implements OnInit {
   ngAfterViewInit() {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      //user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(
@@ -54,7 +56,7 @@ export class OurPresencePage implements OnInit {
               );
             }
 
-            console.log(' this.locations  :' + JSON.stringify(this.locations));
+          //  console.log(' this.locations  :' + JSON.stringify(this.locations));
           } else {
             this.util.showMessage(data.msg);
           }

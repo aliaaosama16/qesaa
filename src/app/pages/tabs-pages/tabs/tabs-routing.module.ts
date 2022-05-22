@@ -41,6 +41,7 @@ const routes: Routes = [
           },
           {
             path: 'market',
+            canActivate: [IsAuthGuard],
             children: [
               {
                 path: '',
@@ -84,6 +85,7 @@ const routes: Routes = [
       },
       {
         path: 'donation-order',
+        canActivate: [IsAuthGuard],
         loadChildren: () =>
           import(
             './../../tabs-pages/donation-order/donation-order.module'

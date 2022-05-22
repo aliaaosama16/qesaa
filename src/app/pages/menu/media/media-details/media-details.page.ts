@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { MediaService } from 'src/app/services/media/media.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-media-details',
@@ -27,7 +28,8 @@ export class MediaDetailsPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private mediaService: MediaService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private auth:AuthService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -41,7 +43,7 @@ export class MediaDetailsPage implements OnInit {
   ngOnInit() {
     this.articalData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value,
       media_id:this.mediaID
     };
     this.util.showLoadingSpinner().then((__) => {

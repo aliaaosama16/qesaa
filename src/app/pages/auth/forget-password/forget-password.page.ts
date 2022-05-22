@@ -12,9 +12,9 @@ import { AuthResponse, ForgetPasswordData } from 'src/app/models/auth';
   styleUrls: ['./forget-password.page.scss'],
 })
 export class ForgetPasswordPage implements OnInit {
-
   currentLanguage: string;
   forgetForm: FormGroup;
+  isForgetPasswordSubmitted: boolean = false;
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder,
@@ -30,12 +30,11 @@ export class ForgetPasswordPage implements OnInit {
     this.buildForm();
   }
 
-  forgetPassword(){
-    console.log(
-      'change pass form : ' + JSON.stringify(this.forgetForm.value)
-    );
+  forgetPassword() {
+    this.isForgetPasswordSubmitted=true;
+    console.log('change pass form : ' + JSON.stringify(this.forgetForm.value));
     if (this.forgetForm.valid) {
-      const forgetPasswordData:ForgetPasswordData = {
+      const forgetPasswordData: ForgetPasswordData = {
         lang: this.langaugeservice.getLanguage(),
         phone: this.forgetForm.value.phoneNumber,
       };
@@ -43,9 +42,9 @@ export class ForgetPasswordPage implements OnInit {
         this.auth.forgetPassword(forgetPasswordData).subscribe(
           (data: AuthResponse) => {
             if (data.key == 1) {
-              console.log('login res :' + JSON.stringify(data));
+              console.log('forget password res :' + JSON.stringify(data));
               this.util.showMessage(data.msg);
-              this.router.navigateByUrl('/chnage-password/' + data.data.id);
+              this.router.navigateByUrl('/change-password/' + data.data.id);
             } else {
               this.util.showMessage(data.msg);
             }
@@ -59,19 +58,21 @@ export class ForgetPasswordPage implements OnInit {
     }
   }
 
+  get forgetPasswordErrorControl() {
+    return this.forgetForm.controls;
+  }
+
   buildForm() {
     this.forgetForm = this.formBuilder.group({
-    
       phoneNumber: [
         '',
         [
           Validators.required,
-         // Validators.pattern(/^05/),
+          // Validators.pattern(/^05/),
           Validators.minLength(10),
           Validators.maxLength(10),
         ],
       ],
-
     });
   }
 }

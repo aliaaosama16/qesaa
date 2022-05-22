@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppData, AppDataOptions } from 'src/app/models/data';
 import { GeneralSectionResponse, UserData } from 'src/app/models/general';
+import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data.service';
 import { LanguageService } from '../language/language.service';
 import { UtilitiesService } from '../utilities/utilities.service';
@@ -16,13 +17,14 @@ export class AppDataService {
   constructor(
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private dataService: DataService
+    private dataService: DataService,
+    private auth:AuthService
   ) {}
 
     getData() {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(
@@ -40,7 +42,7 @@ export class AppDataService {
             //   data.data.our_location
             // );
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },

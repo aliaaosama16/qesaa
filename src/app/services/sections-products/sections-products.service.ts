@@ -16,6 +16,7 @@ import {
   StoreOrderData,
 } from 'src/app/models/sections';
 import { OrderListResponse } from 'src/app/models/order';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,14 +26,17 @@ export class SectionsProductsService {
   constructor(
     private httpclient: HttpClient,
     private languageService: LanguageService,
-    private util: UtilitiesService
-  ) {}
+    private util: UtilitiesService,
+    private auth:AuthService
+  ) {
+    console.log('user id : ',this.auth.userID.value)
+  }
 
   setCartCount() {
     var count=0;
     const cartData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
    // this.util.showLoadingSpinner().then((__) => {
       this.showCart(cartData).subscribe(
@@ -47,7 +51,7 @@ export class SectionsProductsService {
             this.cartCount.next(count);
            
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
         //  this.util.dismissLoading();
         },

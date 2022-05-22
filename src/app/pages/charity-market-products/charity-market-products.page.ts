@@ -15,6 +15,7 @@ import {
   StoreOrderType,
 } from '../../models/sections';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-charity-market-products',
@@ -28,13 +29,14 @@ export class CharityMarketProductsPage implements OnInit {
     private router: Router,
     private util: UtilitiesService,
     private languageService: LanguageService,
-    private sectionsService: SectionsProductsService
+    private sectionsService: SectionsProductsService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
     const cartData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
     this.getCartProducts(cartData);
   }
@@ -47,7 +49,7 @@ export class CharityMarketProductsPage implements OnInit {
             this.products = data.data;
             console.log('cart products  :' + this.products);
           } else {
-            this.util.showMessage(data.msg);
+          //  this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },
@@ -62,7 +64,7 @@ export class CharityMarketProductsPage implements OnInit {
     console.log('delete product with id : ' + productID);
     const cartData: CartData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id:143,
       cart_id: productID,
       count: CartCount.delete,
     };
@@ -73,13 +75,13 @@ export class CharityMarketProductsPage implements OnInit {
             this.util.showMessage(data.msg).then((_) => {
               const cartData: UserData = {
                 lang: this.languageService.getLanguage(),
-                user_id: 1,
+                user_id: this.auth.userID.value,
               };
               this.sectionsService.setCartCount();
               this.getCartProducts(cartData);
             });
           } else {
-            this.util.showMessage(data.msg);
+            //this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },
@@ -93,7 +95,7 @@ export class CharityMarketProductsPage implements OnInit {
   checkout() {
     const storeOrderData: StoreOrderData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
       type: StoreOrderType.service,
     };
     this.util.showLoadingSpinner().then((__) => {

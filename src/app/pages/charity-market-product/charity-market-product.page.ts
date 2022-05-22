@@ -5,6 +5,7 @@ import { SectionsProductsService } from 'src/app/services/sections-products/sect
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { ProductData, ProductResponse } from 'src/app/models/sections';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-charity-market-product',
@@ -19,7 +20,8 @@ export class CharityMarketProductPage implements OnInit {
     private util: UtilitiesService,
     private sectionsService: SectionsProductsService,
     private activatedRoute: ActivatedRoute,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class CharityMarketProductPage implements OnInit {
     );
     const productData: ProductData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id:this.auth.userID.value,
       service_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
     };
 
@@ -39,7 +41,7 @@ export class CharityMarketProductPage implements OnInit {
             this.productDetails = data.data;
             console.log('get priduct by  :' + this.productDetails);
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },
@@ -53,7 +55,7 @@ export class CharityMarketProductPage implements OnInit {
   addProduct() {
     const productData: ProductData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: 143,
       service_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
     };
 

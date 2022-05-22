@@ -20,6 +20,10 @@ import { isPlatform, Platform } from '@ionic/angular';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { AppData } from 'src/app/models/data';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthResponse, RegisterData } from 'src/app/models/auth';
+import { Router } from '@angular/router';
+import { UserType } from 'src/app/models/userType';
 const IMAGE_DIR = 'stored-images';
 
 @Component({
@@ -37,13 +41,14 @@ export class SupportProductiveFamiliesPage implements OnInit {
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
-    private generalService: GeneralService,
+    private langaugeservice:LanguageService,
     private sanitizer: DomSanitizer,
-    private plt: Platform,
+    private router:Router,
     private general: GeneralService,
     private uploadImage: UploadImageService,
     private util: UtilitiesService,
-    private dataService: DataService
+    private dataService: DataService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -106,7 +111,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
   getAllCities() {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(
@@ -128,7 +133,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
   chooseCity($event) {
     const cityData: CitysData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
       city_id: $event.target.value,
     };
     this.util.showLoadingSpinner().then((__) => {
@@ -165,5 +170,41 @@ export class SupportProductiveFamiliesPage implements OnInit {
       'support productive families ' +
         JSON.stringify(this.productAdditionForm.value)
     );
+
+    
+  }
+
+  registerFamily(userData: RegisterData) {
+    const registerData:RegisterData = {
+      user_type:UserType.market,
+      lang: this.langaugeservice.getLanguage(),
+      first_name: this.productAdditionForm.value.userName, 
+      phone: this.productAdditionForm.value.phoneNumber,
+      password: '123456',
+      city_id:this.productAdditionForm.value.city,
+      neighborhood_id:this.productAdditionForm.value.neighborhood,
+      avatar:this.general.getFamiliesBasicImage(),
+      license_image:this.general.getFamiliesProductImage()
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.register(registerData).subscribe(
+        (data: AuthResponse) => {
+          if (data.key == 1) {
+            console.log('registerFamily res :' + JSON.stringify(data));
+            //this.util.showMessage(data.msg);
+            // this.auth.userID.next(data.data.id);
+            // this.auth.storeStatusAfterRegisteration(data);
+            this.router.navigateByUrl('/tabs/home/families');
+            
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 }

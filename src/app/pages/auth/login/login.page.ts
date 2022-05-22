@@ -13,7 +13,22 @@ import { UserType } from 'src/app/models/userType';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  userTypes: any[] = [
+    {
+      id: UserType.client,
+      type: UserType.client,
+    },
+    {
+      id: UserType.provider,
+      type: UserType.provider,
+    },
+    {
+      id: UserType.market,
+      type: UserType.market,
+    },
+  ];
   currentLanguage: string;
+  otherLanguage: string = 'English';
   loginForm: FormGroup;
   isSignInSubmitted = false;
   iconLoginName: string = 'eye-off-outline';
@@ -45,25 +60,30 @@ export class LoginPage implements OnInit {
         phone: this.loginForm.value.phoneNumber,
         password: this.loginForm.value.password,
         device_id: this.util.deviceID,
-        user_type:  UserType.client
+       // user_type: this.loginForm.value.userType,
       };
       this.util.showLoadingSpinner().then((__) => {
         this.auth.login(this.loginData).subscribe(
           (data: AuthResponse) => {
             if (data.key == 1) {
               console.log('login res :' + JSON.stringify(data));
-              if (data.status == Status.Active) {
+              if (data.data.is_active) {
                 this.router.navigateByUrl('/tabs/home');
-
                 this.auth.storeStatusAfterLogin(data);
                 this.auth.setUserID(data.data.id);
+                this.auth.storeUserType(data.data.user_type)
                 this.loginForm.reset();
-              } else if (data.status == Status.NonActive) {
-                this.router.navigateByUrl('/verification-code');
-              } else if (data.status == Status.Blocked) {
-                this.util.showMessage(
-                  'you are blocked.Contact with management'
-                );
+              } 
+              // else if (data.status == Status.NonActive) {
+              //   this.router.navigateByUrl(`/verification-code/${data.data.id}`);
+              // } else if (data.status == Status.NonConfirm) {
+              //   this.util.showMessage('waiting for admin approval');
+              // }
+               else if (!data.data.is_active) {
+                this.router.navigateByUrl(`/verification-code/${data.data.id}`);
+                // this.util.showMessage(
+                //   'you are blocked.Contact with management'
+                // );
               }
             } else {
               this.util.showMessage(data.msg);
@@ -76,6 +96,7 @@ export class LoginPage implements OnInit {
         );
       });
     } else {
+      console.log('form not valid');
       return false;
     }
   }
@@ -92,8 +113,14 @@ export class LoginPage implements OnInit {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      userType: ['', ],
     });
   }
+
+  // chooseUserType($event) {
+  //   console.log('selected user type :' + $event.target.value);
+  //   this.loginForm.value.userType = $event.target.value;
+  // }
 
   get loginErrorControl() {
     return this.loginForm.controls;
@@ -103,5 +130,16 @@ export class LoginPage implements OnInit {
     this.showLoginPass = !this.showLoginPass;
     this.iconLoginName = this.showLoginPass ? 'eye-outline' : 'eye-off-outline';
     this.inputLoginType = this.showLoginPass ? 'text' : 'password';
+  }
+
+  changeLanguage() {
+    if (this.langaugeservice.getLanguage() == 'ar') {
+      document.documentElement.dir = 'ltr';
+      this.langaugeservice.setLanguage('en');
+    } else {
+      document.documentElement.dir = 'rtl';
+      this.langaugeservice.setLanguage('ar');
+    }
+    window.location.reload();
   }
 }

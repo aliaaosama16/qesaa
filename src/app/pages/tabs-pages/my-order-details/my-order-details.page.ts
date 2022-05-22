@@ -8,6 +8,7 @@ import { DriverLocationPage } from '../../modals/driver-location/driver-location
 import { ImageModalPage } from '../../modals/image-modal/image-modal.page';
 import { Order, OrderData, OrderResponse } from 'src/app/models/order';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-my-order-details',
@@ -93,7 +94,8 @@ export class MyOrderDetailsPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private orderService: OrdersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private auth:AuthService
   ) {
     this.currentlangauge = this.LanguageService.getLanguage();
   }
@@ -101,7 +103,7 @@ export class MyOrderDetailsPage implements OnInit {
   ngOnInit() {
     const orderData: OrderData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: this.auth.userID.value,
       order_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
     };
     this.showOrderByOederID(orderData);

@@ -27,9 +27,9 @@ export class IsAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    const loginStatus = await Storage.get({ key: 'status' });
+    const loginStatus = await Storage.get({ key: 'qesaa-activation-status' });
     console.log('login status' + loginStatus.value);
-    if (loginStatus.value == 'active') {
+    if (loginStatus.value ) {
       this.auth.isLogined();
       return true;
     } else {

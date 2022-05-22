@@ -145,6 +145,11 @@ ion-badge {
 }
 
 .custom-form-container {
+  .error-box {
+    color: var(--ion-color-danger);
+    margin: 10px auto;
+    text-align: center;
+  }
   .item-has-focus {
     border: 1px solid var(--ion-color-primary);
 
@@ -205,6 +210,11 @@ ion-select {
   }
 }
 .form-container {
+  .error-box {
+    color: var(--ion-color-danger);
+    margin: 10px auto;
+    text-align: center;
+  }
   .item-has-focus {
     border: 1px solid var(--ion-color-primary);
 
@@ -213,26 +223,23 @@ ion-select {
     }
   }
 
-  .rules-container{
+  .rules-container {
     display: flex;
     flex-direction: row;
-    .custom-item{
+    .custom-item {
       border: none !important;
-  
-     
-  
+
       ion-checkbox {
         --border-radius: 12px;
         --size: 24px;
-        margin-inline-end:6px !important;
+        margin-inline-end: 6px !important;
       }
     }
-    .rules{
-      color: #50A377;
+    .rules {
+      color: #50a377;
       margin-top: 12px;
     }
   }
-  
 
   ion-item {
     border: 1px solid var(--ion-color-secondary);
@@ -247,15 +254,11 @@ ion-select {
       --color: var(--ion-color-primary) !important;
     }
 
-    // ion-textarea.textarea-wrapper{
-
-    // }
-
     .custom-form-icon {
       font-size: 20px;
       background: var(--ion-color-secondary);
       padding: 14px;
-      border-radius: 100px;
+      border-radius: 24px;
     }
 
     .icon-ar {
@@ -413,22 +416,22 @@ ion-tabs {
   height: 48px;
 }
 
-ion-modal {
-  --background: transparent !important;
-  --backdrop-opacity: var(--ion-backdrop-opacity, 1);
-}
+// ion-modal {
+//   --background: transparent !important;
+//   --backdrop-opacity: var(--ion-backdrop-opacity, 1);
+// }
 
-.transparent-modal {
-  --background: rgba(44, 39, 45, 0.2);
+// .transparent-modal {
+//   --background: rgba(44, 39, 45, 0.2);
 
-  &::part(content) {
-    backdrop-filter: blur(12px);
-  }
-}
+//   &::part(content) {
+//     backdrop-filter: blur(12px);
+//   }
+// }
 
 .my-custom-modal {
   --border-radius: 20px;
-  --backdrop-opacity: 0.;
+  //--backdrop-opacity: 0.;
   --min-height: 10vh;
   --max-height: 30vh;
   padding: 31px;
@@ -449,4 +452,8 @@ ion-modal {
       }
     }
   }
+}
+
+ion-modal {
+  background: rgba($color: #030303, $alpha: 0.89) !important;
 }

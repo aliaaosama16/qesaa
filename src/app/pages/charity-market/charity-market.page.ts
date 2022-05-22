@@ -11,6 +11,7 @@ import {
   SectionProductsResponse,
   SectionResponse,
 } from 'src/app/models/sections';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-charity-market',
@@ -27,7 +28,8 @@ export class CharityMarketPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private sectionsService: SectionsProductsService,
-    private router: Router
+    private router: Router,
+    private auth:AuthService
   ) {
     this.currentlangauge = this.languageService.getLanguage();
   }
@@ -49,7 +51,7 @@ export class CharityMarketPage implements OnInit {
 
     const sectionData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id:this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.sectionsService.getAllSections(sectionData).subscribe(
@@ -59,7 +61,7 @@ export class CharityMarketPage implements OnInit {
             console.log('all sections :' + this.sections);
            this.getProductsBySection(  this.sections[0].id);
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },
@@ -79,7 +81,7 @@ export class CharityMarketPage implements OnInit {
   getProductsBySection(sectionID) {
     const sectionProductsData: SectionProductsData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+      user_id: 143,
       section_id: sectionID,
     };
 

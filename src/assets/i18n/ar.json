@@ -175,5 +175,9 @@
   "no prodiders":"لا يوجد اسر منتجه",
   "no products":"السله فارغة",
   "please login":"يرجي تسجيل دخول أولا",
-  "accept to":"أوافق على"
+  "accept to":"أوافق على",
+  "restore password":"استرجاع كلمة المرور",
+  "enter new password":"ادخل كلمة المرور الجديدة",
+  "no orders":"لا يوجد طلبات",
+  "waiting for admin approval":"بانتظار موافقة الادمن"
 }

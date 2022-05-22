@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { MediaService } from 'src/app/services/media/media.service';
 import { Artical, ArticalsData, ArticalsDataResponse, ArticalType } from 'src/app/models/articals';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class OurProjectsPage implements OnInit {
     private location: Location,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private mediaService: MediaService
+    private mediaService: MediaService,
+    private auth:AuthService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -35,7 +37,7 @@ export class OurProjectsPage implements OnInit {
   ngOnInit() {
     this.articalData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value,
       type: ArticalType.projects,
     };
     this.util.showLoadingSpinner().then((__) => {
@@ -43,13 +45,13 @@ export class OurProjectsPage implements OnInit {
         (data: ArticalsDataResponse) => {
           if (data.key == 1) {
             this.projects = data.data;
-            console.log(
-              'articalDataResponse  :  ' +
-                JSON.stringify(this.articalDataResponse)
-            );
+            // console.log(
+            //   'articalDataResponse  :  ' +
+            //     JSON.stringify(this.articalDataResponse)
+            // );
            // this.util.showMessage(data.msg);
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },

@@ -11,6 +11,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { GeneralSectionResponse } from 'src/app/models/general';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-charity-goals-message',
@@ -27,7 +28,8 @@ export class CharityGoalsMessagePage implements OnInit {
     private data: DataService,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private general: GeneralService
+    private general: GeneralService,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class CharityGoalsMessagePage implements OnInit {
     console.log('cahrity page title :  '+this.charityInfoType.title);
     this.charityInfoData = {
       lang: this.languageService.getLanguage(),
-      user_id: 1,
+     // user_id: this.auth.userID.value,
       title:this.charityInfoType.title,
     };
     this.util.showLoadingSpinner().then((__) => {
@@ -49,7 +51,7 @@ export class CharityGoalsMessagePage implements OnInit {
             );
             //this.util.showMessage(data.msg);
           } else {
-            this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg);
           }
           this.util.dismissLoading();
         },
