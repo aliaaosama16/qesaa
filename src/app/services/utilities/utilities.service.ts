@@ -115,38 +115,50 @@ export class UtilitiesService {
       );
       //calc hours
       if (afterDays > 3600) {
-        remaingTime.hours = Math.floor(
-          (delta - remaingTime.days * 86400) / 3600
-        );
+        remaingTime.hours = Math.floor(afterDays / 3600);
 
-        if (afterDays - remaingTime.hours * 3600 > 60) {
-          remaingTime.minutes = Math.floor(
-            (afterDays - remaingTime.hours * 3600) / 60
-          );
+        var afterHours = afterDays - remaingTime.hours * 3600;
 
-          console.log('remaining seconds after minutes : '+(afterDays - remaingTime.minutes * 60))
-          if ((afterDays - remaingTime.minutes * 60) > 60) {
-            remaingTime.seconds =0
-            //  Math.floor(
-            //   afterDays - remaingTime.minutes * 60
-            // );
-          }else{
-            
-          }
+        if (afterHours > 60) {
+          remaingTime.minutes = Math.floor(afterHours / 60);
+
+          remaingTime.seconds = afterHours - remaingTime.minutes * 60;
         }
 
+        // if (afterDays - remaingTime.hours * 3600 > 60) {
+        //   remaingTime.minutes = Math.floor(
+        //     (afterDays - remaingTime.hours * 3600) / 60
+        //   );
+
+        //   console.log('remaining seconds after minutes : '+(afterDays - remaingTime.minutes * 60))
+        //   if ((afterDays - remaingTime.minutes * 60) > 60) {
+        //     remaingTime.seconds =0
+        //     //  Math.floor(
+        //     //   afterDays - remaingTime.minutes * 60
+        //     // );
+        //   }else{
+
+        //   }
+        // }
       } else {
         remaingTime.hours = 0;
 
         if (afterDays > 60) {
           remaingTime.minutes = Math.floor(afterDays / 60);
 
-          remaingTime.seconds = 0//afterDays - remaingTime.minutes * 60;
+          remaingTime.seconds = 0; //afterDays - remaingTime.minutes * 60;
         }
       }
-    } else if (delta > 3600) {
-      var hours = Math.floor(delta / 3600);
-      console.log('hours else :' + hours);
+    } else if (delta > 3600 && delta < 86400) {
+      remaingTime.hours = Math.floor(delta / 3600);
+
+      var afHours = delta - remaingTime.hours * 3600;
+
+      if (afHours > 60) {
+        remaingTime.minutes = Math.floor(afHours / 60);
+
+        remaingTime.seconds= afHours-  remaingTime.minutes*60;
+      }
     }
 
     // console.log(
@@ -187,6 +199,8 @@ export class UtilitiesService {
     this.userLocation.lat = lat;
     this.userLocation.lng = long;
   }
+
+
 }
 
 // console.log('remaingingSeconds  : ' + delta);

@@ -1,35 +1,105 @@
-<app-header [haveBeforeHeader]="false" [title]="'donate-order'" [isHome]="false" [hasMarketCart]="false"></app-header>
+<app-header
+  [haveBeforeHeader]="false"
+  [title]="'donate-order'"
+  [isHome]="false"
+  [hasMarketCart]="false"
+></app-header>
 
 <ion-content class="ion-padding-horizontal">
-  <form (ngSubmit)="donate()" [formGroup]="donationForm"
-    class="custom-form-container ion-margin-bottom ion-padding-horizontal">
+  <form
+    (ngSubmit)="donate()"
+    [formGroup]="donationForm"
+    class="custom-form-container ion-margin-bottom ion-padding-horizontal"
+  >
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
-        color="primary" src="./../../../../assets/icon/donate/person-inactive.svg">
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/person-inactive.svg"
+      >
       </ion-icon>
-      <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'user-name'|translate}}" type="text"
-        formControlName="userName"></ion-input>
+      <ion-input
+        class="fn-16 qesaa-Janna-Regular"
+        placeholder="{{'user-name'|translate}}"
+        type="text"
+        formControlName="userName"
+        [value]="userData?.first_name"
+      ></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
-        color="primary" src="./../../../../assets/icon/donate/phone-inactive.svg"></ion-icon>
-      <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'phone number'|translate}}" type="tel"
-        formControlName="phoneNumber"></ion-input>
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/phone-inactive.svg"
+      ></ion-icon>
+      <ion-input
+        class="fn-16 qesaa-Janna-Regular"
+        placeholder="{{'phone number'|translate}}"
+        type="tel"
+        formControlName="phoneNumber"
+        [value]="userData?.phone"
+      ></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
-        color="primary" src="./../../../../assets/icon/donate/city-inactive.svg"></ion-icon>
-      <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'city'|translate}}" type="text"
-        formControlName="city"></ion-input>
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/location-inactive.svg"
+      ></ion-icon>
+
+      <ion-select
+        formControlName="city"
+        (ionChange)="chooseCity($event)"
+        placeholder="{{'city'|translate}}"
+        okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}'
+        interface="popover"
+        mode="ios"
+      >
+        <ion-select-option
+          class="fn-16 qesaa-Janna-Regular"
+          [value]="city.id"
+          *ngFor="let city of cities"
+        >
+          {{city.title|translate}}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
-        color="primary" src="./../../../../assets/icon/donate/city-inactive.svg"></ion-icon>
-      <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'the area or neighborhood'|translate}}" type="text"
-        formControlName="neighborhood"></ion-input>
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/location-inactive.svg"
+      ></ion-icon>
+
+      <ion-select
+        formControlName="neighborhood"
+        (ionChange)="chooseNeighborhood($event)"
+        placeholder="{{'the area or neighborhood'|translate}}"
+        okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}'
+        interface="popover"
+        mode="ios"
+      >
+        <ion-select-option
+          class="fn-16 qesaa-Janna-Regular"
+          [value]="neighborhood.id"
+          *ngFor="let neighborhood of neighborhoods"
+        >
+          {{neighborhood.title}}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <div class="map-location ion-margin-bottom">
@@ -40,24 +110,38 @@
       <div #map class="map-container"></div>
     </div>
 
-
     <div class="request-time">
       <p class="ion-no-margin fn-16 qesaa-Janna-Regular">
         {{"request-date"|translate}}
       </p>
     </div>
 
-    <ion-item lines="none" class="ion-margin-bottom" button="true" id="open-date-input">
-      <ion-text slot="end">{{donationForm.value.requestDate }}</ion-text>
+    <ion-item
+      lines="none"
+      class="ion-margin-bottom"
+      button="true"
+      id="open-date-input"
+    >
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/request-inactive.svg"
+      ></ion-icon>
+      <ion-text slot="end">{{requestDate }}</ion-text>
       <ion-popover trigger="open-date-input" show-backdrop="false">
         <ng-template>
-          <ion-datetime #popoverDatetime presentation="date" formControlName="requestDate"
-            (ionChange)="donationForm.value.requestDate =getSelectedDate(popoverDatetime.value)"></ion-datetime>
+          <ion-datetime
+            #popoverDatetime
+            presentation="date"
+            size="cover"
+            formControlName="requestDate"
+            (ionChange)="requestDate=getSelectedDate(popoverDatetime.value)"
+          ></ion-datetime>
         </ng-template>
       </ion-popover>
     </ion-item>
-
-
 
     <div class="request-time">
       <p class="ion-no-margin fn-16 qesaa-Janna-Regular">
@@ -66,13 +150,28 @@
     </div>
 
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
-        color="primary" src="./../../../../assets/icon/donate/request-inactive.svg"></ion-icon>
+      <ion-icon
+        class="custom-form-icon"
+        [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/donate/request-inactive.svg"
+      ></ion-icon>
 
-      <ion-select formControlName="requestTime" (ionChange)="chooseTime($event)"
-        placeholder='{{"request-time"|translate}}' okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'
-        interface="popover" mode="ios">
-        <ion-select-option class="fn-16 qesaa-Janna-Regular" [value]="time.id" *ngFor="let time of requestTimes">
+      <ion-select
+        formControlName="requestTime"
+        (ionChange)="chooseTime($event)"
+        placeholder='{{"request-time"|translate}}'
+        okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}'
+        interface="popover"
+        mode="ios"
+      >
+        <ion-select-option
+          class="fn-16 qesaa-Janna-Regular"
+          [value]="time.title"
+          *ngFor="let time of requestTimes"
+        >
           {{time.title}}
         </ion-select-option>
       </ion-select>
@@ -84,20 +183,32 @@
       </p>
 
       <div class="image-container">
-        <div (click)="attachImage()" *ngIf="requestImage==''" class="ion-text-center">
+        <div
+          (click)="attachImage()"
+          *ngIf="requestImage==''"
+          class="ion-text-center"
+        >
           <ion-icon src="./../../../../assets/icon/camera.svg"></ion-icon>
 
           <p class="ion-no-margin fn-16 qesaa-Janna-Regular gray-color">
             {{"attach request image"|translate}}
           </p>
         </div>
-        <img *ngIf="requestImage!=''" src="./../../../../assets/images/1024-500.png" />
+        <img
+          *ngIf="requestImage!=''"
+          [src]="requestImage"
+        />
       </div>
     </div>
 
     <ion-item lines="none" class="ion-margin-bottom">
-      <ion-textarea class="ion-padding-horizontal fn-16 qesaa-Janna-Regular" rows="5"
-        placeholder="{{'request notices'|translate}}" type="text" formControlName="notices"></ion-textarea>
+      <ion-textarea
+        class="ion-padding-horizontal fn-16 qesaa-Janna-Regular"
+        rows="5"
+        placeholder="{{'request notices'|translate}}"
+        type="text"
+        formControlName="notices"
+      ></ion-textarea>
     </ion-item>
 
     <ion-button class="form-btn" expand="block" type="submit" color="primary">

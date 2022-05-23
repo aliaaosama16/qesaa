@@ -7,8 +7,10 @@
 
 <ion-content class="ion-padding-horizontal">
   <div class="info">
-    <div>
-      <img [src]="userData?.avatar" />
+    <div class="user-image">
+      <ion-avatar >
+        <img [src]="userData?.avatar" />
+      </ion-avatar>
     </div>
 
     <div class="name-phone">
@@ -123,14 +125,14 @@
   </div>
 
   <div class="social-media">
-    <div>
+    <div (click)="openUrl('whatsapp')">
       <ion-icon src="./../../../../assets/icon/account/whatsapp.svg">
       </ion-icon>
     </div>
-    <div>
+    <div (click)="openUrl('twitter')">
       <ion-icon src="./../../../../assets/icon/account/twitter.svg"> </ion-icon>
     </div>
-    <div>
+    <div (click)="openUrl('instgram')">
       <ion-icon src="./../../../../assets/icon/account/instgram.svg">
       </ion-icon>
     </div>

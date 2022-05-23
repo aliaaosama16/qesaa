@@ -6,10 +6,14 @@
 ></app-header>
 
 <ion-content class="ion-padding-horizontal">
-  <div class="user-image ion-text-center">
-    <img *ngIf="userDetails?.avatar" [src]=" userDetails?.avatar" />
-    <img *ngIf="!userDetails?.avatar" src="./../../../../assets/images/profile.svg" />
-    
+  <div class="user-image ion-text-center" (click)="attachBasicImage()">
+    <ion-avatar>
+      <img *ngIf="profileImage!=''" [src]="profileImage" />
+      <img
+        *ngIf="profileImage==''"
+        src="./../../../../assets/images/profile.svg"
+      />
+    </ion-avatar>
 
     <p class="ion-no-margin primary-color fn-22 qesaa-Janna-Bold">
       {{"image change"|translate}}
@@ -67,10 +71,15 @@
         <ion-input
           class="fn-16 qesaa-Janna-Regular"
           placeholder="{{'password'|translate}}"
-          type="password"
+          [type]="inputChangeType"
           formControlName="password"
         ></ion-input>
-        <ion-icon item-end color="gray" name="eye-outline"></ion-icon>
+        <ion-icon
+          (click)="showChangePassword()"
+          item-end
+          color="gray"
+          [name]="iconChangeName"
+        ></ion-icon>
       </ion-item>
 
       <ion-item lines="none" class="ion-margin-bottom">
@@ -84,10 +93,15 @@
         <ion-input
           class="fn-16 qesaa-Janna-Regular"
           placeholder="{{'confirm-password'|translate}}"
-          type="password"
+          [type]="inputChangeConfirmType"
           formControlName="confirmPassword"
         ></ion-input>
-        <ion-icon item-end color="gray" name="eye-outline"></ion-icon>
+        <ion-icon
+          (click)="showChangeConfirmPassword()"
+          item-end
+          color="gray"
+          [name]="iconChangeConfirmName"
+        ></ion-icon>
       </ion-item>
 
       <ion-button class="form-btn" expand="block" type="submit" color="primary">

@@ -62,6 +62,8 @@ export class LoginPage implements OnInit {
         device_id: this.util.deviceID,
        // user_type: this.loginForm.value.userType,
       };
+      console.log('loginForm : ' + JSON.stringify(this.loginForm.value));
+
       this.util.showLoadingSpinner().then((__) => {
         this.auth.login(this.loginData).subscribe(
           (data: AuthResponse) => {

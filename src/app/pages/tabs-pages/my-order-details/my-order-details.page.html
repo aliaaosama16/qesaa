@@ -1,14 +1,17 @@
-<app-header  [hasMarketCart]="false" [haveBeforeHeader]="false" [title]="'order-details'" [isHome]="false"></app-header>
- 
+<app-header
+  [hasMarketCart]="false"
+  [haveBeforeHeader]="false"
+  [title]="'order-details'"
+  [isHome]="false"
+></app-header>
+
 <ion-content class="ion-padding-horizontal" *ngIf="orderDetails">
   <div class="order-details ion-padding">
     <div class="request-data">
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'orderNumber'|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular">
-        {{orderDetails?.id}}
-      </div>
+      <div class="value fn-16 qesaa-Janna-Regular">{{orderDetails?.id}}</div>
     </div>
 
     <div class="request-data">
@@ -24,9 +27,7 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'orderDate'|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular">
-        {{orderDetails?.date}}
-      </div>
+      <div class="value fn-16 qesaa-Janna-Regular">{{orderDetails?.date}}</div>
     </div>
 
     <div class="divider"></div>
@@ -35,19 +36,23 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'cleint-name'|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular">
-        {{orderDetails?.provider_name}}
-      </div>
+      <div class="value fn-16 qesaa-Janna-Regular">{{orderDetails?.name}}</div>
     </div>
 
     <div class="client-data">
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'city'|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
+      <div
+        class="value fn-16 qesaa-Janna-Regular"
+        *ngIf="currentlangauge=='ar'"
+      >
         {{ orderDetails?.city_title_ar}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
+      <div
+        class="value fn-16 qesaa-Janna-Regular"
+        *ngIf="currentlangauge=='en'"
+      >
         {{ orderDetails?.city_title_en}}
       </div>
     </div>
@@ -56,10 +61,16 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'the area or neighborhood'|translate}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
+      <div
+        class="value fn-16 qesaa-Janna-Regular"
+        *ngIf="currentlangauge=='ar'"
+      >
         {{orderDetails?.neighborhood_title_ar}}
       </div>
-      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
+      <div
+        class="value fn-16 qesaa-Janna-Regular"
+        *ngIf="currentlangauge=='en'"
+      >
         {{orderDetails?.neighborhood_title_en}}
       </div>
     </div>
@@ -91,29 +102,28 @@
     </div>
   </div>
 
-  <div class="ion-padding-horizontal ion-margin-bottom">
-    <ion-button (click)="driverTrack()" color="primary" expand="block" class="fn-20 qesaa-Janna-Bold">
-      {{ "track driver"|translate}}
-    </ion-button>
-  </div>
-  <!-- (click)="driverContact()"-->
-
-  <div class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal">
-
-    <a href="tel:{{'+'+orderDetails?.phone_full}}" class="fn-20 qesaa-Janna-Bold">
-      {{ "contact with driver"|translate}}
-    </a>
-
-    <!-- <ion-button
-      color="secondary"
+  <div
+    class="ion-padding-horizontal ion-margin-bottom"
+    *ngIf="orderDetails?.status== 'current'"
+  >
+    <ion-button
+      (click)="driverTrack()"
+      color="primary"
       expand="block"
       class="fn-20 qesaa-Janna-Bold"
     >
-    <a href="tel:+201010476861"></a>
-      <ion-icon src="./../../../../assets/icon/phone.svg"></ion-icon>
-      
-    </ion-button> -->
+      {{ "track driver"|translate}}
+    </ion-button>
   </div>
 
-
+  <div
+    class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal"
+  >
+    <a
+      href="tel:{{'+'+orderDetails?.provider_phone}}"
+      class="fn-20 qesaa-Janna-Bold"
+    >
+      {{ "contact with driver"|translate}}
+    </a>
+  </div>
 </ion-content>

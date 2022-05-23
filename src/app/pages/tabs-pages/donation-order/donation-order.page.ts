@@ -1,4 +1,11 @@
-import { GeneralResponse, GeneralSectionResponse, UserData } from './../../../models/general';
+import {
+  AuthDataResponse,
+  CitysData,
+  CitysResponse,
+  GeneralResponse,
+  GeneralSectionResponse,
+  UserData,
+} from './../../../models/general';
 import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { Platform } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,6 +18,12 @@ import { DataService } from 'src/app/services/data/data.service';
 declare var google: any;
 import * as moment from 'moment';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { DomSanitizer } from '@angular/platform-browser';
+import { GeneralService } from 'src/app/services/general/general.service';
+import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
+import { AuthResponse } from 'src/app/models/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-donation-order',
@@ -26,25 +39,43 @@ export class DonationOrderPage implements OnInit {
   infowindow = new google.maps.InfoWindow();
   currentLanguage: string;
   donationForm: FormGroup;
-  requestImage: string = '';
+  requestImage: any = '';
 
   requestTimes: GeneralSectionResponse[];
+  cities: GeneralSectionResponse[];
+  neighborhoods: GeneralSectionResponse[];
+  userData: AuthDataResponse;
+  requestDate = '';
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
     private plt: Platform,
-    private util:UtilitiesService,
-    private sectionsService:SectionsProductsService,
-    private dataService:DataService,
-    private auth:AuthService
+    private util: UtilitiesService,
+    private sectionsService: SectionsProductsService,
+    private dataService: DataService,
+    private auth: AuthService,
+    private general: GeneralService,
+    private uploadImage: UploadImageService,
+    private sanitizer: DomSanitizer,
+    private router:Router
   ) {
     this.currentLanguage = this.languageService.getLanguage();
-    
+    this.plt.keyboardDidShow.subscribe((ev) => {
+      const { keyboardHeight } = ev;
+      // Do something with the keyboard height such as translating an input above the keyboard.
+      console.log('keyboard event :' + JSON.stringify(ev));
+    });
   }
 
   ngOnInit() {
-      this.buildForm();
-      this.getOrderTimes();
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+
+    this.buildForm();
+    this.getOrderTimes(userData);
+    this.getUserData(userData);
   }
 
   ngAfterViewInit() {
@@ -64,37 +95,33 @@ export class DonationOrderPage implements OnInit {
           Validators.maxLength(10),
         ],
       ],
-     
+
       city: ['', [Validators.required, Validators.minLength(2)]],
       neighborhood: ['', [Validators.required, Validators.minLength(2)]],
-      lat:['', [Validators.required]],
-      lng:['', [Validators.required]],
+      lat: ['', [Validators.required]],
+      lng: ['', [Validators.required]],
       requestDate: ['', [Validators.required, Validators.minLength(2)]],
       requestTime: ['', [Validators.required]],
-      requestImage:['', [Validators.required]],
+      requestImage: ['', [Validators.required]],
       notices: ['', [Validators.required, Validators.minLength(2)]],
-     
     });
   }
 
-
-  getOrderTimes(){
-    const userData: UserData = {
-      lang: this.languageService.getLanguage(),
-      user_id: this.auth.userID.value,
-    };
+  getOrderTimes(userData: UserData) {
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(
         (data: AppData) => {
           this.util.dismissLoading();
           if (data.key == 1) {
-            this.requestTimes= data.data.order_times;
+            this.requestTimes = data.data.order_times;
+            this.getAllCities();
 
-            console.log(' this.locations  :' + JSON.stringify(this.requestTimes));
+            console.log(
+              ' this.locations  :' + JSON.stringify(this.requestTimes)
+            );
           } else {
             this.util.showMessage(data.msg);
           }
-         
         },
         (err) => {
           this.util.dismissLoading();
@@ -105,54 +132,31 @@ export class DonationOrderPage implements OnInit {
 
   chooseTime($event) {
     console.log('selected time :' + $event.target.value);
+    this.donationForm.value.requestTime = $event.target.value;
   }
 
-  attachImage() {
-    // get image from camera or gallery
-    console.log('get image from camera or gallery');
+  async attachImage() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+    });
+    this.requestImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
+    console.log('taken image by camera  :' + this.requestImage);
+    await this.uploadImage.getImageConverted(image, 'donation');
   }
 
-  getSelectedDate(date){
-    this.donationForm.value.requestDate= moment(date).format('YYYY-MM-DD');
-    console.log( 'converted date :'+moment(date).format('YYYY-MM-DD'))
-    return  moment(date).format('YYYY-MM-DD');
-  }
-  //   formatDate(value: string) {
-  //   return format(parseISO(value), 'MMM dd yyyy');
-  // }
-
-  donate() {
-    this.donationForm.value.lat=this.util.userLocation.lat;
-    this.donationForm.value.lng=this.util.userLocation.lng;
-
-    console.log('donation form : '+JSON.stringify(this.donationForm.value))
-    // const storeOrderData: StoreOrderData = {
-    //   lang: this.languageService.getLanguage(),
-    //   user_id: this.auth.userID.value,
-    //   type: StoreOrderType.volunteer,
-    // };
-    // this.util.showLoadingSpinner().then((__) => {
-    //   this.sectionsService.storeOrder(storeOrderData).subscribe(
-    //     (data: GeneralResponse) => {
-    //       // if (data.key == 1) {
-    //       //   this.util.showMessage(data.msg);
-    //       // } else {
-    //       //   this.util.showMessage(data.msg);
-    //       // }
-    //       this.util.showMessage(data.msg).then((_)=>{
-    //         this.util.dismissLoading();
-    //       });
-        
-    //     },
-    //     (err) => {
-    //       this.util.dismissLoading();
-    //     }
-    //   );
-    // });
+  getSelectedDate(date) {
+    this.donationForm.value.requestDate = moment(date).format('YYYY-MM-DD');
+    console.log('converted date :' + moment(date).format('YYYY-MM-DD'));
+    return this.donationForm.value.requestDate;
   }
 
   loadMap() {
-    let latLng = new google.maps.LatLng(this.util.userLocation.lat,this.util.userLocation.lng);
+    let latLng = new google.maps.LatLng(
+      this.util.userLocation.lat,
+      this.util.userLocation.lng
+    );
 
     let styles: google.maps.MapTypeStyle[] = [
       {
@@ -167,7 +171,7 @@ export class DonationOrderPage implements OnInit {
 
     let mapOptions: google.maps.MapOptions = {
       center: latLng,
-      zoom: 2,
+      zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: styles,
       mapTypeControl: false,
@@ -178,15 +182,15 @@ export class DonationOrderPage implements OnInit {
 
   loadItemPosition() {
     this.plt.ready().then(() => {
-      this.focusMap(this.util.userLocation.lat,this.util.userLocation.lng);
-      this.addMarker(this.util.userLocation.lat,this.util.userLocation.lng);
+      this.focusMap(this.util.userLocation.lat, this.util.userLocation.lng);
+      this.addMarker(this.util.userLocation.lat, this.util.userLocation.lng);
     });
   }
 
   focusMap(lat, lng) {
     let latLng = new google.maps.LatLng(lat, lng);
     this.map.setCenter(latLng);
-    this.map.setZoom(15);
+    this.map.setZoom(12);
   }
 
   addMarker(lat, lng) {
@@ -196,7 +200,117 @@ export class DonationOrderPage implements OnInit {
       map: this.map,
       position: latLng,
       animation: google.maps.Animation.DROP,
+      draggable: true,
       icon: './../../../../assets/icon/location-pin-small.svg',
+    });
+
+    // this.home.addListener( this.home, 'dragend', ()=>{
+
+    // })
+  }
+
+  getAllCities() {
+    const userData: UserData = {
+      lang: this.languageService.getLanguage(),
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.appData(userData).subscribe(
+        (data: AppData) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.cities = data.data.cities;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseCity($event) {
+    const cityData: CitysData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      city_id: $event.target.value,
+    };
+    this.donationForm.value.city = $event.target.value;
+    this.util.showLoadingSpinner().then((__) => {
+      this.dataService.getNeighborhoods(cityData).subscribe(
+        (data: CitysResponse) => {
+          this.util.dismissLoading();
+          if (data.key == 1) {
+            this.neighborhoods = data.data;
+          } else {
+            this.util.showMessage(data.msg);
+          }
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
+  chooseNeighborhood($event) {
+    console.log('Neighborhood : ' + $event.target.value);
+    this.donationForm.value.neighborhood = $event.target.value;
+  }
+
+  getUserData(userData: UserData) {
+    this.auth.userData(userData).subscribe(
+      (data: AuthResponse) => {
+        if (data.key == 1) {
+          console.log('user data :' + JSON.stringify(data.data));
+          this.userData = data.data;
+        } else {
+        }
+      },
+      (err) => {}
+    );
+  }
+
+  donate() {
+    // this.donationForm.value.lat = this.util.userLocation.lat;
+    // this.donationForm.value.lng = this.util.userLocation.lng;
+    this.donationForm.value.image = this.general.getDonationImage();
+
+    console.log('donation form : ' + JSON.stringify(this.donationForm.value));
+    const storeOrderData: StoreOrderData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      type: StoreOrderType.volunteer,
+      name: this.donationForm.value.userName,
+      phone: this.donationForm.value.phoneNumber,
+      city_id: this.donationForm.value.city,
+      neighborhood_id: this.donationForm.value.neighborhood,
+      lat: this.util.userLocation.lat,
+      lng: this.util.userLocation.lng,
+      date: moment(this.donationForm.value.requestDate).format('YYYY-MM-DD'),
+      time: this.donationForm.value.requestTime,
+      notes: this.donationForm.value.notices,
+      image: this.general.getDonationImage(),
+    };
+    console.log(' storeOrderData  '+JSON.stringify( storeOrderData))
+    this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.storeOrder(storeOrderData).subscribe(
+        (data: GeneralResponse) => {
+          if (data.key == 1) {
+            this.util.showMessage(data.msg).then((_)=>{
+              this.router.navigateByUrl('/tabs/my-orders');
+              this.auth.setNoOfNotifications(this.auth.userID.value);
+            });
+          } else {
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
     });
   }
 }

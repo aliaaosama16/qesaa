@@ -6,6 +6,7 @@ import {
   LoginData,
   LogOutData,
   RegisterData,
+  UpdateUserData,
 } from 'src/app/models/auth';
 import {
   ChangePasswordData,
@@ -169,12 +170,13 @@ export class AuthService {
       data
     );
   }
-  // updateUserData(data: UpdateUserData): Observable<UserResponse> {
-  //   return this.httpclient.post<UserResponse>(
-  //     `${environment.BASE_URL}update-user`,
-  //     data
-  //   );
-  // }
+  
+  updateUserData(data: UpdateUserData): Observable<AuthResponse> {
+    return this.httpclient.post<AuthResponse>(
+      `${environment.BASE_URL}update-user`,
+      data
+    );
+  }
 
   login(data: LoginData): Observable<AuthResponse> {
     return this.httpclient.post<AuthResponse>(

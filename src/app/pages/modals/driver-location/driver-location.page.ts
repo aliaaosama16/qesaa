@@ -69,7 +69,7 @@ export class DriverLocationPage implements OnInit {
 
     let mapOptions: google.maps.MapOptions = {
       center: latLng,
-      zoom: 2,
+      zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: styles,
       mapTypeControl: false,
@@ -88,7 +88,7 @@ export class DriverLocationPage implements OnInit {
   focusMap(lat, lng) {
     let latLng = new google.maps.LatLng(lat, lng);
     this.map.setCenter(latLng);
-    this.map.setZoom(10);
+    this.map.setZoom(12);
   }
 
   addMarker(lat, lng) {

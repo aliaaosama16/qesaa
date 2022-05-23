@@ -46,6 +46,7 @@ export interface GeneralSectionResponse {
 }
 
 export interface AuthDataResponse {
+  
   first_name: string;
   full_phone: string;
   instagram: string;

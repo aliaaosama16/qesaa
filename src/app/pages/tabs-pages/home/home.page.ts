@@ -110,10 +110,10 @@ export class HomePage implements OnInit {
            // this.util.getDiffer(data.data.upcoming_date,new Date())
 
           // console.log('calc  : '+this.util.calc(data.data.upcoming_date))
-       // interval(60*100).subscribe(x => {
+       //interval(60*100).subscribe(x => {
                  console.log('time :'+ JSON.stringify( this.util.getDatesDifference(data.data.upcoming_date)))
                  this.upComingDate=this.util.getDatesDifference(data.data.upcoming_date)
-           // });
+          //  });
           // console.log('time reaminig : '+this.util.calculateDiff(data.data.upcoming_date))
           }
           this.util.dismissLoading();
@@ -148,7 +148,7 @@ export class HomePage implements OnInit {
     );
   }
 
-  ionViewDidLeave() {
-    this.obs.unsubscribe();
-  }
+  // ionViewDidLeave() {
+  //   this.obs.unsubscribe();
+  // }
 }

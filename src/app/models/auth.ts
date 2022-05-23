@@ -38,6 +38,13 @@ export interface LogOutData extends UserData {
   device_id: string;
 }
 
+export interface UpdateUserData extends UserData{
+  first_name:string;
+  phone:number;
+  avater?:string;
+  password?:string;
+}
+
 export interface AuthResponse extends GeneralResponse {
   status?: string;
   data?: AuthDataResponse;

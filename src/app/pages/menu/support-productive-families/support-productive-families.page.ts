@@ -16,7 +16,6 @@ import {
   GeneralSectionResponse,
 } from 'src/app/models/general';
 import { DomSanitizer } from '@angular/platform-browser';
-import { isPlatform, Platform } from '@ionic/angular';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { AppData } from 'src/app/models/data';
@@ -93,7 +92,6 @@ export class SupportProductiveFamiliesPage implements OnInit {
     this.basicImage = this.sanitizer.bypassSecurityTrustUrl(image.webPath);
     console.log('taken image by camera  :' + this.basicImage);
     await this.uploadImage.getImageConverted(image,'basic');
-   
   }
 
   async attachProductImage() {
@@ -172,9 +170,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
     );
 
     
-  }
-
-  registerFamily(userData: RegisterData) {
+  
     const registerData:RegisterData = {
       user_type:UserType.market,
       lang: this.langaugeservice.getLanguage(),
@@ -191,10 +187,12 @@ export class SupportProductiveFamiliesPage implements OnInit {
         (data: AuthResponse) => {
           if (data.key == 1) {
             console.log('registerFamily res :' + JSON.stringify(data));
-            //this.util.showMessage(data.msg);
+           // this.util.showMessage(data.msg).then((_)=>{
+              this.router.navigateByUrl('/tabs/home/families');
+           // });
             // this.auth.userID.next(data.data.id);
             // this.auth.storeStatusAfterRegisteration(data);
-            this.router.navigateByUrl('/tabs/home/families');
+            
             
           } else {
             this.util.showMessage(data.msg);

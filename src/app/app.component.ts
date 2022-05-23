@@ -140,9 +140,6 @@ export class AppComponent {
       this.auth.isLogined();
       this.getUserNotifications();
     }
-
-    // const userId=await Storage.get({ key: 'qesaa-UserID' });
-    // this.auth.userID.next(parseInt(userId.value))
   }
 
   async getUserNotifications() {
@@ -154,10 +151,10 @@ export class AppComponent {
 
   async shareApp() {
     await Share.share({
-      title: 'See cool stuff',
-      text: 'Really awesome thing you need to see right meow',
-      url: 'http://ionicframework.com/',
-      dialogTitle: 'Share with buddies',
+      title: 'kesa app',
+      // text: 'Really awesome thing you need to see right meow',
+      url: 'https://play.google.com/store/apps/details?id=com.efada.qesaa',
+      // dialogTitle: 'Share with buddies',
     });
   }
 

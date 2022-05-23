@@ -45,6 +45,7 @@ export interface StoreOrderData extends UserData {
   lat?: number;
   lng?: number;
   date?: string;
+  time?:string;
   image?: string;
   notes?: string;
 }

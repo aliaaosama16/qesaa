@@ -1,3 +1,8 @@
+.rating{
+  display: flex;
+  justify-content: space-between;
+}
+
 .slider-section {
   position: relative;
 
@@ -72,8 +77,12 @@
     flex-direction: row;
     //align-items: center;
 
-    .title {
+    .divider{
+      width: 10px;
       border-left: 1px solid var(--ion-color-secondary);
+    }
+    .title {
+     
       padding-left: 12.5px;
       flex-grow: 1;
       p {
@@ -98,6 +107,7 @@
         margin-top: 16px;
       }
     }
+
   }
 }
 
@@ -193,6 +203,7 @@
     .card-text {
       p {
         margin: 0px;
+        
       }
     }
   }

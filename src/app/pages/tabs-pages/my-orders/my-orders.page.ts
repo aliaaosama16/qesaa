@@ -1,5 +1,9 @@
 import { UserData } from './../../../models/general';
-import { Order, OrderListResponse, OrderResponse } from './../../../models/order';
+import {
+  Order,
+  OrderListResponse,
+  OrderResponse,
+} from './../../../models/order';
 import { OrdersService } from './../../../services/orders/orders.service';
 import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,11 +17,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MyOrdersPage implements OnInit {
   orders: Order[];
+  volunteerOrders: Order[]=[];
+  serviceOrders: Order[]=[];
   constructor(
     private util: UtilitiesService,
     private orderService: OrdersService,
     private languageService: LanguageService,
-    private auth:AuthService
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -33,7 +39,18 @@ export class MyOrdersPage implements OnInit {
       this.orderService.showAllorders(userData).subscribe(
         (data: OrderListResponse) => {
           if (data.key == 1) {
-            this.orders=data.data;
+            this.orders = data.data;
+
+            this.orders.forEach((e) => {
+              if (e.type == 'service') {
+                this.serviceOrders.push(e);
+              } else {
+                this.volunteerOrders.push(e);
+              }
+            });
+
+            console.log('serviceOrders  :'+JSON.stringify(this.serviceOrders))
+            console.log('volunteerOrders  :'+JSON.stringify(this.volunteerOrders))
           }
           this.util.dismissLoading();
         },
