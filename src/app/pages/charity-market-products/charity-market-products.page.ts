@@ -64,7 +64,7 @@ export class CharityMarketProductsPage implements OnInit {
     console.log('delete product with id : ' + productID);
     const cartData: CartData = {
       lang: this.languageService.getLanguage(),
-      user_id:143,
+      user_id: this.auth.userID.value,
       cart_id: productID,
       count: CartCount.delete,
     };

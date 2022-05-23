@@ -39,7 +39,7 @@ export class UploadImageService {
       this.uploadImage(formData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
-            alert('uploaded image is : ' + data.app_url);
+            console.log('uploaded image is : ' + data.app_url);
             if (imageComeFrom == 'basic')
               this.generalService.setFamiliesBasicImage(data.app_url);
             if (imageComeFrom == 'product')

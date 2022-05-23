@@ -127,7 +127,7 @@ export class NotificationsPage implements OnInit {
   }
 
   async updateNoOfNotifications() {
-    const userID = await Storage.get({ key: 'qesaa-userID' });
+    const userID = await Storage.get({ key: 'qesaa-UserID' });
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
   }

@@ -46,7 +46,7 @@ export class AuthService {
     this.isLogined();
     this.setUserID(data?.data?.id);
     this.storeToken(data?.data?.api_token);
-    this.store('qesaa-activation-status', data.data.is_active);
+    this.storeActivationStatus( data.data.is_active);
     this.storeUserId(data?.data?.id);
     this.storeUserType(data?.data?.user_type);
     this.setNoOfNotifications(data?.data?.id);

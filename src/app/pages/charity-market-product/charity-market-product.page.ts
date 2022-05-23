@@ -55,7 +55,7 @@ export class CharityMarketProductPage implements OnInit {
   addProduct() {
     const productData: ProductData = {
       lang: this.languageService.getLanguage(),
-      user_id: 143,
+      user_id:  this.auth.userID.value,
       service_id: parseInt(this.activatedRoute.snapshot.paramMap.get('id')),
     };
 

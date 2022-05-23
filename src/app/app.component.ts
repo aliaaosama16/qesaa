@@ -140,10 +140,13 @@ export class AppComponent {
       this.auth.isLogined();
       this.getUserNotifications();
     }
+
+    // const userId=await Storage.get({ key: 'qesaa-UserID' });
+    // this.auth.userID.next(parseInt(userId.value))
   }
 
   async getUserNotifications() {
-    const userID = await Storage.get({ key: 'qesaa-userID' });
+    const userID = await Storage.get({ key: 'qesaa-UserID' });
     console.log('stored user id : ' + parseInt(userID.value));
     this.auth.setNoOfNotifications(parseInt(userID.value));
     this.auth.userID.next(parseInt(userID.value));

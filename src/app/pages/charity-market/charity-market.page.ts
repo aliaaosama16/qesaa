@@ -81,7 +81,7 @@ export class CharityMarketPage implements OnInit {
   getProductsBySection(sectionID) {
     const sectionProductsData: SectionProductsData = {
       lang: this.languageService.getLanguage(),
-      user_id: 143,
+      user_id: this.auth.userID.value,
       section_id: sectionID,
     };
 
