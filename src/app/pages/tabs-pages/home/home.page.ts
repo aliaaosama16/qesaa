@@ -12,6 +12,7 @@ import { HomeResponse } from 'src/app/models/home';
 import { StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { interval, Observable } from 'rxjs';
 SwiperCore.use([Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
@@ -34,6 +35,8 @@ export class HomePage implements OnInit {
   appData: any;
   appDataResponse: GeneralSectionResponse[];
   //charityInfoTitle:StaticPageTitle;
+  upComingDate:any;
+  obs:any;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -103,6 +106,15 @@ export class HomePage implements OnInit {
             this.volunteers_count = data.data.volunteers_count;
             this.satisfaction_masure = data.data?.satisfaction_masure;
             this.beneficiaries_count = data.data?.beneficiaries_count;
+          
+           // this.util.getDiffer(data.data.upcoming_date,new Date())
+
+          // console.log('calc  : '+this.util.calc(data.data.upcoming_date))
+       // interval(60*100).subscribe(x => {
+                 console.log('time :'+ JSON.stringify( this.util.getDatesDifference(data.data.upcoming_date)))
+                 this.upComingDate=this.util.getDatesDifference(data.data.upcoming_date)
+           // });
+          // console.log('time reaminig : '+this.util.calculateDiff(data.data.upcoming_date))
           }
           this.util.dismissLoading();
         },
@@ -134,5 +146,9 @@ export class HomePage implements OnInit {
         $event.target.complete();
       }
     );
+  }
+
+  ionViewDidLeave() {
+    this.obs.unsubscribe();
   }
 }
