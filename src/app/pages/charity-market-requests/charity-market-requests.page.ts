@@ -36,7 +36,7 @@ export class CharityMarketRequestsPage implements OnInit {
         (data: OrderListResponse) => {
           if (data.key == 1) {
             console.log('all orders : ' + JSON.stringify(data.data));
-            this.requests=data.data
+            this.requests=data.data.filter( (item) => item.type === 'service')
           } else {
             //this.util.showMessage(data.msg);
           }

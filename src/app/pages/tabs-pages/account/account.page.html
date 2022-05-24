@@ -101,20 +101,22 @@
 
     <div class="divider"></div>
 
-    <div class="container">
+    <div class="container" (click)="changeLanguage()">
       <div class="icon">
         <ion-icon
           src="./../../../../assets/icon/account/version.svg"
         ></ion-icon>
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
-        <span>{{"app version"|translate}}</span>
+        <span>{{otherLanguage}}
+          <!-- {{"app version"|translate}} -->
+        </span>
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <div class="container">
+    <div class="container" >
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/logout.svg"></ion-icon>
       </div>

@@ -84,6 +84,10 @@ const routes: Routes = [
         (m) => m.RulesPageModule
       ),
   },
+  {
+    path: 'custom-modal',
+    loadChildren: () => import('./pages/modals/custom-modal/custom-modal.module').then( m => m.CustomModalPageModule)
+  },
  
 ];
 @NgModule({

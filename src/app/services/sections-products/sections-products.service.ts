@@ -10,6 +10,7 @@ import {
   ProductData,
   ProductResponse,
   ProductsResponse,
+  RatingData,
   SectionProductsData,
   SectionProductsResponse,
   SectionResponse,
@@ -27,39 +28,37 @@ export class SectionsProductsService {
     private httpclient: HttpClient,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private auth:AuthService
+    private auth: AuthService
   ) {
-    console.log('user id : ',this.auth.userID.value)
+    console.log('user id : ', this.auth.userID.value);
   }
 
   setCartCount() {
-    var count=0;
+    var count = 0;
     const cartData: UserData = {
       lang: this.languageService.getLanguage(),
       user_id: this.auth.userID.value,
     };
-   // this.util.showLoadingSpinner().then((__) => {
-      this.showCart(cartData).subscribe(
-        (data: ProductsResponse) => {
-          if (data.key == 1) {
-            console.log('cart products  :' + data.data);
-            for(let i=0;i<data.data.length;i++){
-             count =data.data[i].count++;
-             
-            }
-
-            this.cartCount.next(count);
-           
-          } else {
-           // this.util.showMessage(data.msg);
+    // this.util.showLoadingSpinner().then((__) => {
+    this.showCart(cartData).subscribe(
+      (data: ProductsResponse) => {
+        if (data.key == 1) {
+          console.log('cart products  :' + data.data);
+          for (let i = 0; i < data.data.length; i++) {
+            count = data.data[i].count++;
           }
-        //  this.util.dismissLoading();
-        },
-        (err) => {
-         // this.util.dismissLoading();
+
+          this.cartCount.next(count);
+        } else {
+          // this.util.showMessage(data.msg);
         }
-      );
-   // });
+        //  this.util.dismissLoading();
+      },
+      (err) => {
+        // this.util.dismissLoading();
+      }
+    );
+    // });
   }
 
   getCartCount(): Observable<number> {
@@ -120,6 +119,13 @@ export class SectionsProductsService {
   showAllOrders(data: UserData): Observable<OrderListResponse> {
     return this.httpclient.post<OrderListResponse>(
       `${environment.BASE_URL}show-all-orders`,
+      data
+    );
+  }
+
+  rateProvider(data: RatingData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
+      `${environment.BASE_URL}rate-provider`,
       data
     );
   }

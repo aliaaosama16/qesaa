@@ -23,6 +23,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthResponse, RegisterData } from 'src/app/models/auth';
 import { Router } from '@angular/router';
 import { UserType } from 'src/app/models/userType';
+import { TranslateService } from '@ngx-translate/core';
 const IMAGE_DIR = 'stored-images';
 
 @Component({
@@ -47,7 +48,8 @@ export class SupportProductiveFamiliesPage implements OnInit {
     private uploadImage: UploadImageService,
     private util: UtilitiesService,
     private dataService: DataService,
-    private auth:AuthService
+    private auth:AuthService,
+    private translate:TranslateService
   ) {}
 
   ngOnInit() {
@@ -187,9 +189,9 @@ export class SupportProductiveFamiliesPage implements OnInit {
         (data: AuthResponse) => {
           if (data.key == 1) {
             console.log('registerFamily res :' + JSON.stringify(data));
-           // this.util.showMessage(data.msg).then((_)=>{
+            this.util.showMessage(this.translate.instant('family created successfully')).then((_)=>{
               this.router.navigateByUrl('/tabs/home/families');
-           // });
+            });
             // this.auth.userID.next(data.data.id);
             // this.auth.storeStatusAfterRegisteration(data);
             

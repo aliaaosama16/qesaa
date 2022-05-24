@@ -10,7 +10,7 @@
         color="primary"
         (click)="openMenu()"
       >
-        <ion-icon src="./../../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon src="./../../../assets/icon/menu.svg" [ngClass]="currentLangauge=='ar'?'':'menu-en'"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -18,23 +18,30 @@
       title | translate
     }}</ion-title>
 
-    
-    <ion-buttons  class="cart-icon " slot="end" *ngIf="hasMarketCart" (click)="showUserCart()">
-      <!-- <ion-button fill="solid" shape="round" color="primary"> -->
-        <span class="animate__zoomOut" *ngIf="cartCount!=0">{{cartCount}}</span>
-        <ion-icon  name="cart-outline" color="primary"></ion-icon>
-      <!-- </ion-button> -->
+    <ion-buttons
+      class="cart-icon"
+      slot="end"
+      *ngIf="hasMarketCart"
+      (click)="showUserCart()"
+    >
+      <span class="animate__zoomOut" *ngIf="cartCount != 0">{{
+        cartCount
+      }}</span>
+      <ion-icon name="cart-outline" color="primary"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="!isHome" (click)="goBack()">
       <ion-button fill="solid" shape="round" color="primary">
-        <ion-icon src="./../../../assets/icon/back-icon.svg"></ion-icon>
+        <!-- <ion-icon
+          [name]="
+            currentLangauge == 'ar' ? 'arrow-forward-sharp' : 'arrow-back-sharp'
+          "
+        ></ion-icon> -->
+        <ion-icon src="./../../../assets/icon/back-icon.svg"[ngClass]="currentLangauge=='ar'?'':'menu-en'"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <div class=" custom-top-margin"  [ngClass]="!haveBeforeHeader?'header-extenstion':''">
-
-  </div>
-  <!-- <div class="header-extenstion-Gallary custom-top-margin" *ngIf="haveBeforeHeader">
-
-  </div> -->
+  <div
+    class="custom-top-margin"
+    [ngClass]="!haveBeforeHeader ? 'header-extenstion' : ''"
+  ></div>
 </ion-header>

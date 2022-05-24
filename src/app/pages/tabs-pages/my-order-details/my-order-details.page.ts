@@ -9,6 +9,8 @@ import { ImageModalPage } from '../../modals/image-modal/image-modal.page';
 import { Order, OrderData, OrderResponse } from 'src/app/models/order';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CustomModalPage } from '../../modals/custom-modal/custom-modal.page';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-my-order-details',
@@ -18,75 +20,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class MyOrderDetailsPage implements OnInit {
   orderConfig: SwiperOptions;
   currentlangauge: string;
-  // orderImages: any = [
-  //   {
-  //     id: 1,
-  //     image: './../../../../assets/images/projects/img1.svg',
-  //   },
-  //   {
-  //     id: 2,
-  //     image: './../../../../assets/images/projects/img2.svg',
-  //   },
-  //   {
-  //     id: 3,
-  //     image: './../../../../assets/images/projects/img3.svg',
-  //   },
-  //   {
-  //     id: 4,
-  //     image: './../../../../assets/images/projects/img1.svg',
-  //   },
-  //   {
-  //     id: 5,
-  //     image: './../../../../assets/images/projects/img2.svg',
-  //   },
-  //   {
-  //     id: 6,
-  //     image: './../../../../assets/images/projects/img1.svg',
-  //   },
-  // ];
   orderDetails: Order;
-  // any = {
-  //   id: 1,
-  //   status: 1,
-  //   requestStatus: 'waiting',
-  //   requestNumber: 3288372,
-  //   date: 'الخميس12 مارس 2021',
-  //   cleintName: 'محمد احمد',
-  //   city: 'الرياض',
-  //   neighborhood: 'حي الملز',
-  //   number: '+966588278222',
-  //   notices:
-  //     'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام  فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا قمت بإدخال  في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة، وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها.',
-  // };
-  // requestItems: any = [
-  //   {
-  //     text: 'orderNumber',
-  //     value: '#' + this.orderDetails.requestNumber,
-  //   },
-  //   {
-  //     text: 'orderStatus',
-  //     value: this.orderDetails.requestStatus,
-  //   },
-  //   {
-  //     text: 'orderDate',
-  //     value: this.orderDetails.date,
-  //   },
-  // ];
-
-  // clientData: any = [
-  //   {
-  //     text: 'cleint-name',
-  //     value: this.orderDetails.cleintName,
-  //   },
-  //   {
-  //     text: 'city',
-  //     value: this.orderDetails.city,
-  //   },
-  //   {
-  //     text: 'the area or neighborhood',
-  //     value: this.orderDetails.neighborhood,
-  //   },
-  // ];
+  orderType:string
   constructor(
     private LanguageService: LanguageService,
     private modalController: ModalController,
@@ -95,9 +30,12 @@ export class MyOrderDetailsPage implements OnInit {
     private util: UtilitiesService,
     private orderService: OrdersService,
     private activatedRoute: ActivatedRoute,
-    private auth:AuthService
+    private auth: AuthService,
+    private dataService: DataService
   ) {
     this.currentlangauge = this.LanguageService.getLanguage();
+    console.log('page come from  '+this.dataService.getPageData()?.title);
+    this.orderType=this.dataService.getPageData()?.title;
   }
 
   ngOnInit() {
@@ -108,8 +46,8 @@ export class MyOrderDetailsPage implements OnInit {
     };
     this.showOrderByOederID(orderData);
     this.orderConfig = {
-      slidesPerView: 3,
-      spaceBetween: 11,
+      slidesPerView: 1,
+      spaceBetween: 0,
       pagination: false,
       effect: 'fade',
     };
@@ -155,5 +93,20 @@ export class MyOrderDetailsPage implements OnInit {
         }
       );
     });
+  }
+
+  async rateProvider() {
+    console.log('open rating modal');
+    const modal = await this.modalCtrl.create({
+      component: CustomModalPage,
+      cssClass: 'my-custom-modal',
+      componentProps: {
+        modalType: 'rating',
+        orderID: this.orderDetails?.id,
+        providerID: this.orderDetails?.provider_id,
+        providerName: this.orderDetails?.provider_name,
+      },
+    });
+    modal.present();
   }
 }

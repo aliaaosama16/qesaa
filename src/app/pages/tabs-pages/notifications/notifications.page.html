@@ -6,6 +6,9 @@
 ></app-header>
 
 <ion-content class="ion-padding-horizontal">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-item-sliding   class="ion-margin-bottom" *ngFor="let notification of notifications">
     <ion-item
     

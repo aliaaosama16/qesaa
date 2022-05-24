@@ -179,5 +179,9 @@
   "restore password":"استرجاع كلمة المرور",
   "enter new password":"ادخل كلمة المرور الجديدة",
   "no orders":"لا يوجد طلبات",
-  "waiting for admin approval":"بانتظار موافقة الادمن"
+  "waiting for admin approval":"بانتظار موافقة الادمن",
+  "rate provider":"تقييم السائق",
+  "rating":"تقييم",
+  "volunteers":"تبرعات",
+  "family created successfully":"تم اضافه الاسرة بنجاح"
 }

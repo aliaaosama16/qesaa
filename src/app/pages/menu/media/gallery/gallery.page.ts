@@ -19,9 +19,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./gallery.page.scss'],
 })
 export class GalleryPage implements OnInit {
-  galleyType: string = 'images';
+  galleyType: string = 'photos';
   currentLanguage: string = '';
-  gallery: Artical[];
+  galleryPhotos: Artical[]=[] ;
+  galleryVideos: Artical[]=[] ;
   articalData: ArticalsData;
   articalDataResponse: ArticalsDataResponse;
   constructor(
@@ -30,7 +31,7 @@ export class GalleryPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private mediaService: MediaService,
-    private auth:AuthService
+    private auth: AuthService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -40,24 +41,29 @@ export class GalleryPage implements OnInit {
   }
 
   ngOnInit() {
-    this.showPhotos(ArticalType.photos);
+    this.showPhotos('photos');
   }
 
-  showPhotos(type:ArticalType){
-    this.articalData = {
+  showPhotos(type: string) {
+     //this.gallery =[];
+
+    const articalData: ArticalsData = {
       lang: this.languageService.getLanguage(),
-      //user_id: this.auth.userID.value,
       type: type,
     };
+
     this.util.showLoadingSpinner().then((__) => {
-      this.mediaService.articals(this.articalData).subscribe(
+      this.mediaService.articals(articalData).subscribe(
         (data: ArticalsDataResponse) => {
           if (data.key == 1) {
-            this.gallery = data.data;
-            // console.log(
-            //   'articalDataResponse  :  ' +
-            //     JSON.stringify(this.articalDataResponse)
-            // );
+
+            if(type=='photos'){
+              this.galleryPhotos = data.data;
+            }else{
+              this.galleryVideos= data.data;
+            }
+            
+           // console.log('gallery  :  ' + JSON.stringify(this.gallery));
             //this.util.showMessage(data.msg);
           } else {
             this.util.showMessage(data.msg);
@@ -72,11 +78,12 @@ export class GalleryPage implements OnInit {
   }
 
   galleyTypeChoose($event) {
+    this.galleyType = $event.detail.value;
     console.log($event.detail.value);
-    if ($event.detail.value == 0) {
-      this.showPhotos(ArticalType.photos);
-    } else if ($event.detail.value == 1) {
-      this.showPhotos(ArticalType.videos);
-    }
+    // if ($event.detail.value == 0) {
+    //   this.showPhotos($event.detail.value);
+    // } else if ($event.detail.value == 1) {
+    this.showPhotos($event.detail.value);
+    //}
   }
 }

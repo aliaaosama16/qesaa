@@ -2,7 +2,7 @@ import { UserData, GeneralResponse } from './general';
 
 // ALL articles  [services , news , projects , photos , videos]
 export interface ArticalsData extends UserData {
-  type: ArticalType;
+  type:string;
 }
 
 export interface ArticalsDataResponse extends GeneralResponse {
@@ -10,8 +10,8 @@ export interface ArticalsDataResponse extends GeneralResponse {
 }
 
 // specifiec article  [services , news , projects , photos , videos]
-export interface ArticalData extends UserData{
-  media_id:Number;
+export interface ArticalData extends UserData {
+  media_id: Number;
 }
 
 export interface ArticalDataResponse extends GeneralResponse {
@@ -27,7 +27,6 @@ export interface Artical {
   image: string;
   video: string;
 }
-
 export enum ArticalType {
   services = 'services',
   news = 'news ',

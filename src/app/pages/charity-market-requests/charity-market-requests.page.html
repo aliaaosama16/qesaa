@@ -9,15 +9,16 @@
   <div
     class="request-container ion-margin-bottom"
     *ngFor="let request of requests"
+    routerLink="/tabs/my-orders/details/{{request.id}}"
   >
     <div class="request-status-date">
       <div class="title primary-color fn-16 qesaa-Janna-Bold">
         {{"orderNumber"|translate}}
       </div>
-      <div class="requestNumber fn-16 qesaa-Janna-Bold">
-        #{{request?.id}}
+      <div class="requestNumber fn-16 qesaa-Janna-Bold">#{{request?.id}}</div>
+      <div class="requestDate fn-12 qesaa-Janna-Regular ion-text-end">
+        {{request?.order_date}}
       </div>
-      <div class="requestDate fn-12 qesaa-Janna-Regular ion-text-end">{{request?.order_date}}</div>
     </div>
     <!-- // 1 waiting 2 canceled 3  confirmed -->
     <div class="request-status">
@@ -35,9 +36,7 @@
           {{request.requestStatus|translate}}
         </span> -->
 
-        <span  >
-          {{request?.status_f}}
-        </span>
+        <span> {{request?.status_f}} </span>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-header',
@@ -16,15 +17,17 @@ export class HeaderComponent implements OnInit {
   @Input() haveBeforeHeader: boolean;
   @Input() hasMarketCart: boolean;
   currentPlatform: string;
-  cartCount:number=0;
+  cartCount: number = 0;
+  currentLangauge: string;
 
   constructor(
     private menuCtrl: MenuController,
     private platform: Platform,
     private location: Location,
     private util: UtilitiesService,
-    private router:Router,
-    private sectionsProductsService:SectionsProductsService
+    private router: Router,
+    private languageService: LanguageService,
+    private sectionsProductsService: SectionsProductsService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -36,6 +39,11 @@ export class HeaderComponent implements OnInit {
       } else {
         this.cartCount = 0;
       }
+    });
+
+    this.languageService.getUpdatedLanguage().subscribe((lang) => {
+      console.log('lang :'+lang)
+      this.currentLangauge = lang;
     });
   }
 
@@ -52,7 +60,7 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
 
-  showUserCart(){
+  showUserCart() {
     this.router.navigateByUrl('/tabs/home/market/products');
   }
 }

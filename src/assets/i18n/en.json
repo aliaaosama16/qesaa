@@ -179,5 +179,9 @@
   "restore password":"restore password",
   "enter new password":"enter new password",
   "no orders": "no orders",
-  "waiting for admin approval":"waiting for admin approval"
+  "waiting for admin approval":"waiting for admin approval",
+  "rate provider":"rate driver",
+  "rating":"rating",
+  "volunteers":"volunteers",
+  "family created successfully": "family created successfully"
 }

@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     },
   ];
   currentLanguage: string;
-  otherLanguage: string = 'English';
+  otherLanguage: string;
   loginForm: FormGroup;
   isSignInSubmitted = false;
   iconLoginName: string = 'eye-off-outline';
@@ -44,6 +44,8 @@ export class LoginPage implements OnInit {
     private auth: AuthService
   ) {
     this.currentLanguage = this.languaService.getLanguage();
+    this.otherLanguage =
+      this.languaService.getLanguage() == 'ar' ? 'English' : 'عربي';
   }
 
   ngOnInit() {
@@ -60,7 +62,7 @@ export class LoginPage implements OnInit {
         phone: this.loginForm.value.phoneNumber,
         password: this.loginForm.value.password,
         device_id: this.util.deviceID,
-       // user_type: this.loginForm.value.userType,
+        // user_type: this.loginForm.value.userType,
       };
       console.log('loginForm : ' + JSON.stringify(this.loginForm.value));
 
@@ -73,15 +75,15 @@ export class LoginPage implements OnInit {
                 this.router.navigateByUrl('/tabs/home');
                 this.auth.storeStatusAfterLogin(data);
                 this.auth.setUserID(data.data.id);
-                this.auth.storeUserType(data.data.user_type)
+                this.auth.storeUserType(data.data.user_type);
                 this.loginForm.reset();
-              } 
+              }
               // else if (data.status == Status.NonActive) {
               //   this.router.navigateByUrl(`/verification-code/${data.data.id}`);
               // } else if (data.status == Status.NonConfirm) {
               //   this.util.showMessage('waiting for admin approval');
               // }
-               else if (!data.data.is_active) {
+              else if (!data.data.is_active) {
                 this.router.navigateByUrl(`/verification-code/${data.data.id}`);
                 // this.util.showMessage(
                 //   'you are blocked.Contact with management'
@@ -115,7 +117,7 @@ export class LoginPage implements OnInit {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      userType: ['', ],
+      userType: [''],
     });
   }
 

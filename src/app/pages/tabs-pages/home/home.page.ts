@@ -35,8 +35,8 @@ export class HomePage implements OnInit {
   appData: any;
   appDataResponse: GeneralSectionResponse[];
   //charityInfoTitle:StaticPageTitle;
-  upComingDate:any;
-  obs:any;
+  upComingDate: any;
+  obs: any;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -45,12 +45,12 @@ export class HomePage implements OnInit {
     private data: DataService,
     private home: HomeService,
     private languageService: LanguageService,
-    private auth:AuthService
+    private auth: AuthService
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.languageService.getLanguage();
     this.menuCtrl.enable(true, 'main');
-    console.log('user id : '+this.auth.userID.value)
+    console.log('user id : ' + this.auth.userID.value);
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class HomePage implements OnInit {
 
     this.feedbackConfig = {
       slidesPerView: 2,
-      spaceBetween: 13,
+      spaceBetween: 10,
       pagination: false,
       effect: 'fade',
     };
@@ -83,6 +83,11 @@ export class HomePage implements OnInit {
     };
     this.getHomeData(userData);
   }
+  // ionViewWillEnter(){
+  //   setInterval(() => {
+  //     console.log('asd')
+  // }, 60 * 100);
+  // }
 
   openMenu() {
     this.menuCtrl.open();
@@ -106,15 +111,13 @@ export class HomePage implements OnInit {
             this.volunteers_count = data.data.volunteers_count;
             this.satisfaction_masure = data.data?.satisfaction_masure;
             this.beneficiaries_count = data.data?.beneficiaries_count;
-          
-           // this.util.getDiffer(data.data.upcoming_date,new Date())
+            
 
-          // console.log('calc  : '+this.util.calc(data.data.upcoming_date))
-       //interval(60*100).subscribe(x => {
-                 console.log('time :'+ JSON.stringify( this.util.getDatesDifference(data.data.upcoming_date)))
-                 this.upComingDate=this.util.getDatesDifference(data.data.upcoming_date)
-          //  });
-          // console.log('time reaminig : '+this.util.calculateDiff(data.data.upcoming_date))
+            //interval(60 * 100).subscribe((_) => {
+              this.upComingDate = this.util.getDatesDifference(
+                data.data.upcoming_date
+              );
+           // });
           }
           this.util.dismissLoading();
         },
@@ -128,7 +131,7 @@ export class HomePage implements OnInit {
   doRefresh($event) {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-     // user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
+      // user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
     };
     this.home.home(userData).subscribe(
       (data: HomeResponse) => {

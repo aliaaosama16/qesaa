@@ -1,8 +1,3 @@
-.rating{
-  display: flex;
-  justify-content: space-between;
-}
-
 .slider-section {
   position: relative;
 
@@ -77,19 +72,24 @@
     flex-direction: row;
     //align-items: center;
 
-    .divider{
-      width: 10px;
+    .divider {
+      width: 1px;
       border-left: 1px solid var(--ion-color-secondary);
+      margin: 0 8px;
     }
+
     .title {
      
-      padding-left: 12.5px;
       flex-grow: 1;
       p {
         line-height: 30px;
       }
-    }
 
+     
+    }
+ .title-ar{
+        padding-left: 12.5px;
+      }
     .time {
       flex-grow: 3;
       height: 44px;
@@ -107,7 +107,6 @@
         margin-top: 16px;
       }
     }
-
   }
 }
 
@@ -117,31 +116,21 @@
   justify-content: space-between;
   background-color: var(--ion-color-white);
   align-items: flex-start;
-  // .flex-conatiner-item{
-  //   display: flex;
-  //   flex-direction: column;
-  //   .time-detail{
-  //     background-color: rgba(var(--ion-color-secondary-rgb), 0.2);
-  //     color: var(--ion-color-primary);
-  //     width: 44px;
-  //     margin: 0 10px 0 6px;
-  //     height: 44px;
-  //     text-align: center;
-  //     line-height: 40px;
-  //     font-size: 16px;
-  //     border-radius: 50%;
-  //   }
-  //   .time-unit{
-      
-  //   }
-  // }
+  
+  .item-ar ,.item-en-first{
+    margin-right: 10px;
+  }
+  .item-en {
+    margin-left: 10px;
+  }
+  
 }
 
 .flex-container > div {
   background-color: rgba(var(--ion-color-secondary-rgb), 0.2);
   color: var(--ion-color-primary);
   width: 44px;
-  margin: 0 10px 0 6px;
+  //margin: 0 10px 0 6px;
   height: 44px;
   text-align: center;
   line-height: 40px;
@@ -157,13 +146,17 @@
   align-content: stretch;
   flex-wrap: nowrap;
 
+  .margin-5-bottom{
+    margin-bottom: 5px;
+  }
   .card-container {
     width: 100%;
     //height: 100px;
     background: var(--ion-color-white);
     border-radius: var(--custom-border-10-radius);
     box-shadow: var(--custom-box-shadow);
-    padding: 18px 11px;
+    padding: 10px 11px;
+    justify-content: space-evenly;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,7 +166,7 @@
       width: 44px;
       border-radius: 50%;
       background-color: rgba(var(--ion-color-secondary-rgb), 0.2);
-      text-align: center;
+      // text-align: center;
       padding: 12px;
     }
 
@@ -190,7 +183,7 @@
       padding: 10px;
       width: 50px;
       height: 50px;
-      text-align: center;
+      // text-align: center;
       ion-icon {
         font-size: 28px;
       }
@@ -200,12 +193,12 @@
       margin-top: 10px;
     }
 
-    .card-text {
-      p {
-        margin: 0px;
-        
-      }
-    }
+    // .card-text {
+    //   p {
+    //     margin: 0px;
+
+    //   }
+    // }
   }
 
   .item-left {
@@ -233,15 +226,21 @@
 .partners {
   margin-top: 20px;
 
-  p {
-    margin-bottom: 0px;
-  }
+  // p {
+  //   margin-bottom: 0px;
+  // }
 }
 
 .feedback {
   margin-top: 28px;
   margin-bottom: 30px;
   .feedback-section {
+    .feedback-swiper {
+      margin: 0 -5px;
+      .feedback-swiper-container {
+        padding: 5px;
+      }
+    }
     .feedback-card {
       box-shadow: var(--custom-box-shadow);
       background: var(--ion-color-white);
@@ -259,7 +258,7 @@
           border-radius: 50%;
           width: 25px;
           height: 25px;
-          text-align: center;
+          // text-align: center;
           ion-icon {
             font-size: 10px;
           }
@@ -269,6 +268,7 @@
         }
       }
       .feedback-content {
+        margin-top: 10px;
         p {
           line-height: 20px;
           word-spacing: 2px;
@@ -277,7 +277,6 @@
     }
   }
 }
-
 
 .bar {
   position: relative;
@@ -294,16 +293,17 @@
   text-align: center;
 }
 
-.bar:before, .bar:after {
-  content:'';
+.bar:before,
+.bar:after {
+  content: "";
   position: absolute;
   top: 0;
   height: 0;
   border-top: 30px solid white;
--webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-        box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .bar:before {
@@ -313,7 +313,7 @@
 }
 
 .bar:after {
-  right:0;
+  right: 0;
   width: 30%;
   border-left: 30px solid transparent;
 }

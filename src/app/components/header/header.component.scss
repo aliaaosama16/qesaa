@@ -2,6 +2,10 @@ ion-header {
   ion-toolbar {
     // --min-height: 124px;
     padding: 0 14px !important;
+
+    .menu-en{
+      transform: rotateY(180deg);
+    }
     ion-button {
       &::part(native) {
         border-radius: 6px;
@@ -20,6 +24,9 @@ ion-header {
 
     ion-buttons[slot="start"] {
       margin-inline-start: 0px !important;
+
+     
+
     }
 
     ion-buttons[slot="end"] {

@@ -54,3 +54,11 @@ export enum StoreOrderType {
   service = 'service',
   volunteer = 'volunteer',
 }
+
+
+export interface RatingData extends UserData {
+  provider_id: number;
+  rate: number;
+  desc?:string;
+  order_id:number;
+}

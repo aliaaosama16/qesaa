@@ -9,7 +9,7 @@ export interface OrderResponse extends GeneralResponse {
 }
 export interface Order {
   type: StoreOrderType;
-  id: string;
+  id: number;
   user_id: string;
   user_name: string;
   user_phone: string;
@@ -41,6 +41,9 @@ export interface Order {
   order_date: string;
   order_time: string;
   order_services: any[];
+  image: string;
+  provider_full_phone: string;
+  user_full_phone: string;
 }
 
 export interface StatusMap {

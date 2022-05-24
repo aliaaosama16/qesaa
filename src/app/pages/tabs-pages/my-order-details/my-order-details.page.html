@@ -76,21 +76,36 @@
     </div>
   </div>
 
-  <!-- <div class="order-images">
+  <div class="order-images">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order images"|translate}}
     </p>
 
     <div class="images">
-      <swiper #swiper [config]="orderConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
-        <ng-template swiperSlide *ngFor="let image of orderImages; let i = index">
-          <img [src]="image.image" (click)="openPreview(orderImages,i)" />
+      <swiper
+        #swiper
+        [config]="orderConfig"
+        class="custom-swiper"
+        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+      >
+        <ng-template swiperSlide *ngIf="orderType=='volunteers'">
+          <img
+            [src]="orderDetails?.image"
+            (click)="openPreview(orderDetails?.image,1)"
+          />
+        </ng-template>
+
+        <ng-template swiperSlide *ngIf="orderType=='charity-market'">
+          <img
+            [src]="orderDetails?.order_services[0].service_image"
+            (click)="openPreview(orderDetails?.image,1)"
+          />
         </ng-template>
       </swiper>
     </div>
-  </div> -->
+  </div>
 
-  <div class="order-notices">
+  <div class="order-notices" *ngIf="orderDetails?.notes">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order notices"|translate}}
     </p>
@@ -115,12 +130,25 @@
       {{ "track driver"|translate}}
     </ion-button>
   </div>
+  <div
+    class="ion-padding-horizontal ion-margin-bottom"
+    *ngIf="orderDetails?.status== 'finish'"
+  >
+    <ion-button
+      (click)="rateProvider()"
+      color="primary"
+      expand="block"
+      class="fn-20 qesaa-Janna-Bold"
+    >
+      {{ "rate provider"|translate}}
+    </ion-button>
+  </div>
 
   <div
     class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal"
   >
     <a
-      href="tel:{{'+'+orderDetails?.provider_phone}}"
+      href="tel:{{'+'+orderDetails?.provider_full_phone}}"
       class="fn-20 qesaa-Janna-Bold"
     >
       {{ "contact with driver"|translate}}

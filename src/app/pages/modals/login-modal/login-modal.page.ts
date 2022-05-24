@@ -1,5 +1,5 @@
 import { ModalController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-modal.page.scss'],
 })
 export class LoginModalPage implements OnInit {
+  
+  @Input() providerID:number;
+  @Input() orderID:number;
+  constructor(private router:Router,public modal:ModalController) { 
+    console.log('providerID :'+this.providerID)
+    console.log('orderID :'+this.orderID)
 
-  constructor(private router:Router,public modal:ModalController) { }
+  }
 
   ngOnInit() {
   }

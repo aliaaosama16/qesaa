@@ -4,16 +4,21 @@
   [isHome]="false"
   [hasMarketCart]="false"
 ></app-header>
+<!-- [ngClass]="galleyType=='images'?'background-primary':'background-secondary'" -->
+
+<!-- [ngClass]="currentLanguage=='ar'?'images-ar':'images-en'" -->
+<!-- [ngClass]="currentLanguage=='ar'?'videos-ar':'videos-en'" -->
 
 <ion-content>
   <ion-segment
+   
     (ionChange)="galleyTypeChoose($event)"
     [value]="galleyType"
     color="primary"
   >
     <ion-segment-button
-      value="images"
-      [ngClass]="currentLanguage=='ar'?'images-ar':'images-en'"
+      value="photos"
+      [ngClass]="galleyType=='photos'?'background-primary':'secondary'"
     >
       <ion-label class="fn-18 qesaa-Janna-Bold white-color">
         {{"images"|translate}}
@@ -21,7 +26,7 @@
     </ion-segment-button>
     <ion-segment-button
       value="videos"
-      [ngClass]="currentLanguage=='ar'?'videos-ar':'videos-en'"
+      [ngClass]="galleyType=='videos'?'background-primary':'secondary'"
     >
       <ion-label class="fn-18 qesaa-Janna-Bold white-color">
         {{"videos"|translate}}
@@ -29,17 +34,31 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="galleyType=='images'" class="ion-padding">
+  <div
+    *ngIf="galleyType=='photos' && galleryPhotos.length!=0"
+    class="ion-padding"
+  >
     <ion-row>
-      <ion-col class="ion-text-center" size="4" *ngFor="let image of gallery">
+      <ion-col
+        class="ion-text-center"
+        size="4"
+        *ngFor="let image of galleryPhotos"
+      >
         <img [src]="image.image" />
       </ion-col>
     </ion-row>
   </div>
 
-  <div *ngIf="galleyType=='videos'" class="ion-padding">
+  <div
+    *ngIf="galleyType=='videos'&& galleryVideos.length!=0"
+    class="ion-padding"
+  >
     <ion-row>
-      <ion-col class="ion-text-center" size="6" *ngFor="let video of gallery">
+      <ion-col
+        class="ion-text-center"
+        size="6"
+        *ngFor="let video of galleryVideos"
+      >
         <video controls>
           <source [src]="video.video" type="video/mp4" />
         </video>

@@ -11,6 +11,7 @@ import {
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { Storage } from '@capacitor/storage';
+import { CustomModalPage } from 'src/app/pages/modals/custom-modal/custom-modal.page';
 
 @Injectable({
   providedIn: 'root',
@@ -41,9 +42,12 @@ export class IsAuthGuard implements CanActivate {
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: LoginModalPage,
+      component: CustomModalPage,
       cssClass: 'my-custom-modal',
-      canDismiss:true
+      canDismiss:true,
+      componentProps:{
+        modalType:'authentication'
+      }
     });
     return await modal.present();
   }

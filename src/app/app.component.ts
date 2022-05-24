@@ -109,9 +109,10 @@ export class AppComponent {
     // });
 
     this.languageService.getUpdatedLanguage().subscribe((val) => {
+       console.log('language' + val);
       this.language = val;
     });
-    // console.log('logined : ' + this.logined);
+    
 
     console.log('current platform : ' + this.util.getCapacitorPlatform());
     this.currentPlatform = this.util.getCapacitorPlatform();
