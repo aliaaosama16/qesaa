@@ -26,6 +26,7 @@ import { UserType } from 'src/app/models/userType';
 })
 export class AuthService {
   isAuthenticated = new BehaviorSubject(false);
+  userType = new BehaviorSubject('');
   userID = new BehaviorSubject(0);
   noOfNotifications = new BehaviorSubject(0);
   userToken: string = '';
@@ -47,7 +48,7 @@ export class AuthService {
     this.isLogined();
     this.setUserID(data?.data?.id);
     this.storeToken(data?.data?.api_token);
-    this.storeActivationStatus( data.data.is_active);
+    this.storeActivationStatus(data.data.is_active);
     this.storeUserId(data?.data?.id);
     this.storeUserType(data?.data?.user_type);
     this.setNoOfNotifications(data?.data?.id);
@@ -58,6 +59,7 @@ export class AuthService {
       key: 'qesaa-UserType',
       value: type,
     });
+    this.userType.next(type);
   }
 
   async storeUserId(id: number) {
@@ -95,6 +97,10 @@ export class AuthService {
     this.userID.next(0);
   }
 
+  removeUserType() {
+    this.userType.next('');
+  }
+
   async getStoredUserID() {
     const val = await Storage.get({ key: 'qesaa-UserID' });
     this.setUserID(parseInt(val.value));
@@ -102,8 +108,6 @@ export class AuthService {
   }
 
   setNoOfNotifications(userId: number) {
-    // this.getUserIDObservable().subscribe((userID) => {
-    //   if (userID) {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
       user_id: userId,
@@ -116,8 +120,6 @@ export class AuthService {
       },
       (err) => {}
     );
-    // }
-    //});
   }
 
   getNoOfNotifications(): Observable<number> {
@@ -170,7 +172,7 @@ export class AuthService {
       data
     );
   }
-  
+
   updateUserData(data: UpdateUserData): Observable<AuthResponse> {
     return this.httpclient.post<AuthResponse>(
       `${environment.BASE_URL}update-user`,

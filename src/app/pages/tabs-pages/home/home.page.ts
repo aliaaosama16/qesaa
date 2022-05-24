@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
   //charityInfoTitle:StaticPageTitle;
   upComingDate: any;
   obs: any;
+  myInterval: any;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -111,13 +112,8 @@ export class HomePage implements OnInit {
             this.volunteers_count = data.data.volunteers_count;
             this.satisfaction_masure = data.data?.satisfaction_masure;
             this.beneficiaries_count = data.data?.beneficiaries_count;
-            
 
-            //interval(60 * 100).subscribe((_) => {
-              this.upComingDate = this.util.getDatesDifference(
-                data.data.upcoming_date
-              );
-           // });
+            this.countRemainingTime(data.data.upcoming_date);
           }
           this.util.dismissLoading();
         },
@@ -126,6 +122,12 @@ export class HomePage implements OnInit {
         }
       );
     });
+  }
+
+  countRemainingTime(date) {
+    this.myInterval = setInterval(() => {
+      this.upComingDate = this.util.getDatesDifference(date);
+    }, 1000);
   }
 
   doRefresh($event) {
@@ -142,6 +144,8 @@ export class HomePage implements OnInit {
           this.volunteers_count = data.data.volunteers_count;
           this.satisfaction_masure = data.data?.satisfaction_masure;
           this.beneficiaries_count = data.data?.beneficiaries_count;
+          this.countRemainingTime(data.data.upcoming_date);
+
         }
         $event.target.complete();
       },
@@ -151,7 +155,7 @@ export class HomePage implements OnInit {
     );
   }
 
-  // ionViewDidLeave() {
-  //   this.obs.unsubscribe();
-  // }
+  ionViewDidLeave() {
+    clearInterval(this.myInterval);
+  }
 }

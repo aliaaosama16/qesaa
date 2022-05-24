@@ -44,6 +44,9 @@ export class LoginPage implements OnInit {
     private auth: AuthService
   ) {
     this.currentLanguage = this.languaService.getLanguage();
+    this.langaugeservice.getUpdatedLanguage().subscribe(lang=>{
+      this.currentLanguage=lang
+    })
     this.otherLanguage =
       this.languaService.getLanguage() == 'ar' ? 'English' : 'عربي';
   }
@@ -138,12 +141,14 @@ export class LoginPage implements OnInit {
 
   changeLanguage() {
     if (this.langaugeservice.getLanguage() == 'ar') {
+      this.langaugeservice.language.next('en');
       document.documentElement.dir = 'ltr';
       this.langaugeservice.setLanguage('en');
     } else {
+      this.langaugeservice.language.next('ar');
       document.documentElement.dir = 'rtl';
       this.langaugeservice.setLanguage('ar');
     }
-    window.location.reload();
+   // window.location.reload();
   }
 }

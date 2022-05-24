@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit {
       console.log('lang :'+lang)
       this.currentLangauge = lang;
     });
+    this.currentLangauge =this.languageService.getLanguage()
   }
 
   ngOnInit() {

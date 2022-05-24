@@ -140,7 +140,14 @@ export class AppComponent {
     if (loginStatus.value) {
       this.auth.isLogined();
       this.getUserNotifications();
+      this.getStoredUserType();
     }
+
+  }
+
+  async getStoredUserType(){
+    const userType = await Storage.get({ key: 'qesaa-UserType' });
+    this.auth.userType.next(userType.value);
   }
 
   async getUserNotifications() {

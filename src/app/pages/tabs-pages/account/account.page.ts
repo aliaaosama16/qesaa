@@ -1,3 +1,5 @@
+import { AlertController } from '@ionic/angular';
+import { LogOutData } from './../../../models/auth';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -11,6 +13,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthResponse } from 'src/app/models/auth';
 import { LanguageService } from '../../../services/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account',
@@ -24,13 +27,15 @@ export class AccountPage implements OnInit {
   instgram: string;
   twitter: string;
   otherLanguage: string;
-  currentLanguage:string
+  currentLanguage: string;
   constructor(
     private router: Router,
     private util: UtilitiesService,
     private auth: AuthService,
     private data: DataService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private alertController: AlertController,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -106,6 +111,60 @@ export class AccountPage implements OnInit {
       document.documentElement.dir = 'rtl';
       this.languageService.setLanguage('ar');
     }
-     window.location.reload();
+    window.location.reload();
+  }
+
+  async logout() {
+    const logoutData: LogOutData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      device_id: this.util.deviceID,
+    };
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: this.translate.instant('confirm logout'),
+      buttons: [
+        {
+          text: this.translate.instant('ok'),
+          handler: () => {
+            this.logoutService(logoutData);
+           
+          },
+        },
+        {
+          text: this.translate.instant('cancel'),
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          },
+        },
+      ],
+    });
+    alert.present();
+  }
+
+  logoutService(logoutData: LogOutData) {
+    this.util.showLoadingSpinner().then((__) => {
+      this.auth.logout(logoutData).subscribe(
+        (data: AuthResponse) => {
+          if (data.key == 1) {
+            this.util.showMessage(data.msg).then((_)=>{
+              this.auth.removeRegistrationData().then((_)=>{
+                this.router.navigateByUrl('/tabs/home');
+
+              });
+            })
+            console.log('logout data :' + JSON.stringify(this.userData));
+          } else {
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 }

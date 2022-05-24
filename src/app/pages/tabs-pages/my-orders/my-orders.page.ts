@@ -1,3 +1,4 @@
+import { ProviderService } from './../../../services/provider/provider.service';
 import { UserData } from './../../../models/general';
 import {
   Order,
@@ -19,17 +20,20 @@ import { DataService } from '../../../services/data/data.service';
 })
 export class MyOrdersPage implements OnInit {
   orders: Order[];
+  providerOrders: Order[] = [];
   volunteerOrders: Order[] = [];
   serviceOrders: Order[] = [];
   orderType: string = 'volunteers';
   userData: UserData;
+  userType: string;
   constructor(
     private util: UtilitiesService,
     private orderService: OrdersService,
     private languageService: LanguageService,
     private auth: AuthService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private providerService: ProviderService
   ) {}
 
   ngOnInit() {
@@ -37,9 +41,32 @@ export class MyOrdersPage implements OnInit {
       lang: this.languageService.getLanguage(),
       user_id: this.auth.userID.value,
     };
-    this.showAllOrdersByUserId('volunteer');
+    console.log('current user type :' + this.auth.userType.value);
+
+    this.userType = this.auth.userType.value;
+
+    if (this.userType == 'client') {
+      this.showAllOrdersByUserId('volunteer');
+    } else {
+      this.showAllOrdersByProviderId();
+    }
   }
 
+  showAllOrdersByProviderId() {
+    this.util.showLoadingSpinner().then((__) => {
+      this.providerService.showAllProviderOrders(this.userData).subscribe(
+        (data: OrderListResponse) => {
+          if (data.key == 1) {
+            this.providerOrders = data.data;
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
   showAllOrdersByUserId(type: string) {
     this.util.showLoadingSpinner().then((__) => {
       this.orderService.showAllorders(this.userData).subscribe(

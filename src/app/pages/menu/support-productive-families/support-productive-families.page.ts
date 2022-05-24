@@ -111,7 +111,7 @@ export class SupportProductiveFamiliesPage implements OnInit {
   getAllCities() {
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      user_id: this.auth.userID.value,
+      //user_id: this.auth.userID.value,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.dataService.appData(userData).subscribe(

@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactType, ContactUsData } from 'src/app/models/contactUs';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { GeneralService } from 'src/app/services/general/general.service';
-import { GeneralResponse } from 'src/app/models/general';
+import { GeneralResponse, UserData } from 'src/app/models/general';
+import { AppData } from 'src/app/models/data';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-contact-with-admin',
@@ -22,7 +24,8 @@ export class ContactWithAdminPage implements OnInit {
     private formBuilder: FormBuilder,
     private languageService: LanguageService,
     private util: UtilitiesService,
-    private general: GeneralService
+    private general: GeneralService,
+    private dataService:DataService
   ) {
     this.currentLanguage = this.languageService.getLanguage();
   }
@@ -83,4 +86,29 @@ export class ContactWithAdminPage implements OnInit {
     // });
   }
 
+  openWhatsapp(){
+  
+      const userData: UserData = {
+        lang: this.languageService.getLanguage(),
+      };
+      this.util.showLoadingSpinner().then((__) => {
+        this.dataService.appData(userData).subscribe(
+          (data: AppData) => {
+            if (data.key == 1) {
+             
+              window.open(`https://api.whatsapp.com/send?phone=${data.whatsapp}`);
+
+            } else {
+              this.util.showMessage(data.msg);
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
+        );
+      });
+    }
+  
+  
 }
