@@ -131,8 +131,8 @@ export class RegisterPage implements OnInit {
         [
           Validators.required,
           // Validators.pattern(/^05/),
-          Validators.minLength(10),
-          Validators.maxLength(10),
+          //Validators.minLength(10),
+          //Validators.maxLength(10),
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],

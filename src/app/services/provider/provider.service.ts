@@ -7,7 +7,7 @@ import {
   OrderListResponse,
   OrderResponse,
 } from 'src/app/models/order';
-import { LocationData } from 'src/app/models/provider';
+import { ChangeStatusData, LocationData } from 'src/app/models/provider';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,8 +38,8 @@ export class ProviderService {
 
   // change-order-status
 
-  changeOrderStatus(data: OrderData): Observable<OrderResponse> {
-    return this.httpclient.post<OrderResponse>(
+  changeOrderStatus(data: ChangeStatusData): Observable<GeneralResponse> {
+    return this.httpclient.post<GeneralResponse>(
       `${environment.BASE_URL}change-order-status`,
       data
     );

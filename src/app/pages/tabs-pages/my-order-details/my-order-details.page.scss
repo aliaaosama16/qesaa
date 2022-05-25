@@ -74,3 +74,10 @@ ion-button {
     color: var(--ion-color-white);
   }
 }
+
+ion-select {
+  width: 100%;
+  &::part(text) {
+    color: var(--ion-color-gray);
+  }
+}

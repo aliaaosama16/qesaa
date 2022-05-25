@@ -7,7 +7,7 @@ export interface LocationData extends UserData {
 export interface ChangeStatusData extends UserData {
   order_id: number;
   status: StatusList;
-  cancel_notes: string;
+  cancel_notes?: string;
 }
 
 export enum StatusList {

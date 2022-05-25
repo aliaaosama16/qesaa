@@ -11,6 +11,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomModalPage } from '../../modals/custom-modal/custom-modal.page';
 import { DataService } from 'src/app/services/data/data.service';
+import { ProviderService } from 'src/app/services/provider/provider.service';
+import { ChangeStatusData } from 'src/app/models/provider';
 
 @Component({
   selector: 'app-my-order-details',
@@ -21,7 +23,15 @@ export class MyOrderDetailsPage implements OnInit {
   orderConfig: SwiperOptions;
   currentlangauge: string;
   orderDetails: Order;
-  orderType:string
+  orderType: string;
+  userType: string;
+  orderMaps: string[] = ['in_way', 'finish', 'cancel'];
+  orderStatus: string;
+
+  //   finish: false
+  // in_way: false
+  // new: true
+  // refused: false
   constructor(
     private LanguageService: LanguageService,
     private modalController: ModalController,
@@ -31,11 +41,15 @@ export class MyOrderDetailsPage implements OnInit {
     private orderService: OrdersService,
     private activatedRoute: ActivatedRoute,
     private auth: AuthService,
-    private dataService: DataService
+    private dataService: DataService,
+    private providerService: ProviderService
   ) {
     this.currentlangauge = this.LanguageService.getLanguage();
-    console.log('page come from  '+this.dataService.getPageData()?.title);
-    this.orderType=this.dataService.getPageData()?.title;
+    console.log('page come from  ' + this.dataService.getPageData()?.title);
+    this.orderType = this.dataService.getPageData()?.title;
+
+    this.userType = this.auth.userType.value;
+    console.log('user type :' + this.userType);
   }
 
   ngOnInit() {
@@ -108,5 +122,28 @@ export class MyOrderDetailsPage implements OnInit {
       },
     });
     modal.present();
+  }
+
+  chooseOrderStatus($event) {
+    console.log('chosen status :  ' + $event.target.value);
+    const changeStatusData: ChangeStatusData = {
+      order_id: this.orderDetails?.id,
+      status: $event.target.value,
+      // cancel_notes: ''
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.providerService.changeOrderStatus(changeStatusData).subscribe(
+        (data: OrderResponse) => {
+          if (data.key == 1) {
+            //this.orderDetails = data.data;
+            this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
   }
 }

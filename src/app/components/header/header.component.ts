@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
     private location: Location,
     private util: UtilitiesService,
     private router: Router,
+    private auth:AuthService,
     private languageService: LanguageService,
     private sectionsProductsService: SectionsProductsService
   ) {
@@ -34,7 +36,6 @@ export class HeaderComponent implements OnInit {
       this.location.back();
     });
     
-
     this.languageService.getUpdatedLanguage().subscribe((lang) => {
       console.log('lang :'+lang)
       this.currentLangauge = lang;
@@ -45,7 +46,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     console.log('current platform : ' + this.util.getCapacitorPlatform());
     this.currentPlatform = this.util.getCapacitorPlatform();
-    this.sectionsProductsService.setCartCount();
+    if (this.auth.userType.value == 'client' && this.auth.isAuthenticated) {
+      this.sectionsProductsService.setCartCount();
+
+    }
     this.sectionsProductsService.getCartCount().subscribe((val) => {
       if (val != 0) {
         this.cartCount = val;

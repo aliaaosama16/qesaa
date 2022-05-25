@@ -103,4 +103,59 @@ export class MyOrdersPage implements OnInit {
     this.dataService.setPageData(page);
     this.router.navigateByUrl(`/tabs/my-orders/details/${orderID}`);
   }
+
+  doRefresh($event) {
+    this.userData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+    };
+    console.log('current user type :' + this.auth.userType.value);
+
+    this.userType = this.auth.userType.value;
+
+    if (this.userType == 'client') {
+      this.showAllOrdersByUserIdAfterRefreshing($event, 'volunteer');
+    } else {
+      this.showAllOrdersByProviderIdAfterRefreshing($event);
+    }
+  }
+
+  showAllOrdersByUserIdAfterRefreshing($event: any, type: string) {
+      this.orderService.showAllorders(this.userData).subscribe(
+        (data: OrderListResponse) => {
+          if (data.key == 1) {
+            this.orders = data.data;
+
+            if (type == 'charity-market') {
+              this.serviceOrders = this.orders.filter(
+                (item) => item.type === 'service'
+              );
+            } else {
+              this.volunteerOrders = this.orders.filter(
+                (item) => item.type === 'volunteer'
+              );
+            }
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+  }
+
+  showAllOrdersByProviderIdAfterRefreshing($event){
+      this.providerService.showAllProviderOrders(this.userData).subscribe(
+        (data: OrderListResponse) => {
+          if (data.key == 1) {
+            this.providerOrders = data.data;
+          }
+          $event.target.complete();
+        },
+        (err) => {
+          $event.target.complete();
+        }
+      );
+  
+  }
 }

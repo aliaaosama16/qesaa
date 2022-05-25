@@ -76,7 +76,7 @@
     </div>
   </div>
 
-  <div class="order-images">
+  <div class="order-images" *ngIf="orderDetails?.image">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order images"|translate}}
     </p>
@@ -105,6 +105,27 @@
     </div>
   </div>
 
+  <div class="order-images" *ngIf="orderDetails?.order_services.length!=0">
+    <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
+      {{"order images"|translate}}
+    </p>
+
+    <div class="images">
+      <swiper
+        #swiper
+        [config]="orderConfig"
+        class="custom-swiper"
+        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
+      >
+        <ng-template swiperSlide *ngIf="orderType=='charity-market'">
+          <img
+            [src]="orderDetails?.order_services[0].service_image"
+            (click)="openPreview(orderDetails?.image,1)"
+          />
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
   <div class="order-notices" *ngIf="orderDetails?.notes">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order notices"|translate}}
@@ -117,41 +138,72 @@
     </div>
   </div>
 
-  <div
-    class="ion-padding-horizontal ion-margin-bottom"
-    *ngIf="orderDetails?.status== 'current'"
-  >
-    <ion-button
-      (click)="driverTrack()"
-      color="primary"
-      expand="block"
-      class="fn-20 qesaa-Janna-Bold"
+  <div *ngIf="userType=='client'">
+    <div
+      class="ion-padding-horizontal ion-margin-bottom"
+      *ngIf="orderDetails?.status== 'current' "
     >
-      {{ "track driver"|translate}}
-    </ion-button>
-  </div>
-  <div
-    class="ion-padding-horizontal ion-margin-bottom"
-    *ngIf="orderDetails?.status== 'finish'"
-  >
-    <ion-button
-      (click)="rateProvider()"
-      color="primary"
-      expand="block"
-      class="fn-20 qesaa-Janna-Bold"
+      <ion-button
+        (click)="driverTrack()"
+        color="primary"
+        expand="block"
+        class="fn-20 qesaa-Janna-Bold"
+      >
+        {{ "track driver"|translate}}
+      </ion-button>
+    </div>
+    <div
+      class="ion-padding-horizontal ion-margin-bottom"
+      *ngIf="orderDetails?.status== 'finish'"
     >
-      {{ "rate provider"|translate}}
-    </ion-button>
+      <ion-button
+        (click)="rateProvider()"
+        color="primary"
+        expand="block"
+        class="fn-20 qesaa-Janna-Bold"
+      >
+        {{ "rate provider"|translate}}
+      </ion-button>
+    </div>
+
+    <div
+      class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal"
+    >
+      <a
+        href="tel:{{'+'+orderDetails?.provider_full_phone}}"
+        class="fn-20 qesaa-Janna-Bold"
+      >
+        {{ "contact with driver"|translate}}
+      </a>
+    </div>
   </div>
 
-  <div
-    class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal"
-  >
-    <a
-      href="tel:{{'+'+orderDetails?.provider_full_phone}}"
-      class="fn-20 qesaa-Janna-Bold"
-    >
-      {{ "contact with driver"|translate}}
-    </a>
+  <div *ngIf="userType=='provider'">
+
+    <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
+      {{"change order status"|translate}}
+    </p>
+   
+
+    <ion-item lines="none" class="ion-margin-bottom" >
+      <ion-select
+        [(ngModel)]="orderStatus"
+        (ionChange)="chooseOrderStatus($event)"
+        placeholder='{{"change order status"|translate}}'
+        okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}'
+        interface="popover"
+        mode="ios"
+      >
+        <ion-select-option
+          class="fn-16 qesaa-Janna-Regular"
+          [value]="type"
+          *ngFor="let type of orderMaps"
+        >
+          {{type|translate}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
   </div>
+ 
 </ion-content>

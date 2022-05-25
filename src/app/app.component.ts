@@ -104,7 +104,7 @@ export class AppComponent {
     private router: Router,
     private auth: AuthService,
     private sectionsService: SectionsProductsService,
-    private providerService:ProviderService
+    private providerService: ProviderService
   ) {
     this.initializeApp();
 
@@ -113,10 +113,9 @@ export class AppComponent {
     // });
 
     this.languageService.getUpdatedLanguage().subscribe((val) => {
-       console.log('language' + val);
+      console.log('language' + val);
       this.language = val;
     });
-    
 
     console.log('current platform : ' + this.util.getCapacitorPlatform());
     this.currentPlatform = this.util.getCapacitorPlatform();
@@ -131,7 +130,7 @@ export class AppComponent {
       this.util.getDeviceID();
 
       // this.fcmService.initFcm();
-      this.sectionsService.setCartCount();
+
       this.util.getUserLocation();
       this.getLoginStatus();
       console.log(this.util.userLocation.lat, this.util.userLocation.lng);
@@ -146,24 +145,23 @@ export class AppComponent {
       this.getUserNotifications();
       this.getStoredUserType();
     }
-
   }
 
-  async getStoredUserType(){
+  async getStoredUserType() {
     const userType = await Storage.get({ key: 'qesaa-UserType' });
     this.auth.userType.next(userType.value);
-    if(userType.value=='provider'){
-      // update provider location
-
-      const location:LocationData={
-        lat:this.util.userLocation.lat,
-        lng: this.util.userLocation.lng
-      }
+    console.log('this.auth.userType.value :'+this.auth.userType.value)
+    if (this.auth.userType.value == 'provider') {
+      const location: LocationData = {
+        lat: this.util.userLocation.lat,
+        lng: this.util.userLocation.lng,
+        user_id:this.auth.userID.value
+      };
       this.util.showLoadingSpinner().then((__) => {
         this.providerService.updateLocation(location).subscribe(
           (data: GeneralResponse) => {
             if (data.key == 1) {
-             this.util.showMessage(data.msg)
+             // this.util.showMessage(data.msg);
             }
             this.util.dismissLoading();
           },
@@ -173,8 +171,11 @@ export class AppComponent {
         );
       });
     }
+    else  {
+     // this.sectionsService.setCartCount();
+    }
   }
-
+// if (this.auth.userType.value == 'client')
   async getUserNotifications() {
     const userID = await Storage.get({ key: 'qesaa-UserID' });
     console.log('stored user id : ' + parseInt(userID.value));
