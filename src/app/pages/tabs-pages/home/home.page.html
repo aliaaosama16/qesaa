@@ -26,7 +26,10 @@
 
   <div class="next-initiative ion-margin-horizontal custom-top-margin">
     <div class="initiative">
-      <div class="title ion-text-center" [ngClass]="currentlangauge=='ar'?'title-ar':'title-en'">
+      <div
+        class="title ion-text-center"
+        [ngClass]="currentlangauge=='ar'?'title-ar':'title-en'"
+      >
         <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
           {{"Next initiative"|translate}}
         </p>
@@ -35,27 +38,44 @@
       <div class="divider"></div>
 
       <div class="flex-container">
-        <div class="flex-container-item" >
+        <div class="flex-container-item">
           <div class="time-detail primary-color">{{upComingDate?.days}}</div>
-          <div class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color">
+          <div
+            class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color"
+          >
             {{"days"|translate}}
           </div>
         </div>
-        <div class="flex-container-item" [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'">
+        <div
+          class="flex-container-item"
+          [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'"
+        >
           <div class="time-detail primary-color">{{upComingDate?.hours}}</div>
-          <div class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color">
+          <div
+            class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color"
+          >
             {{"hours"|translate}}
           </div>
         </div>
-        <div class="flex-container-item" [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'">
+        <div
+          class="flex-container-item"
+          [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'"
+        >
           <div class="time-detail primary-color">{{upComingDate?.minutes}}</div>
-          <div class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color">
+          <div
+            class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color"
+          >
             {{"minutes"|translate}}
           </div>
         </div>
-        <div class="flex-container-item" [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'">
+        <div
+          class="flex-container-item"
+          [ngClass]="currentlangauge=='ar'?'item-ar':'item-en'"
+        >
           <div class="time-detail primary-color">{{upComingDate?.seconds}}</div>
-          <div class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color">
+          <div
+            class="time-unit ion-text-nowrap fn-14 qesaa-Janna-Regular secondary-color"
+          >
             {{"seconds"|translate}}
           </div>
         </div>
@@ -74,7 +94,7 @@
       </div>
 
       <div class="card-text ion-text-center">
-        <p class="fn-20 ion-no-margin qesaa-Janna-Bold primary-color ">
+        <p class="fn-20 ion-no-margin qesaa-Janna-Bold primary-color">
           {{ "charity-market"|translate}}
         </p>
       </div>
@@ -90,7 +110,7 @@
       </div>
       <!-- ion-text-nowrap -->
       <div class="card-text ion-text-center">
-        <p class="fn-20 qesaa-Janna-Bold ion-no-margin primary-color ">
+        <p class="fn-20 qesaa-Janna-Bold ion-no-margin primary-color">
           {{"productive-families"|translate}}
         </p>
       </div>
@@ -108,7 +128,9 @@
       </div>
 
       <div class="card-text">
-        <p class="fn-18 ion-no-margin ion-text-nowrap qesaa-Janna-Bold primary-color">
+        <p
+          class="fn-18 ion-no-margin ion-text-nowrap qesaa-Janna-Bold primary-color"
+        >
           {{ "goals"|translate}}
         </p>
       </div>
@@ -136,7 +158,9 @@
       </div>
 
       <div class="card-text">
-        <p class="fn-18 ion-no-margin ion-text-nowrap qesaa-Janna-Bold primary-color">
+        <p
+          class="fn-18 ion-no-margin ion-text-nowrap qesaa-Janna-Bold primary-color"
+        >
           {{"vission"|translate}}
         </p>
       </div>
@@ -144,7 +168,9 @@
   </div>
 
   <div class="partners ion-padding-horizontal">
-    <p class="fn-18 qesaa-Janna-Bold ion-margin-bottom">{{"success-partners"|translate}}</p>
+    <p class="fn-18 qesaa-Janna-Bold ion-margin-bottom">
+      {{"success-partners"|translate}}
+    </p>
 
     <div class="partenrs-section custom-top-margin ion-margin-top">
       <swiper
@@ -231,11 +257,15 @@
         class="custom-swiper feedback-swiper"
         [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
       >
-        <ng-template class="feedback-swiper-container" swiperSlide *ngFor="let feedback of  people_feedback ">
+        <ng-template
+          class="feedback-swiper-container"
+          swiperSlide
+          *ngFor="let feedback of  people_feedback "
+        >
           <div class="feedback-card">
             <div class="feedback-title">
               <div class="feedback-person-icon ion-text-center">
-                <img [src]="feedback.image">
+                <img [src]="feedback.image" />
               </div>
               <div class="feedback-person-name">
                 <p

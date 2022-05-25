@@ -129,8 +129,8 @@ export class AccountEditPage implements OnInit {
       user_id: this.auth.userID.value,
       first_name: this.editProfileForm.value.userName,
       phone: this.editProfileForm.value.phoneNumber,
-      //password: this.editProfileForm.value.password,
-      //avater: profileImage,
+      password: this.editProfileForm.value.password,
+      avatar: profileImage,
     };
     this.util.showLoadingSpinner().then((__) => {
       this.auth.updateUserData(userData).subscribe(

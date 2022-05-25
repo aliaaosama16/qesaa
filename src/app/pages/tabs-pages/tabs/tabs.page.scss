@@ -18,3 +18,33 @@
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
 }
+
+// @keyframes updown {
+//     0% {
+//       transform: rotate(0deg);
+//     }
+  
+//     25% {
+//       transform: rotate(180deg);
+    
+//     }
+  
+//     50% {
+//         transform: rotate(275deg);
+//     }
+  
+//     100% {
+//         transform: rotate(360deg);
+//     }
+//   }
+  
+  
+//   ion-fab-button{
+//     ion-icon {
+//         animation: updown 2s cubic-bezier(0.1, 0.7, 0.55, 1.01);
+//         animation-direction: alternate;
+//       }
+    
+//   }
+    
+  

@@ -33,7 +33,7 @@ export class LanguageService {
     } else if (lang.value == null) {
       console.log(`no language`);
       document.documentElement.dir = 'rtl';
-      //this.setLanguage('ar');
+      this.setLanguage('ar');
       this.selected = 'ar';
       this.translate.setDefaultLang('ar');
     }

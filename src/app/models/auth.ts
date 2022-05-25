@@ -41,7 +41,7 @@ export interface LogOutData extends UserData {
 export interface UpdateUserData extends UserData{
   first_name:string;
   phone:number;
-  avater?:string;
+  avatar?:string;
   password?:string;
 }
 

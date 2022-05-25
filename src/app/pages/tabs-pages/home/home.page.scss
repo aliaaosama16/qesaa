@@ -250,7 +250,7 @@
       border-radius: var(--custom-border-10-radius);
       padding: 10px;
       min-height: 110px;
-      margin: 10px;
+      margin: 10px 0;
 
       .feedback-title {
         display: flex;
@@ -266,7 +266,7 @@
           img{
             border-radius: 50%;
             width: 25px;
-            height: 25px;
+            //height: 25px;
           }
         }
         .feedback-person-name {
