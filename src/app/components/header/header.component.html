@@ -24,7 +24,7 @@
       *ngIf="hasMarketCart"
       (click)="showUserCart()"
     >
-      <span class="animate__zoomOut" *ngIf="cartCount != 0">{{
+      <span class="animate__animated animate__slideInDown" *ngIf="cartCount != 0">{{
         cartCount
       }}</span>
       <ion-icon name="cart-outline" color="primary"></ion-icon>

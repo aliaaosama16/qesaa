@@ -26,6 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import "~swiper/css/bundle";
+@import "animate.css";
 
 @font-face {
   font-family: "Janna-LT-Bold";
@@ -443,15 +444,15 @@ ion-tabs {
     }
     .title {
       margin-bottom: 28px;
-      .name{
+      .name {
         color: var(--ion-color-secondary);
       }
     }
 
-    .rating{
+    .rating {
       display: flex;
       justify-content: space-between;
-      ion-icon{
+      ion-icon {
         font-size: 30px;
       }
     }

@@ -21,15 +21,16 @@
             (click)="selectMenuItem(i, p.url)"
             routerDirection="root"
             [class.selected]="selectedIndex == i"
+           
           >
-            <ion-item lines="none" detail="false">
+            <ion-item lines="none" detail="false"  class="animate__animated animate__fadeInTopRight ">
               <ion-icon
                 slot="start"
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"
                 [ngClass]="currentLanguage == 'ar' ? 'icon-ar' : 'icon-en'"
               ></ion-icon>
               <ion-label
-                class="fn-16 qesaa-Janna-Regular"
+                class="fn-16 qesaa-Janna-Regular "
                 [ngStyle]="
                   currentLanguage == 'ar'
                     ? { 'margin-right': '10px' }
