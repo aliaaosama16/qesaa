@@ -34,8 +34,8 @@ export class DonationOrderPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
   map: google.maps.Map;
   home: google.maps.Marker;
-  lat: number = 31;
-  long: number = 31;
+  lat: number = 0;
+  long: number = 0;
   infowindow = new google.maps.InfoWindow();
   currentLanguage: string;
   donationForm: FormGroup;
@@ -57,7 +57,7 @@ export class DonationOrderPage implements OnInit {
     private general: GeneralService,
     private uploadImage: UploadImageService,
     private sanitizer: DomSanitizer,
-    private router:Router
+    private router: Router
   ) {
     this.currentLanguage = this.languageService.getLanguage();
     this.plt.keyboardDidShow.subscribe((ev) => {
@@ -68,6 +68,9 @@ export class DonationOrderPage implements OnInit {
   }
 
   ngOnInit() {
+    this.lat = this.util.userLocation.lat;
+    this.long = this.util.userLocation.lng;
+
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
       user_id: this.auth.userID.value,
@@ -204,9 +207,20 @@ export class DonationOrderPage implements OnInit {
       icon: './../../../../assets/icon/location-pin-small.svg',
     });
 
-    // this.home.addListener( this.home, 'dragend', ()=>{
+    google.maps.event.addListener(this.home, 'dragend', (event) => {
+      //alert(JSON.stringify(event))
+      //
+      //alert(event.latLng.lat() + '  ' + event.latLng.lng());
+      this.lat=event.latLng.lat();
+      this.long=event.latLng.lng();
+      console.log('new location :'+this.lat+'  '+this.long)
+      //    alert(res.coords.latitude+'   '+res.coords.longitude)
+      //  })
+    });
+    //   google.maps.event.addListener(this.home, 'dragend', (ev){
 
-    // })
+    //      alert(this.home.getPosition()); // new LatLng-Object after dragend-event...
+    // });
   }
 
   getAllCities() {
@@ -286,19 +300,19 @@ export class DonationOrderPage implements OnInit {
       phone: this.donationForm.value.phoneNumber,
       city_id: this.donationForm.value.city,
       neighborhood_id: this.donationForm.value.neighborhood,
-      lat: this.util.userLocation.lat,
-      lng: this.util.userLocation.lng,
+      lat: this.lat,
+      lng: this.long,
       date: moment(this.donationForm.value.requestDate).format('YYYY-MM-DD'),
       time: this.donationForm.value.requestTime,
       notes: this.donationForm.value.notices,
       image: this.general.getDonationImage(),
     };
-    console.log(' storeOrderData  '+JSON.stringify( storeOrderData))
+    console.log(' storeOrderData  ' + JSON.stringify(storeOrderData));
     this.util.showLoadingSpinner().then((__) => {
       this.sectionsService.storeOrder(storeOrderData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg).then((_)=>{
+            this.util.showMessage(data.msg).then((_) => {
               this.router.navigateByUrl('/tabs/my-orders');
               this.auth.setNoOfNotifications(this.auth.userID.value);
             });

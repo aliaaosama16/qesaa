@@ -1,3 +1,5 @@
+import { LocationData } from './models/provider';
+import { ProviderService } from './services/provider/provider.service';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,6 +10,7 @@ import { UtilitiesService } from './services/utilities/utilities.service';
 import { Share } from '@capacitor/share';
 import { LogOutData, Status } from './models/auth';
 import { Storage } from '@capacitor/storage';
+import { GeneralResponse } from './models/general';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -100,7 +103,8 @@ export class AppComponent {
     private util: UtilitiesService,
     private router: Router,
     private auth: AuthService,
-    private sectionsService: SectionsProductsService
+    private sectionsService: SectionsProductsService,
+    private providerService:ProviderService
   ) {
     this.initializeApp();
 
@@ -128,8 +132,8 @@ export class AppComponent {
 
       // this.fcmService.initFcm();
       this.sectionsService.setCartCount();
-      this.getLoginStatus();
       this.util.getUserLocation();
+      this.getLoginStatus();
       console.log(this.util.userLocation.lat, this.util.userLocation.lng);
     });
   }
@@ -148,6 +152,27 @@ export class AppComponent {
   async getStoredUserType(){
     const userType = await Storage.get({ key: 'qesaa-UserType' });
     this.auth.userType.next(userType.value);
+    if(userType.value=='provider'){
+      // update provider location
+
+      const location:LocationData={
+        lat:this.util.userLocation.lat,
+        lng: this.util.userLocation.lng
+      }
+      this.util.showLoadingSpinner().then((__) => {
+        this.providerService.updateLocation(location).subscribe(
+          (data: GeneralResponse) => {
+            if (data.key == 1) {
+             this.util.showMessage(data.msg)
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
+        );
+      });
+    }
   }
 
   async getUserNotifications() {

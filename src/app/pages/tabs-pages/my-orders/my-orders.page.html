@@ -32,8 +32,10 @@
               <span class="custom-margin red-color" *ngIf="order.status==2">{{order.orderStatus|translate}}</span>
               <span class="custom-margin " *ngIf="order.status==3">{{order.orderStatus|translate}}</span> -->
 
-              <span class="custom-margin">{{order.status_f}}</span>
-            </p>
+              <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+              <span class="custom-margin green-color"  *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+              <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
+              </p>
             <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
               {{order.date}}
             </p>
@@ -47,9 +49,9 @@
           </div>
         </div>
       </div>
-      <div *ngIf="providerOrders.length==0" class="no-data">
+      <!-- <div *ngIf="providerOrders.length==0" class="no-data">
         <p>{{"no orders"|translate}}</p>
-      </div>
+      </div> -->
     </div>
 
     <div class="service-orders-section">
@@ -81,7 +83,10 @@
                 {{request.requestStatus|translate}}
               </span> -->
 
-              <span> {{order?.status_f}} </span>
+              <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+              <span class="custom-margin green-color"  *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+              <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
+  
             </div>
           </div>
         </div>
@@ -115,9 +120,9 @@
           </div>
         </div> -->
       </div>
-      <div *ngIf="serviceOrders.length==0" class="no-data">
+      <!-- <div *ngIf="serviceOrders.length==0" class="no-data">
         <p>{{"no orders"|translate}}</p>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -137,7 +142,11 @@
                 <span class="custom-margin red-color" *ngIf="order.status==2">{{order.orderStatus|translate}}</span>
                 <span class="custom-margin " *ngIf="order.status==3">{{order.orderStatus|translate}}</span> -->
 
-            <span class="custom-margin">{{order.status_f}}</span>
+            <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+            <span class="custom-margin green-color"  *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+            <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
+
+
           </p>
           <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
             {{order.date}}
@@ -152,9 +161,9 @@
         </div>
       </div>
     </div>
-    <div *ngIf="providerOrders.length==0" class="no-data">
+    <!-- <div *ngIf="providerOrders.length==0" class="no-data">
       <p>{{"no orders"|translate}}</p>
-    </div>
+    </div> -->
 
 
   </div>

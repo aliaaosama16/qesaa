@@ -33,13 +33,7 @@ export class HeaderComponent implements OnInit {
       console.log('Handler was called!');
       this.location.back();
     });
-    this.sectionsProductsService.getCartCount().subscribe((val) => {
-      if (val != 0) {
-        this.cartCount = val;
-      } else {
-        this.cartCount = 0;
-      }
-    });
+    
 
     this.languageService.getUpdatedLanguage().subscribe((lang) => {
       console.log('lang :'+lang)
@@ -51,6 +45,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     console.log('current platform : ' + this.util.getCapacitorPlatform());
     this.currentPlatform = this.util.getCapacitorPlatform();
+    this.sectionsProductsService.setCartCount();
+    this.sectionsProductsService.getCartCount().subscribe((val) => {
+      if (val != 0) {
+        this.cartCount = val;
+      } else {
+        this.cartCount = 0;
+      }
+    });
   }
 
   openMenu() {

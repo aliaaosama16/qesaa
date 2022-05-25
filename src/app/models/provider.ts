@@ -1,7 +1,7 @@
 import { UserData } from 'src/app/models/general';
 export interface LocationData extends UserData {
-  lat: string;
-  lng: string;
+  lat: number;
+  lng:  number;
 }
 
 export interface ChangeStatusData extends UserData {

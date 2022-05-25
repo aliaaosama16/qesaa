@@ -5,13 +5,14 @@ import {
   ArticalType,
 } from 'src/app/models/articals';
 
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { MediaService } from 'src/app/services/media/media.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ImageModalPage } from 'src/app/pages/modals/image-modal/image-modal.page';
 
 @Component({
   selector: 'app-gallery',
@@ -31,7 +32,8 @@ export class GalleryPage implements OnInit {
     private languageService: LanguageService,
     private util: UtilitiesService,
     private mediaService: MediaService,
-    private auth: AuthService
+    private auth: AuthService,
+    public modalCtrl:ModalController
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler was called!');
@@ -85,5 +87,18 @@ export class GalleryPage implements OnInit {
     // } else if ($event.detail.value == 1) {
     this.showPhotos($event.detail.value);
     //}
+  }
+
+  async openPreview(itemImages, currentImage) {
+    console.log('open iamges modal');
+    const modal = await this.modalCtrl.create({
+      component: ImageModalPage,
+      cssClass: 'transparent-modal',
+      componentProps: {
+        images: itemImages,
+        imageID: currentImage,
+      },
+    });
+    modal.present();
   }
 }

@@ -60,6 +60,75 @@ export class CharityMarketProductsPage implements OnInit {
     });
   }
 
+  increaseCount(count,cartId){
+    count++;
+    //call api to update cart
+
+    const cartData: CartData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      cart_id: cartId,
+      count: count,
+    };
+    //this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.updateToCart(cartData).subscribe(
+        (data: GeneralResponse) => {
+          if (data.key == 1) {
+            this.util.showMessage(data.msg).then((_) => {
+              const cartData: UserData = {
+                lang: this.languageService.getLanguage(),
+                user_id: this.auth.userID.value,
+              };
+              this.sectionsService.setCartCount();
+              this.getCartProducts(cartData);
+            });
+          } else {
+            //this.util.showMessage(data.msg);
+          }
+        //  this.util.dismissLoading();
+        },
+        (err) => {
+        //  this.util.dismissLoading();
+        }
+      );
+    //});
+  }
+
+  decreaseCount(count,cartId){
+    if(count>0)count--;
+    
+    //call api to update cart
+
+    const cartData: CartData = {
+      lang: this.languageService.getLanguage(),
+      user_id: this.auth.userID.value,
+      cart_id: cartId,
+      count: count,
+    };
+    //this.util.showLoadingSpinner().then((__) => {
+      this.sectionsService.updateToCart(cartData).subscribe(
+        (data: GeneralResponse) => {
+          if (data.key == 1) {
+            this.util.showMessage(data.msg).then((_) => {
+              const cartData: UserData = {
+                lang: this.languageService.getLanguage(),
+                user_id: this.auth.userID.value,
+              };
+              this.sectionsService.setCartCount();
+              this.getCartProducts(cartData);
+            });
+          } else {
+            //this.util.showMessage(data.msg);
+          }
+         // this.util.dismissLoading();
+        },
+        (err) => {
+         // this.util.dismissLoading();
+        }
+      );
+   // });
+  }
+
   deleteProduct(productID) {
     console.log('delete product with id : ' + productID);
     const cartData: CartData = {

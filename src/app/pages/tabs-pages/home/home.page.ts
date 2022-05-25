@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
 
     this.feedbackConfig = {
       slidesPerView: 2,
-      spaceBetween: 10,
+      spaceBetween: 3,
       pagination: false,
       effect: 'fade',
     };

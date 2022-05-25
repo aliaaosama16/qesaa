@@ -42,13 +42,13 @@
       <ion-col
         class="ion-text-center"
         size="4"
-        *ngFor="let image of galleryPhotos"
+        *ngFor="let image of galleryPhotos" (click)="openPreview(galleryPhotos,image.id)"
       >
         <img [src]="image.image" />
       </ion-col>
     </ion-row>
   </div>
-
+  <!-- (click)="openPreview(galleryVideos,video.id)" -->
   <div
     *ngIf="galleyType=='videos'&& galleryVideos.length!=0"
     class="ion-padding"
@@ -57,7 +57,7 @@
       <ion-col
         class="ion-text-center"
         size="6"
-        *ngFor="let video of galleryVideos"
+        *ngFor="let video of galleryVideos" 
       >
         <video controls>
           <source [src]="video.video" type="video/mp4" />

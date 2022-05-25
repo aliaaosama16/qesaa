@@ -235,10 +235,13 @@
   margin-top: 28px;
   margin-bottom: 30px;
   .feedback-section {
+    
+    // display: flex;
+    // flex-direction: row;
     .feedback-swiper {
       margin: 0 -5px;
       .feedback-swiper-container {
-        padding: 5px;
+        //margin:-5px;  
       }
     }
     .feedback-card {
@@ -247,6 +250,7 @@
       border-radius: var(--custom-border-10-radius);
       padding: 10px;
       min-height: 110px;
+      margin: 10px;
 
       .feedback-title {
         display: flex;
@@ -259,8 +263,10 @@
           width: 25px;
           height: 25px;
           // text-align: center;
-          ion-icon {
-            font-size: 10px;
+          img{
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
           }
         }
         .feedback-person-name {
@@ -270,7 +276,7 @@
       .feedback-content {
         margin-top: 10px;
         p {
-          line-height: 20px;
+          line-height: 22px;
           word-spacing: 2px;
         }
       }

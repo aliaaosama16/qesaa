@@ -1,19 +1,11 @@
-<app-header
-  [haveBeforeHeader]="false"
-  [hasMarketCart]="false"
-  [title]="'products'"
-  [isHome]="false"
-></app-header>
+<app-header [haveBeforeHeader]="false" [hasMarketCart]="false" [title]="'products'" [isHome]="false"></app-header>
 
 <ion-content class="ion-padding-horizontal">
   <div *ngIf="products?.length==0" class="no-data">
     <p>{{"no products"|translate}}</p>
   </div>
   <div *ngIf="products?.length!=0">
-    <div
-      class="product-container ion-margin-bottom"
-      *ngFor="let product of products"
-    >
+    <div class="product-container ion-margin-bottom" *ngFor="let product of products">
       <div class="product-image">
         <img [src]="product?.image" />
       </div>
@@ -25,6 +17,15 @@
         <p class="ion-no-margin fn-14 qesaa-Janna-Regular light-grayed-color">
           {{product?.section_title}}
         </p>
+        <div class="updateCount">
+          <div class="increase" (click)="increaseCount(product.count,product.id)">
+            <ion-icon name="add-circle-sharp" color="primary"></ion-icon>
+          </div>
+          <div class="count"> {{product.count}} </div>
+          <div class="decrease" (click)="decreaseCount(product.count,product.id)">
+            <ion-icon name="add-circle-sharp" color="primary"></ion-icon>
+          </div>
+        </div>
       </div>
 
       <div class="delete-icon" (click)="deleteProduct(product?.id)">
@@ -33,15 +34,7 @@
     </div>
 
     <div class="checkout-btn">
-      <ion-button
-      *ngIf="products"
-       
-        (click)="checkout()"
-        color="primary"
-        expand="block"
-        class="fn-20 qesaa-Janna-Bold"
-        
-      >
+      <ion-button *ngIf="products" (click)="checkout()" color="primary" expand="block" class="fn-20 qesaa-Janna-Bold">
         {{ "complete-request"|translate}}
       </ion-button>
     </div>
