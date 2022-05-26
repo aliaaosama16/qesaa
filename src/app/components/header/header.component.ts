@@ -48,15 +48,15 @@ export class HeaderComponent implements OnInit {
     this.currentPlatform = this.util.getCapacitorPlatform();
     if (this.auth.userType.value == 'client' && this.auth.isAuthenticated) {
       this.sectionsProductsService.setCartCount();
-
+      this.sectionsProductsService.getCartCount().subscribe((val) => {
+        if (val != 0) {
+          this.cartCount = val;
+        } else {
+          this.cartCount = 0;
+        }
+      });
     }
-    this.sectionsProductsService.getCartCount().subscribe((val) => {
-      if (val != 0) {
-        this.cartCount = val;
-      } else {
-        this.cartCount = 0;
-      }
-    });
+    
   }
 
   openMenu() {

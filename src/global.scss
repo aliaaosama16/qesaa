@@ -30,12 +30,12 @@
 
 @font-face {
   font-family: "Janna-LT-Bold";
-  src: url("./assets/fonts/Bahij Janna-Bold.ttf");
+  src: url("./assets/fonts/Bahij Janna-Bold.ttf") format('truetype');
 }
 
 @font-face {
   font-family: "Janna-LT-Regular";
-  src: url("./assets/fonts/Bahij Janna-Regular.ttf");
+  src: url("./assets/fonts/Bahij Janna-Regular.ttf") format('truetype');
 }
 
 :root {
@@ -447,7 +447,7 @@ ion-tabs {
       height: 40px;
       width: 40px;
       object-fit: cover;
-      
+
     }
     .title {
       margin-bottom: 28px;

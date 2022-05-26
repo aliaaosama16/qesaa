@@ -172,7 +172,7 @@ export class AppComponent {
       });
     }
     else  {
-   //  this.sectionsService.setCartCount();
+    this.sectionsService.setCartCount();
     }
   }
 // if (this.auth.userType.value == 'client')
