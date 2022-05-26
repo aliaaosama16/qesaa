@@ -1,9 +1,4 @@
-<app-header
-  [hasMarketCart]="false"
-  [haveBeforeHeader]="false"
-  [title]="'order-details'"
-  [isHome]="false"
-></app-header>
+<app-header [hasMarketCart]="false" [haveBeforeHeader]="false" [title]="'order-details'" [isHome]="false"></app-header>
 
 <ion-content class="ion-padding-horizontal" *ngIf="orderDetails">
   <div class="order-details ion-padding">
@@ -43,16 +38,10 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'city'|translate}}
       </div>
-      <div
-        class="value fn-16 qesaa-Janna-Regular"
-        *ngIf="currentlangauge=='ar'"
-      >
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
         {{ orderDetails?.city_title_ar}}
       </div>
-      <div
-        class="value fn-16 qesaa-Janna-Regular"
-        *ngIf="currentlangauge=='en'"
-      >
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
         {{ orderDetails?.city_title_en}}
       </div>
     </div>
@@ -61,16 +50,10 @@
       <div class="text primary-color fn-16 qesaa-Janna-Bold">
         {{'the area or neighborhood'|translate}}
       </div>
-      <div
-        class="value fn-16 qesaa-Janna-Regular"
-        *ngIf="currentlangauge=='ar'"
-      >
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='ar'">
         {{orderDetails?.neighborhood_title_ar}}
       </div>
-      <div
-        class="value fn-16 qesaa-Janna-Regular"
-        *ngIf="currentlangauge=='en'"
-      >
+      <div class="value fn-16 qesaa-Janna-Regular" *ngIf="currentlangauge=='en'">
         {{orderDetails?.neighborhood_title_en}}
       </div>
     </div>
@@ -82,24 +65,13 @@
     </p>
 
     <div class="images">
-      <swiper
-        #swiper
-        [config]="orderConfig"
-        class="custom-swiper"
-        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-      >
+      <swiper #swiper [config]="orderConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
         <ng-template swiperSlide *ngIf="orderType=='volunteers'">
-          <img
-            [src]="orderDetails?.image"
-            (click)="openPreview(orderDetails?.image,1)"
-          />
+          <img [src]="orderDetails?.image" (click)="openPreview(orderDetails?.image,1)" />
         </ng-template>
 
         <ng-template swiperSlide *ngIf="orderType=='charity-market'">
-          <img
-            [src]="orderDetails?.order_services[0].service_image"
-            (click)="openPreview(orderDetails?.image,1)"
-          />
+          <img [src]="orderDetails?.order_services[0].service_image" (click)="openPreview(orderDetails?.image,1)" />
         </ng-template>
       </swiper>
     </div>
@@ -111,21 +83,14 @@
     </p>
 
     <div class="images">
-      <swiper
-        #swiper
-        [config]="orderConfig"
-        class="custom-swiper"
-        [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
-      >
+      <swiper #swiper [config]="orderConfig" class="custom-swiper" [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'">
         <ng-template swiperSlide *ngIf="orderType=='charity-market'">
-          <img
-            [src]="orderDetails?.order_services[0].service_image"
-            (click)="openPreview(orderDetails?.image,1)"
-          />
+          <img [src]="orderDetails?.order_services[0].service_image" (click)="openPreview(orderDetails?.image,1)" />
         </ng-template>
       </swiper>
     </div>
   </div>
+  
   <div class="order-notices" *ngIf="orderDetails?.notes">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"order notices"|translate}}
@@ -139,40 +104,19 @@
   </div>
 
   <div *ngIf="userType=='client'">
-    <div
-      class="ion-padding-horizontal ion-margin-bottom"
-      *ngIf="(orderDetails?.status== 'current') || (orderDetails?.status==  'in_way') "
-    >
-      <ion-button
-        (click)="driverTrack()"
-        color="primary"
-        expand="block"
-        class="fn-20 qesaa-Janna-Bold"
-      >
+    <div class="ion-padding-horizontal ion-margin-bottom" *ngIf=" orderDetails?.status==  'in_way' ">
+      <ion-button (click)="driverTrack()" color="primary" expand="block" class="fn-20 qesaa-Janna-Bold">
         {{ "track driver"|translate}}
       </ion-button>
     </div>
-    <div
-      class="ion-padding-horizontal ion-margin-bottom"
-      *ngIf="orderDetails?.status== 'finish'"
-    >
-      <ion-button
-        (click)="rateProvider()"
-        color="primary"
-        expand="block"
-        class="fn-20 qesaa-Janna-Bold"
-      >
+    <div class="ion-padding-horizontal ion-margin-bottom" *ngIf="orderDetails?.status== 'finish'">
+      <ion-button (click)="rateProvider()" color="primary" expand="block" class="fn-20 qesaa-Janna-Bold">
         {{ "rate provider"|translate}}
       </ion-button>
     </div>
 
-    <div
-      class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal"
-    >
-      <a
-        href="tel:{{'+'+orderDetails?.provider_full_phone}}"
-        class="fn-20 qesaa-Janna-Bold"
-      >
+    <div class="ion-padding-horizontal ion-text-center conatct-conatiner ion-margin-horizontal">
+      <a href="tel:{{'+'+orderDetails?.provider_full_phone}}" class="fn-20 qesaa-Janna-Bold">
         {{ "contact with driver"|translate}}
       </a>
     </div>
@@ -183,27 +127,17 @@
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"change order status"|translate}}
     </p>
-   
 
-    <ion-item lines="none" class="ion-margin-bottom" >
-      <ion-select
-        [(ngModel)]="orderStatus"
-        (ionChange)="chooseOrderStatus($event)"
-        placeholder='{{"change order status"|translate}}'
-        okText='{{"ok"|translate}}'
-        cancelText='{{"cancel"|translate}}'
-        interface="popover"
-        mode="ios"
-      >
-        <ion-select-option
-          class="fn-16 qesaa-Janna-Regular"
-          [value]="type"
-          *ngFor="let type of orderMaps"
-        >
+
+    <ion-item lines="none" class="ion-margin-bottom">
+      <ion-select [(ngModel)]="orderStatus" (ionChange)="chooseOrderStatus($event)"
+        placeholder='{{"change order status"|translate}}' okText='{{"ok"|translate}}'
+        cancelText='{{"cancel"|translate}}' interface="popover" mode="ios">
+        <ion-select-option class="fn-16 qesaa-Janna-Regular" [value]="type" *ngFor="let type of orderMaps">
           {{type|translate}}
         </ion-select-option>
       </ion-select>
     </ion-item>
   </div>
- 
+
 </ion-content>

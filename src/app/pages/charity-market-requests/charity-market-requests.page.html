@@ -9,7 +9,7 @@
   <div
     class="request-container ion-margin-bottom"
     *ngFor="let request of requests"
-    routerLink="/tabs/my-orders/details/{{request.id}}"
+    (click)="showOrder('charity-market',request.id)"
   >
     <div class="request-status-date">
       <div class="title primary-color fn-16 qesaa-Janna-Bold">
