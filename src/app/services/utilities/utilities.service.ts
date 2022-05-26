@@ -124,22 +124,6 @@ export class UtilitiesService {
 
           remaingTime.seconds = afterHours - remaingTime.minutes * 60;
         }
-
-        // if (afterDays - remaingTime.hours * 3600 > 60) {
-        //   remaingTime.minutes = Math.floor(
-        //     (afterDays - remaingTime.hours * 3600) / 60
-        //   );
-
-        //   console.log('remaining seconds after minutes : '+(afterDays - remaingTime.minutes * 60))
-        //   if ((afterDays - remaingTime.minutes * 60) > 60) {
-        //     remaingTime.seconds =0
-        //     //  Math.floor(
-        //     //   afterDays - remaingTime.minutes * 60
-        //     // );
-        //   }else{
-
-        //   }
-        // }
       } else {
         remaingTime.hours = 0;
 
@@ -157,20 +141,9 @@ export class UtilitiesService {
       if (afHours > 60) {
         remaingTime.minutes = Math.floor(afHours / 60);
 
-        remaingTime.seconds= afHours-  remaingTime.minutes*60;
+        remaingTime.seconds = afHours - remaingTime.minutes * 60;
       }
     }
-
-    // console.log(
-    //   '-----------days  :' +
-    //     days +
-    //     'hours  :' +
-    //     hours +
-    //     'minutes  :' +
-    //     minutes +
-    //     'seconds :' +
-    //     afterMinutes
-    // );
 
     return remaingTime;
   }
@@ -199,8 +172,6 @@ export class UtilitiesService {
     this.userLocation.lat = lat;
     this.userLocation.lng = long;
   }
-
-
 }
 
 // console.log('remaingingSeconds  : ' + delta);

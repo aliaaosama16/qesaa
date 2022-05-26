@@ -72,8 +72,10 @@ export class AuthService {
   async removeRegistrationData() {
     this.isLogout();
     this.removeToken();
-    this.removeUserID();
+    //this.removeUserID();
     this.noOfNotifications.next(0);
+    await Storage.remove({key:'qesaa-UserID'});
+    await Storage.remove({key:'qesaa-UserType'});
     await Storage.remove({ key: 'qesaa-activation-status' });
     await Storage.remove({ key: 'qesaa-confirmation-status' });
     await Storage.remove({ key: 'qesaa-status' });

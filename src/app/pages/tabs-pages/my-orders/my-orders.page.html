@@ -1,34 +1,20 @@
-<app-header
-  [haveBeforeHeader]="userType=='provider'?false:true "
-  [hasMarketCart]="false"
-  [title]="'my-orders'"
-  [isHome]="false"
-></app-header>
+<app-header [haveBeforeHeader]="userType=='provider'?false:true " [hasMarketCart]="false" [title]="'my-orders'"
+  [isHome]="false"></app-header>
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="client-section" *ngIf="userType=='client'">
-    <ion-segment
-      class="segment-rounded"
-      (ionChange)="orderTypeChoose($event)"
-      [value]="orderType"
-      color="primary"
-      *ngIf="userType=='client'"
-    >
-      <ion-segment-button
-        value="volunteers"
-        [ngClass]="orderType=='volunteers'?'background-primary':'secondary'"
-      >
+    <ion-segment class="segment-rounded" (ionChange)="orderTypeChoose($event)" [value]="orderType" color="primary"
+      *ngIf="userType=='client'">
+      <ion-segment-button value="volunteers" [ngClass]="orderType=='volunteers'?'background-primary':'secondary'">
         <ion-label class="fn-18 qesaa-Janna-Bold white-color">
           {{"volunteers"|translate}}
         </ion-label>
       </ion-segment-button>
-      <ion-segment-button
-        value="charity-market"
-        [ngClass]="orderType=='charity-market'?'background-primary':'secondary'"
-      >
+      <ion-segment-button value="charity-market"
+        [ngClass]="orderType=='charity-market'?'background-primary':'secondary'">
         <ion-label class="fn-18 qesaa-Janna-Bold white-color">
           {{"charity-market"|translate}}
         </ion-label>
@@ -36,11 +22,8 @@
     </ion-segment>
     <div class="volunteer-orders-section" *ngIf=" orderType=='volunteers'">
       <div class="ion-padding-horizontal" *ngIf="volunteerOrders.length!=0 ">
-        <div
-          class="orders-container ion-margin-top"
-          *ngFor="let order of volunteerOrders"
-          (click)="showOrder(order.id,'volunteers')"
-        >
+        <div class="orders-container ion-margin-top" *ngFor="let order of volunteerOrders"
+          (click)="showOrder(order.id,'volunteers')">
           <div>
             <p class="order-number fn-16 qesaa-Janna-Bold">
               <span class="primary-color">{{"orderNumber"|translate}}</span>
@@ -49,31 +32,16 @@
             <p class="order-status fn-16 qesaa-Janna-Bold">
               <span class="primary-color">{{"orderStatus"|translate}}</span>
 
-              <span
-                class="custom-margin"
-                *ngIf="order.status_f=='in_way'||'current'"
-                >{{order.status_f}}</span
-              >
-              <span
-                class="custom-margin green-color"
-                *ngIf="order.status_f=='finish'"
-                >{{order.status_f}}</span
-              >
-              <span
-                class="custom-margin red-color"
-                *ngIf="order.status_f=='refused'"
-                >{{order.status_f}}</span
-              >
+              <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+              <span class="custom-margin green-color" *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+              <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
             </p>
             <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
               {{order.date}}
             </p>
           </div>
           <div>
-            <ion-button
-              color="primary"
-              routerLink="/tabs/my-orders/details/{{order.id}}"
-            >
+            <ion-button color="primary" routerLink="/tabs/my-orders/details/{{order.id}}">
               <p class="ion-no-margin fn-12 qesaa-Janna-Regular">
                 {{"orderDetails"|translate}}
               </p>
@@ -81,18 +49,15 @@
           </div>
         </div>
       </div>
-      <div *ngIf="providerOrders.length==0" class="no-data">
+      <div *ngIf="volunteerOrders.length==0" class="no-data">
         <p>{{"no orders"|translate}}</p>
       </div>
     </div>
 
     <div class="service-orders-section" *ngIf="orderType=='charity-market'">
       <div class="ion-padding-horizontal" *ngIf="serviceOrders.length!=0  ">
-        <div
-          class="request-container ion-margin-top"
-          *ngFor="let order of serviceOrders"
-          (click)="showOrder(order.id,'charity-market')"
-        >
+        <div class="request-container ion-margin-top" *ngFor="let order of serviceOrders"
+          (click)="showOrder(order.id,'charity-market')">
           <div class="request-status-date">
             <div class="title primary-color fn-16 qesaa-Janna-Bold">
               {{"orderNumber"|translate}}
@@ -109,21 +74,9 @@
               {{"orderStatus"|translate}}
             </div>
             <div class="requestStatus fn-16 qesaa-Janna-Bold">
-              <span
-                class="custom-margin"
-                *ngIf="order.status_f=='in_way'||'current'"
-                >{{order.status_f}}</span
-              >
-              <span
-                class="custom-margin green-color"
-                *ngIf="order.status_f=='finish'"
-                >{{order.status_f}}</span
-              >
-              <span
-                class="custom-margin red-color"
-                *ngIf="order.status_f=='refused'"
-                >{{order.status_f}}</span
-              >
+              <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+              <span class="custom-margin green-color" *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+              <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
             </div>
           </div>
         </div>
@@ -165,11 +118,8 @@
 
   <div class="provider-section" *ngIf="userType=='provider'">
     <div class="ion-padding-horizontal" *ngIf="providerOrders.length!=0 ">
-      <div
-        class="orders-container ion-margin-top"
-        *ngFor="let order of providerOrders"
-        (click)="showOrder(order.id,'volunteers')"
-      >
+      <div class="orders-container ion-margin-top" *ngFor="let order of providerOrders"
+        (click)="showOrder(order.id,'volunteers')">
         <div>
           <p class="order-number fn-16 qesaa-Janna-Bold">
             <span class="primary-color">{{"orderNumber"|translate}}</span>
@@ -178,31 +128,16 @@
           <p class="order-status fn-16 qesaa-Janna-Bold">
             <span class="primary-color">{{"orderStatus"|translate}}</span>
 
-            <span
-              class="custom-margin"
-              *ngIf="order.status_f=='in_way'||'current'"
-              >{{order.status_f}}</span
-            >
-            <span
-              class="custom-margin green-color"
-              *ngIf="order.status_f=='finish'"
-              >{{order.status_f}}</span
-            >
-            <span
-              class="custom-margin red-color"
-              *ngIf="order.status_f=='refused'"
-              >{{order.status_f}}</span
-            >
+            <span class="custom-margin" *ngIf="order.status_f=='in_way'||'current'">{{order.status_f}}</span>
+            <span class="custom-margin green-color" *ngIf="order.status_f=='finish'">{{order.status_f}}</span>
+            <span class="custom-margin red-color" *ngIf="order.status_f=='refused'">{{order.status_f}}</span>
           </p>
           <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
             {{order.date}}
           </p>
         </div>
         <div>
-          <ion-button
-            color="primary"
-            routerLink="/tabs/my-orders/details/{{order.id}}"
-          >
+          <ion-button color="primary" routerLink="/tabs/my-orders/details/{{order.id}}">
             <p class="ion-no-margin fn-12 qesaa-Janna-Regular">
               {{"orderDetails"|translate}}
             </p>
