@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,7 +27,8 @@ export class CustomModalPage implements OnInit {
     public modal: ModalController,
     private util: UtilitiesService,
     private languageService: LanguageService,
-    private sectionsProvider: SectionsProductsService
+    private sectionsProvider: SectionsProductsService,
+    private transalte:TranslateService
   ) {
     console.log('providerID :' + this.providerID);
     console.log('orderID :' + this.orderID);
@@ -69,23 +71,28 @@ export class CustomModalPage implements OnInit {
   }
 
   rateProvider(rateData: RatingData) {
-    this.util.showLoadingSpinner().then((__) => {
-      this.sectionsProvider.rateProvider(rateData).subscribe(
-        (data: GeneralResponse) => {
-          if (data.key == 1) {
-            this.util.showMessage(data.msg)
-            .then(() => {
-              this.modal.dismiss();
-            });
-          } else {
-            this.util.showMessage(data.msg);
+    if(this.ratingNumber!=0){
+      this.util.showLoadingSpinner().then((__) => {
+        this.sectionsProvider.rateProvider(rateData).subscribe(
+          (data: GeneralResponse) => {
+            if (data.key == 1) {
+              this.util.showMessage(data.msg)
+              .then(() => {
+                this.modal.dismiss();
+              });
+            } else {
+              this.util.showMessage(data.msg);
+            }
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
           }
-          this.util.dismissLoading();
-        },
-        (err) => {
-          this.util.dismissLoading();
-        }
-      );
-    });
+        );
+      });
+    }else{
+      this.util.showMessage(this.transalte.instant('rate first '));
+    }
+   
   }
 }

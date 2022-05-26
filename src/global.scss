@@ -442,6 +442,13 @@ ion-tabs {
     .image {
       margin-bottom: 15.3px;
     }
+
+    .custom-image {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+      
+    }
     .title {
       margin-bottom: 28px;
       .name {
