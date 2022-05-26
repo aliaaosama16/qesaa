@@ -207,4 +207,9 @@ export class SupportProductiveFamiliesPage implements OnInit {
       );
     });
   }
+
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
+  }
+
 }

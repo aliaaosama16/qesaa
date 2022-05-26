@@ -110,5 +110,8 @@ export class ContactWithAdminPage implements OnInit {
       });
     }
   
+    inputHaveFocused(inputFocusStatus) {
+      this.util.inputStatus(inputFocusStatus);
+    }
   
 }

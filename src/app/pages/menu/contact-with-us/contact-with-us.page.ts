@@ -87,4 +87,8 @@ export class ContactWithUsPage implements OnInit {
       );
     });
   }
+  
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
+  }
 }

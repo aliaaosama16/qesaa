@@ -24,6 +24,9 @@
         placeholder="{{'user-name'|translate}}"
         type="text"
         formControlName="userName"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+
       ></ion-input>
     </ion-item>
 
@@ -40,6 +43,9 @@
         placeholder="{{'phone number'|translate}}"
         type="tel"
         formControlName="phoneNumber"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+
       ></ion-input>
     </ion-item>
 
@@ -56,6 +62,9 @@
         placeholder="{{'email-address'|translate}}"
         type="email"
         formControlName="email"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+
       ></ion-input>
     </ion-item>
 
@@ -66,6 +75,9 @@
         placeholder="{{'your message'|translate}}"
         type="text"
         formControlName="message"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+
       ></ion-textarea>
     </ion-item>
 

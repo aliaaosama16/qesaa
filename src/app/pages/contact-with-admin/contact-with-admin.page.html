@@ -1,4 +1,4 @@
-<app-header [haveBeforeHeader]="false"  [hasMarketCart]="false" [title]="'contact with admn'" [isHome]="false">
+<app-header [haveBeforeHeader]="false" [hasMarketCart]="false" [title]="'contact with admn'" [isHome]="false">
 </app-header>
 
 <ion-content class="ion-padding-horizontal">
@@ -19,37 +19,50 @@
       <!-- <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
             src="./../../../../assets/icon/forms/person.svg"></ion-icon> -->
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'user-name'|translate}}" type="text"
-        formControlName="userName"></ion-input>
+        formControlName="userName"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+        ></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
       <!-- <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
             src="./../../../../assets/icon/forms/phone.svg"></ion-icon> -->
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'phone number'|translate}}" type="tel"
-        formControlName="phoneNumber"></ion-input>
+        formControlName="phoneNumber"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+        ></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
       <!-- <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start color="primary"
             src="./../../../../assets/icon/forms/email.svg"></ion-icon> -->
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'email-address'|translate}}" type="email"
-        formControlName="messageTitle"></ion-input>
+        formControlName="messageTitle"
+        
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+        ></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="ion-margin-bottom">
       <ion-textarea autoGrow='true' class="ion-padding-horizontal fn-16 qesaa-Janna-Regular"
-        placeholder="{{'your message'|translate}}" type="text" formControlName="message"></ion-textarea>
+        placeholder="{{'your message'|translate}}" type="text" formControlName="message"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
+        ></ion-textarea>
     </ion-item>
 
     <ion-button class="margin-8-top ion-margin-bottom" expand="block" type="submit" color="primary">
       <span class=" fn-20 qesaa-Janna-Bold"> {{ "send"|translate}} </span>
     </ion-button>
 
-  
+
     <div class="margin-8-top ion-text-center ion-margin-bottom ">
       <p class="fn-16 qesaa-Janna-Bold ion-no-margin ">
         {{'or'|translate}}
-      </p> 
+      </p>
     </div>
 
     <div class="whatsapp-contact" (click)="openWhatsapp()">
@@ -58,13 +71,13 @@
 
       </div>
       <div class="text">
-       <p class="fn-16 qesaa-Janna-Bold ion-no-margin ">
-        {{'contact with whatsapp'|translate}}
-       </p> 
+        <p class="fn-16 qesaa-Janna-Bold ion-no-margin ">
+          {{'contact with whatsapp'|translate}}
+        </p>
       </div>
     </div>
 
-    
+
   </form>
 
 </ion-content>

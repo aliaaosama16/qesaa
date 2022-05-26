@@ -46,6 +46,7 @@ export class DonationOrderPage implements OnInit {
   neighborhoods: GeneralSectionResponse[];
   userData: AuthDataResponse;
   requestDate = '';
+  inputFocused: boolean = false;
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
@@ -61,10 +62,14 @@ export class DonationOrderPage implements OnInit {
   ) {
     this.currentLanguage = this.languageService.getLanguage();
     this.plt.keyboardDidShow.subscribe((ev) => {
-      const { keyboardHeight } = ev;
+      // const { keyboardHeight } = ev;
       // Do something with the keyboard height such as translating an input above the keyboard.
       console.log('keyboard event :' + JSON.stringify(ev));
     });
+  }
+  
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
   }
 
   ngOnInit() {
@@ -211,9 +216,9 @@ export class DonationOrderPage implements OnInit {
       //alert(JSON.stringify(event))
       //
       //alert(event.latLng.lat() + '  ' + event.latLng.lng());
-      this.lat=event.latLng.lat();
-      this.long=event.latLng.lng();
-      console.log('new location :'+this.lat+'  '+this.long)
+      this.lat = event.latLng.lat();
+      this.long = event.latLng.lng();
+      console.log('new location :' + this.lat + '  ' + this.long);
       //    alert(res.coords.latitude+'   '+res.coords.longitude)
       //  })
     });

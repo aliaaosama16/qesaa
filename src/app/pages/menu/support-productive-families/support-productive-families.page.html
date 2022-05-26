@@ -13,7 +13,8 @@
         color="primary" src="./../../../../assets/icon/donate/person-inactive.svg">
       </ion-icon>
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'user-name'|translate}}" type="text"
-        formControlName="userName"></ion-input>
+        formControlName="userName" (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"></ion-input>
     </ion-item>
 
     <div class="custom-6-margin-bottom">
@@ -26,7 +27,8 @@
       <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
         color="primary" src="./../../../../assets/icon/donate/phone-inactive.svg"></ion-icon>
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'phone number'|translate}}" type="tel"
-        formControlName="phoneNumber"></ion-input>
+        formControlName="phoneNumber" (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"></ion-input>
     </ion-item>
 
     <div class="custom-6-margin-bottom">
@@ -99,7 +101,8 @@
       <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
         color="primary" src="./../../../../assets/icon/donate/request-inactive.svg"></ion-icon>
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{ 'enter instgram link'|translate}}" type="text"
-        formControlName="instgramLink"></ion-input>
+        formControlName="instgramLink" (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"></ion-input>
     </ion-item>
 
     <div class="custom-6-margin-bottom">
@@ -112,7 +115,8 @@
       <ion-icon class="custom-form-icon" [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'" item-start
         color="primary" src="./../../../../assets/icon/family/twitter_inactive.svg"></ion-icon>
       <ion-input class="fn-16 qesaa-Janna-Regular" placeholder="{{'enter twitter link'|translate}}" type="text"
-        formControlName="twitterLink"></ion-input>
+        formControlName="twitterLink" (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"></ion-input>
     </ion-item>
 
     <div class="request-date ion-margin-bottom">

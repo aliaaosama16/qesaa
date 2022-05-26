@@ -150,4 +150,9 @@ export class AccountEditPage implements OnInit {
       );
     });
   }
+
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
+  }
+
 }

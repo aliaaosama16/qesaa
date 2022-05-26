@@ -40,6 +40,8 @@
           placeholder="{{'user-name'|translate}}"
           type="text"
           formControlName="userName"
+          (ionFocus)="inputHaveFocused(true)"
+  (ionBlur)="inputHaveFocused(false)"
         ></ion-input>
       </ion-item>
 
@@ -57,6 +59,8 @@
           placeholder="{{'phone number'|translate}}"
           type="tel"
           formControlName="phoneNumber"
+          (ionFocus)="inputHaveFocused(true)"
+  (ionBlur)="inputHaveFocused(false)"
         ></ion-input>
       </ion-item>
 
@@ -73,6 +77,8 @@
           placeholder="{{'password'|translate}}"
           [type]="inputChangeType"
           formControlName="password"
+          (ionFocus)="inputHaveFocused(true)"
+  (ionBlur)="inputHaveFocused(false)"
         ></ion-input>
         <ion-icon
           (click)="showChangePassword()"
@@ -95,6 +101,8 @@
           placeholder="{{'confirm-password'|translate}}"
           [type]="inputChangeConfirmType"
           formControlName="confirmPassword"
+          (ionFocus)="inputHaveFocused(true)"
+  (ionBlur)="inputHaveFocused(false)"
         ></ion-input>
         <ion-icon
           (click)="showChangeConfirmPassword()"

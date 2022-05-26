@@ -1,3 +1,4 @@
+import { UtilitiesService } from './../../../services/utilities/utilities.service';
 import { Router } from '@angular/router';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AnimationController, IonTabs } from '@ionic/angular';
@@ -13,6 +14,7 @@ export class TabsPage {
   @ViewChild('tabs', { static: false }) tabs: IonTabs;
   noOfNotifications: number;
   isLogined: boolean = false;
+  inputFocused:boolean;
  // @ViewChild('icon', { read: ElementRef }) icon: ElementRef;
   tabsData = [
     {
@@ -48,8 +50,16 @@ export class TabsPage {
   constructor(
     private auth: AuthService,
     private animationCtrl: AnimationController,
-    private router: Router
+    private router: Router,
+    private util:UtilitiesService
   ) {
+
+    this.util.getinputStatus().subscribe((currentInoutStatus)=>{
+      this.inputFocused=currentInoutStatus
+      console.log('currentInoutStatus  :'+this.inputFocused)
+    })
+
+  
     if (this.auth.isAuthenticated.value) {
       this.isLogined = this.auth.isAuthenticated.value;
       this.auth.getNoOfNotifications().subscribe((val) => {

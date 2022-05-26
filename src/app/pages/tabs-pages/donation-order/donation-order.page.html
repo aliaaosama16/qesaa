@@ -26,6 +26,8 @@
         type="text"
         formControlName="userName"
         [value]="userData?.first_name"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
       ></ion-input>
     </ion-item>
 
@@ -43,6 +45,8 @@
         type="tel"
         formControlName="phoneNumber"
         [value]="userData?.phone"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
       ></ion-input>
     </ion-item>
 
@@ -208,6 +212,8 @@
         placeholder="{{'request notices'|translate}}"
         type="text"
         formControlName="notices"
+        (ionFocus)="inputHaveFocused(true)"
+        (ionBlur)="inputHaveFocused(false)"
       ></ion-textarea>
     </ion-item>
 

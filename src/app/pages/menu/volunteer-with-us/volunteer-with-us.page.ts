@@ -80,4 +80,8 @@ export class VolunteerWithUsPage implements OnInit {
       );
     });
   }
+
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
+  }
 }

@@ -7,6 +7,7 @@ import { Device } from '@capacitor/device';
 import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
 import * as moment from 'moment';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class UtilitiesService {
   userLocation = { lat: 0, lng: 0 };
 
   closedDates: Array<string>;
+  inputHaveFocused = new BehaviorSubject(false);
 
   constructor(
     private translate: TranslateService,
@@ -172,6 +174,18 @@ export class UtilitiesService {
     this.userLocation.lat = lat;
     this.userLocation.lng = long;
   }
+
+
+  inputStatus(status:boolean){
+    this.inputHaveFocused.next(status);
+  }
+
+  getinputStatus(): Observable<boolean> {
+    return this.inputHaveFocused.asObservable();
+  }
+  // getNoOfNotifications(): Observable<number> {
+  //   return this.noOfNotifications.asObservable();
+  // }
 }
 
 // console.log('remaingingSeconds  : ' + delta);

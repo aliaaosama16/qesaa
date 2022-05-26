@@ -89,4 +89,8 @@ export class SuggestionsPage implements OnInit {
       );
     });
   }
+  inputHaveFocused(inputFocusStatus) {
+    this.util.inputStatus(inputFocusStatus);
+  }
+
 }
