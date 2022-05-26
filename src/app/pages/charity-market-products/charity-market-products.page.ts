@@ -172,7 +172,7 @@ export class CharityMarketProductsPage implements OnInit {
         (data: GeneralResponse) => {
           if (data.key == 1) {
             this.util.showMessage(data.msg).then((_) => {
-              this.router.navigateByUrl('/tabs/home/market/requests');
+              this.router.navigateByUrl('/tabs/my-orders');
             });
           } else {
             this.util.showMessage(data.msg);
