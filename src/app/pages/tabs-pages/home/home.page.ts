@@ -21,6 +21,9 @@ SwiperCore.use([Pagination, Autoplay]);
   encapsulation: ViewEncapsulation.None,
 })
 export class HomePage implements OnInit {
+  public intervallTimer = interval(1000);
+  private subscription;
+
   configSlider: SwiperOptions;
   partenrsConfig: SwiperOptions;
   feedbackConfig: SwiperOptions;
@@ -37,7 +40,7 @@ export class HomePage implements OnInit {
   //charityInfoTitle:StaticPageTitle;
   upComingDate: any;
   obs: any;
-  myInterval: any;
+  myInterval: Observable<any>;
   constructor(
     private menuCtrl: MenuController,
     private util: UtilitiesService,
@@ -73,7 +76,7 @@ export class HomePage implements OnInit {
 
     this.feedbackConfig = {
       slidesPerView: 2,
-      spaceBetween:10,
+      spaceBetween: 10,
       pagination: false,
       effect: 'fade',
     };
@@ -125,9 +128,22 @@ export class HomePage implements OnInit {
   }
 
   countRemainingTime(date) {
-    this.myInterval = setInterval(() => {
+    // this.myInterval = setInterval(() => {
+    //   this.upComingDate = this.util.getDatesDifference(date);
+    // }, 1000);
+
+    // const numbers = interval(1000);
+
+    // this.myInterval = numbers.pipe();
+
+    // this.myInterval.subscribe((x) => console.log('Next: ', x));
+
+    this.subscription = this.intervallTimer.subscribe(() => 
+    {
       this.upComingDate = this.util.getDatesDifference(date);
-    }, 1000);
+    }
+    );
+
   }
 
   doRefresh($event) {
@@ -145,7 +161,6 @@ export class HomePage implements OnInit {
           this.satisfaction_masure = data.data?.satisfaction_masure;
           this.beneficiaries_count = data.data?.beneficiaries_count;
           this.countRemainingTime(data.data.upcoming_date);
-
         }
         $event.target.complete();
       },
@@ -156,6 +171,7 @@ export class HomePage implements OnInit {
   }
 
   ionViewDidLeave() {
-    clearInterval(this.myInterval);
+    this.subscription.unsubscribe()
+
   }
 }
