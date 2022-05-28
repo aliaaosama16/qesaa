@@ -11,12 +11,16 @@ import { Share } from '@capacitor/share';
 import { LogOutData, Status } from './models/auth';
 import { Storage } from '@capacitor/storage';
 import { GeneralResponse } from './models/general';
+import { interval } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  // get provider location every 5 minutes
+  public intervallTimer = interval(1000*60*5);
+  private subscription;
   currentLanguage: string = '';
   language: string = '';
   selectedIndex: number;
@@ -150,32 +154,41 @@ export class AppComponent {
   async getStoredUserType() {
     const userType = await Storage.get({ key: 'qesaa-UserType' });
     this.auth.userType.next(userType.value);
-    console.log('this.auth.userType.value :'+this.auth.userType.value)
+    console.log('this.auth.userType.value :' + this.auth.userType.value);
     if (this.auth.userType.value == 'provider') {
-      const location: LocationData = {
-        lat: this.util.userLocation.lat,
-        lng: this.util.userLocation.lng,
-        user_id:this.auth.userID.value
-      };
-      this.util.showLoadingSpinner().then((__) => {
-        this.providerService.updateLocation(location).subscribe(
-          (data: GeneralResponse) => {
-            if (data.key == 1) {
-             // this.util.showMessage(data.msg);
-            }
-            this.util.dismissLoading();
-          },
-          (err) => {
-            this.util.dismissLoading();
-          }
-        );
-      });
-    }
-    else  {
-    this.sectionsService.setCartCount();
+      this.updateProviderLocation();
+    } else {
+      this.sectionsService.setCartCount();
     }
   }
-// if (this.auth.userType.value == 'client')
+
+  updateProviderLocation() {
+    this.subscription = this.intervallTimer.subscribe(() => {
+      this.repeatGettingLocation();
+    });
+  }
+
+  repeatGettingLocation() {
+    const location: LocationData = {
+      lat: this.util.userLocation.lat,
+      lng: this.util.userLocation.lng,
+      user_id: this.auth.userID.value,
+    };
+    this.util.showLoadingSpinner().then((__) => {
+      this.providerService.updateLocation(location).subscribe(
+        (data: GeneralResponse) => {
+          if (data.key == 1) {
+            // this.util.showMessage(data.msg);
+          }
+          this.util.dismissLoading();
+        },
+        (err) => {
+          this.util.dismissLoading();
+        }
+      );
+    });
+  }
+
   async getUserNotifications() {
     const userID = await Storage.get({ key: 'qesaa-UserID' });
     console.log('stored user id : ' + parseInt(userID.value));
@@ -186,9 +199,7 @@ export class AppComponent {
   async shareApp() {
     await Share.share({
       title: 'kesa app',
-      // text: 'Really awesome thing you need to see right meow',
       url: 'https://play.google.com/store/apps/details?id=com.efada.qesaa',
-      // dialogTitle: 'Share with buddies',
     });
   }
 
