@@ -83,15 +83,9 @@ export class HomePage implements OnInit {
 
     const userData: UserData = {
       lang: this.languageService.getLanguage(),
-      //user_id: this.auth.userID.value,
     };
     this.getHomeData(userData);
   }
-  // ionViewWillEnter(){
-  //   setInterval(() => {
-  //     console.log('asd')
-  // }, 60 * 100);
-  // }
 
   openMenu() {
     this.menuCtrl.open();
@@ -128,22 +122,9 @@ export class HomePage implements OnInit {
   }
 
   countRemainingTime(date) {
-    // this.myInterval = setInterval(() => {
-    //   this.upComingDate = this.util.getDatesDifference(date);
-    // }, 1000);
-
-    // const numbers = interval(1000);
-
-    // this.myInterval = numbers.pipe();
-
-    // this.myInterval.subscribe((x) => console.log('Next: ', x));
-
-    this.subscription = this.intervallTimer.subscribe(() => 
-    {
+    this.subscription = this.intervallTimer.subscribe(() => {
       this.upComingDate = this.util.getDatesDifference(date);
-    }
-    );
-
+    });
   }
 
   doRefresh($event) {
@@ -171,7 +152,6 @@ export class HomePage implements OnInit {
   }
 
   ionViewDidLeave() {
-    this.subscription.unsubscribe()
-
+    this.subscription.unsubscribe();
   }
 }

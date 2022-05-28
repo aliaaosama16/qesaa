@@ -30,12 +30,20 @@
 
 @font-face {
   font-family: "Janna-LT-Bold";
-  src: url("./assets/fonts/Bahij Janna-Bold.ttf") format('truetype');
+  src: url("./assets/fonts/Bahij-Janna-Bold.ttf") format('truetype');
 }
 
 @font-face {
   font-family: "Janna-LT-Regular";
-  src: url("./assets/fonts/Bahij Janna-Regular.ttf") format('truetype');
+  src: url("./assets/fonts/Bahij-Janna-Regular.ttf") format('truetype');
+}
+
+
+:root,
+:root[mode=ios],
+:root[mode=md] {
+    --ion-font-Regular-family: "Janna-LT-Regular";
+    --ion-font-Bold-family: "Janna-LT-Bold";
 }
 
 :root {
