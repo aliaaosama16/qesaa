@@ -157,9 +157,9 @@
   "request-time":"وقت الطلب",
   "request-date":"تاريخ الطلب",
   "attach request image":"ارفق صورة الطلب",
-  "client":"عميل" , 
+  "client":"أفراد" , 
   "provider":"مندوب" , 
-  "market":"سوق",
+  "market":"شركات",
   "add product":"اضافة منتج",
   "add":"اضف",
   "District":"الحي",
@@ -189,6 +189,11 @@
   "change order status":"تغيير حالة الطلب",
   "in_way":"في الطريق",
   "finish":"انهاء",
-  "rate first ":"قم بالتقييم اولا"
+  "rate first ":"قم بالتقييم اولا",
+  "contact with driver via whatsapp":"تواصل بالواتس اب",
+  "whatsapp":"واتس اب",
+  "email":"البريد الالكتروني",
+  "contact with client":"تواصل مع العميل ",
+  "track client":"موقع العميل"
 
 }

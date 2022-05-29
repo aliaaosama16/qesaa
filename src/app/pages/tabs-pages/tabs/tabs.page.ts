@@ -19,8 +19,8 @@ export class TabsPage {
   tabsData = [
     {
       tabName: 'home',
-      tabActiveIcon: './../../../assets/icon/tabs-icons/home-active.svg',
-      tabNotActiveIcon: './../../../assets/icon/tabs-icons/home-inactive.svg',
+      tabActiveIcon: './../../../assets/icon/tabs-icons/home-outline.svg',
+      tabNotActiveIcon: './../../../assets/icon/tabs-icons/home-outline.svg',
     },
     {
       tabName: 'notifications',
@@ -41,9 +41,9 @@ export class TabsPage {
     },
     {
       tabName: 'account',
-      tabActiveIcon: './../../../assets/icon/tabs-icons/profile-active.svg',
+      tabActiveIcon: './../../../assets/icon/tabs-icons/person-outline.svg',
       tabNotActiveIcon:
-        './../../../assets/icon/tabs-icons/profile-inactive.svg',
+        './../../../assets/icon/tabs-icons/person-outline.svg',
     },
   ];
 

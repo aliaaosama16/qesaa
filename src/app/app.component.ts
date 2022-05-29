@@ -31,37 +31,37 @@ export class AppComponent {
       title: 'about',
       url: '/tabs/about',
       iconActive: './../assets/icon/menu-icons/about-active.svg',
-      iconInActive: './../assets/icon/menu-icons/about-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/about.svg',
     },
     {
       title: 'our-services',
       url: '/tabs/our-services',
       iconActive: './../assets/icon/menu-icons/services-active.svg',
-      iconInActive: './../assets/icon/menu-icons/services-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/service.svg',
     },
     {
       title: 'news',
       url: '/tabs/news',
       iconActive: './../assets/icon/menu-icons/news-active.svg',
-      iconInActive: './../assets/icon/menu-icons/news-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/news.svg',
     },
     {
       title: 'our-projects',
       url: '/tabs/our-projects',
       iconActive: './../assets/icon/menu-icons/projects-active.svg',
-      iconInActive: './../assets/icon/menu-icons/projects-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/projects.svg',
     },
     {
       title: 'gallery',
       url: '/tabs/gallery',
       iconActive: './../assets/icon/menu-icons/gallary-active.svg',
-      iconInActive: './../assets/icon/menu-icons/gallary-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/gallery.svg',
     },
     {
       title: 'volunteer with us',
       url: '/tabs/volunteer-with-us',
       iconActive: './../assets/icon/menu-icons/donate-active.svg',
-      iconInActive: './../assets/icon/menu-icons/donate-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/volunteer.svg',
     },
     {
       title: 'Supporting productive families',
@@ -73,31 +73,31 @@ export class AppComponent {
       title: 'share app',
       url: 'share',
       iconActive: './../assets/icon/menu-icons/share-active.svg',
-      iconInActive: './../assets/icon/menu-icons/share-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/share.svg',
     },
     {
       title: 'our presence',
       url: '/tabs/our-presence',
       iconActive: './../assets/icon/menu-icons/presence-active.svg',
-      iconInActive: './../assets/icon/menu-icons/news-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/present.svg',
     },
     {
       title: 'contact us',
       url: '/tabs/contact-with-us',
       iconActive: './../assets/icon/menu-icons/contact-active.svg',
-      iconInActive: './../assets/icon/menu-icons/contact-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/contact.svg',
     },
     {
       title: 'Suggestions and complaints',
       url: '/tabs/suggestions',
       iconActive: './../assets/icon/menu-icons/notices-active.svg',
-      iconInActive: './../assets/icon/menu-icons/notices-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/suggestions.svg',
     },
     {
       title: 'Terms and Conditions',
       url: '/tabs/rules',
       iconActive: './../assets/icon/menu-icons/rules-active.svg',
-      iconInActive: './../assets/icon/menu-icons/rules-inactive.svg',
+      iconInActive: './../assets/icon/menu-icons/rules.svg',
     },
   ];
 
@@ -174,19 +174,19 @@ export class AppComponent {
       lng: this.util.userLocation.lng,
       user_id: this.auth.userID.value,
     };
-    this.util.showLoadingSpinner().then((__) => {
+   // this.util.showLoadingSpinner().then((__) => {
       this.providerService.updateLocation(location).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
             // this.util.showMessage(data.msg);
           }
-          this.util.dismissLoading();
+        //  this.util.dismissLoading();
         },
         (err) => {
-          this.util.dismissLoading();
+        //  this.util.dismissLoading();
         }
       );
-    });
+   // });
   }
 
   async getUserNotifications() {

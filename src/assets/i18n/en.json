@@ -159,7 +159,7 @@
   "attach request image":"attach request image",
   "client":"client" , 
   "provider":"provider" , 
-  "market":"market",
+  "market":"companies",
   "add product":"add product",
   "add":"add",
   "District": "district",
@@ -189,5 +189,10 @@
   "change order status":"chnage order status",
   "in_way": "in_way",
   "finish":"finish",
-  "rate first ":"rate first "
+  "rate first ":"rate first ",
+  "contact with driver via whatsapp": "contact via whatsapp",
+  "whatsapp":"whatsapp",
+  "email": "email",
+  "contact with client":"contact with client",
+  "track client":"client location"
 }

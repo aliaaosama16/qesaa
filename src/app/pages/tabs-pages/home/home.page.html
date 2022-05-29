@@ -10,8 +10,6 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="slider-section ion-padding-horizontal">
-    
-
     <swiper
       #swiper
       [config]="configSlider"
@@ -26,6 +24,33 @@
     </swiper>
   </div>
 
+  <!-- <div id="main" class="ion-margin">
+    <div >
+      <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
+        {{"Next initiative"|translate}}
+      </p>
+    </div>
+    <div></div>
+    <div class="ion-text-center primary-color">{{upComingDate?.days}}</div>
+    <div class="ion-text-center primary-color">{{upComingDate?.hours}}</div>
+    <div class="ion-text-center primary-color">{{upComingDate?.minutes}}</div>
+    <div class="ion-text-center primary-color">{{upComingDate?.seconds}}</div>
+  </div>
+
+  <div class="ion-margin next-compain">
+    <div >
+      <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
+        {{"Next initiative"|translate}}
+      </p>
+    </div>
+
+    <div ></div>
+
+    <div class="time primary-color">{{upComingDate?.days}}</div>
+    <div class="time primary-color">{{upComingDate?.hours}}</div>
+    <div class="time primary-color">{{upComingDate?.minutes}}</div>
+    <div class="time primary-color">{{upComingDate?.seconds}}</div>
+  </div> -->
 
   <div class="next-initiative ion-margin-horizontal custom-top-margin">
     <div class="initiative">
@@ -33,9 +58,7 @@
         class="title ion-text-center"
         [ngClass]="currentlangauge=='ar'?'title-ar':'title-en'"
       >
-        <p
-          class=" fn-24 primary-color qesaa-Janna-Bold ion-no-margin"
-        >
+        <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
           {{"Next initiative"|translate}}
         </p>
       </div>
@@ -184,9 +207,9 @@
         class="custom-swiper"
         [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
       >
-        <ng-template swiperSlide *ngFor="let slide of partenrs">
+        <ng-template swiperSlide *ngFor="let partenr of partenrs" >
           <div class="slide-item-container custom-top-margin">
-            <img [src]="slide.image" />
+            <img [src]="partenr.image" (click)="showPartener(partenr.url)"/>
           </div>
         </ng-template>
       </swiper>
@@ -253,9 +276,9 @@
   </div>
 
   <div class="feedback ion-padding-horizontal">
-    <p class="fn-18 qesaa-Janna-Bold ion-no-margin">{{"feedback"|translate}}</p>
+    <p class="fn-16 qesaa-Janna-Bold ion-no-margin">{{"feedback"|translate}}</p>
 
-    <div class="feedback-section custom-top-margin ion-margin-top">
+    <div class="feedback-section">
       <swiper
         #swiper
         [config]="feedbackConfig"

@@ -16,10 +16,11 @@ Swiper.use([Navigation, Pagination, EffectCards, Zoom]);
   styleUrls: ['./image-modal.page.scss'],
 })
 export class ImageModalPage implements OnInit {
+  @Input() orderImage?: string;
   @Input() images: any;
   @Input() imageID: number;
   currentlangauge: string = '';
-  @ViewChild('swiper') imageSwiper:SwiperComponent;
+  @ViewChild('swiper') imageSwiper: SwiperComponent;
   configSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
@@ -37,14 +38,16 @@ export class ImageModalPage implements OnInit {
   ) {}
 
   ngOnInit() {
-   // console.log('this.currentImage ' + this.imageID);
+    // console.log('this.currentImage ' + this.imageID);
     this.currentlangauge = this.language.getLanguage();
-   // console.log(JSON.stringify(this.images));
+    console.log('order image : ' + JSON.stringify(this.orderImage));
     this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
   }
 
   ngAfterViewInit(): void {
-    this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
+    if (this.orderImage ==undefined) {
+      this.imageSwiper.swiperRef.slideTo(this.imageID, 400);
+    }
 
     console.log(this.imageSwiper.swiperRef);
   }

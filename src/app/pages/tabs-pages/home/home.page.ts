@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   appData: any;
   appDataResponse: GeneralSectionResponse[];
   //charityInfoTitle:StaticPageTitle;
-  upComingDate: any;
+  upComingDate: any = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   obs: any;
   myInterval: Observable<any>;
   constructor(
@@ -125,6 +125,11 @@ export class HomePage implements OnInit {
     this.subscription = this.intervallTimer.subscribe(() => {
       this.upComingDate = this.util.getDatesDifference(date);
     });
+  }
+
+  showPartener(partenerUrl: string) {
+    console.log(partenerUrl)
+   window.open(partenerUrl);
   }
 
   doRefresh($event) {

@@ -30,20 +30,25 @@
 
 @font-face {
   font-family: "Janna-LT-Bold";
-  src: url("./assets/fonts/Bahij-Janna-Bold.ttf") format('truetype');
+  src: url("./assets/fonts/Bahij-Janna-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Janna-LT-Regular";
-  src: url("./assets/fonts/Bahij-Janna-Regular.ttf") format('truetype');
+  src: url("./assets/fonts/Bahij-Janna-Regular.ttf") format("truetype");
 }
 
-
 :root,
-:root[mode=ios],
-:root[mode=md] {
-    --ion-font-Regular-family: "Janna-LT-Regular";
-    --ion-font-Bold-family: "Janna-LT-Bold";
+:root[mode="ios"],
+:root[mode="md"] {
+  --ion-font-Regular-family: "Janna-LT-Regular";
+  --ion-font-Bold-family: "Janna-LT-Bold";
+}
+
+:root[dir="ltr"] {
+ * {
+    text-transform: lowercase;
+  }
 }
 
 :root {
@@ -51,10 +56,6 @@
   --custom-border-6-radius: 6px;
   --custom-border-10-radius: 10px;
   --ion-background-color: var(--ion-color-white);
-
-  * {
-    text-transform: lowercase;
-  }
 
   :focus {
     outline: 0 !important;
@@ -245,7 +246,7 @@ ion-select {
       }
     }
     .rules {
-      color: #50a377;
+      color: #83B927;
       margin-top: 12px;
     }
   }
@@ -327,8 +328,9 @@ ion-tabs {
       &::part(native) {
         background-image: linear-gradient(
           to bottom,
-          var(--ion-color-primary),
-          var(--ion-color-secondary)
+          
+          var(--ion-color-primary) 50%,
+          var(--ion-color-secondary) 50%
         );
       }
     }
@@ -455,7 +457,6 @@ ion-tabs {
       height: 40px;
       width: 40px;
       object-fit: cover;
-
     }
     .title {
       margin-bottom: 28px;

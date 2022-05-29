@@ -44,4 +44,15 @@ export class ProductiveFamiliesDetailsPage implements OnInit {
       );
     });
   }
+
+  showProviderSocail(type:string,url){
+
+    if(type=='whats'){
+      window.open(`https://api.whatsapp.com/send?phone=${url}`);
+    }else{
+      window.open(url)
+    }
+   
+
+  }
 }

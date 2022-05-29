@@ -8,6 +8,8 @@ export interface OrderResponse extends GeneralResponse {
   data: Order;
 }
 export interface Order {
+  provider_lat: number;
+  provider_lng: number;
   type: StoreOrderType;
   id: number;
   user_id: string;
@@ -59,7 +61,3 @@ export interface StatusMap {
 export interface OrderData extends UserData {
   order_id: number;
 }
-
-
-
-

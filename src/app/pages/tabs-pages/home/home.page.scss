@@ -1,3 +1,87 @@
+// #main {
+//   background: white;
+//   border-radius: 10px;
+//   padding: 16px 19px;
+//   display: flex;
+//   align-items: center;
+// }
+
+// #main div:nth-of-type(1) {
+//   flex-grow: 2;
+// }
+// #main div:nth-of-type(2) {
+//   flex-grow: 1;
+//   border-left: 1px solid green;
+// }
+// #main div:nth-of-type(3) {
+//   flex-grow: 2;
+//   background-color: khaki;
+//   margin: 0 3px;
+//   border-radius: 50%;
+//   padding: 10px;
+//   width: 40px;
+//   height: 40px;
+// }
+// #main div:nth-of-type(4) {
+//   flex-grow: 2;
+//   background-color: pink;
+//   margin: 0 3px;
+//   border-radius: 50%;
+//   padding: 10px;
+//   width: 40px;
+//   height: 40px;
+// }
+// #main div:nth-of-type(5) {
+//   flex-grow: 2;
+//   background-color: lightgrey;
+//   margin: 0 3px;
+//   border-radius: 50%;
+//   padding: 10px;
+//   width: 40px;
+//   height: 40px;
+// }
+// #main div:nth-of-type(6) {
+//   flex-grow: 2;
+//   background-color: red;
+//   margin: 0 3px;
+//   border-radius: 50%;
+//   padding: 10px;
+//   width: 40px;
+//   height: 40px;
+// }
+
+// .next-compain {
+//   background: white;
+//   border-radius: 10px;
+//   padding: 16px 19px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+
+//   div:nth-of-type(1) {
+//     flex-grow: 2;
+//   }
+//   div:nth-of-type(2) {
+//     flex-grow: 1;
+//     border-left: 1px solid green;
+//     margin: 0 6px;
+//   }
+//   .time {
+//     flex-grow: 2;
+//     background: green;
+//     border-radius: 50%;
+//   }
+//   // div:nth-of-type(4) {
+//   //   flex-grow: 2;
+//   // }
+//   // div:nth-of-type(5) {
+//   //   flex-grow: 2;
+//   // }
+//   // div:nth-of-type(6) {
+//   //   flex-grow: 2;
+//   // }
+// }
+
 .slider-section {
   position: relative;
 
@@ -13,6 +97,12 @@
   }
 
   .swiper-pagination {
+
+    // display: flex;
+    // flex-direction: column;
+    // align-content: space-around;
+    // bottom:6vh;
+    // left: -2vw;
     position: absolute;
     bottom: 10px;
     top: auto !important;
@@ -22,10 +112,13 @@
       background: var(--ion-color-secondary) !important;
       top: 70% !important;
       right: 50% !important;
+      // height: 6px !important;
+      // width: 4px !important;
       height: 4px !important;
       width: 6px !important;
       border-radius: 10px;
       opacity: 1 !important;
+      // margin: 3px 0;
       margin: 0 2px;
     }
 
@@ -33,10 +126,13 @@
       background-color: var(--ion-color-primary) !important;
       top: 70% !important;
       right: 50% !important;
-      height: 4px !important;
+      // height: 12px  !important;
+      // width: 4px !important;
+      height: 4px  !important;
       width: 12px !important;
       border-radius: 10px;
       opacity: 1 !important;
+      // margin: 3px 0;
       margin: 0 2px;
     }
 
@@ -79,17 +175,14 @@
     }
 
     .title {
-     
       flex-grow: 1;
       p {
         line-height: 30px;
       }
-
-     
     }
- .title-ar{
-        padding-left: 12.5px;
-      }
+    .title-ar {
+      padding-left: 12.5px;
+    }
     .time {
       flex-grow: 3;
       height: 44px;
@@ -116,14 +209,14 @@
   justify-content: space-between;
   background-color: var(--ion-color-white);
   align-items: flex-start;
-  
-  .item-ar ,.item-en-first{
+
+  .item-ar,
+  .item-en-first {
     margin-right: 10px;
   }
   .item-en {
     margin-left: 10px;
   }
-  
 }
 
 .flex-container > div {
@@ -146,7 +239,7 @@
   align-content: stretch;
   flex-wrap: nowrap;
 
-  .margin-5-bottom{
+  .margin-5-bottom {
     margin-bottom: 5px;
   }
   .card-container {
@@ -235,13 +328,12 @@
   margin-top: 28px;
   margin-bottom: 30px;
   .feedback-section {
-    
     // display: flex;
     // flex-direction: row;
     .feedback-swiper {
       margin: 0 -5px;
       .feedback-swiper-container {
-        //margin:-5px;  
+        //margin:-5px;
       }
     }
     .feedback-card {
@@ -263,7 +355,7 @@
           width: 25px;
           height: 25px;
           // text-align: center;
-          img{
+          img {
             border-radius: 50%;
             width: 25px;
             //height: 25px;

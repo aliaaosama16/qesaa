@@ -43,12 +43,13 @@ export class LoginPage implements OnInit {
     private langaugeservice: LanguageService,
     private auth: AuthService
   ) {
-    this.currentLanguage = this.languaService.getLanguage();
-    this.langaugeservice.getUpdatedLanguage().subscribe(lang=>{
-      this.currentLanguage=lang
-    })
-    this.otherLanguage =
-    this.currentLanguage == 'ar' ? 'English' : 'عربي';
+
+    this.languaService.getUpdatedLanguage().subscribe((lang) => {
+      console.log('current language :' + lang);
+      this.otherLanguage = lang == 'ar' ? 'English' : 'عربي';
+      this.currentLanguage=lang;
+    });
+    
   }
 
   ngOnInit() {

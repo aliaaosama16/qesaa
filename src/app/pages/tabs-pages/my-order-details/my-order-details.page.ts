@@ -75,12 +75,27 @@ export class MyOrderDetailsPage implements OnInit {
       componentProps: {
         images: itemImages,
         imageID: currentImage,
+        orderImage:itemImages
       },
     });
     modal.present();
   }
 
   async driverTrack() {
+    const modal = await this.modalController.create({
+      component: DriverLocationPage,
+      componentProps: {
+        lat: this.orderDetails.provider_lat,
+        lng: this.orderDetails.provider_lng,
+      },
+      initialBreakpoint: 0.75,
+      breakpoints: [0, 0.5, 0.75, 1],
+    });
+    return await modal.present();
+  }
+
+
+  async clientTrack() {
     const modal = await this.modalController.create({
       component: DriverLocationPage,
       componentProps: {
@@ -92,7 +107,6 @@ export class MyOrderDetailsPage implements OnInit {
     });
     return await modal.present();
   }
-
   showOrderByOederID(orderData: OrderData) {
     this.util.showLoadingSpinner().then((__) => {
       this.orderService.showOrderByOederID(orderData).subscribe(
@@ -145,5 +159,12 @@ export class MyOrderDetailsPage implements OnInit {
         }
       );
     });
+  }
+
+  contactWithWhatsapp() {
+    console.log(this.orderDetails?.provider_full_phone)
+    window.open(
+      `https://api.whatsapp.com/send?phone=${this.orderDetails?.provider_full_phone}`
+    );
   }
 }

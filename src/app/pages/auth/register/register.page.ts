@@ -24,13 +24,14 @@ export class RegisterPage implements OnInit {
       type: UserType.client,
     },
     {
-      id: UserType.provider,
-      type: UserType.provider,
-    },
-    {
       id: UserType.market,
       type: UserType.market,
     },
+    {
+      id: UserType.provider,
+      type: UserType.provider,
+    },
+    
   ];
   showRegisterPass: boolean;
   iconRegisterName: string = 'eye-off-outline';
@@ -46,6 +47,7 @@ export class RegisterPage implements OnInit {
   cities: GeneralSectionResponse[];
   neighborhoods: GeneralSectionResponse[];
   showProviderOptions:boolean=false;
+  showMarketOptions:boolean=false;
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
@@ -139,7 +141,15 @@ export class RegisterPage implements OnInit {
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       rulesAcception:[false,[Validators.required]],
       city:[''],
-      neighborhood:['']
+      neighborhood:[''],
+      email:[
+        '',
+        [
+         // Validators.required,
+          Validators.email,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+        ],
+      ],
     });
   }
 
@@ -198,7 +208,11 @@ export class RegisterPage implements OnInit {
     if( $event.target.value=='provider'){
       console.log('choosen user type');
       this.showProviderOptions=true;
+      this.showMarketOptions=false;
       this.getAllCities();
+    }else if($event.target.value =='market'){
+      this.showMarketOptions=true;
+      this.showProviderOptions=false;
     }
   }
 
