@@ -203,15 +203,18 @@ export class RegisterPage implements OnInit {
     
   }
 
-  chooseUserType($event) {
-    console.log('selected user type :' + $event.target.value);
-    if( $event.target.value=='provider'){
+  chooseUserType(type) {
+    console.log('selected user type :' + type);
+    if( type=='provider'){
       console.log('choosen user type');
       this.showProviderOptions=true;
       this.showMarketOptions=false;
       this.getAllCities();
-    }else if($event.target.value =='market'){
+    }else if(type =='market'){
       this.showMarketOptions=true;
+      this.showProviderOptions=false;
+    }else if(type =='client'){
+      this.showMarketOptions=false;
       this.showProviderOptions=false;
     }
   }

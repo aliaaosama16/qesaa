@@ -149,7 +149,7 @@
     </div>
   </div>
 
-  <div *ngIf="userType=='client'">
+  <div *ngIf="userType=='client'" class="order-options-btns">
     <div
       class="ion-padding-horizontal ion-margin-bottom"
       *ngIf=" orderDetails?.status==  'in_way' "
@@ -202,7 +202,7 @@
     </div>
   </div>
 
-  <div *ngIf="userType=='provider'">
+  <div *ngIf="userType=='provider'" class="order-options-btns">
     <p class="title ion-no-margin fn-16 qesaa-Janna-Bold">
       {{"change order status"|translate}}
     </p>

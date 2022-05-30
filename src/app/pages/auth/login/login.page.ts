@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { AuthResponse, LoginData, Status } from 'src/app/models/auth';
 import { Router } from '@angular/router';
 import { UserType } from 'src/app/models/userType';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -41,9 +42,10 @@ export class LoginPage implements OnInit {
     private router: Router,
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
-    private auth: AuthService
+    private auth: AuthService,
+    private menuCtrl:MenuController
   ) {
-
+    this.menuCtrl.enable(false, 'main');
     this.languaService.getUpdatedLanguage().subscribe((lang) => {
       console.log('current language :' + lang);
       this.otherLanguage = lang == 'ar' ? 'English' : 'عربي';
@@ -150,6 +152,6 @@ export class LoginPage implements OnInit {
       document.documentElement.dir = 'rtl';
       this.langaugeservice.setLanguage('ar');
     }
-   // window.location.reload();
+    window.location.reload();
   }
 }

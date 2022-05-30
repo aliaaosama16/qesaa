@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { ActivationData, AuthResponse } from 'src/app/models/auth';
 import { DataService } from 'src/app/services/data/data.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-verification-code',
@@ -29,8 +30,10 @@ export class VerificationCodePage implements OnInit {
     private util:UtilitiesService,
     private language:LanguageService,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private menuCtrl:MenuController
   ) {
+    this.menuCtrl.enable(false, 'main');
     this.currentLanguage = this.languaService.getLanguage();
   }
 

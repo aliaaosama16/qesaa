@@ -122,9 +122,9 @@ export class HomePage implements OnInit {
   }
 
   countRemainingTime(date) {
-    this.subscription = this.intervallTimer.subscribe(() => {
+   // this.subscription = this.intervallTimer.subscribe(() => {
       this.upComingDate = this.util.getDatesDifference(date);
-    });
+   // });
   }
 
   showPartener(partenerUrl: string) {

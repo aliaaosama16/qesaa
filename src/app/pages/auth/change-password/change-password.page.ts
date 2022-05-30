@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UtilitiesService } from '../../../services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ChangePasswordData } from 'src/app/models/forgetPassword';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-change-password',
@@ -28,8 +29,10 @@ export class ChangePasswordPage implements OnInit {
     private activatedRoute:ActivatedRoute,
     private util:UtilitiesService,
     private auth:AuthService,
-    private router:Router
+    private router:Router,
+    private menuCtrl:MenuController
   ) {
+    this.menuCtrl.enable(false, 'main');
     this.currentLanguage = this.languaService.getLanguage();
   }
 

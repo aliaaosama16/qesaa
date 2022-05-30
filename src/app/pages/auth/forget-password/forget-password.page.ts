@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthResponse, ForgetPasswordData } from 'src/app/models/auth';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forget-password',
@@ -21,8 +22,10 @@ export class ForgetPasswordPage implements OnInit {
     private router: Router,
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
-    private auth: AuthService
+    private auth: AuthService,
+    private menuCtrl:MenuController
   ) {
+    this.menuCtrl.enable(false, 'main');
     this.currentLanguage = this.languaService.getLanguage();
   }
 
