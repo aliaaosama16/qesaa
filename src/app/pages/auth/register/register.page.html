@@ -25,13 +25,19 @@
       </ion-select>
     </ion-item> -->
 
-    <div class="account-type" >
-      <div  class="icon-container" >
-        <div class="icon"><ion-icon name="person" color="secondary"></ion-icon></div>
-        <div> <p class="ion-no-margin fn-16 qesaa-Janna-Regular">{{"account type"|translate}}</p> </div>
+    <div class="account-type">
+      <div class="icon-container">
+        <div class="icon">
+          <ion-icon name="person" color="secondary"></ion-icon>
+        </div>
+        <div>
+          <p class="ion-no-margin fn-16 qesaa-Janna-Regular">
+            {{"account type"|translate}}
+          </p>
+        </div>
       </div>
       <div *ngFor="let type of userTypes">
-        <ion-button color="light"   (click)="chooseUserType(type.type)">
+        <ion-button color="light" (click)="chooseUserType(type.type)">
           <span class="text"> {{type.type |translate}} </span>
         </ion-button>
       </div>
@@ -54,7 +60,7 @@
       ></ion-input>
     </ion-item>
 
-    <ion-item lines="none" class="ion-margin-bottom">
+    <!-- <ion-item lines="none" class="ion-margin-bottom">
       <ion-icon
         class="custom-form-icon"
         [ngClass]="currentLanguage=='ar'?'icon-ar':'icon-en'"
@@ -76,8 +82,34 @@
       *ngIf=" isRegisterSubmitted && registerErrorControl.phoneNumber.errors?.required"
     >
       {{'please enter phone number' | translate}}
-    </div>
+    </div> -->
 
+    <ion-item lines="none" class="ion-margin-bottom">
+      <ion-icon
+        class="custom-form-icon"
+        item-start
+        color="primary"
+        src="./../../../../assets/icon/forms/phone.svg"
+      >
+      </ion-icon>
+      <ion-intl-tel-input
+        [dir]="currentLanguage == 'ar' ? 'ltr' : 'rtl'"
+        item-end
+        formControlName="phoneNumber"
+      >
+      </ion-intl-tel-input>
+    </ion-item>
+
+    <div class="error-box fn-12" *ngIf="isRegisterSubmitted">
+      <ion-text
+        color="danger"
+        *ngIf="registerErrorControl.phoneNumber.errors?.required"
+      >
+        <p class="fn-16 qesaa-Janna-Regular">
+          <sub> {{'please enter phone number' | translate}}</sub>
+        </p>
+      </ion-text>
+    </div>
     <ion-item *ngIf="showMarketOptions" lines="none" class="ion-margin-bottom">
       <ion-icon
         class="custom-form-icon"
@@ -218,6 +250,7 @@
             formControlName="rulesAcception"
             slot="start"
             mode="ios"
+            [(ngModel)]="isRulesChecked"
           ></ion-checkbox>
         </ion-item>
       </div>

@@ -11,6 +11,7 @@ export interface LoginData extends Language {
   password: string;
   device_id: string;
   user_type?: UserType;
+  phone_code?:string
 }
 
 export interface RegisterData extends UserData {
@@ -24,10 +25,12 @@ export interface RegisterData extends UserData {
   twitter?: string;
   avatar?: string;
   license_image?: string;
+  phone_code?:string;
 }
 
 export interface ForgetPasswordData extends Language {
   phone: number;
+  phone_code:string
 }
 export interface ActivationData extends UserData {
   code: number;

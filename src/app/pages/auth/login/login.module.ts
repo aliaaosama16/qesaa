@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { LoginPage } from './login.page';
     IonicModule,
     LoginPageRoutingModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    IonIntlTelInputModule
   ],
   declarations: [LoginPage]
 })

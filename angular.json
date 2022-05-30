@@ -34,7 +34,8 @@
             "styles": [
               "src/theme/variables.scss",
               "src/global.scss",
-              "node_modules/animate.css/animate.css"
+              "node_modules/animate.css/animate.css",
+               "node_modules/flag-icon-css/sass/flag-icon.scss" 
             ],
             "scripts": [],
             "aot": false,
@@ -101,7 +102,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": [],
+            "styles": [
+              { "input": "node_modules/flag-icon-css/sass/flag-icon.scss" }
+            ],
             "scripts": [],
             "assets": [
               {

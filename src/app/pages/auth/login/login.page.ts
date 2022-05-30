@@ -6,7 +6,9 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { AuthResponse, LoginData, Status } from 'src/app/models/auth';
 import { Router } from '@angular/router';
 import { UserType } from 'src/app/models/userType';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { CustomModalPage } from '../../modals/custom-modal/custom-modal.page';
+import { IonIntlTelInputModel, IonIntlTelInputValidators } from 'ion-intl-tel-input';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +30,7 @@ export class LoginPage implements OnInit {
       type: UserType.market,
     },
   ];
+  phoneNumber: number;
   currentLanguage: string;
   otherLanguage: string;
   loginForm: FormGroup;
@@ -36,6 +39,38 @@ export class LoginPage implements OnInit {
   inputLoginType: any = 'password';
   showLoginPass: boolean;
   loginData: LoginData;
+  phone: IonIntlTelInputModel;
+  // cities:any[]=[
+  //   {
+  //     id:1,
+  //     title:'+966',
+  //     flag:'./../../../../assets/icon/menu-icons/contact-inactive.svg'
+  //   },
+  //   {
+  //     id:2,
+  //     title:'+02',
+  //     flag:'./../../../../assets/icon/menu-icons/contact-inactive.svg'
+  //   },
+  //   {
+  //     id:3,
+  //     title:'+88',
+  //     flag:'./../../../../assets/icon/menu-icons/contact-inactive.svg'
+  //   }
+  // ]
+  // cities: any[] = [
+  //   {
+  //     internationalNumber: '',
+  //     nationalNumber: '',
+  //     isoCode: 'bg',
+  //     dialCode: '+359',
+  //   },
+  //   {
+  //     internationalNumber: '',
+  //     nationalNumber: '',
+  //     isoCode: 'bg',
+  //     dialCode: '+359',
+  //   },
+  // ];
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder,
@@ -43,15 +78,15 @@ export class LoginPage implements OnInit {
     private util: UtilitiesService,
     private langaugeservice: LanguageService,
     private auth: AuthService,
-    private menuCtrl:MenuController
+    private menuCtrl: MenuController,
+    private modalController: ModalController
   ) {
     this.menuCtrl.enable(false, 'main');
     this.languaService.getUpdatedLanguage().subscribe((lang) => {
       console.log('current language :' + lang);
       this.otherLanguage = lang == 'ar' ? 'English' : 'عربي';
-      this.currentLanguage=lang;
+      this.currentLanguage = lang;
     });
-    
   }
 
   ngOnInit() {
@@ -60,12 +95,13 @@ export class LoginPage implements OnInit {
 
   login() {
     this.isSignInSubmitted = true;
-
+    this.loginForm.value.phoneNumber.nationalNumber=this.loginForm.value.phoneNumber.nationalNumber.replace(/\s/g,'');
     console.log('loginForm : ' + JSON.stringify(this.loginForm.value));
-    if (this.loginForm.valid) {
+  //  if (this.loginForm.valid) {
       this.loginData = {
         lang: this.langaugeservice.getLanguage(),
-        phone: this.loginForm.value.phoneNumber,
+        phone: this.loginForm.value.phoneNumber.nationalNumber,
+        phone_code:this.loginForm.value.phoneNumber.dialCode,
         password: this.loginForm.value.password,
         device_id: this.util.deviceID,
         // user_type: this.loginForm.value.userType,
@@ -105,10 +141,24 @@ export class LoginPage implements OnInit {
           }
         );
       });
-    } else {
-      console.log('form not valid');
-      return false;
-    }
+    // } else {
+    //   console.log('form not valid');
+    //   return false;
+    // }
+  }
+
+  async openCountryList() {
+    const modal = await this.modalController.create({
+      component: CustomModalPage,
+      cssClass: 'my-custom-modal',
+      canDismiss: true,
+      componentProps: {
+        modalType: 'authentication',
+      },
+    });
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);   
+    return await modal.present();
   }
 
   buildForm() {
@@ -117,16 +167,18 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
+          IonIntlTelInputValidators.phone
           // Validators.pattern(/^05/),
           //Validators.minLength(10),
           //Validators.maxLength(10),
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      userType: [''],
+     
     });
   }
 
+  chooseCity($event) {}
   // chooseUserType($event) {
   //   console.log('selected user type :' + $event.target.value);
   //   this.loginForm.value.userType = $event.target.value;

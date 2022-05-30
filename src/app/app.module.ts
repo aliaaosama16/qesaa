@@ -20,6 +20,7 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -29,6 +30,8 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     CommonModule,
+    IonIntlTelInputModule,
+
     IonicModule.forRoot({
       backButtonText: '',
       mode: 'md',

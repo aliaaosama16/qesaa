@@ -6,6 +6,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthResponse, ForgetPasswordData } from 'src/app/models/auth';
 import { MenuController } from '@ionic/angular';
+import { IonIntlTelInputValidators } from 'ion-intl-tel-input';
 
 @Component({
   selector: 'app-forget-password',
@@ -35,11 +36,15 @@ export class ForgetPasswordPage implements OnInit {
 
   forgetPassword() {
     this.isForgetPasswordSubmitted=true;
+    this.forgetForm.value.phoneNumber.nationalNumber=this.forgetForm.value.phoneNumber.nationalNumber.replace(/\s/g,'');
+
     console.log('change pass form : ' + JSON.stringify(this.forgetForm.value));
-    if (this.forgetForm.valid) {
+   // if (this.forgetForm.valid) {
       const forgetPasswordData: ForgetPasswordData = {
         lang: this.langaugeservice.getLanguage(),
-        phone: this.forgetForm.value.phoneNumber,
+        // phone: this.forgetForm.value.phoneNumber,
+        phone: this.forgetForm.value.phoneNumber.nationalNumber,
+        phone_code:this.forgetForm.value.phoneNumber.dialCode,
       };
       this.util.showLoadingSpinner().then((__) => {
         this.auth.forgetPassword(forgetPasswordData).subscribe(
@@ -58,7 +63,7 @@ export class ForgetPasswordPage implements OnInit {
           }
         );
       });
-    }
+   // }
   }
 
   get forgetPasswordErrorControl() {
@@ -71,6 +76,7 @@ export class ForgetPasswordPage implements OnInit {
         '',
         [
           Validators.required,
+          IonIntlTelInputValidators.phone
           // Validators.pattern(/^05/),
          // Validators.minLength(10),
          // Validators.maxLength(10),

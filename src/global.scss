@@ -220,6 +220,12 @@ ion-select {
   }
 }
 .form-container {
+.custom-item{
+  --inner-padding-end	:0px !important
+}
+  // .custom-item::part(native){
+  //   padding-inline-end:0px !important
+  // }
   .account-type {
     display: flex;
     justify-content: space-between;
@@ -231,10 +237,14 @@ ion-select {
       align-items: center;
     }
 
-    ion-button::part(native){
-      height: 35px;
-      border-radius: 10px;
+    ion-button{
+      --background-activated:var(--ion-color-primary);
+      &::part(native){
+        height: 35px;
+        border-radius: 10px;
+      }
     }
+  
     .text{
       color: var(--ion-color-secondary);
     }

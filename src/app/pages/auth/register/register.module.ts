@@ -8,6 +8,7 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { IonIntlTelInputModule } from 'ion-intl-tel-input';
 
 @NgModule({
   imports: [
@@ -16,8 +17,9 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     RegisterPageRoutingModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    IonIntlTelInputModule,
   ],
-  declarations: [RegisterPage]
+  declarations: [RegisterPage],
 })
 export class RegisterPageModule {}

@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { CitysData, CitysResponse, GeneralSectionResponse, UserData } from 'src/app/models/general';
 import { AppData } from 'src/app/models/data';
 import { DataService } from 'src/app/services/data/data.service';
+import { IonIntlTelInputValidators } from 'ion-intl-tel-input';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -74,54 +75,64 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value);
     this.isRegisterSubmitted = true;
     console.log(this.registerForm.value);
-    if (this.registerForm.valid) {
-      if (
-        this.registerForm.value.password ==
-        this.registerForm.value.confirmPassword
-      ) {
-        console.log('registerForm valid');
-        this.registerData = {
-          user_type:this.registerForm.value.userType,
-          lang: this.langaugeservice.getLanguage(),
-          first_name: this.registerForm.value.userName,
-         
-          phone: this.registerForm.value.phoneNumber,
-          password: this.registerForm.value.password,
-          city_id: this.registerForm.value.city,
-          neighborhood_id:this.registerForm.value.neighborhood
-        };
-        this.util.showLoadingSpinner().then((__) => {
-          this.auth.register(this.registerData).subscribe(
-            (data: AuthResponse) => {
-              if (data.key == 1) {
-                console.log('register res :' + JSON.stringify(data));
-                this.util.showMessage(data.msg);
-                this.auth.userID.next(data.data.id);
-                this.auth.storeStatusAfterRegisteration(data);
-                this.router.navigateByUrl(`/verification-code/${data.data.id}`);
-                this.registerForm.reset();
-              } else {
-                this.util.showMessage(data.msg);
-              }
-              this.util.dismissLoading();
-            },
-            (err) => {
-              this.util.dismissLoading();
+
+    this.registerForm.value.phoneNumber.nationalNumber=this.registerForm.value.phoneNumber.nationalNumber.replace(/\s/g,'');
+
+    // console.log(this.registerForm.value);
+  
+    // console.log(this.registerForm.value);
+ //   if (this.registerForm.valid) {
+   if(this.isRulesChecked){
+    if (
+      this.registerForm.value.password ==
+      this.registerForm.value.confirmPassword
+    ) {
+      console.log('registerForm valid');
+      this.registerData = {
+        user_type:this.registerForm.value.userType,
+        lang: this.langaugeservice.getLanguage(),
+        first_name: this.registerForm.value.userName,
+        phone: this.registerForm.value.phoneNumber.nationalNumber,
+        phone_code:this.registerForm.value.phoneNumber.dialCode,
+        password: this.registerForm.value.password,
+        city_id: this.registerForm.value.city,
+        neighborhood_id:this.registerForm.value.neighborhood
+      };
+      this.util.showLoadingSpinner().then((__) => {
+        this.auth.register(this.registerData).subscribe(
+          (data: AuthResponse) => {
+            if (data.key == 1) {
+              console.log('register res :' + JSON.stringify(data));
+              this.util.showMessage(data.msg);
+              this.auth.userID.next(data.data.id);
+              this.auth.storeStatusAfterRegisteration(data);
+              this.router.navigateByUrl(`/verification-code/${data.data.id}`);
+              this.registerForm.reset();
+            } else {
+              this.util.showMessage(data.msg);
             }
-          );
-        });
-      } else {
-        this.translate.instant(
-          'both password and confirm password should be equal'
+            this.util.dismissLoading();
+          },
+          (err) => {
+            this.util.dismissLoading();
+          }
         );
-      }
+      });
     } else {
-      console.log(this.registerForm.value);
-      return false;
+      this.util.showMessage(
+        'both password and confirm password should be equal'
+      );
     }
+   }else{
+     this.util.showMessage('you should agree to rules')
+   }
+     
+    // } else {
+    //   console.log(this.registerForm.value);
+    //   return false;
+    // }
   }
 
   buildForm() {
@@ -132,11 +143,13 @@ export class RegisterPage implements OnInit {
         '',
         [
           Validators.required,
+          IonIntlTelInputValidators.phone
           // Validators.pattern(/^05/),
           //Validators.minLength(10),
           //Validators.maxLength(10),
         ],
       ],
+      
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       rulesAcception:[false,[Validators.required]],
@@ -204,6 +217,7 @@ export class RegisterPage implements OnInit {
   }
 
   chooseUserType(type) {
+    this.registerForm.value.userType=type;
     console.log('selected user type :' + type);
     if( type=='provider'){
       console.log('choosen user type');
