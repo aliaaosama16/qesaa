@@ -1,7 +1,7 @@
 import { LocationData } from './models/provider';
 import { ProviderService } from './services/provider/provider.service';
 import { SectionsProductsService } from 'src/app/services/sections-products/sections-products.service';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { AuthService } from './services/auth/auth.service';
@@ -12,6 +12,8 @@ import { LogOutData, Status } from './models/auth';
 import { Storage } from '@capacitor/storage';
 import { GeneralResponse } from './models/general';
 import { interval } from 'rxjs';
+import { SplashScreen } from '@capacitor/splash-screen';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,13 +21,15 @@ import { interval } from 'rxjs';
 })
 export class AppComponent {
   // get provider location every 5 minutes
-  public intervallTimer = interval(1000*60*5);
+  public intervallTimer = interval(1000 * 60 * 5);
+  @ViewChild('customOverlay', { static: false }) customOverlay: ElementRef;
   private subscription;
   currentLanguage: string = '';
   language: string = '';
   selectedIndex: number;
   logoutData: LogOutData;
   currentPlatform: string;
+  splash: boolean = false;
   pages = [
     {
       title: 'about',
@@ -127,6 +131,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+     // this.showCustomSplash();
       this.languageService.setInitialAppLanguage();
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
@@ -139,6 +144,21 @@ export class AppComponent {
       this.getLoginStatus();
       console.log(this.util.userLocation.lat, this.util.userLocation.lng);
     });
+  }
+
+  async showCustomSplash() {
+    
+    // await SplashScreen.show({
+    //   fadeInDuration	:2000,
+    //   fadeOutDuration	:2000
+    // });
+      // setTimeout(function () {
+      //   this.splash = true;
+      //   this.customOverlay.nativeElement.style.display = 'none';
+      //   this.router.navigate(['boarding']);
+      // }, 3000);
+      
+    
   }
 
   async getLoginStatus() {
@@ -174,19 +194,19 @@ export class AppComponent {
       lng: this.util.userLocation.lng,
       user_id: this.auth.userID.value,
     };
-   // this.util.showLoadingSpinner().then((__) => {
-      this.providerService.updateLocation(location).subscribe(
-        (data: GeneralResponse) => {
-          if (data.key == 1) {
-            // this.util.showMessage(data.msg);
-          }
-        //  this.util.dismissLoading();
-        },
-        (err) => {
-        //  this.util.dismissLoading();
+    // this.util.showLoadingSpinner().then((__) => {
+    this.providerService.updateLocation(location).subscribe(
+      (data: GeneralResponse) => {
+        if (data.key == 1) {
+          // this.util.showMessage(data.msg);
         }
-      );
-   // });
+        //  this.util.dismissLoading();
+      },
+      (err) => {
+        //  this.util.dismissLoading();
+      }
+    );
+    // });
   }
 
   async getUserNotifications() {
