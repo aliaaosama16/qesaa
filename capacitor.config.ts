@@ -7,16 +7,12 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false,
   plugins: {
     SplashScreen: {
-      launchShowDuration: 5000,
-      launchAutoHide: true,
-      androidScaleType: 'CENTER_CROP',
-      androidSplashResourceName: 'splash',
-      splashFullScreen: true,
-      splashImmersive: false,
+      launchShowDuration: 0,
+      launchAutoHide: false,
     },
     Keyboard: {
-      resize: "body",
-      style: "dark",
+      resize: 'body',
+      style: 'dark',
       resizeOnFullScreen: true,
     },
     // PushNotifications: {

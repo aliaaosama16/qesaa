@@ -5,7 +5,7 @@ import { ShowBoardingPageGuard } from './guards/boarding/show-boarding-page.guar
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'boarding',
+    redirectTo: 'splash',
     pathMatch: 'full',
   },
   {
@@ -87,6 +87,10 @@ const routes: Routes = [
   {
     path: 'custom-modal',
     loadChildren: () => import('./pages/modals/custom-modal/custom-modal.module').then( m => m.CustomModalPageModule)
+  },
+  {
+    path: 'splash',
+    loadChildren: () => import('./pages/modals/splash/splash.module').then( m => m.SplashPageModule)
   },
  
 ];

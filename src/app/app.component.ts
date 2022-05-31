@@ -114,24 +114,25 @@ export class AppComponent {
     private sectionsService: SectionsProductsService,
     private providerService: ProviderService
   ) {
-    this.initializeApp();
+        SplashScreen.hide();
+        this.initializeApp();
 
-    // this.auth.getLoginedObservable().subscribe((val) => {
-    //   this.logined = val;
-    // });
+        // this.auth.getLoginedObservable().subscribe((val) => {
+        //   this.logined = val;
+        // });
 
-    this.languageService.getUpdatedLanguage().subscribe((val) => {
-      console.log('language' + val);
-      this.language = val;
-    });
+        this.languageService.getUpdatedLanguage().subscribe((val) => {
+          console.log('language' + val);
+          this.language = val;
+        });
 
-    console.log('current platform : ' + this.util.getCapacitorPlatform());
-    this.currentPlatform = this.util.getCapacitorPlatform();
+        console.log('current platform : ' + this.util.getCapacitorPlatform());
+        this.currentPlatform = this.util.getCapacitorPlatform();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-     // this.showCustomSplash();
+      // this.showCustomSplash();
       this.languageService.setInitialAppLanguage();
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);
@@ -147,18 +148,15 @@ export class AppComponent {
   }
 
   async showCustomSplash() {
-    
     // await SplashScreen.show({
     //   fadeInDuration	:2000,
     //   fadeOutDuration	:2000
     // });
-      // setTimeout(function () {
-      //   this.splash = true;
-      //   this.customOverlay.nativeElement.style.display = 'none';
-      //   this.router.navigate(['boarding']);
-      // }, 3000);
-      
-    
+    // setTimeout(function () {
+    //   this.splash = true;
+    //   this.customOverlay.nativeElement.style.display = 'none';
+    //   this.router.navigate(['boarding']);
+    // }, 3000);
   }
 
   async getLoginStatus() {

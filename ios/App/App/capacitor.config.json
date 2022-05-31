@@ -6,11 +6,7 @@
 	"plugins": {
 		"SplashScreen": {
 			"launchShowDuration": 0,
-			"launchAutoHide": true,
-			"androidScaleType": "CENTER_CROP",
-			"androidSplashResourceName": "splash",
-			"splashFullScreen": true,
-			"splashImmersive": false
+			"launchAutoHide": true
 		},
 		"Keyboard": {
 			"resize": "body",
