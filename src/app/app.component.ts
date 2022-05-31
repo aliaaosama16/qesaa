@@ -114,7 +114,7 @@ export class AppComponent {
     private sectionsService: SectionsProductsService,
     private providerService: ProviderService
   ) {
-        SplashScreen.hide();
+        
         this.initializeApp();
 
         // this.auth.getLoginedObservable().subscribe((val) => {
@@ -131,8 +131,12 @@ export class AppComponent {
   }
 
   initializeApp() {
+   
     this.platform.ready().then(() => {
-      // this.showCustomSplash();
+    
+         SplashScreen.hide();
+     
+      
       this.languageService.setInitialAppLanguage();
       this.currentLanguage = this.languageService.getLanguage();
       console.log(`language is ${this.currentLanguage}`);

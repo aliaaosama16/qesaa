@@ -8,7 +8,8 @@ const config: CapacitorConfig = {
   plugins: {
     SplashScreen: {
       launchShowDuration: 0,
-      launchAutoHide: false,
+      launchAutoHide: true,
+      // androidSplashResourceName:'splash'
     },
     Keyboard: {
       resize: 'body',

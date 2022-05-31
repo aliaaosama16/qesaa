@@ -23,14 +23,17 @@ export class RegisterPage implements OnInit {
     {
       id: UserType.client,
       type: UserType.client,
+      no:0
     },
     {
       id: UserType.market,
       type: UserType.market,
+      no:1
     },
     {
       id: UserType.provider,
       type: UserType.provider,
+      no:2
     },
     
   ];
@@ -49,6 +52,7 @@ export class RegisterPage implements OnInit {
   neighborhoods: GeneralSectionResponse[];
   showProviderOptions:boolean=false;
   showMarketOptions:boolean=false;
+  userType:string;
   constructor(
     private languageService: LanguageService,
     private formBuilder: FormBuilder,
@@ -90,6 +94,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.value.confirmPassword
     ) {
       console.log('registerForm valid');
+      this.registerForm.value.userType=this.userType
       this.registerData = {
         user_type:this.registerForm.value.userType,
         lang: this.langaugeservice.getLanguage(),
@@ -216,8 +221,14 @@ export class RegisterPage implements OnInit {
     
   }
 
-  chooseUserType(type) {
-    this.registerForm.value.userType=type;
+  chooseUserType(type,itemIndex:number) {
+
+    // for(let i=0;i<this.userType.length;i++){
+    //   if(itemIndex==this.userType[i].){
+
+    //   }
+    // }
+    this.userType=type;
     console.log('selected user type :' + type);
     if( type=='provider'){
       console.log('choosen user type');

@@ -57,6 +57,7 @@ export class HomePage implements OnInit {
     console.log('user id : ' + this.auth.userID.value);
   }
 
+
   ngOnInit() {
     this.configSlider = {
       slidesPerView: 1,

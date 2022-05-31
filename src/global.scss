@@ -238,7 +238,9 @@ ion-select {
     }
 
     ion-button{
+      --background:var(--ion-color-light);
       --background-activated:var(--ion-color-primary);
+      --background-focused	:var(--ion-color-primary);
       &::part(native){
         height: 35px;
         border-radius: 10px;
@@ -248,6 +250,8 @@ ion-select {
     .text{
       color: var(--ion-color-secondary);
     }
+
+   
   }
   .error-box {
     color: var(--ion-color-danger);

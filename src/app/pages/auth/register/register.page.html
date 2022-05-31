@@ -36,8 +36,8 @@
           </p>
         </div>
       </div>
-      <div *ngFor="let type of userTypes">
-        <ion-button color="light" (click)="chooseUserType(type.type)">
+      <div *ngFor="let type of userTypes;let i=index">
+        <ion-button class="type-btn" (click)="chooseUserType(type.type,i)">
           <span class="text"> {{type.type |translate}} </span>
         </ion-button>
       </div>
