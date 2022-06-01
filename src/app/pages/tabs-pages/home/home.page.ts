@@ -13,6 +13,7 @@ import { StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { interval, Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 SwiperCore.use([Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
@@ -139,6 +140,14 @@ export class HomePage implements OnInit {
       // user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
     };
     this.home.home(userData).subscribe(
+
+      // {
+      //   next: () => fail('should have failed with the 404 error'),
+      //   error: (error: HttpErrorResponse) => {
+      //     expect(error.status).withContext('status').toEqual(404);
+      //     expect(error.error).withContext('message').toEqual('');
+      //   },
+      // }
       (data: HomeResponse) => {
         if (data.key == 1) {
           this.partenrs = data.data?.partners;
