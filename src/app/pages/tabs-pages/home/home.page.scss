@@ -86,6 +86,11 @@
 
 .slider-section {
   position: relative;
+  .custom-swiper{
+    .swiper-wrapper{
+      padding-bottom: 35px !important;
+    }
+  }
 
   .slide-item-container {
     position: relative;
@@ -159,11 +164,11 @@
 }
 
 .next-initiative {
-  height: 100px;
+  //height: 100px;
   background: var(--ion-color-white);
   border-radius: var(--custom-border-10-radius);
   box-shadow: var(--custom-box-shadow);
-  padding: 21px 20px;
+  padding:33px 20px;
 
   .initiative {
     display: flex;

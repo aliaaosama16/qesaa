@@ -134,7 +134,7 @@ export class AppComponent {
    
     this.platform.ready().then(() => {
     
-         SplashScreen.hide();
+      //   SplashScreen.hide();
      
       
       this.languageService.setInitialAppLanguage();

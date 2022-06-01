@@ -5,9 +5,8 @@
 	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
-			"launchShowDuration": 10,
-			"launchAutoHide": true,
-			"androidSplashResourceName": "splash"
+			"launchShowDuration": 5000,
+			"launchAutoHide": true
 		},
 		"Keyboard": {
 			"resize": "body",

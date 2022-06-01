@@ -35,6 +35,8 @@
       border-radius: var(--custom-border-10-radius);
       height: 160px;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
     }
     margin-bottom: 20px;
   }
@@ -67,11 +69,11 @@ ion-button {
   }
 }
 
-.conatct-conatiner {
+.contact-conatiner {
   height: 50px;
   background: var(--ion-color-secondary);
   border-radius: 25px;
-  padding: 10px;
+  padding: 6px 0 10px;
 
   a{
     text-decoration: none;

@@ -108,16 +108,15 @@
       </ion-intl-tel-input>
     </ion-item>
 
-    <div
-      class="error-box fn-12"
-      *ngIf="isSignInSubmitted "
-    >
-    <ion-text color="danger" *ngIf="loginErrorControl.phoneNumber.errors?.required">
-      <p class=" fn-16 qesaa-Janna-Regular"><sub> {{'please enter phone number' | translate}}</sub></p>
-    </ion-text>
-
-   
-     
+    <div class="error-box fn-12" *ngIf="isSignInSubmitted ">
+      <ion-text
+        color="danger"
+        *ngIf="loginErrorControl.phoneNumber.errors?.required"
+      >
+        <p class="fn-16 qesaa-Janna-Regular">
+          <sub> {{'please enter phone number' | translate}}</sub>
+        </p>
+      </ion-text>
     </div>
     <!-- <div *ngIf="phoneNumber.invalid && phoneNumberControl.touched">
       <ion-text color="danger" *ngIf="phoneNumberControl.errors.required">

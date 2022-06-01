@@ -157,7 +157,7 @@ export class HomePage implements OnInit {
     );
   }
 
-  ionViewDidLeave() {
-    this.subscription.unsubscribe();
-  }
+  // ionViewDidLeave() {
+  //   this.subscription.unsubscribe();
+  // }
 }
