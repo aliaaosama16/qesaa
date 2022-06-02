@@ -17,6 +17,8 @@ export class ForgetPasswordPage implements OnInit {
   currentLanguage: string;
   forgetForm: FormGroup;
   isForgetPasswordSubmitted: boolean = false;
+  preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
+
   constructor(
     private languaService: LanguageService,
     private formBuilder: FormBuilder,

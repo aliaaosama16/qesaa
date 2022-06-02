@@ -16,6 +16,8 @@ import { IonIntlTelInputModel, IonIntlTelInputValidators } from 'ion-intl-tel-in
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
+  onlyCountries:string[]=['sa','kw','ae','qa','bh','om']
   userTypes: any[] = [
     {
       id: UserType.client,

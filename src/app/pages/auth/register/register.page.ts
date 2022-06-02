@@ -19,6 +19,8 @@ import { IonIntlTelInputValidators } from 'ion-intl-tel-input';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
+
   userTypes: any[] = [
     {
       id: UserType.client,
