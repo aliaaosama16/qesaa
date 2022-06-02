@@ -14,6 +14,7 @@ import { IonIntlTelInputValidators } from 'ion-intl-tel-input';
   styleUrls: ['./forget-password.page.scss'],
 })
 export class ForgetPasswordPage implements OnInit {
+  preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
   currentLanguage: string;
   forgetForm: FormGroup;
   isForgetPasswordSubmitted: boolean = false;
