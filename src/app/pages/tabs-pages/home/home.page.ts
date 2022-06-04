@@ -13,7 +13,7 @@ import { StaticPageResponse, StaticPageTitle } from 'src/app/models/staticPage';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { interval, Observable } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+
 SwiperCore.use([Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
@@ -50,12 +50,13 @@ export class HomePage implements OnInit {
     private data: DataService,
     private home: HomeService,
     private languageService: LanguageService,
-    private auth: AuthService
+    private auth: AuthService,
   ) {
     this.platform = this.util.platform;
     this.currentlangauge = this.languageService.getLanguage();
     this.menuCtrl.enable(true, 'main');
     console.log('user id : ' + this.auth.userID.value);
+    
   }
 
 
