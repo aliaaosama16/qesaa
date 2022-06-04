@@ -92,6 +92,10 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./pages/modals/splash/splash.module').then( m => m.SplashPageModule)
   },
+  {
+    path: 'notice-modal',
+    loadChildren: () => import('./pages/modals/notice-modal/notice-modal.module').then( m => m.NoticeModalPageModule)
+  },
  
 ];
 @NgModule({

@@ -7,7 +7,7 @@ import {
   UserData,
 } from './../../../models/general';
 import { UtilitiesService } from './../../../services/utilities/utilities.service';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LanguageService } from 'src/app/services/language/language.service';
@@ -24,6 +24,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { AuthResponse } from 'src/app/models/auth';
 import { Router } from '@angular/router';
+import { NoticeModalPage } from '../../modals/notice-modal/notice-modal.page';
 
 @Component({
   selector: 'app-donation-order',
@@ -58,7 +59,8 @@ export class DonationOrderPage implements OnInit {
     private general: GeneralService,
     private uploadImage: UploadImageService,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    public modalController: ModalController
   ) {
     this.currentLanguage = this.languageService.getLanguage();
     this.plt.keyboardDidShow.subscribe((ev) => {
@@ -67,7 +69,7 @@ export class DonationOrderPage implements OnInit {
       console.log('keyboard event :' + JSON.stringify(ev));
     });
   }
-  
+
   inputHaveFocused(inputFocusStatus) {
     this.util.inputStatus(inputFocusStatus);
   }
@@ -294,6 +296,8 @@ export class DonationOrderPage implements OnInit {
   donate() {
     // this.donationForm.value.lat = this.util.userLocation.lat;
     // this.donationForm.value.lng = this.util.userLocation.lng;
+  
+  
     this.donationForm.value.image = this.general.getDonationImage();
 
     console.log('donation form : ' + JSON.stringify(this.donationForm.value));
@@ -317,9 +321,8 @@ export class DonationOrderPage implements OnInit {
       this.sectionsService.storeOrder(storeOrderData).subscribe(
         (data: GeneralResponse) => {
           if (data.key == 1) {
-            this.util.showMessage(data.msg).then((_) => {
-              this.router.navigateByUrl('/tabs/my-orders');
-              this.auth.setNoOfNotifications(this.auth.userID.value);
+           this.util.showMessage(data.msg).then((_) => {
+              this.showOrderNotice();
             });
           } else {
             this.util.showMessage(data.msg);
@@ -331,5 +334,19 @@ export class DonationOrderPage implements OnInit {
         }
       );
     });
+  }
+
+  async showOrderNotice() {
+    const modal = await this.modalController.create({
+      component: NoticeModalPage,
+      cssClass: 'my-custom-modal',
+      canDismiss: true,
+      componentProps: {
+        haveButton: true,
+        buttonText: 'my-orders',
+        noticeText: 'order sent successfully',
+      },
+    });
+    return await modal.present();
   }
 }

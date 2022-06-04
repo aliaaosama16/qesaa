@@ -355,7 +355,7 @@ ion-content {
 
 ion-tabs {
   ion-fab {
-    margin-bottom: 5vh;
+    margin-bottom:80px !important; // 5vh;
     --ripple-color: transparent;
     ion-fab-button {
       &::part(native) {
