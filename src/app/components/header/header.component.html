@@ -46,6 +46,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <div [ngClass]="{ 'header-extenstion': !haveBeforeHeader }"></div>
+  <div
+    [ngClass]="{
+      'header-extenstion': !haveBeforeHeader,
+      'custom-top-margin': currentPlatform != 'ios'
+    }"
+  ></div>
 </ion-header>
-<!-- 'custom-top-margin': currentPlatform == 'ios' -->
