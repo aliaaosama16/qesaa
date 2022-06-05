@@ -123,7 +123,8 @@ export class AppComponent {
 
         this.languageService.getUpdatedLanguage().subscribe((val) => {
           console.log('language' + val);
-          this.language = val;
+         // this.language = val;
+          this.currentLanguage=val
         });
 
         console.log('current platform : ' + this.util.getCapacitorPlatform());

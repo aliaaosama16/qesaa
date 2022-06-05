@@ -28,6 +28,7 @@ export class AccountPage implements OnInit {
   twitter: string;
   otherLanguage: string;
   currentLanguage: string;
+  notifcationsStatus:boolean=true;
   constructor(
     private router: Router,
     private util: UtilitiesService,
@@ -166,5 +167,10 @@ export class AccountPage implements OnInit {
         }
       );
     });
+  }
+
+  changeNotifcationsStatus(){
+   console.log('notifcationsStatus :'+this.notifcationsStatus)
+   this.notifcationsStatus=!this.notifcationsStatus
   }
 }

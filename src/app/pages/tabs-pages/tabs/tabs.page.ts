@@ -12,10 +12,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class TabsPage {
   selectedTab = 'home';
   @ViewChild('tabs', { static: false }) tabs: IonTabs;
+  currentPlatform: string;
   noOfNotifications: number;
   isLogined: boolean = false;
-  inputFocused:boolean;
- // @ViewChild('icon', { read: ElementRef }) icon: ElementRef;
+  inputFocused: boolean;
+  // @ViewChild('icon', { read: ElementRef }) icon: ElementRef;
   tabsData = [
     {
       tabName: 'home',
@@ -42,8 +43,7 @@ export class TabsPage {
     {
       tabName: 'account',
       tabActiveIcon: './../../../assets/icon/tabs-icons/person-outline.svg',
-      tabNotActiveIcon:
-        './../../../assets/icon/tabs-icons/person-outline.svg',
+      tabNotActiveIcon: './../../../assets/icon/tabs-icons/person-outline.svg',
     },
   ];
 
@@ -51,15 +51,15 @@ export class TabsPage {
     private auth: AuthService,
     private animationCtrl: AnimationController,
     private router: Router,
-    private util:UtilitiesService
+    private util: UtilitiesService
   ) {
+    this.currentPlatform = this.util.getCapacitorPlatform();
 
-    this.util.getinputStatus().subscribe((currentInoutStatus)=>{
-      this.inputFocused=currentInoutStatus
-      console.log('currentInoutStatus  :'+this.inputFocused)
-    })
+    this.util.getinputStatus().subscribe((currentInoutStatus) => {
+      this.inputFocused = currentInoutStatus;
+      console.log('currentInoutStatus  :' + this.inputFocused);
+    });
 
-  
     if (this.auth.isAuthenticated.value) {
       this.isLogined = this.auth.isAuthenticated.value;
       this.auth.getNoOfNotifications().subscribe((val) => {
@@ -70,45 +70,9 @@ export class TabsPage {
         }
       });
     }
-
-    //     const squareA = this.animationCtrl.create()
-    //   .addElement(this.squareA.nativeElement)
-    //   .fill('none')
-    //   .duration(1000)
-    //   .keyframes([
-    //     { offset: 0, transform: 'scale(1) rotate(0)' },
-    //     { offset: 0.5, transform: 'scale(1.2) rotate(45deg)' },
-    //     { offset: 1, transform: 'scale(1) rotate(0)' }
-    //   ]);
-
-    // const squareB = this.animationCtrl.create()
-    //   .addElement(this.squareB.nativeElement)
-    //   .fill('none')
-    //   .duration(1000)
-    //   .keyframes([
-    //     { offset: 0, transform: 'scale(1)', opacity: '1' },
-    //     { offset: 0.5, transform: 'scale(1.2)', opacity: '0.3' },
-    //     { offset: 1, transform: 'scale(1)', opacity: '1' }
-    //   ]);
   }
 
-  ngOnInit() {
-    // async
-    // const squareC = this.animationCtrl
-    //   .create()
-    //   .addElement(this.icon.nativeElement)
-    //   .fill('none')
-    //   .duration(1000)
-    //   .keyframes([
-    //     { offset: 0, transform: 'scale(1)', opacity: '1' },
-    // { offset: 0.5, transform: 'scale(1.2)', opacity: '0.3' },
-    // { offset: 1, transform: 'scale(1)', opacity: '1' }
-    //   ]);
-
-    // // await squareA.play();
-    // // await squareB.play();
-    // await squareC.play();
-  }
+  ngOnInit() {}
 
   setCurrentTab() {
     this.selectedTab = this.tabs.getSelected();

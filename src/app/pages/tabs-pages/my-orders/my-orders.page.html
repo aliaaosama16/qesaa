@@ -49,14 +49,14 @@
             <p class="order-status fn-16 qesaa-Janna-Bold">
               <span class="primary-color">{{"orderStatus"|translate}}</span>
 
-              <!-- <span
+              <span
                 class="custom-margin"
                 [ngClass]="{'secondary-color': order.status_f=='finish', 'red-color':order.status_f=='refused'}"
               >
                 {{order.status_f}}
-              </span> -->
+              </span>
 
-              <span
+              <!-- <span
                 class="custom-margin"
                 *ngIf="order.status_f=='in_way'||'current'"
               >
@@ -70,8 +70,8 @@
               <span
                 class="custom-margin red-color"
                 *ngIf="order.status_f=='refused'"
-                >{{order.status_f}}</span
-              >
+                >{{order.status_f}}</span -->
+              
             </p>
             <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
               {{order.date}}
@@ -117,7 +117,14 @@
               {{"orderStatus"|translate}}
             </div>
             <div class="requestStatus fn-16 qesaa-Janna-Bold">
+
               <span
+              class="custom-margin"
+              [ngClass]="{'secondary-color': order.status_f=='finish', 'red-color':order.status_f=='refused'}"
+            >
+              {{order.status_f}}
+            </span>
+              <!-- <span
                 class="custom-margin"
                 *ngIf="order.status_f=='in_way'||'current'"
                 >{{order.status_f}}</span
@@ -131,7 +138,7 @@
                 class="custom-margin red-color"
                 *ngIf="order.status_f=='refused'"
                 >{{order.status_f}}</span
-              >
+              > -->
             </div>
           </div>
         </div>
@@ -188,6 +195,13 @@
 
             <span
               class="custom-margin"
+              [ngClass]="{'secondary-color': order.status_f=='finish', 'red-color':order.status_f=='refused'}"
+            >
+              {{order.status_f}}
+            </span>
+
+            <!-- <span
+              class="custom-margin"
               *ngIf="order.status_f=='in_way'||'current'"
               >{{order.status_f}}</span
             >
@@ -200,7 +214,7 @@
               class="custom-margin red-color"
               *ngIf="order.status_f=='refused'"
               >{{order.status_f}}</span
-            >
+            > -->
           </p>
           <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
             {{order.date}}

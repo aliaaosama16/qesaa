@@ -85,7 +85,7 @@ export class OurPresencePage implements OnInit {
 
     let mapOptions: google.maps.MapOptions = {
       center: latLng,
-      zoom: 15,
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: styles,
       mapTypeControl: false,

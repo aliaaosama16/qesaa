@@ -106,34 +106,21 @@ export class UtilitiesService {
 
     console.log('all remaining seconds ' + delta);
     if (delta > 86400) {
-      // calc days
       remaingTime.days = Math.floor(delta / 86400);
-      console.log('days  :' + remaingTime.days);
-
       var afterDays = delta - remaingTime.days * 86400;
 
-      console.log(
-        'remaing seconds after calc days ' + (delta - remaingTime.days * 286400)
-      );
-      //calc hours
       if (afterDays > 3600) {
         remaingTime.hours = Math.floor(afterDays / 3600);
-
         var afterHours = afterDays - remaingTime.hours * 3600;
 
         if (afterHours > 60) {
           remaingTime.minutes = Math.floor(afterHours / 60);
-
           remaingTime.seconds = afterHours - remaingTime.minutes * 60;
         }
-      } else {
-        remaingTime.hours = 0;
+      } else if (afterHours > 60) {
+        remaingTime.minutes = Math.floor(afterHours / 60);
 
-        if (afterDays > 60) {
-          remaingTime.minutes = Math.floor(afterDays / 60);
-
-          remaingTime.seconds = 0; //afterDays - remaingTime.minutes * 60;
-        }
+        remaingTime.seconds = afterHours - remaingTime.minutes * 60;
       }
     } else if (delta > 3600 && delta < 86400) {
       remaingTime.hours = Math.floor(delta / 3600);
@@ -145,6 +132,9 @@ export class UtilitiesService {
 
         remaingTime.seconds = afHours - remaingTime.minutes * 60;
       }
+    } else if (delta > 60 && delta < 3600) {
+      remaingTime.minutes = Math.floor(delta / 60);
+      remaingTime.seconds = delta - remaingTime.minutes * 60;
     }
 
     return remaingTime;
@@ -175,8 +165,7 @@ export class UtilitiesService {
     this.userLocation.lng = long;
   }
 
-
-  inputStatus(status:boolean){
+  inputStatus(status: boolean) {
     this.inputHaveFocused.next(status);
   }
 

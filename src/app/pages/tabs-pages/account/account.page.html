@@ -49,7 +49,7 @@
         <span>{{"notifications-settings"|translate}}</span>
       </div>
       <div class="tailing-icon">
-        <ion-toggle mode="ios"></ion-toggle>
+        <ion-toggle mode="ios" [checked]="notifcationsStatus" (ionChange)="changeNotifcationsStatus()" ></ion-toggle>
       </div>
     </div>
 

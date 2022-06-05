@@ -8,13 +8,14 @@
     >
       <ion-header class="header-image ion-no-border background-color">
         <img
-          [ngClass]="language == 'ar' ? 'image-right' : 'image-left'"
+          [ngClass]="currentLanguage == 'ar' ? 'image-right' : 'image-left'"
           src="./../assets/icon/app-logo.svg"
         />
       </ion-header>
       <!-- [routerLink]="p.url=='share'?? [p.url]" -->
 
       <ion-content class="my-menu-content">
+        
         <ion-list>
           <ion-menu-toggle
             auto-hide="false"
@@ -24,7 +25,7 @@
             [class.selected]="selectedIndex == i"
            
           >
-            <ion-item lines="none" detail="false"  class="animate__animated  " [ngClass]="currentLanguage=='ar'?'animate__fadeInBottomLeft':'animate__fadeInBottomRight'">
+            <ion-item lines="none" detail="false"  class="animate__animated" [ngClass]="currentLanguage=='ar'?'animate__fadeInBottomRight':'animate__fadeInBottomLeft'">
               <ion-icon
                 slot="start"
                 [src]="selectedIndex == i ? p.iconActive : p.iconInActive"

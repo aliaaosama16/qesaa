@@ -1,20 +1,29 @@
 <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()" class="my-tabs">
-  
   <div *ngIf="!inputFocused">
     <div class="tabs-up ion-text-center"></div>
-  
-    <ion-fab  edge vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button  (click)="donate()" color="light">
-        <ion-icon class="animate__animated animate__flipInY animate__slower animate__repeat-5"  src="./../../../assets/icon/tabs-icons/donate.svg"></ion-icon>
+
+    <ion-fab
+      edge
+      vertical="bottom"
+      horizontal="center"
+      slot="fixed"
+      [ngClass]="currentPlatform == 'ios' ? 'custom-fab-ios' : ''"
+    >
+      <ion-fab-button (click)="donate()" color="light">
+        <ion-icon
+          class="animate__animated animate__flipInY animate__slower animate__repeat-5"
+          src="./../../../assets/icon/tabs-icons/donate.svg"
+        ></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </div>
- 
 
+  <!-- --ripple-color: transparent; -->
+  <!-- [ngClass]="selectedTab==tab.tabName?'selected':''"
+  [ngClass]="tab.tabName==''?'custom-tab-button':''" -->
   <ion-tab-bar slot="bottom">
     <ion-tab-button
-      [ngClass]="selectedTab==tab.tabName?'selected':''"
-      [ngClass]="tab.tabName==''?'custom-tab-button':''"
+      [ngClass]="{'selected':selectedTab==tab.tabName,'custom-tab-button':tab.tabName==''}"
       [tab]="tab.tabName"
       *ngFor="let tab of tabsData"
     >
