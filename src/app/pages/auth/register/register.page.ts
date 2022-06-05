@@ -20,10 +20,6 @@ import { IonIntlTelInputValidators } from 'ion-intl-tel-input';
 })
 export class RegisterPage implements OnInit {
   preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
-<<<<<<< HEAD
-=======
-
->>>>>>> 601c87be64fdba673fdf72ef6b7b7da217a82208
   userTypes: any[] = [
     {
       id: UserType.client,
