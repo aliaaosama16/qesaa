@@ -1,9 +1,9 @@
 <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()" class="my-tabs">
   
   <div *ngIf="!inputFocused">
-    <div class="tabs-up"></div>
+    <div class="tabs-up ion-text-center"></div>
   
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab  edge vertical="bottom" horizontal="center" slot="fixed">
       <ion-fab-button  (click)="donate()" color="light">
         <ion-icon class="animate__animated animate__flipInY animate__slower animate__repeat-5"  src="./../../../assets/icon/tabs-icons/donate.svg"></ion-icon>
       </ion-fab-button>

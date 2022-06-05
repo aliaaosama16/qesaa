@@ -26,34 +26,6 @@
     </swiper>
   </div>
 
-  <!-- <div id="main" class="ion-margin">
-    <div >
-      <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
-        {{"Next initiative"|translate}}
-      </p>
-    </div>
-    <div></div>
-    <div class="ion-text-center primary-color">{{upComingDate?.days}}</div>
-    <div class="ion-text-center primary-color">{{upComingDate?.hours}}</div>
-    <div class="ion-text-center primary-color">{{upComingDate?.minutes}}</div>
-    <div class="ion-text-center primary-color">{{upComingDate?.seconds}}</div>
-  </div>
-
-  <div class="ion-margin next-compain">
-    <div >
-      <p class="fn-24 primary-color qesaa-Janna-Bold ion-no-margin">
-        {{"Next initiative"|translate}}
-      </p>
-    </div>
-
-    <div ></div>
-
-    <div class="time primary-color">{{upComingDate?.days}}</div>
-    <div class="time primary-color">{{upComingDate?.hours}}</div>
-    <div class="time primary-color">{{upComingDate?.minutes}}</div>
-    <div class="time primary-color">{{upComingDate?.seconds}}</div>
-  </div> -->
-
   <div class="next-initiative ion-margin-horizontal ion-margin-top">
     <div class="initiative">
       <div
@@ -209,9 +181,9 @@
         class="custom-swiper"
         [dir]="currentlangauge == 'ar' ? 'rtl' : 'ltr'"
       >
-        <ng-template swiperSlide *ngFor="let partenr of partenrs" >
+        <ng-template swiperSlide *ngFor="let partenr of partenrs">
           <div class="slide-item-container custom-top-margin">
-            <img [src]="partenr.image" (click)="showPartener(partenr.url)"/>
+            <img [src]="partenr.image" (click)="showPartener(partenr.url)" />
           </div>
         </ng-template>
       </swiper>

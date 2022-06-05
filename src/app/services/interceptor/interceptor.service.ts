@@ -22,7 +22,7 @@ export class InterceptorService {
       catchError((error: HttpErrorResponse) => {
         this.network.listenToNetwork();
         console.error(error);
-      //  this.handleError(error);
+     //  this.handleError(error);
         return throwError(error);
       })
     );

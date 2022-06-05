@@ -17,6 +17,10 @@ import { IonIntlTelInputModel, IonIntlTelInputValidators } from 'ion-intl-tel-in
 })
 export class LoginPage implements OnInit {
   preferredCountries:string[]=['sa','kw','ae','qa','bh','om'];
+<<<<<<< HEAD
+=======
+  onlyCountries:string[]=['sa','kw','ae','qa','bh','om']
+>>>>>>> 601c87be64fdba673fdf72ef6b7b7da217a82208
   userTypes: any[] = [
     {
       id: UserType.client,

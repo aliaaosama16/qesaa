@@ -21,6 +21,7 @@ import {
 } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { IonIntlTelInputModule } from 'ion-intl-tel-input';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
