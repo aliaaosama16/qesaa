@@ -4,21 +4,22 @@
   [isHome]="false"
   [hasMarketCart]="false"
 ></app-header>
-<!-- [ngClass]="galleyType=='images'?'background-primary':'background-secondary'" -->
-
-<!-- [ngClass]="currentLanguage=='ar'?'images-ar':'images-en'" -->
-<!-- [ngClass]="currentLanguage=='ar'?'videos-ar':'videos-en'" -->
 
 <ion-content>
   <ion-segment
-   
     (ionChange)="galleyTypeChoose($event)"
     [value]="galleyType"
     color="primary"
   >
     <ion-segment-button
       value="photos"
-      [ngClass]="galleyType=='photos'?'background-primary':'secondary'"
+      [ngStyle]="{'background-color': galleyType=='photos' ? '#951b80' : '' }"
+
+      [ngClass]="{   
+       
+        'btn-border-right':currentLanguage=='ar',
+        'btn-border-left ':currentLanguage=='en'
+      }"
     >
       <ion-label class="fn-18 qesaa-Janna-Bold white-color">
         {{"images"|translate}}
@@ -26,7 +27,12 @@
     </ion-segment-button>
     <ion-segment-button
       value="videos"
-      [ngClass]="galleyType=='videos'?'background-primary':'secondary'"
+      [ngStyle]="{'background-color': galleyType=='videos' ? '#951b80' : '' }"
+      [ngClass]="{   
+        
+        'btn-border-left':currentLanguage=='ar',
+        'btn-border-right':currentLanguage=='en'
+      }"
     >
       <ion-label class="fn-18 qesaa-Janna-Bold white-color">
         {{"videos"|translate}}
@@ -42,7 +48,8 @@
       <ion-col
         class="ion-text-center"
         size="4"
-        *ngFor="let image of galleryPhotos" (click)="openPreview(galleryPhotos,image.id)"
+        *ngFor="let image of galleryPhotos"
+        (click)="openPreview(galleryPhotos,image.id)"
       >
         <img [src]="image.image" />
       </ion-col>
@@ -57,7 +64,7 @@
       <ion-col
         class="ion-text-center"
         size="6"
-        *ngFor="let video of galleryVideos" 
+        *ngFor="let video of galleryVideos"
       >
         <video controls>
           <source [src]="video.video" type="video/mp4" />

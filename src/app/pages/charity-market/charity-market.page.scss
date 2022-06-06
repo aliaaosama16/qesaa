@@ -10,10 +10,11 @@
       height: 34px;
       --indicator-height: 0px !important;
       --indicator-color: transparent !important;
-      &:focus {
-        background-color: var(--ion-color-primary);
-      }
+      // &:focus {
+      //   background-color: var(--ion-color-primary);
+      // }
 
+      --background-checked:var(--ion-color-primary);
       &:not(:first-child) {
         margin: 0 6px;
       }

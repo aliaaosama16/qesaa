@@ -19,7 +19,11 @@
     >
       <ion-segment-button
         value="volunteers"
-        [ngClass]="orderType=='volunteers'?'background-primary':'secondary'"
+        [ngStyle]="{'background-color': orderType=='volunteers' ? '#951b80' : '' }"
+        [ngClass]="{   
+        'btn-border-right':currentlangauge=='ar',
+        'btn-border-left ':currentlangauge=='en'
+      }"
       >
         <ion-label class="fn-18 qesaa-Janna-Bold white-color">
           {{"volunteers"|translate}}
@@ -27,7 +31,11 @@
       </ion-segment-button>
       <ion-segment-button
         value="charity-market"
-        [ngClass]="orderType=='charity-market'?'background-primary':'secondary'"
+        [ngStyle]="{'background-color': orderType=='charity-market' ? '#951b80' : '' }"
+        [ngClass]="{   
+        'btn-border-left':currentlangauge=='ar',
+        'btn-border-right':currentlangauge=='en'
+      }"
       >
         <ion-label class="fn-18 qesaa-Janna-Bold white-color">
           {{"charity-market"|translate}}
@@ -71,7 +79,6 @@
                 class="custom-margin red-color"
                 *ngIf="order.status_f=='refused'"
                 >{{order.status_f}}</span -->
-              
             </p>
             <p class="date ion-no-margin fn-12 qesaa-Janna-Regular">
               {{order.date}}
@@ -89,9 +96,9 @@
           </div>
         </div>
       </div>
-      <div *ngIf="volunteerOrders.length==0" class="no-data">
+      <!-- <div *ngIf="volunteerOrders.length==0" class="no-data">
         <p>{{"no orders"|translate}}</p>
-      </div>
+      </div> -->
     </div>
 
     <div class="service-orders-section" *ngIf="orderType=='charity-market'">
@@ -117,13 +124,12 @@
               {{"orderStatus"|translate}}
             </div>
             <div class="requestStatus fn-16 qesaa-Janna-Bold">
-
               <span
-              class="custom-margin"
-              [ngClass]="{'secondary-color': order.status_f=='finish', 'red-color':order.status_f=='refused'}"
-            >
-              {{order.status_f}}
-            </span>
+                class="custom-margin"
+                [ngClass]="{'secondary-color': order.status_f=='finish', 'red-color':order.status_f=='refused'}"
+              >
+                {{order.status_f}}
+              </span>
               <!-- <span
                 class="custom-margin"
                 *ngIf="order.status_f=='in_way'||'current'"

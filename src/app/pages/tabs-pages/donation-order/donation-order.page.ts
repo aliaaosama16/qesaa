@@ -33,6 +33,9 @@ import { NoticeModalPage } from '../../modals/notice-modal/notice-modal.page';
 })
 export class DonationOrderPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
+  @ViewChild('popoverDatetime', { static: false }) popoverDatetime: ElementRef;
+
+  
   map: google.maps.Map;
   home: google.maps.Marker;
   lat: number = 0;
@@ -159,6 +162,7 @@ export class DonationOrderPage implements OnInit {
   getSelectedDate(date) {
     this.donationForm.value.requestDate = moment(date).format('YYYY-MM-DD');
     console.log('converted date :' + moment(date).format('YYYY-MM-DD'));
+   
     return this.donationForm.value.requestDate;
   }
 

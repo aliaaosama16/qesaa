@@ -19,30 +19,14 @@
     </ion-segment>
   </div>
 
-  <div  *ngIf="sectionProducts">
-    <!-- class="products-conatiner" -->
-    <!-- <div
-      clas="product-wrapper"
-      *ngFor="let product of sectionProducts"
-      routerLink="/tabs/home/market/product/{{product.id}}"
-    >
-      <div class="product ion-padding ion-text-center">
-        <div class="icon">
-          <img [src]="product?.image" />
-        </div>
-      </div>
-      <div class="ion-text-center title">
-        <p class="ion-no-margin fn-18 qesaa-Janna-Bold">{{product?.title}}</p>
-      </div>
-    </div>-->
-
+  <div *ngIf="sectionProducts">
     <ion-row>
       <ion-col
         size="4"
         *ngFor="let product of sectionProducts"
-       (click)="showService(product?.id)"
+        (click)="showService(product?.id)"
       >
-        <div class="product  ion-text-center">
+        <div class="product ion-text-center">
           <div class="icon">
             <img [src]="product?.image" />
           </div>

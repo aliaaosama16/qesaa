@@ -57,6 +57,12 @@
   --custom-border-10-radius: 10px;
   --ion-background-color: var(--ion-color-white);
 
+  .btn-border-right{
+    border-radius: 0 25px 0 0 !important;
+  }
+  .btn-border-left{
+    border-radius:  25px 0 0 0 !important;
+  }
   :focus {
     outline: 0 !important;
   }
@@ -80,16 +86,12 @@ ion-menu.ios-menu-header {
     height: 90vh !important;
   }
 
-  :root[dir="rtl"] {
-    ion-header{
-      border-radius: 80px 0 0 0 !important;
-    }
+  .header-ios-ar {
+    border-radius: 80px 0 0 0 !important;
   }
-  
-  :root[dir="ltr"] {
-    ion-header{
-      border-radius: 0 80px  0 0 !important;
-    }
+
+  .header-ios-en {
+    border-radius: 0 80px 0 0 !important;
   }
 }
 
@@ -232,9 +234,9 @@ ion-select {
   }
 }
 .form-container {
-.custom-item{
-  --inner-padding-end	:0px !important
-}
+  .custom-item {
+    --inner-padding-end: 0px !important;
+  }
   // .custom-item::part(native){
   //   padding-inline-end:0px !important
   // }
@@ -243,27 +245,25 @@ ion-select {
     justify-content: space-between;
     align-items: baseline;
 
-    .icon-container{
+    .icon-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    ion-button{
-      --background:var(--ion-color-light);
-      --background-activated:var(--ion-color-primary);
-      --background-focused	:var(--ion-color-primary);
-      &::part(native){
+    ion-button {
+      --background: var(--ion-color-light);
+      --background-activated: var(--ion-color-primary);
+      --background-focused: var(--ion-color-primary);
+      &::part(native) {
         height: 35px;
         border-radius: 10px;
       }
     }
-  
-    .text{
+
+    .text {
       color: var(--ion-color-secondary);
     }
-
-   
   }
   .error-box {
     color: var(--ion-color-danger);
@@ -367,7 +367,7 @@ ion-content {
 
 ion-tabs {
   ion-fab {
-    margin-bottom:80px ;//!important; // 5vh;
+    margin-bottom: 80px; //!important; // 5vh;
     --ripple-color: transparent;
     ion-fab-button {
       &::part(native) {
@@ -494,7 +494,7 @@ ion-tabs {
   //--backdrop-opacity: 0.;
   --min-height: 10vh;
   --max-height: 37vh;
-  --height	: 30vh;
+  --height: 30vh;
   padding: 31px;
 
   .content {

@@ -26,6 +26,7 @@ export class MyOrdersPage implements OnInit {
   orderType: string = 'volunteers';
   userData: UserData;
   userType: string;
+  currentlangauge: string;
   constructor(
     private util: UtilitiesService,
     private orderService: OrdersService,
@@ -33,10 +34,13 @@ export class MyOrdersPage implements OnInit {
     private auth: AuthService,
     private router: Router,
     private dataService: DataService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private langaugeservice: LanguageService
   ) {}
 
   ngOnInit() {
+    this.currentlangauge = this.langaugeservice.getLanguage();
+    console.log('currentlangauge :'+this.currentlangauge)
     this.userData = {
       lang: this.languageService.getLanguage(),
       user_id: this.auth.userID.value,
@@ -121,41 +125,40 @@ export class MyOrdersPage implements OnInit {
   }
 
   showAllOrdersByUserIdAfterRefreshing($event: any, type: string) {
-      this.orderService.showAllorders(this.userData).subscribe(
-        (data: OrderListResponse) => {
-          if (data.key == 1) {
-            this.orders = data.data;
+    this.orderService.showAllorders(this.userData).subscribe(
+      (data: OrderListResponse) => {
+        if (data.key == 1) {
+          this.orders = data.data;
 
-            if (type == 'charity-market') {
-              this.serviceOrders = this.orders.filter(
-                (item) => item.type === 'service'
-              );
-            } else {
-              this.volunteerOrders = this.orders.filter(
-                (item) => item.type === 'volunteer'
-              );
-            }
+          if (type == 'charity-market') {
+            this.serviceOrders = this.orders.filter(
+              (item) => item.type === 'service'
+            );
+          } else {
+            this.volunteerOrders = this.orders.filter(
+              (item) => item.type === 'volunteer'
+            );
           }
-          $event.target.complete();
-        },
-        (err) => {
-          $event.target.complete();
         }
-      );
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 
-  showAllOrdersByProviderIdAfterRefreshing($event){
-      this.providerService.showAllProviderOrders(this.userData).subscribe(
-        (data: OrderListResponse) => {
-          if (data.key == 1) {
-            this.providerOrders = data.data;
-          }
-          $event.target.complete();
-        },
-        (err) => {
-          $event.target.complete();
+  showAllOrdersByProviderIdAfterRefreshing($event) {
+    this.providerService.showAllProviderOrders(this.userData).subscribe(
+      (data: OrderListResponse) => {
+        if (data.key == 1) {
+          this.providerOrders = data.data;
         }
-      );
-  
+        $event.target.complete();
+      },
+      (err) => {
+        $event.target.complete();
+      }
+    );
   }
 }

@@ -75,7 +75,7 @@ export class MyOrderDetailsPage implements OnInit {
       componentProps: {
         images: itemImages,
         imageID: currentImage,
-        orderImage:itemImages
+        orderImage: itemImages,
       },
     });
     modal.present();
@@ -93,7 +93,6 @@ export class MyOrderDetailsPage implements OnInit {
     });
     return await modal.present();
   }
-
 
   async clientTrack() {
     const modal = await this.modalController.create({
@@ -150,7 +149,16 @@ export class MyOrderDetailsPage implements OnInit {
         (data: OrderResponse) => {
           if (data.key == 1) {
             //this.orderDetails = data.data;
-            this.util.showMessage(data.msg);
+            this.util.showMessage(data.msg).then(() => {
+              const orderData: OrderData = {
+                lang: this.languageService.getLanguage(),
+                user_id: this.auth.userID.value,
+                order_id: parseInt(
+                  this.activatedRoute.snapshot.paramMap.get('id')
+                ),
+              };
+              this.showOrderByOederID(orderData);
+            });
           }
           this.util.dismissLoading();
         },
@@ -162,7 +170,7 @@ export class MyOrderDetailsPage implements OnInit {
   }
 
   contactWithWhatsapp() {
-    console.log(this.orderDetails?.provider_full_phone)
+    console.log(this.orderDetails?.provider_full_phone);
     window.open(
       `https://api.whatsapp.com/send?phone=${this.orderDetails?.provider_full_phone}`
     );

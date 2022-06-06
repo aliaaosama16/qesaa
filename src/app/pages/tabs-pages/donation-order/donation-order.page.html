@@ -141,7 +141,7 @@
             presentation="date"
             size="cover"
             formControlName="requestDate"
-            (ionChange)="requestDate=getSelectedDate(popoverDatetime.value)"
+            (ionChange)="requestDate=getSelectedDate(popoverDatetime.value);popoverDatetime.confirm(true)"
           ></ion-datetime>
         </ng-template>
       </ion-popover>
