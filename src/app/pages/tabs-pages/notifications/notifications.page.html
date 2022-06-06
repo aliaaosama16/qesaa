@@ -9,16 +9,15 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
- 
+
   <div *ngIf="noNotifications" class="no-data">
     <p>{{"no Notifications"|translate}}</p>
   </div>
-  <ion-item-sliding   class="ion-margin-bottom" *ngFor="let notification of notifications">
-    <ion-item
-    
-      lines="none"
-      (click)="openOrederDetails(notification.order_id)"
-    >
+  <ion-item-sliding
+    class="ion-margin-bottom"
+    *ngFor="let notification of notifications"
+  >
+    <ion-item lines="none" (click)="openOrederDetails(notification.order_id)">
       <div class="notification-container">
         <div class="icon">
           <ion-icon
@@ -36,7 +35,10 @@
       </div>
     </ion-item>
     <ion-item-options side="end" (click)="deleteItem(notification.id)">
-      <ion-item-option color="danger" [ngClass]="currentlangauge=='ar'?'delete-ar-ios':''">
+      <ion-item-option
+        color="danger"
+        [ngClass]="currentPlatform=='ios' && currentlangauge=='ar'?'delete-ar-ios':''"
+      >
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>
     </ion-item-options>

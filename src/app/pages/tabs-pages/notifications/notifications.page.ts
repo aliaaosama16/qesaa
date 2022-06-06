@@ -26,6 +26,7 @@ export class NotificationsPage implements OnInit {
   notifications: NotificationResponse[];
   getNotifications: boolean = false;
   noNotifications: boolean = false;
+  currentPlatform:string;
   constructor(
     private menuCtrl: MenuController,
     private langaugeservice: LanguageService,
@@ -38,6 +39,7 @@ export class NotificationsPage implements OnInit {
   ) {
     this.platform = this.util.platform;
     this.auth.getStoredUserID();
+    this.currentPlatform=this.util.getCapacitorPlatform()
   }
 
   ngOnInit() {
@@ -88,6 +90,7 @@ export class NotificationsPage implements OnInit {
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
+      mode:'ios',
       message: this.translate.instant('confirm delete this notification'),
       buttons: [
         {
