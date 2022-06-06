@@ -56,6 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
       useClass: InterceptorService,
       multi: true,
     },
+   
   ],
   bootstrap: [AppComponent],
 })

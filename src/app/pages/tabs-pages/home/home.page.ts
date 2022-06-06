@@ -56,7 +56,6 @@ export class HomePage implements OnInit {
     this.currentlangauge = this.languageService.getLanguage();
     this.menuCtrl.enable(true, 'main');
     console.log('user id : ' + this.auth.userID.value);
-    
   }
 
 
@@ -125,14 +124,14 @@ export class HomePage implements OnInit {
   }
 
   countRemainingTime(date) {
-   // this.subscription = this.intervallTimer.subscribe(() => {
-      this.upComingDate = this.util.getDatesDifference(date);
-   // });
+    // this.subscription = this.intervallTimer.subscribe(() => {
+    this.upComingDate = this.util.getDatesDifference(date);
+    // });
   }
 
   showPartener(partenerUrl: string) {
-    console.log(partenerUrl)
-   window.open(partenerUrl);
+    console.log(partenerUrl);
+    window.open(partenerUrl);
   }
 
   doRefresh($event) {
@@ -141,7 +140,6 @@ export class HomePage implements OnInit {
       // user_id: this.auth.userID.value == 0 ? 1 : this.auth.userID.value,
     };
     this.home.home(userData).subscribe(
-
       // {
       //   next: () => fail('should have failed with the 404 error'),
       //   error: (error: HttpErrorResponse) => {

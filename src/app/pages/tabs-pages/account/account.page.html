@@ -4,12 +4,12 @@
   [title]="'account'"
   [isHome]="false"
 ></app-header>
-
+<!-- alt="./../../../../assets/icon/profile_alt.svg"  -->
 <ion-content class="ion-padding-horizontal">
   <div class="info">
     <div class="user-image">
-      <ion-avatar >
-        <img [src]="userData?.avatar" />
+      <ion-avatar *ngIf="userData?.avatar">
+        <ion-img [src]="userData?.avatar" ></ion-img>
       </ion-avatar>
     </div>
 
@@ -49,7 +49,11 @@
         <span>{{"notifications-settings"|translate}}</span>
       </div>
       <div class="tailing-icon">
-        <ion-toggle mode="ios" [checked]="notifcationsStatus" (ionChange)="changeNotifcationsStatus()" ></ion-toggle>
+        <ion-toggle
+          mode="ios"
+          [checked]="notifcationsStatus"
+          (ionChange)="changeNotifcationsStatus()"
+        ></ion-toggle>
       </div>
     </div>
 
@@ -107,10 +111,15 @@
           src="./../../../../assets/icon/account/version.svg"
         ></ion-icon> -->
 
-        <ion-icon style="font-size: 21px" color="primary" name="globe-outline"></ion-icon>
+        <ion-icon
+          style="font-size: 21px"
+          color="primary"
+          name="globe-outline"
+        ></ion-icon>
       </div>
       <div class="title fn-18 qesaa-Janna-Regular">
-        <span>{{otherLanguage}}
+        <span
+          >{{otherLanguage}}
           <!-- {{"app version"|translate}} -->
         </span>
       </div>
@@ -118,7 +127,7 @@
 
     <div class="divider"></div>
 
-    <div class="container"(click)="logout()" >
+    <div class="container" (click)="logout()">
       <div class="icon">
         <ion-icon src="./../../../../assets/icon/account/logout.svg"></ion-icon>
       </div>
