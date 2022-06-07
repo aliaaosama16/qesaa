@@ -1,3 +1,21 @@
+.space-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .tester {
+    width: 90%;
+    overflow: hidden;
+    margin: 0 7px;
+   &::before {
+      white-space: nowrap;
+      content: ".....................................................";
+      color: #ccc;
+      font-weight: bold;
+    }
+  }
+}
+
 .slider-section {
   position: relative;
   .custom-swiper {
@@ -203,7 +221,6 @@
     .card-statistics-text {
       margin-top: 10px;
     }
-
   }
 
   .item-left {
